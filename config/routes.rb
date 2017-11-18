@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   resources :shipments, only: [:index, :show, :new, :create] do
   end
+
+  get "cargos", to: 'shippers#cargos'
 end

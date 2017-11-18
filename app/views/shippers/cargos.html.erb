@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>My listings(cargos)</h2>
+  <div>
+    <%= link_to new_shipment_path, class: "btn btn-primary" do %>
+     <i class="fa fa-list-alt"></i> + ADD NEW SHIPMENT
+    <% end %>
+  </div>
+  <% @cargos.each do |cargo| %>
+  <div>
+    <p>ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.commodity %> <%= cargo.weight %>kg <%= cargo.car_type %> <%= cargo.shipper.email %></p>
+  </div>
+  <% end %>
+</div>
