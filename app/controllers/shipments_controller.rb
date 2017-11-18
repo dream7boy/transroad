@@ -4,6 +4,9 @@ class ShipmentsController < ApplicationController
   end
 
   def show
+  end
 
+  def new
+    @shipment = Shipment.new
   end
 end

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <h1>new shipment</h1>
+      <%= simple_form_for @shipment do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :distance %>
+        <%= f.input :rate %>
+
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
