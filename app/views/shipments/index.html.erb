@@ -1,0 +1,7 @@
+<div class="container">
+  <% @shipments.each do |shipment| %>
+  <div>
+    <p>ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.commodity %> <%= shipment.weight %>kg <%= shipment.car_type %> <%= shipment.shipper.email %></p>
+  </div>
+  <% end %>
+</div>
