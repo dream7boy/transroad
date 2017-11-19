@@ -7,7 +7,12 @@
   </div>
   <% @cargos.each do |cargo| %>
   <div>
-    <p>ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.commodity %> <%= cargo.weight %>kg <%= cargo.car_type %> <%= cargo.shipper.email %></p>
+    <p>
+      <%= link_to "Edit", edit_shipment_path(cargo) %>
+      <%= link_to "Delete", shipment_path(cargo),
+        method: :delete, data: { confirm: "Are you sure?" } %>
+      ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.commodity %> <%= cargo.weight %>kg <%= cargo.car_type %> <%= cargo.shipper.email %>
+    </p>
   </div>
   <% end %>
 </div>
