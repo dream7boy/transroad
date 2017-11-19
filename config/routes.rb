@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   resources :shipments do
   end
 
+  resources :facilities
   get "cargos", to: 'shippers#cargos'
 end

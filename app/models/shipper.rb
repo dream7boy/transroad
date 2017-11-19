@@ -5,4 +5,5 @@ class Shipper < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :shipments, dependent: :destroy
+  has_many :facilities, dependent: :destroy
 end
