@@ -12,15 +12,6 @@ class ShipmentsController < ApplicationController
     @shipment = Shipment.new
   end
 
-  def edit
-  end
-
-  def update
-    @shipment.update(shipment_params)
-    redirect_to cargos_path
-    flash[:notice] = "Your shipment has been edited"
-  end
-
   def create
     @shipment = Shipment.new(shipment_params)
     @shipment.shipper = current_shipper
@@ -29,6 +20,15 @@ class ShipmentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @shipment.update(shipment_params)
+    redirect_to cargos_path
+    flash[:notice] = "Your shipment has been edited"
   end
 
   def destroy
