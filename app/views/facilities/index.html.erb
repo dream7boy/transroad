@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>facilities</h1>
+  <div>
+    <%= link_to new_facility_path, class: "btn btn-primary" do %>
+     <i class="fa fa-list-alt"></i> + ADD NEW FACILITY
+    <% end %>
+  </div>
+  <% @facilities.each do |facility| %>
+  <div>
+    <p>
+      <%= link_to "Edit", edit_facility_path(facility) %>
+      <%= link_to "Delete", facility_path(facility),
+        method: :delete, data: { confirm: "Are you sure?" } %>
+      ID:<%= facility.id %> <%= facility.name %> <%= facility.prefecture %> <%= facility.address %> <%= facility.shipper.email %>
+    </p>
+  </div>
+  <% end %>
+</div>
