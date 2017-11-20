@@ -1,4 +1,5 @@
 class ShipmentsController < ApplicationController
+  before_action :authenticate_shipper!, except: [:index, :show]
   before_action :set_shipment, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,18 +12,13 @@ class ShipmentsController < ApplicationController
   def new
     @shipment = Shipment.new
 
-    # 1. cannot
-    # @shipment.locations.build
+    # 1. Works
+    @shipment.locations.build
 
     # 2. cannot
-    @pickup = @shipment.locations.build
+    # @pickup = @shipment.locations.build
     # @delivery = @shipment.locations.build
 
-    # 3.
-    # @pickup = @shipment.locations.build
-
-    # @pickup = Location.new
-    # @delivery = Location.new
   end
 
   def create
@@ -32,14 +28,14 @@ class ShipmentsController < ApplicationController
     # @pickup = @shipment.locations.build
     # @delivery = @shipment.locations.build
 
-    @pickup = @shipment.locations.build(pickup_params)
+    # @pickup = @shipment.locations.build(location_params)
     # @delivery = @shipment.locations.build(delivery_params)
 
     # @pickup = Location.new(pickup_params)
     # @delivery = Location.new(delivery_params)
-
-    if @shipment.save && @pickup.save && @delivery.save
+    if @shipment.save
       redirect_to shipment_path(@shipment)
+      flash[:notice] = "Your shipment has been created"
     else
       render :new
     end
@@ -49,9 +45,12 @@ class ShipmentsController < ApplicationController
   end
 
   def update
-    @shipment.update(shipment_params)
-    redirect_to cargos_path
-    flash[:notice] = "Your shipment has been edited"
+    if @shipment.update(shipment_params)
+      redirect_to cargos_path
+      flash[:notice] = "Your shipment has been edited"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -63,16 +62,30 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:distance, :rate, :commodity, :weight, :car_type)
+    params.require(:shipment).permit(:distance, :rate, :car_type, locations_attributes: [:facility_id, :commodity, :weight, :is_for])
   end
 
-  def pickup_params
-    params.require(:pickup).permit(:facility, :commodity, :weight, :is_for)
-  end
+  # 0. not needed
+  # def location_params
+  #   params.require(:shipment).permit(locations_attributes: [:facility_id, :commodity, :weight, :is_for])
+  # end
 
-  def delivery_params
-    params.require(:delivery).permit(:facility, :is_for)
-  end
+  # 1. not work
+  # def location_params
+  #   params.require(:locations_attributes).permit(:facility_id, :commodity, :weight, :is_for)
+  # end
+
+  # def pickup_params
+  #   params.require(:shipment).permit(:facility_id, :commodity, :weight, :is_for)
+  # end
+
+  # def delivery_params
+  #   params.require(:shipment).permit(locations_attributes: '1')
+  # end
+
+  # def delivery_params
+  #   params.require(:delivery).permit(:facility_id, :is_for)
+  # end
 
   def set_shipment
     @shipment = Shipment.find(params[:id])
