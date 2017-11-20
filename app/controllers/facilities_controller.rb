@@ -1,5 +1,4 @@
 class FacilitiesController < ApplicationController
-  protect_from_forgery
   before_action :authenticate_shipper!
   before_action :set_facility, only: [:edit, :update, :destroy]
 

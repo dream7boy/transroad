@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119055404) do
+ActiveRecord::Schema.define(version: 20171119070023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20171119055404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shipper_id"], name: "index_facilities_on_shipper_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "facility_id"
+    t.bigint "shipment_id"
+    t.string "commodity"
+    t.integer "weight"
+    t.string "is_for"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_locations_on_facility_id"
+    t.index ["shipment_id"], name: "index_locations_on_shipment_id"
   end
 
   create_table "shipments", force: :cascade do |t|
@@ -72,5 +84,7 @@ ActiveRecord::Schema.define(version: 20171119055404) do
   end
 
   add_foreign_key "facilities", "shippers"
+  add_foreign_key "locations", "facilities"
+  add_foreign_key "locations", "shipments"
   add_foreign_key "shipments", "shippers"
 end

@@ -1,6 +1,15 @@
 <div class="container">
   <h1>show for shipment</h1>
   <div>
-    <p>ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.rate %>yen <%= @shipment.commodity %> <%= @shipment.weight %>kg <%= @shipment.car_type %> <%= @shipment.shipper.email %></p>
+    <p>
+      ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
+      <% @shipment.locations.each do |location| %>
+        <% if location.is_for == 'pickup' %>
+          P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
+        <% elsif location.is_for == 'delivery' %>
+          D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
+        <% end %>
+      <% end %>
+    </p>
   </div>
 </div>

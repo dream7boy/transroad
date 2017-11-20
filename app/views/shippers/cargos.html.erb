@@ -11,7 +11,14 @@
       <%= link_to "Edit", edit_shipment_path(cargo) %>
       <%= link_to "Delete", shipment_path(cargo),
         method: :delete, data: { confirm: "Are you sure?" } %>
-      ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.commodity %> <%= cargo.weight %>kg <%= cargo.car_type %> <%= cargo.shipper.email %>
+      ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.car_type %> <%= cargo.shipper.email %> |
+      <% cargo.locations.each do |location| %>
+        <% if location.is_for == 'pickup' %>
+          P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
+        <% elsif location.is_for == 'delivery' %>
+          D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
+        <% end %>
+      <% end %>
     </p>
   </div>
   <% end %>
