@@ -12,13 +12,11 @@ class ShipmentsController < ApplicationController
   def new
     @shipment = Shipment.new
 
-    # 1. Works
-    @shipment.locations.build
+    # @shipment.locations.build
 
-    # 2. cannot
-    # @pickup = @shipment.locations.build
-    # @delivery = @shipment.locations.build
-
+    # if @shipment.locations.empty?
+    #   @shipment.locations.build
+    # end
   end
 
   def create
@@ -62,7 +60,7 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:distance, :rate, :car_type, locations_attributes: [:facility_id, :commodity, :weight, :is_for])
+    params.require(:shipment).permit(:distance, :rate, :car_type, locations_attributes: [:id, :facility_id, :commodity, :weight, :is_for])
   end
 
   # 0. not needed

@@ -5,21 +5,36 @@
      <i class="fa fa-list-alt"></i> + ADD NEW SHIPMENT
     <% end %>
   </div>
+
   <% @cargos.each do |cargo| %>
-  <div>
-    <p>
-      <%= link_to "Edit", edit_shipment_path(cargo) %>
-      <%= link_to "Delete", shipment_path(cargo),
-        method: :delete, data: { confirm: "Are you sure?" } %>
-      ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.car_type %> <%= cargo.shipper.email %> |
-      <% cargo.locations.each do |location| %>
-        <% if location.is_for == 'pickup' %>
-          P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
-        <% elsif location.is_for == 'delivery' %>
-          D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
+    <div>
+      <div>
+
+        <div>
+          <%= link_to "Edit", edit_shipment_path(cargo) %>
+          <%= link_to "Delete", shipment_path(cargo),
+            method: :delete, data: { confirm: "Are you sure?" } %>
+          ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.car_type %> <%= cargo.shipper.email %> |
+        </div>
+
+        <% cargo.locations.order(created_at: :asc).each do |location| %>
+          <% if location.is_for == 'pickup' %>
+            <div>
+              P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </p>
-  </div>
+
+        <% cargo.locations.order(created_at: :asc).each do |location| %>
+          <% if location.is_for == 'delivery' %>
+            <div>
+              D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
+            </div>
+          <% end %>
+        <% end %>
+
+        <br>
+      </div>
+    </div>
   <% end %>
 </div>

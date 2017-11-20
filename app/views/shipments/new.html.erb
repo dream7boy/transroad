@@ -7,8 +7,6 @@
 
         <%= f.input :distance, input_html: { value: '550' } %>
         <%= f.input :rate, input_html: { value: '55000' } %>
-        <%#= f.input :commodity, collection: ["tables", "chairs", "beds"], prompt: "Choose a Commodity", label: "Commodity Description" %>
-        <%#= f.input :weight, input_html: { value: '100' } %>
         <%= f.input :car_type, collection: ["van", "reefer", "flatbed"], prompt: "Choose a Truck Type", label: "Truck Type" %>
 
         <!-- <h3>Pickup1</h3> -->
@@ -20,7 +18,7 @@
         <%# end %>
 
         <h3>Pickup</h3>
-        <%= f.simple_fields_for :locations do |p| %>
+        <%= f.simple_fields_for :locations, @shipment.locations.new do |p| %>
           <%= p.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
           <%= p.input :commodity, collection: ["tables", "chairs", "beds"], prompt: "Choose a Commodity", label: "Commodity Description" %>
           <%= p.input :weight, input_html: { value: '100' } %>
@@ -28,8 +26,7 @@
         <% end %>
 
         <h3>Delivery</h3>
-        <%= f.simple_fields_for :locations do |d| %>
-          <%#= d.association :facility %>
+        <%= f.simple_fields_for :locations, @shipment.locations.new do |d| %>
           <%= d.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
           <%= d.hidden_field :is_for, value: 'delivery' %>
         <% end %>

@@ -10,17 +10,21 @@
         <%= f.input :car_type, collection: ["van", "reefer", "flatbed"], prompt: "Choose a Truck Type", label: "Truck Type" %>
 
         <h3>Pickup</h3>
-        <%= f.simple_fields_for :locations do |p| %>
-          <%= p.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
-          <%= p.input :commodity, collection: ["tables", "chairs", "beds"], prompt: "Choose a Commodity", label: "Commodity Description" %>
-          <%= p.input :weight %>
-          <%= p.hidden_field :is_for, value: 'pickup' %>
+        <%= f.simple_fields_for :locations, f.object.locations.order(created_at: :asc) do |p| %>
+          <% if p.object.is_for == 'pickup' %>
+            <%= p.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
+            <%= p.input :commodity, collection: ["tables", "chairs", "beds"], prompt: "Choose a Commodity", label: "Commodity Description" %>
+            <%= p.input :weight %>
+            <%= p.hidden_field :is_for, value: 'pickup' %>
+          <% end %>
         <% end %>
 
         <h3>Delivery</h3>
-        <%= f.simple_fields_for :locations do |d| %>
-          <%= d.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
-          <%= d.hidden_field :is_for, value: 'delivery' %>
+        <%= f.simple_fields_for :locations, f.object.locations.order(created_at: :asc) do |d| %>
+          <% if d.object.is_for == 'delivery' %>
+            <%= d.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
+            <%= d.hidden_field :is_for, value: 'delivery' %>
+          <% end %>
         <% end %>
 
         <%= f.button :submit %>
