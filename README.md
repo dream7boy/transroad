@@ -43,7 +43,7 @@
 ### ◎On Github
 1. Check what will be deployed to heroku
 1. `git push heroku master` to deploy the files to heroku
-1. If you need to change DB structures, run `heroku run db:migrate`
+1. If you need to change DB structures, run `heroku run rails db:migrate`
 1. Go to [heroku url](https://transroad.herokuapp.com/) to check the changes are applied on heroku.
 
 ### ◎On Trello

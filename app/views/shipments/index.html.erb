@@ -1,8 +1,15 @@
 <div class="container">
-  <% @shipments.each do |shipment| %>
-  <div>
-    <%= link_to "Details", shipment_path(shipment) %>
-    Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %>
-  </div>
+  <h1>Shipments</h1>
+  <% if @shipments.present? %>
+    <% @shipments.each do |shipment| %>
+      <div>
+        <%= link_to "Details", shipment_path(shipment) %>
+        Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %>
+      </div>
+    <% end %>
+  <% else %>
+    <div>
+      No Shipments yet.
+    </div>
   <% end %>
 </div>
