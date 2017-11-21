@@ -1,7 +1,8 @@
 <div class="container">
   <% @shipments.each do |shipment| %>
   <div>
-    <p>ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.commodity %> <%= shipment.weight %>kg <%= shipment.car_type %> <%= shipment.shipper.email %></p>
+    <%= link_to "Details", shipment_path(shipment) %>
+    Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %>
   </div>
   <% end %>
 </div>

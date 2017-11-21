@@ -3,10 +3,11 @@ class ShipmentsController < ApplicationController
   before_action :set_shipment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shipments = Shipment.all
+    @shipments = Shipment.all.order(created_at: :desc)
   end
 
   def show
+    @locations = @shipment.locations.order(created_at: :asc)
   end
 
   def new

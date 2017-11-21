@@ -2,10 +2,10 @@
   <h1>show for shipment</h1>
   <div>
     <div>
-      ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
+      Ship-ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
     </div>
 
-    <% @shipment.locations.order(created_at: :asc).each do |location| %>
+    <% @locations.each do |location| %>
       <% if location.is_for == 'pickup' %>
         <div>
           P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
@@ -13,7 +13,7 @@
       <% end %>
     <% end %>
 
-    <% @shipment.locations.order(created_at: :asc).each do |location| %>
+    <% @locations.each do |location| %>
       <% if location.is_for == 'delivery' %>
         <div>
           D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
