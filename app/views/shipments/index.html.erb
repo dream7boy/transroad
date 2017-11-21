@@ -3,13 +3,15 @@
   <% if @shipments.present? %>
     <% @shipments.each do |shipment| %>
       <div>
-        <%= link_to "Details", shipment_path(shipment) %>
-        Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %>
+        <p>
+          <%= link_to "Details", shipment_path(shipment) %>
+          Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %>
+        </p>
       </div>
     <% end %>
   <% else %>
     <div>
-      No Shipments yet.
+      <p>No Shipments yet.</p>
     </div>
   <% end %>
 </div>
