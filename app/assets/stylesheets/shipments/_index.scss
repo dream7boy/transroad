@@ -1,0 +1,60 @@
+p {
+  margin: 0px;
+}
+.wrapper-shipments {
+  padding: 10px;
+  .container {
+    background-color: #ffffff;
+    padding: 10px;
+  }
+  .search-results-shipment {
+    background-color: rgb(230, 230, 230);
+    border-top: 1px solid rgb(200, 200, 200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+      padding-right: 10px;
+      border-right: 1px solid rgb(200, 200, 200);
+    }
+  }
+  .shipment-details {
+
+  }
+  .shipment-id {
+  }
+  .shipment-pickup-prefecture {
+    flex-basis: 10%;
+  }
+  .shipment-pickup-addess {
+    flex-basis: 10%;
+  }
+  .shipment-delivery-prefecture {
+    flex-basis: 10%;
+  }
+  .shipment-delivery-addess {
+    flex-basis: 10%;
+  }
+  .shipment-distance {
+  }
+  .shipment-rate {
+  }
+  .shipment-car-type {
+    flex-basis: 10%;
+    overflow: hidden;
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .shipper-email {
+    overflow: hidden;
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+

@@ -8,7 +8,7 @@
     <% @locations.each do |location| %>
       <% if location.is_for == 'pickup' %>
         <div>
-          P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
+          P-ID:<%= location.id %> <%= location.facility.name %> <%= location.facility.prefecture %> <%= location.facility.address %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
         </div>
       <% end %>
     <% end %>
@@ -16,7 +16,7 @@
     <% @locations.each do |location| %>
       <% if location.is_for == 'delivery' %>
         <div>
-          D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
+          D-ID:<%= location.id %> <%= location.facility.name %> <%= location.facility.prefecture %> <%= location.facility.address %> (<%= location.is_for %>)
         </div>
       <% end %>
     <% end %>
