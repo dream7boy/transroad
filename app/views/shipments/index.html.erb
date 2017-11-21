@@ -1,12 +1,39 @@
-<div class="container">
+<div class="wrapper-shipments">
+  <div class="container">
   <h1>Shipments</h1>
   <% if @shipments.present? %>
     <% @shipments.each do |shipment| %>
-      <div>
-        <p>
-          <%= link_to "Details", shipment_path(shipment) %>
-          Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %>
-        </p>
+      <div class="search-results-shipment">
+        <div class="shipment-details">
+          <%= link_to "Details", shipment_path(shipment[:shipment]) %>
+        </div>
+        <div class="shipment-id">
+          ID:<%= shipment[:shipment][:id] %>
+        </div>
+        <div class="shipment-pickup-prefecture">
+          <p><%= shipment[:pickup][:prefecture] %></p>
+        </div>
+        <div class="shipment-pickup-addess">
+          <p><%= shipment[:pickup][:address] %></p>
+        </div>
+        <div class="shipment-delivery-prefecture">
+          <p><%= shipment[:delivery][:prefecture] %></p>
+        </div>
+        <div class="shipment-delivery-addess">
+          <p><%= shipment[:delivery][:address] %></p>
+        </div>
+        <div class="shipment-distance">
+          <p><%= shipment[:shipment][:distance] %>km</p>
+        </div>
+        <div class="shipment-rate">
+          <p><%= shipment[:shipment][:rate] %>yen</p>
+        </div>
+        <div class="shipment-car-type">
+          <p><%= shipment[:shipment][:car_type] %></p>
+        </div>
+        <div class="shipper-email">
+          <p><%= shipment[:shipment].shipper.email %></p>
+        </div>
       </div>
     <% end %>
   <% else %>
@@ -14,4 +41,6 @@
       <p>No Shipments yet.</p>
     </div>
   <% end %>
+</div>
+
 </div>
