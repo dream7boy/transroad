@@ -3,7 +3,7 @@ class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:edit, :update, :destroy]
 
   def index
-    @facilities = current_shipper.facilities
+    @facilities = current_shipper.facilities.order(created_at: :asc)
   end
 
   def new

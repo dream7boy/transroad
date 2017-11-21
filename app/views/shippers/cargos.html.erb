@@ -1,23 +1,24 @@
 <div class="container">
   <h2>My listings(cargos)</h2>
-  <div>
-    <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-     <i class="fa fa-list-alt"></i> + ADD NEW SHIPMENT
-    <% end %>
-  </div>
 
-  <% @cargos.each do |cargo| %>
+  <% if @shipments.present? %>
     <div>
-      <div>
+      <%= link_to new_shipment_path, class: "btn btn-primary" do %>
+       <i class="fa fa-table"></i> + ADD NEW SHIPMENT
+      <% end %>
+    </div>
 
+    <% @shipments.each do |shipment| %>
+      <div>
         <div>
-          <%= link_to "Edit", edit_shipment_path(cargo) %>
-          <%= link_to "Delete", shipment_path(cargo),
+          <%= link_to "Details", shipment_path(shipment) %>
+          <%= link_to "Edit", edit_shipment_path(shipment) %>
+          <%= link_to "Delete", shipment_path(shipment),
             method: :delete, data: { confirm: "Are you sure?" } %>
-          ID:<%= cargo.id %> <%= cargo.distance %>km <%= cargo.rate %>yen <%= cargo.car_type %> <%= cargo.shipper.email %> |
+          Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %> |
         </div>
 
-        <% cargo.locations.order(created_at: :asc).each do |location| %>
+        <% shipment.locations.order(created_at: :asc).each do |location| %>
           <% if location.is_for == 'pickup' %>
             <div>
               P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
@@ -25,7 +26,7 @@
           <% end %>
         <% end %>
 
-        <% cargo.locations.order(created_at: :asc).each do |location| %>
+        <% shipment.locations.order(created_at: :asc).each do |location| %>
           <% if location.is_for == 'delivery' %>
             <div>
               D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
@@ -35,6 +36,15 @@
 
         <br>
       </div>
+    <% end %>
+  <% else %>
+    <div>
+      <p>You have no listings yet.</p>
+      <p>Add new listing to find carrier!</p>
+      <%= link_to new_shipment_path, class: "btn btn-primary" do %>
+       <i class="fa fa-table"></i> + ADD NEW SHIPMENT
+      <% end %>
     </div>
   <% end %>
+
 </div>
