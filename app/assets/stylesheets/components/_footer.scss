@@ -1,9 +1,23 @@
+// 1. html, body below are for the footer to stay bottom
+html {
+  min-height: 100%;
+  position: relative;
+}
+body {
+  padding-bottom: 70px;
+}
+
 .footer {
+  // 2. 4 lines below are for the footer to stay bottom
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
   background: #3F6699;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
   padding: 0px 50px;
   color: rgba(0,0,0,0.3);
 }
