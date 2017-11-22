@@ -23,6 +23,7 @@ class ShipmentsController < ApplicationController
 
   def show
     @locations = @shipment.locations.order(created_at: :asc)
+    @deal = @shipment.deals.build
   end
 
   def new
