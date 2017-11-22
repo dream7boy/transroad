@@ -50,8 +50,8 @@ class ShipmentsController < ApplicationController
       flash[:notice] = "Your shipment has been created"
     else
       # temporary solution
-      @shipment = Shipment.new
-      @shipment.locations.build
+      # @shipment = Shipment.new
+      # @shipment.locations.build
 
       render :new
     end
@@ -78,7 +78,8 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:distance, :rate, :car_type, locations_attributes: [:id, :facility_id, :commodity, :weight, :is_for])
+    params.require(:shipment).permit(:distance, :rate, :car_type,
+      locations_attributes: [:id, :facility_id, :commodity, :weight, :is_for, :_destroy])
   end
 
   def set_shipment
