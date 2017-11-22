@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :shipments do
+    resources :deals, only: [:new, :create]
   end
 
   resources :facilities, only: [:index, :new, :create, :edit, :update, :destroy]

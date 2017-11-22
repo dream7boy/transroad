@@ -78,7 +78,7 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:distance, :rate, :car_type,
+    params.require(:shipment).permit(:distance, :rate, :car_type, :available,
       locations_attributes: [:id, :facility_id, :commodity, :weight, :is_for, :_destroy])
   end
 
