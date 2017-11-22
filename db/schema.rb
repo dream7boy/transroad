@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119070023) do
+ActiveRecord::Schema.define(version: 20171122130558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20171119070023) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_carriers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_carriers_on_reset_password_token", unique: true
+  end
+
+  create_table "deals", force: :cascade do |t|
+    t.bigint "shipment_id"
+    t.bigint "carrier_id"
+    t.string "deal_status"
+    t.integer "bid_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carrier_id"], name: "index_deals_on_carrier_id"
+    t.index ["shipment_id"], name: "index_deals_on_shipment_id"
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -83,6 +94,8 @@ ActiveRecord::Schema.define(version: 20171119070023) do
     t.index ["reset_password_token"], name: "index_shippers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "deals", "carriers"
+  add_foreign_key "deals", "shipments"
   add_foreign_key "facilities", "shippers"
   add_foreign_key "locations", "facilities"
   add_foreign_key "locations", "shipments"
