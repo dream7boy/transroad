@@ -7,40 +7,58 @@ p {
     background-color: #ffffff;
     padding: 10px;
   }
-  .search-results-shipment {
-    background-color: rgb(230, 230, 230);
-    border-top: 1px solid rgb(200, 200, 200);
+  .column-header{
+    background-color: #DDE7F2;
+    border-bottom: 1px solid rgb(200, 200, 200);
     display: flex;
     justify-content: space-between;
     align-items: center;
     div {
-      padding-right: 10px;
+      padding: 5px;
       border-right: 1px solid rgb(200, 200, 200);
+    }
+
+  }
+  .search-results-shipment {
+    background-color: #DDE7F2;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+      padding: 5px;
+      border-right: 1px solid rgb(200, 200, 200);
+    }
+    &:hover {
+      background-color: #ffffff;
     }
   }
   .shipment-details {
-
+    flex: 0 1 5%;
   }
   .shipment-id {
+    flex: 0 1 5%;
   }
   .shipment-pickup-prefecture {
-    flex-basis: 10%;
+    flex: 0 1 10%;
   }
   .shipment-pickup-addess {
-    flex-basis: 10%;
+    flex: 0 1 10%;
   }
   .shipment-delivery-prefecture {
-    flex-basis: 10%;
+    flex: 0 1 10%;
   }
   .shipment-delivery-addess {
-    flex-basis: 10%;
+    flex: 0 1 10%;
   }
   .shipment-distance {
+    flex: 0 1 10%;
   }
   .shipment-rate {
+    flex: 0 1 10%;
   }
   .shipment-car-type {
-    flex-basis: 10%;
+    flex: 0 1 10%;
     overflow: hidden;
     p {
       white-space: nowrap;
@@ -49,6 +67,7 @@ p {
     }
   }
   .shipper-email {
+    flex: 0 1 20%;
     overflow: hidden;
     p {
       white-space: nowrap;

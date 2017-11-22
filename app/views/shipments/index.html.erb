@@ -2,13 +2,45 @@
   <div class="container">
   <h1>Shipments</h1>
   <% if @shipments.present? %>
+    <div class="column-header">
+      <div class="shipment-details">
+        Details
+      </div>
+      <div class="shipment-id">
+        ID
+      </div>
+      <div class="shipment-pickup-prefecture">
+        <p>Pickup-P</p>
+      </div>
+      <div class="shipment-pickup-addess">
+        <p>Pickup-A</p>
+      </div>
+      <div class="shipment-delivery-prefecture">
+        <p>Delivery-P</p>
+      </div>
+      <div class="shipment-delivery-addess">
+        <p>Delivery-A</p>
+      </div>
+      <div class="shipment-distance">
+        <p>Distance</p>
+      </div>
+      <div class="shipment-rate">
+        <p>Rate</p>
+      </div>
+      <div class="shipment-car-type">
+        <p>Car Type</p>
+      </div>
+      <div class="shipper-email">
+        <p>Shipper Email</p>
+      </div>
+    </div>
     <% @shipments.each do |shipment| %>
       <div class="search-results-shipment">
         <div class="shipment-details">
           <%= link_to "Details", shipment_path(shipment[:shipment]) %>
         </div>
         <div class="shipment-id">
-          ID:<%= shipment[:shipment][:id] %>
+          <%= shipment[:shipment][:id] %>
         </div>
         <div class="shipment-pickup-prefecture">
           <p><%= shipment[:pickup][:prefecture] %></p>
