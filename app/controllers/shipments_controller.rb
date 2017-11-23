@@ -23,6 +23,16 @@ class ShipmentsController < ApplicationController
 
   def show
     @locations = @shipment.locations.order(created_at: :asc)
+    @deal = @shipment.deals.build
+
+    if current_carrier
+      @carrier_deal = current_carrier.deals.find_by(shipment: @shipment)
+      if @carrier_deal && @carrier_deal.deal_status == 'requesting'
+        @message = "You've already booked the shipment."
+      elsif @carrier_deal && @carrier_deal.deal_status == 'bidding'
+        @message = "You're already bidding for the shipment."
+      end
+    end
   end
 
   def new
@@ -78,7 +88,7 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:distance, :rate, :car_type,
+    params.require(:shipment).permit(:distance, :rate, :car_type, :available,
       locations_attributes: [:id, :facility_id, :commodity, :weight, :is_for, :_destroy])
   end
 
