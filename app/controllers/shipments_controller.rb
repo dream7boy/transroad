@@ -3,7 +3,9 @@ class ShipmentsController < ApplicationController
   before_action :set_shipment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shipments_all = Shipment.all.order(created_at: :desc)
+    # @shipments_all = Shipment.all.order(created_at: :desc)
+    @shipments_all = policy_scope(Shipment).order(created_at: :desc)
+
     @shipments = @shipments_all.map do |shipment|
       {
         shipment: shipment,
@@ -38,6 +40,7 @@ class ShipmentsController < ApplicationController
   def new
     @shipment = Shipment.new
     @shipment.locations.build
+    authorize @shipment
 
     # 2.times { @shipment.locations.build }
 
@@ -55,8 +58,10 @@ class ShipmentsController < ApplicationController
 
     # @pickup = Location.new(pickup_params)
     # @delivery = Location.new(delivery_params)
+
+    authorize @shipment # use before saving(@shipmen.save) it in a database.
     if @shipment.save
-      redirect_to shipment_path(@shipment)
+      redirect_to @shipment
       flash[:notice] = "Your shipment has been created"
     else
       # temporary solution
@@ -72,7 +77,7 @@ class ShipmentsController < ApplicationController
 
   def update
     if @shipment.update(shipment_params)
-      redirect_to cargos_path
+      redirect_to @shipment
       flash[:notice] = "Your shipment has been edited"
     else
       render :edit
@@ -81,7 +86,7 @@ class ShipmentsController < ApplicationController
 
   def destroy
     @shipment.destroy
-    redirect_to shipper_shipments_path
+    redirect_to @shipment
     flash[:notice] = "Your shipment has been deleted"
   end
 
@@ -94,5 +99,6 @@ class ShipmentsController < ApplicationController
 
   def set_shipment
     @shipment = Shipment.find(params[:id])
+    authorize @shipment
   end
 end
