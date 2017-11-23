@@ -86,7 +86,7 @@ class ShipmentsController < ApplicationController
 
   def destroy
     @shipment.destroy
-    redirect_to @shipment
+    redirect_to shipper_shipments_path
     flash[:notice] = "Your shipment has been deleted"
   end
 

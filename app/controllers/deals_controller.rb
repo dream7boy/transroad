@@ -1,4 +1,5 @@
 class DealsController < ApplicationController
+  # both users can make a deal??
 
   def create
     @shipment = Shipment.find(shipment_params)

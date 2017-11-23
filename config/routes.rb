@@ -16,8 +16,12 @@ Rails.application.routes.draw do
     resources :deals, only: [:create]
   end
 
+  namespace :shipper do
+    resources :shipments, only: [:index]
+  end
+
   resources :facilities, only: [:index, :new, :create, :edit, :update, :destroy]
-  # get "cargos", to: 'shippers#cargos'
-  get "shipper/shipments", to: 'shippers#shipments'
-  get "carrier/shipments", to: 'carriers#shipments'
+
+  # get "shipper/shipments", to: 'shippers#shipments'
+  # get "carrier/shipments", to: 'carriers#shipments'
 end
