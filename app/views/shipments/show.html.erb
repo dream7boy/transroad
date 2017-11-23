@@ -21,8 +21,16 @@
       <% end %>
     <% end %>
 
-    <%= simple_form_for [@shipment, @deal] do |f| %>
-      <%= f.button :submit, 'BOOK NOW', class: "btn btn-primary" %>
+    <% if @message %>
+      <div>
+        <p style="color:red"><%= @message %></p>
+      </div>
+    <% else %>
+      <div>
+      <%= simple_form_for [@shipment, @deal] do |f| %>
+        <%= f.button :submit, 'BOOK NOW', class: "btn btn-primary" %>
+      <% end %>
+      </div>
     <% end %>
   </div>
 </div>
