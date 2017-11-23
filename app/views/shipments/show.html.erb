@@ -1,4 +1,7 @@
 <div class="container">
+          <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
+          <%= link_to "Delete", shipment_path(@shipment),
+            method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
   <h1>show for shipment</h1>
   <div>
     <div>

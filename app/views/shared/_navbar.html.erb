@@ -10,14 +10,21 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <%= current_user.email %>
       <%= link_to shipments_path, class: "navbar-wagon-item navbar-wagon-link" do %>
         <i class="fa fa-table"></i> Shipments
       <% end %>
-      <%= link_to cargos_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-        <i class="fa fa-table"></i> My Cargos
-      <% end %>
-      <%= link_to facilities_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-        <i class="fa fa-table"></i> My Facilities
+      <% if current_shipper.present? %>
+        <%= link_to shipper_shipments_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+          <i class="fa fa-table"></i> My Shipments
+        <% end %>
+        <%= link_to facilities_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+          <i class="fa fa-table"></i> My Facilities
+        <% end %>
+      <% elsif current_carrier.present? %>
+        <%= link_to carrier_shipments_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+          <i class="fa fa-table"></i> My Shipments
+        <% end %>
       <% end %>
 
       <!-- Avatar with dropdown menu -->
@@ -67,8 +74,8 @@
           <% end %>
         </li>
         <li>
-          <%= link_to cargos_path do %>
-            <i class="fa fa-table"></i> My Cargos
+          <%= link_to shipper_shipments_path do %>
+            <i class="fa fa-table"></i> My Shipments
           <% end %>
         </li>
         <li><a href="#">Other one</a></li>

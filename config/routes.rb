@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :facilities, only: [:index, :new, :create, :edit, :update, :destroy]
-  get "cargos", to: 'shippers#cargos'
+  # get "cargos", to: 'shippers#cargos'
+  get "shipper/shipments", to: 'shippers#shipments'
+  get "carrier/shipments", to: 'carriers#shipments'
 end
