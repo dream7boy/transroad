@@ -6,7 +6,7 @@ class DealsController < ApplicationController
     @deal = @shipment.deals.build
     @deal.deal_status = 'requesting'
     @deal.carrier = current_carrier
-
+    authorize @deal
     if @deal.save
       redirect_to shipment_path(@shipment)
       flash[:notice] = "Your booking has been made"
