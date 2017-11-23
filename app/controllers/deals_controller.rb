@@ -1,11 +1,12 @@
 class DealsController < ApplicationController
+  # both users can make a deal??
 
   def create
     @shipment = Shipment.find(shipment_params)
     @deal = @shipment.deals.build
     @deal.deal_status = 'requesting'
     @deal.carrier = current_carrier
-
+    authorize @deal
     if @deal.save
       redirect_to shipment_path(@shipment)
       flash[:notice] = "Your booking has been made"
