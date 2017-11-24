@@ -3,9 +3,11 @@
   <div>
     <div>
       <%= link_to "Back", shipper_shipments_path, class: "btn btn-primary" %>
-      <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
-      <%= link_to "Delete", shipment_path(@shipment),
+      <%# if @shipment.available == true %>
+        <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
+        <%= link_to "Delete", shipment_path(@shipment),
         method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+      <%# end %>
     </div>
     <div>
       Ship-ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
