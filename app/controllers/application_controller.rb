@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
-    redirect_to(shipments_path)
+    if current_shipper.present?
+      redirect_to(shipper_shipments_path)
+    else
+      redirect_to(carrier_shipments_path)
+    end
   end
 
   private
