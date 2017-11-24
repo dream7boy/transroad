@@ -9,6 +9,10 @@ class ShipmentPolicy < ApplicationPolicy
     end
   end
 
+  def my_show?
+    user_is_owner? && scope.where(:id => record.id).exists?
+  end
+
   def create?
     true # Anyone(signed in) can create a shipment
   end

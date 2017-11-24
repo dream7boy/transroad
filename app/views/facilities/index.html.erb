@@ -14,6 +14,8 @@
           <% if facility.locations.blank? %>
             <%= link_to "Delete", facility_path(facility),
               method: :delete, data: { confirm: "Are you sure?" } %>
+          <% else %>
+            (Used)
           <% end %>
           ID:<%= facility.id %> <%= facility.name %> <%= facility.prefecture %> <%= facility.address %> <%= facility.shipper.email %>
         </p>

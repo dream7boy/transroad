@@ -11,10 +11,12 @@
     <% @shipments.each do |shipment| %>
       <div>
         <div>
-          <%= link_to "Details", shipment_path(shipment) %>
+          <%= link_to "Details", shipper_shipment_path(shipment) %>
           <%= link_to "Edit", edit_shipment_path(shipment) %>
           <%= link_to "Delete", shipment_path(shipment),
             method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+        <div>
           Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>円 <%= shipment.car_type %> <%= shipment.shipper.email %> |
         </div>
 

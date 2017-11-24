@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>Shipments for all users</h1>
+  <h1>MY show for shipment</h1>
   <div>
     <div>
-      <%= link_to "Back", shipments_path, class: "btn btn-primary" %>
+      <%= link_to "Back", shipper_shipments_path, class: "btn btn-primary" %>
       <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
       <%= link_to "Delete", shipment_path(@shipment),
         method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
@@ -27,18 +27,11 @@
       <% end %>
     <% end %>
 
-    <% if current_carrier.present? %>
-      <% if @message %>
-        <div>
-          <p style="color:red"><%= @message %></p>
-        </div>
-      <% else %>
-        <div>
-          <%= simple_form_for [@shipment, @deal] do |f| %>
-            <%= f.button :submit, 'BOOK NOW', class: "btn btn-primary" %>
-          <% end %>
-        </div>
+    <div>
+      <% @shipment.deals.each do |deal| %>
+        <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span></p>
       <% end %>
-    <% end %>
+    </div>
+
   </div>
 </div>
