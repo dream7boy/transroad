@@ -1,10 +1,11 @@
 class ShipmentsController < ApplicationController
   before_action :authenticate_shipper!, except: [:index, :show]
   before_action :set_shipment, only: [:show, :edit, :update, :destroy]
+  before_action :check_available, only: [:edit, :update, :destroy]
 
   def index
     # @shipments_all = Shipment.all.order(created_at: :desc)
-    @shipments_all = policy_scope(Shipment).order(created_at: :desc)
+    @shipments_all = policy_scope(Shipment).where(available: true).order(created_at: :desc)
 
     @shipments = @shipments_all.map do |shipment|
       {
@@ -77,7 +78,7 @@ class ShipmentsController < ApplicationController
 
   def update
     if @shipment.update(shipment_params)
-      redirect_to @shipment
+      redirect_to shipper_shipment_path(@shipment)
       flash[:notice] = "Your shipment has been edited"
     else
       render :edit
@@ -100,5 +101,11 @@ class ShipmentsController < ApplicationController
   def set_shipment
     @shipment = Shipment.find(params[:id])
     authorize @shipment
+  end
+
+  def check_available
+    if @shipment.available == false
+      redirect_to shipper_shipment_path(@shipment)
+    end
   end
 end

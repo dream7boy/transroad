@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>My Shipments(deals)</h2>
+  <h2><%= @deals.count %> My Shipments(deals)</h2>
 
   <% if @deals.present? %>
     <div>
@@ -11,11 +11,10 @@
     <% @deals.each do |deal| %>
       <div>
         <div>
-          <%#= link_to "Details", shipment_path(shipment) %>
-          <%#= link_to "Edit", edit_shipment_path(shipment) %>
-          <%#= link_to "Delete", shipment_path(shipment),
-            method: :delete, data: { confirm: "Are you sure?" } %>
-          Deal-ID:<%= deal.id %> <%= deal.shipment.distance %>km <%= deal.shipment.rate %>円 <%= deal.shipment.car_type %> <%= deal.shipment.shipper.email %> | <%= deal.carrier.email %>
+          Deal-ID:<%= deal.id %>
+        </div>
+        <div>
+          Ship-ID:<%= deal.shipment.id %> <%= deal.shipment.distance %>km <%= deal.shipment.rate %>円 <%= deal.shipment.car_type %> <%= deal.shipment.shipper.email %> | <%= deal.carrier.email %>
         </div>
 
         <% deal.shipment.locations.order(created_at: :asc).each do |location| %>

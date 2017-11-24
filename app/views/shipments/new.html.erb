@@ -4,7 +4,6 @@
       <h1>new shipment</h1>
       <%= simple_form_for @shipment do |f| %>
         <%= f.error_notification %>
-
         <%= f.input :distance, input_html: { value: '550' } %>
         <%= f.input :rate, input_html: { value: '55000' } %>
         <%= f.input :car_type, collection: ["van", "reefer", "flatbed"], prompt: "Choose a Truck Type", label: "Truck Type" %>

@@ -1,11 +1,13 @@
 <div class="container">
-  <h1>MY show for shipment</h1>
+  <h1>My Shipments Show Page</h1>
   <div>
     <div>
       <%= link_to "Back", shipper_shipments_path, class: "btn btn-primary" %>
-      <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
-      <%= link_to "Delete", shipment_path(@shipment),
+      <%# if @shipment.available == true %>
+        <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
+        <%= link_to "Delete", shipment_path(@shipment),
         method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+      <%# end %>
     </div>
     <div>
       Ship-ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
@@ -29,7 +31,17 @@
 
     <div>
       <% @shipment.deals.each do |deal| %>
-        <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span></p>
+        <div>
+          <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
+        </div>
+        <% if @shipment.available == true %>
+          <div>
+            <%= simple_form_for @shipment, url: shipper_shipment_path, method: :patch do |f| %>
+              <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
+              <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
