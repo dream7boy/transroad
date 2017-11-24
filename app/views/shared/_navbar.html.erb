@@ -21,7 +21,7 @@
         <%= link_to facilities_path, class: "navbar-wagon-item navbar-wagon-link" do %>
           <i class="fa fa-table"></i> My Facilities
         <% end %>
-      <% elsif current_carrier.present? %>
+      <% else %>
         <%= link_to carrier_shipments_path, class: "navbar-wagon-item navbar-wagon-link" do %>
           <i class="fa fa-table"></i> My Shipments
         <% end %>
@@ -47,7 +47,7 @@
                 <%= link_to destroy_shipper_session_path, method: :delete do %>
                   <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
                 <% end %>
-              <% elsif current_carrier.present? %>
+              <% else %>
                 <%= link_to destroy_carrier_session_path, method: :delete do %>
                   <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
                 <% end %>
@@ -68,17 +68,49 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li>
-          <%= link_to shipments_path do %>
-            <i class="fa fa-table"></i> Shipments
+        <% if user_signed_in? %>
+          <%= current_user.email %>
+          <li>
+            <%= link_to shipments_path do %>
+              <i class="fa fa-table"></i> Shipments
+            <% end %>
+          </li>
+          <% if current_shipper.present? %>
+            <li>
+              <%= link_to shipper_shipments_path do %>
+                <i class="fa fa-table"></i> My Shipments
+              <% end %>
+            </li>
+            <li>
+              <%= link_to facilities_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+              <i class="fa fa-table"></i> My Facilities
+            <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_shipper_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to carrier_shipments_path do %>
+                <i class="fa fa-table"></i> My Shipments
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_carrier_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
           <% end %>
-        </li>
-        <li>
-          <%= link_to shipper_shipments_path do %>
-            <i class="fa fa-table"></i> My Shipments
-          <% end %>
-        </li>
-        <li><a href="#">Other one</a></li>
+        <% else %>
+          <li>
+            <%= link_to t(".sign_in", default: "Shipper Sign In"), new_shipper_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+          </li>
+          <li>
+            <%= link_to t(".sign_in", default: "Carrier Sign In"), new_carrier_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
