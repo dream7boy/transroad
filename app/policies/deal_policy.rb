@@ -1,7 +1,7 @@
 class DealPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.where(carrier: user)
     end
   end
 

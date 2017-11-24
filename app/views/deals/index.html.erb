@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>My Shipments(deals)</h2>
+
+  <% if @deals.present? %>
+    <div>
+      <%= link_to shipments_path, class: "btn btn-primary" do %>
+       Find New Carriers
+      <% end %>
+    </div>
+
+    <% @deals.each do |deal| %>
+      <div>
+        <div>
+          <%#= link_to "Details", shipment_path(shipment) %>
+          <%#= link_to "Edit", edit_shipment_path(shipment) %>
+          <%#= link_to "Delete", shipment_path(shipment),
+            method: :delete, data: { confirm: "Are you sure?" } %>
+          Deal-ID:<%= deal.id %> <%= deal.shipment.distance %>km <%= deal.shipment.rate %>円 <%= deal.shipment.car_type %> <%= deal.shipment.shipper.email %> | <%= deal.carrier.email %>
+        </div>
+
+        <% deal.shipment.locations.order(created_at: :asc).each do |location| %>
+          <% if location.is_for == 'pickup' %>
+            <div>
+              P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
+            </div>
+          <% end %>
+        <% end %>
+
+        <% deal.shipment.locations.order(created_at: :asc).each do |location| %>
+          <% if location.is_for == 'delivery' %>
+            <div>
+              D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
+            </div>
+          <% end %>
+        <% end %>
+
+        <div>
+          <p>Status: <span style="color:blue"><%= deal.deal_status %></span></p>
+        </div>
+
+        <br>
+      </div>
+    <% end %>
+  <% else %>
+    <div>
+      <p>You have no shipments yet.</p>
+      <p>Find carriers who need your help!</p>
+      <%= link_to shipments_path, class: "btn btn-primary" do %>
+       Find New Carriers
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
