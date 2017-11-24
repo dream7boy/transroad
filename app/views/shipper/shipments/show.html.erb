@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>MY show for shipment</h1>
+  <h1>My Shipments Show Page</h1>
   <div>
     <div>
       <%= link_to "Back", shipper_shipments_path, class: "btn btn-primary" %>
@@ -29,7 +29,17 @@
 
     <div>
       <% @shipment.deals.each do |deal| %>
-        <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span></p>
+        <div>
+          <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
+        </div>
+        <% if @shipment.available == true %>
+          <div>
+            <%= simple_form_for @shipment, url: shipper_shipment_path, method: :patch do |f| %>
+              <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
+              <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 

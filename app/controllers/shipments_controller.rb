@@ -77,7 +77,7 @@ class ShipmentsController < ApplicationController
 
   def update
     if @shipment.update(shipment_params)
-      redirect_to @shipment
+      redirect_to shipper_shipment_path(@shipment)
       flash[:notice] = "Your shipment has been edited"
     else
       render :edit

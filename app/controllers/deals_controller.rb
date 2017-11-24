@@ -13,11 +13,10 @@ class DealsController < ApplicationController
     @deal.carrier = current_carrier
     authorize @deal
     if @deal.save
-      redirect_to shipment_path(@shipment)
+      redirect_to carrier_shipments_path
       flash[:notice] = "Your booking has been made"
     else
-      redirect_to shipment_path(@shipment)
-      flash[:alert] = "Your booking has not been made"
+      render 'shipments/show'
     end
   end
 
