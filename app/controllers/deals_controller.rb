@@ -1,5 +1,10 @@
 class DealsController < ApplicationController
+  before_action :authenticate_carrier!
   # both users can make a deal??
+
+  def index
+    @deals = policy_scope(Deal).order(created_at: :desc)
+  end
 
   def create
     @shipment = Shipment.find(shipment_params)

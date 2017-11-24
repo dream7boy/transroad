@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :shipments do
     resources :deals, only: [:create]
   end
+  get "carrier/shipments", to: 'deals#index'
 
   namespace :shipper do
     resources :shipments, only: [:index]

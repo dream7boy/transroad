@@ -15,7 +15,7 @@
           <%= link_to "Edit", edit_shipment_path(shipment) %>
           <%= link_to "Delete", shipment_path(shipment),
             method: :delete, data: { confirm: "Are you sure?" } %>
-          Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>yen <%= shipment.car_type %> <%= shipment.shipper.email %> |
+          Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>円 <%= shipment.car_type %> <%= shipment.shipper.email %> |
         </div>
 
         <% shipment.locations.order(created_at: :asc).each do |location| %>
@@ -33,6 +33,10 @@
             </div>
           <% end %>
         <% end %>
+
+        <div>
+          <p>Status: <span style="color:blue"><%= deal.deal_status %></span></p>
+        </div>
 
         <br>
       </div>
