@@ -4,4 +4,8 @@ class Shipper::ShipmentsController < ApplicationController
   def index
     @shipments = policy_scope(Shipment).where(shipper: current_shipper).order(created_at: :desc)
   end
+
+  def show
+
+  end
 end

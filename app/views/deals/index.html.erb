@@ -35,7 +35,7 @@
         <% end %>
 
         <div>
-          <p>Status: <span style="color:blue"><%= deal.deal_status %></span></p>
+          <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> Status: <span style="color:blue"><%= deal.deal_status %></span></p>
         </div>
 
         <br>
