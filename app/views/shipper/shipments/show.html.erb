@@ -36,7 +36,7 @@
         </div>
         <% if @shipment.available == true %>
           <div>
-            <%= simple_form_for @shipment, url: shipper_shipment_path, method: :patch do |f| %>
+            <%= simple_form_for @shipment, url: shipper_shipment_path do |f| %>
               <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
               <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
             <% end %>

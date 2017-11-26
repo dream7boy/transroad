@@ -4,10 +4,10 @@ class ShipmentsController < ApplicationController
   before_action :check_available, only: [:edit, :update, :destroy]
 
   def index
-    # @shipments_all = Shipment.all.order(created_at: :desc)
-    @shipments_all = policy_scope(Shipment).where(available: true).order(created_at: :desc)
+    # @all_shipments = Shipment.all.order(created_at: :desc)
+    @all_shipments = policy_scope(Shipment).where(available: true).order(created_at: :desc)
 
-    @shipments = @shipments_all.map do |shipment|
+    @shipments = @all_shipments.map do |shipment|
       {
         shipment: shipment,
         pickup: {

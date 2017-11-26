@@ -20,13 +20,36 @@ class DealsController < ApplicationController
     end
   end
 
+  def pre_transit_index
+    all_won_deals = policy_scope(Deal).where(deal_status: 'won').order(created_at: :asc)
+    @deals = all_won_deals.select do |deal|
+      deal.shipment.transit_status == 'pre-transit'
+    end
+    authorize all_won_deals
+  end
+
+  def to_in_transit
+    @deal = Deal.find(deal_params[:id])
+    authorize @deal
+    @deal.shipment.update(transit_status: 'in-transit')
+    redirect_to carrier_shipments_pre_transit_path
+  end
+
+  def in_transit_index
+    all_won_deals = policy_scope(Deal).where(deal_status: 'won').order(created_at: :asc)
+    @deals = all_won_deals.select do |deal|
+      deal.shipment.transit_status == 'in-transit'
+    end
+    authorize all_won_deals
+  end
+
   private
 
   def shipment_params
     params.require(:shipment_id)
   end
 
-  # def deal_params
-  #   params.require(:deal).permit(:deal_status)
-  # end
+  def deal_params
+    params.require(:deal).permit(:id)
+  end
 end

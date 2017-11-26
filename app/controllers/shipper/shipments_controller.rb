@@ -12,6 +12,7 @@ class Shipper::ShipmentsController < ApplicationController
   end
 
   def update
+    authorize @shipment
     @shipment.deals.each do |deal|
       if deal.carrier_id == carrier_params[:carrier_id].to_i
         deal.update(deal_status: 'won')
@@ -19,9 +20,7 @@ class Shipper::ShipmentsController < ApplicationController
         deal.update(deal_status: 'lost')
       end
     end
-
-    authorize @shipment
-    @shipment.update(available: false)
+    @shipment.update(available: false, transit_status: 'pre-transit')
     redirect_to shipper_shipment_path(@shipment)
     flash[:notice] = "Your Carrier has been selected"
   end
