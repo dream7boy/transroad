@@ -1,13 +1,20 @@
 <div class="container">
-  <h2><%= @deals.count %> Pre-Transit</h2>
+  <h2>(<%= @deals.count %>) In-Transit</h2>
+  <div>
+    <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
+     My Shipments
+    <% end %>
+
+    <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
+     Pre-Transit
+    <% end %>
+
+    <%= link_to carrier_shipments_in_transit_path, class: "btn btn-primary" do %>
+     In-Transit
+    <% end %>
+  </div>
 
   <% if @deals.present? %>
-    <div>
-      <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
-       My Shipments
-      <% end %>
-    </div>
-
     <% @deals.each do |deal| %>
       <div>
         <div>
@@ -34,16 +41,16 @@
         <% end %>
 
         <div>
-          <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> Status: <span style="color:blue"><%= deal.deal_status %></span></p>
+          <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> Status: <span style="color:blue"><%= deal.deal_status %></span>
         </div>
 
         <div>
-          Transit Status: <%= deal.shipment.transit_status %>
+          Transit Status: <span style="color:blue"><%= deal.shipment.transit_status %></span>
         </div>
 
         <div>
           <%= simple_form_for deal, url: carrier_shipments_pre_transit_path do |f| %>
-            <%= f.hidden_field :deal_id, value: deal.id %>
+            <%= f.hidden_field :id, value: deal.id %>
             <%= f.button :submit, 'MOVE TO IN-TRANSIT', class: "btn btn-primary" %>
           <% end %>
         </div>
@@ -51,11 +58,6 @@
       </div>
     <% end %>
   <% else %>
-    <div>
-      <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
-       My Shipments
-      <% end %>
-    </div>
     <div>
       <p>You have no shipments yet.</p>
       <p>Find carriers who need your help!</p>

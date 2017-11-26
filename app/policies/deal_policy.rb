@@ -9,12 +9,16 @@ class DealPolicy < ApplicationPolicy
     true
   end
 
-  def pre_transit?
+  def pre_transit_index?
     true
   end
 
   def to_in_transit?
     user_is_owner?
+  end
+
+  def in_transit_index?
+    true
   end
 
   def user_is_owner?

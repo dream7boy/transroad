@@ -20,7 +20,7 @@ class Shipper::ShipmentsController < ApplicationController
         deal.update(deal_status: 'lost')
       end
     end
-    @shipment.update(available: false)
+    @shipment.update(available: false, transit_status: 'pre-transit')
     redirect_to shipper_shipment_path(@shipment)
     flash[:notice] = "Your Carrier has been selected"
   end
