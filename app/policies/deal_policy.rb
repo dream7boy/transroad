@@ -8,4 +8,8 @@ class DealPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def pre_transit?
+    true
+  end
 end

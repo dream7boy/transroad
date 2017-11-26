@@ -20,6 +20,15 @@ class DealsController < ApplicationController
     end
   end
 
+  def pre_transit
+    @deals = policy_scope(Deal).where(deal_status: 'won').order(created_at: :desc)
+    authorize @deals
+  end
+
+  def to_in_transit
+
+  end
+
   private
 
   def shipment_params

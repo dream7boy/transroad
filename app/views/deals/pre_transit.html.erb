@@ -1,10 +1,10 @@
 <div class="container">
-  <h2><%= @deals.count %> My Shipments(deals)</h2>
+  <h2><%= @deals.count %> Pre-Transit</h2>
 
   <% if @deals.present? %>
     <div>
-      <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
-       Pre-Transit
+      <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
+       My Shipments
       <% end %>
     </div>
 
@@ -41,6 +41,11 @@
       </div>
     <% end %>
   <% else %>
+    <div>
+      <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
+       My Shipments
+      <% end %>
+    </div>
     <div>
       <p>You have no shipments yet.</p>
       <p>Find carriers who need your help!</p>

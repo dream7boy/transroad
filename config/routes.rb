@@ -15,11 +15,14 @@ Rails.application.routes.draw do
   resources :shipments do
     resources :deals, only: [:create]
   end
-  get "carrier/shipments", to: 'deals#index'
 
   namespace :shipper do
-    resources :shipments, only: [:index, :show, :edit, :update]
+    resources :shipments, only: [:index, :show, :update]
   end
+
+  get 'carrier/shipments', to: 'deals#index'
+  get 'carrier/shipments/pre-transit', to: 'deals#pre_transit'
+  patch 'carrier/shipments/pre-transit', to: 'deals#to_in_transit'
 
   resources :facilities, only: [:index, :new, :create, :edit, :update, :destroy]
 
