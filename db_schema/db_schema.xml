@@ -77,14 +77,17 @@
 <row name="car_type" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
+<row name="available" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="transit_status" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
 <row name="commodity_list" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="total_weight" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
-<default>NULL</default></row>
-<row name="available" null="1" autoincrement="0">
-<datatype>DATE</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -121,7 +124,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="845" y="80" name="deliveries">
+<table x="860" y="80" name="deliveries">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -203,7 +206,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="650" y="138" name="deals">
+<table x="653" y="119" name="deals">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
