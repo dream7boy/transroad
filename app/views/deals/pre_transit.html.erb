@@ -37,6 +37,16 @@
           <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> Status: <span style="color:blue"><%= deal.deal_status %></span></p>
         </div>
 
+        <div>
+          Transit Status: <%= deal.shipment.transit_status %>
+        </div>
+
+        <div>
+          <%= simple_form_for deal, url: carrier_shipments_pre_transit_path do |f| %>
+            <%= f.hidden_field :deal_id, value: deal.id %>
+            <%= f.button :submit, 'MOVE TO IN-TRANSIT', class: "btn btn-primary" %>
+          <% end %>
+        </div>
         <br>
       </div>
     <% end %>

@@ -26,7 +26,10 @@ class DealsController < ApplicationController
   end
 
   def to_in_transit
-
+    @deal = Deal.find(deal_params[:deal_id])
+    authorize @deal
+    @deal.shipment.update(transit_status: 'in-transit')
+    redirect_to carrier_shipments_pre_transit_path
   end
 
   private
@@ -35,7 +38,7 @@ class DealsController < ApplicationController
     params.require(:shipment_id)
   end
 
-  # def deal_params
-  #   params.require(:deal).permit(:deal_status)
-  # end
+  def deal_params
+    params.require(:deal).permit(:deal_id)
+  end
 end
