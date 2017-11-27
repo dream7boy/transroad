@@ -1,5 +1,5 @@
 <div class="container">
-  <h2><%= @shipments.count %> My Shipments</h2>
+  <h2>(<%= @shipments.count %>) My Shipments</h2>
 
   <% if @shipments.present? %>
     <div>
@@ -30,39 +30,31 @@
     <% @shipments.each do |shipment| %>
       <div>
         <div>
-          <%= link_to "Details", shipper_shipment_path(shipment) %>
-          <%#= link_to "Edit", edit_shipment_path(shipment) %>
-          <%#= link_to "Delete", shipment_path(shipment),
+          <%= link_to "Details", shipper_shipment_path(shipment[:shipment]) %>
+          <%#= link_to "Edit", edit_shipment_path(shipment[:shipment]) %>
+          <%#= link_to "Delete", shipment_path(shipment[:shipment]),
             method: :delete, data: { confirm: "Are you sure?" } %>
         </div>
         <div>
-          Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>円 <%= shipment.car_type %> <%= shipment.shipper.email %> |
+          Ship-ID:<%= shipment[:shipment].id %> <%= shipment[:shipment].distance %>km <%= shipment[:shipment].rate %>円 <%= shipment[:shipment].car_type %> <%= shipment[:shipment].shipper.email %> |
         </div>
 
-        <% shipment.locations.order(created_at: :asc).each do |location| %>
-          <% if location.is_for == 'pickup' %>
-            <div>
-              P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
-            </div>
-          <% end %>
-        <% end %>
-
-        <% shipment.locations.order(created_at: :asc).each do |location| %>
-          <% if location.is_for == 'delivery' %>
-            <div>
-              D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
-            </div>
-          <% end %>
-        <% end %>
+        <div>
+          P-ID:<%= shipment[:pickup][:location].id %> <%= shipment[:pickup][:location].facility.name %> <%= shipment[:pickup][:location].commodity %> <%= shipment[:pickup][:location].weight %>kg (<%= shipment[:pickup][:location].is_for %>)
+        </div>
 
         <div>
-          <% shipment.deals.each do |deal| %>
+          D-ID:<%= shipment[:delivery][:location].id %> <%= shipment[:delivery][:location].facility.name %> (<%= shipment[:delivery][:location].is_for %>)
+        </div>
+
+        <div>
+          <% shipment[:shipment].deals.each do |deal| %>
             <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span></p>
           <% end %>
         </div>
 
         <div>
-          Transit Status: <span style="color:blue"><%= shipment.transit_status %></span>
+          Transit Status: <span style="color:blue"><%= shipment[:shipment].transit_status %></span>
         </div>
 
         <br>

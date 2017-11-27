@@ -3,9 +3,27 @@ class Shipper::ShipmentsController < ApplicationController
   before_action :set_shipment, only: [:show, :update]
 
   def index
-    @shipments = policy_scope(Shipment)
+    @all_shipments = policy_scope(Shipment)
                   .where(shipper: current_shipper)
                   .order(created_at: :desc)
+
+    @shipments = @all_shipments.map do |shipment|
+      {
+        shipment: shipment,
+        pickup: {
+          # find_by(is_for) needs to be changed after modifying
+          # shipment form to allow users to add more than 2 pickups or deliveries.
+          location: shipment.locations.find_by(is_for: "pickup"),
+          prefecture: shipment.locations.find_by(is_for: "pickup").facility.prefecture,
+          address: shipment.locations.find_by(is_for: "pickup").facility.address
+        },
+        delivery: {
+          location: shipment.locations.find_by(is_for: "delivery"),
+          prefecture: shipment.locations.find_by(is_for: "delivery").facility.prefecture,
+          address: shipment.locations.find_by(is_for: "delivery").facility.address
+        }
+      }
+    end
   end
 
   def show

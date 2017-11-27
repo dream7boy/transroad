@@ -40,7 +40,7 @@
           <%= link_to "Details", shipment_path(shipment[:shipment]) %>
         </div>
         <div class="shipment-id">
-          <%= shipment[:shipment][:id] %>
+          <%= shipment[:shipment].id %>
         </div>
         <div class="shipment-pickup-prefecture">
           <p><%= shipment[:pickup][:prefecture] %></p>
@@ -55,13 +55,13 @@
           <p><%= shipment[:delivery][:address] %></p>
         </div>
         <div class="shipment-distance">
-          <p><%= shipment[:shipment][:distance] %>km</p>
+          <p><%= shipment[:shipment].distance %>km</p>
         </div>
         <div class="shipment-rate">
-          <p><%= shipment[:shipment][:rate] %>円</p>
+          <p><%= shipment[:shipment].rate %>円</p>
         </div>
         <div class="shipment-car-type">
-          <p><%= shipment[:shipment][:car_type] %></p>
+          <p><%= shipment[:shipment].car_type %></p>
         </div>
         <div class="shipper-email">
           <p><%= shipment[:shipment].shipper.email %></p>
