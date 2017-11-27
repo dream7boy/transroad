@@ -2,15 +2,19 @@
   <h2>(<%= @deals.count %>) Pre-Transit</h2>
   <div>
     <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
-     My Shipments
+      My Shipments
     <% end %>
 
     <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
-     Pre-Transit
+      Pre-Transit
     <% end %>
 
     <%= link_to carrier_shipments_in_transit_path, class: "btn btn-primary" do %>
-     In-Transit
+      In-Transit
+    <% end %>
+
+    <%= link_to carrier_shipments_post_transit_path, class: "btn btn-primary" do %>
+      Post-Transit
     <% end %>
   </div>
 

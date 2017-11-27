@@ -21,6 +21,14 @@ class DealPolicy < ApplicationPolicy
     true
   end
 
+  def to_post_transit?
+    user_is_owner?
+  end
+
+  def post_transit_index?
+    true
+  end
+
   def user_is_owner?
     # Inside a policy:
     # 1. 'user' is the current_user from the Devise

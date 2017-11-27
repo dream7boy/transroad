@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>(<%= @deals.count %>) In-Transit</h2>
+  <h2>(<%= @deals.count %>) Post-Transit</h2>
   <div>
     <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
       My Shipments
@@ -52,12 +52,6 @@
           Transit Status: <span style="color:blue"><%= deal.shipment.transit_status %></span>
         </div>
 
-        <div>
-          <%= simple_form_for deal, url: carrier_shipments_in_transit_path do |f| %>
-            <%= f.hidden_field :id, value: deal.id %>
-            <%= f.button :submit, 'MOVE TO POST-TRANSIT', class: "btn btn-primary" %>
-          <% end %>
-        </div>
         <br>
       </div>
     <% end %>
