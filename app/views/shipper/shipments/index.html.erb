@@ -39,21 +39,13 @@
           Ship-ID:<%= shipment[:shipment].id %> <%= shipment[:shipment].distance %>km <%= shipment[:shipment].rate %>円 <%= shipment[:shipment].car_type %> <%= shipment[:shipment].shipper.email %> |
         </div>
 
-        <%# shipment.locations.order(created_at: :asc).each do |location| %>
-          <%# if location.is_for == 'pickup' %>
-            <div>
-              P-ID:<%= shipment[:pickup][:location].id %> <%= shipment[:pickup][:location].facility.name %> <%= shipment[:pickup][:location].commodity %> <%= shipment[:pickup][:location].weight %>kg (<%= shipment[:pickup][:location].is_for %>)
-            </div>
-          <%# end %>
-        <%# end %>
+        <div>
+          P-ID:<%= shipment[:pickup][:location].id %> <%= shipment[:pickup][:location].facility.name %> <%= shipment[:pickup][:location].commodity %> <%= shipment[:pickup][:location].weight %>kg (<%= shipment[:pickup][:location].is_for %>)
+        </div>
 
-        <%# shipment.locations.order(created_at: :asc).each do |location| %>
-          <%# if location.is_for == 'delivery' %>
-            <div>
-              D-ID:<%= shipment[:delivery][:location].id %> <%= shipment[:delivery][:location].facility.name %> (<%= shipment[:delivery][:location].is_for %>)
-            </div>
-          <%# end %>
-        <%# end %>
+        <div>
+          D-ID:<%= shipment[:delivery][:location].id %> <%= shipment[:delivery][:location].facility.name %> (<%= shipment[:delivery][:location].is_for %>)
+        </div>
 
         <div>
           <% shipment[:shipment].deals.each do |deal| %>

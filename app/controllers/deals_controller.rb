@@ -1,9 +1,26 @@
 class DealsController < ApplicationController
   before_action :authenticate_carrier!
-  # both users can make a deal??
 
   def index
-    @deals = policy_scope(Deal).order(created_at: :desc)
+    @all_deals = policy_scope(Deal).order(created_at: :desc)
+
+    @deals = @all_deals.map do |deal|
+      {
+        deal: deal,
+        pickup: {
+          # find_by(is_for) needs to be changed after modifying
+          # shipment form to allow users to add more than 2 pickups or deliveries.
+          location: deal.shipment.locations.find_by(is_for: "pickup"),
+          prefecture: deal.shipment.locations.find_by(is_for: "pickup").facility.prefecture,
+          address: deal.shipment.locations.find_by(is_for: "pickup").facility.address
+        },
+        delivery: {
+          location: deal.shipment.locations.find_by(is_for: "delivery"),
+          prefecture: deal.shipment.locations.find_by(is_for: "delivery").facility.prefecture,
+          address: deal.shipment.locations.find_by(is_for: "delivery").facility.address
+        }
+      }
+    end
   end
 
   def create

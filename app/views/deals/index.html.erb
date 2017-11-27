@@ -23,30 +23,22 @@
     <% @deals.each do |deal| %>
       <div>
         <div>
-          Deal-ID:<%= deal.id %>
+          Deal-ID:<%= deal[:deal].id %>
         </div>
         <div>
-          Ship-ID:<%= deal.shipment.id %> <%= deal.shipment.distance %>km <%= deal.shipment.rate %>円 <%= deal.shipment.car_type %> <%= deal.shipment.shipper.email %> | <%= deal.carrier.email %>
+          Ship-ID:<%= deal[:deal].shipment.id %> <%= deal[:deal].shipment.distance %>km <%= deal[:deal].shipment.rate %>円 <%= deal[:deal].shipment.car_type %> <%= deal[:deal].shipment.shipper.email %> | <%= deal[:deal].carrier.email %>
         </div>
 
-        <% deal.shipment.locations.order(created_at: :asc).each do |location| %>
-          <% if location.is_for == 'pickup' %>
-            <div>
-              P-ID:<%= location.id %> <%= location.facility.name %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
-            </div>
-          <% end %>
-        <% end %>
-
-        <% deal.shipment.locations.order(created_at: :asc).each do |location| %>
-          <% if location.is_for == 'delivery' %>
-            <div>
-              D-ID:<%= location.id %> <%= location.facility.name %> (<%= location.is_for %>)
-            </div>
-          <% end %>
-        <% end %>
+        <div>
+          P-ID:<%= deal[:pickup][:location].id %> <%= deal[:pickup][:location].facility.name %> <%= deal[:pickup][:location].commodity %> <%= deal[:pickup][:location].weight %>kg (<%= deal[:pickup][:location].is_for %>)
+        </div>
 
         <div>
-          <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> Status: <span style="color:blue"><%= deal.deal_status %></span></p>
+          D-ID:<%= deal[:delivery][:location].id %> <%= deal[:delivery][:location].facility.name %> (<%= deal[:delivery][:location].is_for %>)
+        </div>
+
+        <div>
+          <p><%= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> Status: <span style="color:blue"><%= deal[:deal].deal_status %></span></p>
         </div>
 
         <br>

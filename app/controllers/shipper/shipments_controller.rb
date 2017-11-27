@@ -24,7 +24,6 @@ class Shipper::ShipmentsController < ApplicationController
         }
       }
     end
-    # byebug
   end
 
   def show
