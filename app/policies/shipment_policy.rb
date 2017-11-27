@@ -9,6 +9,18 @@ class ShipmentPolicy < ApplicationPolicy
     end
   end
 
+  def pre_transit_index?
+    true
+  end
+
+  def in_transit_index?
+    true
+  end
+
+  def post_transit_index?
+    true
+  end
+
   def my_show?
     user_is_owner? && scope.where(:id => record.id).exists?
   end

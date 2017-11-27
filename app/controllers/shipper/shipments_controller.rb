@@ -3,7 +3,9 @@ class Shipper::ShipmentsController < ApplicationController
   before_action :set_shipment, only: [:show, :update]
 
   def index
-    @shipments = policy_scope(Shipment).where(shipper: current_shipper).order(created_at: :desc)
+    @shipments = policy_scope(Shipment)
+                  .where(shipper: current_shipper)
+                  .order(created_at: :desc)
   end
 
   def show
@@ -23,6 +25,30 @@ class Shipper::ShipmentsController < ApplicationController
     @shipment.update(available: false, transit_status: 'pre-transit')
     redirect_to shipper_shipment_path(@shipment)
     flash[:notice] = "Your Carrier has been selected"
+  end
+
+  def pre_transit_index
+    @shipments = policy_scope(Shipment)
+                  .where(shipper: current_shipper, transit_status: 'pre-transit')
+                  .order(created_at: :asc)
+
+    authorize @shipments
+  end
+
+  def in_transit_index
+    @shipments = policy_scope(Shipment)
+                  .where(shipper: current_shipper, transit_status: 'in-transit')
+                  .order(created_at: :asc)
+
+    authorize @shipments
+  end
+
+  def post_transit_index
+    @shipments = policy_scope(Shipment)
+                  .where(shipper: current_shipper, transit_status: 'post-transit')
+                  .order(created_at: :asc)
+
+    authorize @shipments
   end
 
   private
