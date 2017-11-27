@@ -1,25 +1,24 @@
 <div class="container">
   <h2>(<%= @shipments.count %>) Post-Transit</h2>
+  <div>
+    <%= link_to shipper_shipments_path, class: "btn btn-primary" do %>
+      My Shipments
+    <% end %>
+
+    <%= link_to pre_transit_shipper_shipments_path, class: "btn btn-primary" do %>
+      Pre-Transit
+    <% end %>
+
+    <%= link_to in_transit_shipper_shipments_path, class: "btn btn-primary" do %>
+      In-Transit
+    <% end %>
+
+    <%= link_to post_transit_shipper_shipments_path, class: "btn btn-primary" do %>
+      Post-Transit
+    <% end %>
+  </div>
 
   <% if @shipments.present? %>
-    <div>
-      <%= link_to shipper_shipments_path, class: "btn btn-primary" do %>
-        My Shipments
-      <% end %>
-
-      <%= link_to pre_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-        Pre-Transit
-      <% end %>
-
-      <%= link_to in_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-        In-Transit
-      <% end %>
-
-      <%= link_to post_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-        Post-Transit
-      <% end %>
-    </div>
-
     <% @shipments.each do |shipment| %>
       <div>
         <div>
