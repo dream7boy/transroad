@@ -1,25 +1,24 @@
 <div class="container">
   <h2>(<%= @deals.count %>) My Shipments(deals)</h2>
+  <div>
+    <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
+      My Shipments
+    <% end %>
+
+    <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
+      Pre-Transit
+    <% end %>
+
+    <%= link_to carrier_shipments_in_transit_path, class: "btn btn-primary" do %>
+      In-Transit
+    <% end %>
+
+    <%= link_to carrier_shipments_post_transit_path, class: "btn btn-primary" do %>
+      Post-Transit
+    <% end %>
+  </div>
 
   <% if @deals.present? %>
-    <div>
-      <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
-        My Shipments
-      <% end %>
-
-      <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
-        Pre-Transit
-      <% end %>
-
-      <%= link_to carrier_shipments_in_transit_path, class: "btn btn-primary" do %>
-        In-Transit
-      <% end %>
-
-      <%= link_to carrier_shipments_post_transit_path, class: "btn btn-primary" do %>
-        Post-Transit
-      <% end %>
-    </div>
-
     <% @deals.each do |deal| %>
       <div>
         <div>
@@ -47,9 +46,9 @@
   <% else %>
     <div>
       <p>You have no shipments yet.</p>
-      <p>Find carriers who need your help!</p>
+      <p>Find shippers who need your help!</p>
       <%= link_to shipments_path, class: "btn btn-primary" do %>
-       Find New Carriers
+        Find New Shipments
       <% end %>
     </div>
   <% end %>
