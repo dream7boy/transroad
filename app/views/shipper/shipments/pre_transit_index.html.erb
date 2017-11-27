@@ -1,5 +1,5 @@
 <div class="container">
-  <h2><%= @shipments.count %> My Shipments</h2>
+  <h2><%= @shipments.count %> Pre-Transit</h2>
 
   <% if @shipments.present? %>
     <div>
@@ -20,20 +20,10 @@
       <% end %>
     </div>
 
-    <div>
-      <br>
-      <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-       <i class="fa fa-table"></i> + ADD NEW SHIPMENT
-      <% end %>
-    </div>
-
     <% @shipments.each do |shipment| %>
       <div>
         <div>
           <%= link_to "Details", shipper_shipment_path(shipment) %>
-          <%#= link_to "Edit", edit_shipment_path(shipment) %>
-          <%#= link_to "Delete", shipment_path(shipment),
-            method: :delete, data: { confirm: "Are you sure?" } %>
         </div>
         <div>
           Ship-ID:<%= shipment.id %> <%= shipment.distance %>km <%= shipment.rate %>円 <%= shipment.car_type %> <%= shipment.shipper.email %> |
