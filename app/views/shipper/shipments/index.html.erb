@@ -56,7 +56,12 @@
         </div>
         <div class="shipper-shipments-row-nColumn column-header shipper-shipments-carrier">
           <p>
-            Carrier
+            運送会社
+          </p>
+        </div>
+        <div class="shipper-shipments-row-nColumn column-header shipper-shipments-status">
+          <p>
+            Status
           </p>
         </div>
       </div>
@@ -65,7 +70,7 @@
         <div class="shipper-shipments-row">
           <div class="shipper-shipments-row-nColumn shipper-shipments-id">
             <p>
-              Ship-ID:<%= shipment[:shipment].id %>
+              <%= shipment[:shipment].id %>
             </p>
             <p>
               <%= link_to "Details", shipper_shipment_path(shipment[:shipment]) %>
@@ -107,10 +112,10 @@
 
           <div class="shipper-shipments-row-nColumn shipper-shipments-rate">
             <p>
-              <%= shipment[:shipment].rate %>円
+              <%= shipment[:shipment].distance %>KM
             </p>
             <p>
-              <%= shipment[:shipment].distance %>KM
+              <%= shipment[:shipment].rate %>円
             </p>
           </div>
 
@@ -120,13 +125,14 @@
                 <%= shipment[:deal][:carrier].email %>
               </p>
             <% end %>
+          </div>
 
+          <div class="shipper-shipments-row-nColumn shipper-shipments-status">
             <p>
               <span style="color:blue"><%= shipment[:shipment].transit_status %></span>
             </p>
           </div>
 
-          <br>
         </div>
       <% end %>
     <% else %>
