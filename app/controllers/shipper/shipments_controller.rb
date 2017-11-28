@@ -21,7 +21,13 @@ class Shipper::ShipmentsController < ApplicationController
           location: shipment.locations.find_by(is_for: "delivery"),
           prefecture: shipment.locations.find_by(is_for: "delivery").facility.prefecture,
           address: shipment.locations.find_by(is_for: "delivery").facility.address
-        }
+        },
+        deal:
+          if shipment.deals.blank?
+            '入札なし'
+          else
+            shipment.deals.where(deal_status: 'won').present? ? '落札済' : '入札あり'
+          end
       }
     end
   end
