@@ -1,0 +1,62 @@
+.wrapper-shipper-shipments {
+  padding: 10px;
+  .container {
+    background-color: #ffffff;
+    padding: 10px;
+  }
+  p {
+    margin: 0;
+  }
+}
+.shipper-shipments-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  white-space: nowrap;
+  &:hover {
+    background-color: #e1e8f2;
+  }
+}
+.shipper-shipments-row-nColumn {
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  height: 100px;
+  // line-height: 40px;
+  padding-right: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.shipper-shipments-id {
+  width: 150px;
+}
+.shipper-shipments-pickup {
+  width: 200px;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.shipper-shipments-delivery {
+  width: 200px;
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.shipper-shipments-terms {
+  width: 100px;
+}
+.shipper-shipments-rate {
+  width: 100px;
+}
+.shipper-shipments-row {
+  .column-header {
+    height: 40px;
+    line-height: 40px;
+  }
+}
+.shipper-shipments-nav-menu {
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+}
+

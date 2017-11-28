@@ -4,11 +4,7 @@
     background-color: #ffffff;
     padding: 10px;
   }
-  .column-header{
-
-  }
   .search-results-row {
-    background-color: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     display: flex;
     white-space: nowrap;
@@ -37,13 +33,13 @@
   .shipment-pickup-prefecture {
     min-width: 100px;
   }
-  .shipment-pickup-addess {
+  .shipment-pickup-address {
     min-width: 100px;
   }
   .shipment-delivery-prefecture {
     min-width: 100px;
   }
-  .shipment-delivery-addess {
+  .shipment-delivery-address {
     min-width: 100px;
   }
   .shipment-distance {

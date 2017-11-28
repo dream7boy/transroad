@@ -44,11 +44,11 @@
           <% end %>
         <% end %>
 
-        <div>
-          <% shipment.deals.each do |deal| %>
-            <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span></p>
-          <% end %>
-        </div>
+        <% shipment.deals.each do |deal| %>
+          <div>
+            <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
+          </div>
+        <% end %>
 
         <div>
           Transit Status: <span style="color:blue"><%= shipment.transit_status %></span>

@@ -2,7 +2,7 @@
   <div class="container">
   <h1><%= @shipments.count %> Shipments</h1>
   <% if @shipments.present? %>
-    <div class="search-results-row column-header">
+    <div class="search-results-row">
       <div class="search-results-row-nColumn shipment-details">
         <div>Details</div>
       </div>
@@ -10,25 +10,25 @@
         <div>ID</div>
       </div>
       <div class="search-results-row-nColumn shipment-pickup-prefecture">
-        <div>Pickup-P</div>
+        <div>発地-P</div>
       </div>
-      <div class="search-results-row-nColumn shipment-pickup-addess">
-        <div>Pickup-A</div>
+      <div class="search-results-row-nColumn shipment-pickup-address">
+        <div>発地-A</div>
       </div>
       <div class="search-results-row-nColumn shipment-delivery-prefecture">
-        <div>Delivery-P</div>
+        <div>着地-P</div>
       </div>
-      <div class="search-results-row-nColumn shipment-delivery-addess">
-        <div>Delivery-A</div>
+      <div class="search-results-row-nColumn shipment-delivery-address">
+        <div>着地-A</div>
       </div>
       <div class="search-results-row-nColumn shipment-distance">
-        <div>Distance</div>
+        <div>距離</div>
       </div>
       <div class="search-results-row-nColumn shipment-rate">
-        <div>Rate</div>
+        <div>運賃</div>
       </div>
       <div class="search-results-row-nColumn shipment-car-type">
-        <div>Car Type</div>
+        <div>車種</div>
       </div>
       <div class="search-results-row-nColumn shipper-email">
         <div>Shipper Email</div>
@@ -45,13 +45,13 @@
         <div class="search-results-row-nColumn shipment-pickup-prefecture">
           <div><%= shipment[:pickup][:prefecture] %></div>
         </div>
-        <div class="search-results-row-nColumn shipment-pickup-addess">
+        <div class="search-results-row-nColumn shipment-pickup-address">
           <div><%= shipment[:pickup][:address] %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-prefecture">
           <div><%= shipment[:delivery][:prefecture] %></div>
         </div>
-        <div class="search-results-row-nColumn shipment-delivery-addess">
+        <div class="search-results-row-nColumn shipment-delivery-address">
           <div><%= shipment[:delivery][:address] %></div>
         </div>
         <div class="search-results-row-nColumn shipment-distance">

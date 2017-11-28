@@ -1,72 +1,131 @@
-<div class="container">
-  <h2>(<%= @shipments.count %>) My Shipments</h2>
-  <div>
-    <%= link_to shipper_shipments_path, class: "btn btn-primary" do %>
-      My Shipments
-    <% end %>
+<div class="wrapper-shipper-shipments">
+  <div class="container">
+    <h2>(<%= @shipments.count %>) My Shipments</h2>
+    <div class="shipper-shipments-nav-menu">
+      <div>
+        <%= link_to shipper_shipments_path, class: "btn btn-primary" do %>
+          My Shipments
+        <% end %>
 
-    <%= link_to pre_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-      Pre-Transit
-    <% end %>
+        <%= link_to pre_transit_shipper_shipments_path, class: "btn btn-primary" do %>
+          Pre-Transit
+        <% end %>
 
-    <%= link_to in_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-      In-Transit
-    <% end %>
+        <%= link_to in_transit_shipper_shipments_path, class: "btn btn-primary" do %>
+          In-Transit
+        <% end %>
 
-    <%= link_to post_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-      Post-Transit
-    <% end %>
-  </div>
+        <%= link_to post_transit_shipper_shipments_path, class: "btn btn-primary" do %>
+          Post-Transit
+        <% end %>
+      </div>
 
-  <% if @shipments.present? %>
-    <div>
-      <br>
-      <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-       <i class="fa fa-table"></i> + ADD NEW SHIPMENT
-      <% end %>
+      <div>
+        <%= link_to new_shipment_path, class: "btn btn-primary" do %>
+          + ADD NEW SHIPMENT
+        <% end %>
+      </div>
     </div>
 
-    <% @shipments.each do |shipment| %>
+    <% if @shipments.present? %>
+      <div class="shipper-shipments-row">
+        <div class="shipper-shipments-row-nColumn column-header shipper-shipments-id">
+          <p>
+            Ship-ID
+          </p>
+        </div>
+        <div class="shipper-shipments-row-nColumn column-header shipper-shipments-pickup">
+          <p>
+            発地
+          </p>
+        </div>
+        <div class="shipper-shipments-row-nColumn column-header shipper-shipments-delivery">
+          <p>
+            着地
+          </p>
+        </div>
+        <div class="shipper-shipments-row-nColumn column-header shipper-shipments-terms">
+          <p>
+            Terms
+          </p>
+        </div>
+        <div class="shipper-shipments-row-nColumn column-header shipper-shipments-rate">
+          <p>
+            Rate
+          </p>
+        </div>
+      </div>
+
+      <% @shipments.each do |shipment| %>
+        <div class="shipper-shipments-row">
+          <div class="shipper-shipments-row-nColumn shipper-shipments-id">
+            <p>
+              Ship-ID:<%= shipment[:shipment].id %>
+            </p>
+            <p>
+              <%= link_to "Details", shipper_shipment_path(shipment[:shipment]) %>
+            </p>
+            <p>
+              <span style="color:blue"><%= shipment[:deal] %></span>
+            </p>
+               <%#= shipment[:shipment].shipper.email %>
+          </div>
+
+          <div class="shipper-shipments-row-nColumn shipper-shipments-pickup">
+            <p>
+              P-ID:<%= shipment[:pickup][:location].id %> <%= shipment[:pickup][:location].facility.name %>
+            </p>
+            <p>
+              <%= shipment[:pickup][:prefecture] %><%= shipment[:pickup][:address] %>
+            </p>
+          </div>
+
+          <div class="shipper-shipments-row-nColumn shipper-shipments-delivery">
+            <p>
+              D-ID:<%= shipment[:delivery][:location].id %> <%= shipment[:delivery][:location].facility.name %>
+            </p>
+            <p>
+              <%= shipment[:delivery][:prefecture] %><%= shipment[:delivery][:address] %>
+            </p>
+          </div>
+
+          <div class="shipper-shipments-row-nColumn shipper-shipments-terms">
+            <p>
+              <%= shipment[:shipment].car_type %>
+            </p>
+            <p>
+              <%= shipment[:pickup][:location].weight %>KG
+            </p>
+            <p>
+              <%= shipment[:pickup][:location].commodity %>
+            </p>
+          </div>
+
+          <div class="shipper-shipments-row-nColumn shipper-shipments-rate">
+            <p>
+              <%= shipment[:shipment].rate %>円
+            </p>
+            <p>
+              <%= shipment[:shipment].distance %>KM
+            </p>
+          </div>
+
+          <div>
+            Transit Status: <span style="color:blue"><%= shipment[:shipment].transit_status %></span>
+          </div>
+
+          <br>
+        </div>
+      <% end %>
+    <% else %>
       <div>
-        <div>
-          <%= link_to "Details", shipper_shipment_path(shipment[:shipment]) %>
-          <%#= link_to "Edit", edit_shipment_path(shipment[:shipment]) %>
-          <%#= link_to "Delete", shipment_path(shipment[:shipment]),
-            method: :delete, data: { confirm: "Are you sure?" } %>
-        </div>
-        <div>
-          Ship-ID:<%= shipment[:shipment].id %> <%= shipment[:shipment].distance %>km <%= shipment[:shipment].rate %>円 <%= shipment[:shipment].car_type %> <%= shipment[:shipment].shipper.email %> |
-        </div>
-
-        <div>
-          P-ID:<%= shipment[:pickup][:location].id %> <%= shipment[:pickup][:location].facility.name %> <%= shipment[:pickup][:location].commodity %> <%= shipment[:pickup][:location].weight %>kg (<%= shipment[:pickup][:location].is_for %>)
-        </div>
-
-        <div>
-          D-ID:<%= shipment[:delivery][:location].id %> <%= shipment[:delivery][:location].facility.name %> (<%= shipment[:delivery][:location].is_for %>)
-        </div>
-
-        <div>
-          <% shipment[:shipment].deals.each do |deal| %>
-            <p><%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span></p>
-          <% end %>
-        </div>
-
-        <div>
-          Transit Status: <span style="color:blue"><%= shipment[:shipment].transit_status %></span>
-        </div>
-
-        <br>
+        <p>You have no shipments yet.</p>
+        <p>Add a new shipment to find carrier!</p>
+        <%= link_to new_shipment_path, class: "btn btn-primary" do %>
+         <i class="fa fa-table"></i> + ADD NEW SHIPMENT
+        <% end %>
       </div>
     <% end %>
-  <% else %>
-    <div>
-      <p>You have no shipments yet.</p>
-      <p>Add a new shipment to find carrier!</p>
-      <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-       <i class="fa fa-table"></i> + ADD NEW SHIPMENT
-      <% end %>
-    </div>
-  <% end %>
-
+  </div>
 </div>
+
