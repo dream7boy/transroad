@@ -11,16 +11,11 @@ class ShipmentsController < ApplicationController
     @shipments = @all_shipments.map do |shipment|
       {
         shipment: shipment,
-        pickup: {
-          # find_by(is_for) needs to be changed after modifying
-          # shipment form to allow users to add more than 2 pickups or deliveries.
-          prefecture: shipment.locations.find_by(is_for: "pickup").facility.prefecture,
-          address: shipment.locations.find_by(is_for: "pickup").facility.address
-        },
-        delivery: {
-          prefecture: shipment.locations.find_by(is_for: "delivery").facility.prefecture,
-          address: shipment.locations.find_by(is_for: "delivery").facility.address
-        }
+
+        # find_by(is_for) needs to be changed after modifying
+        # shipment form to allow users to add more than 2 pickups or deliveries.
+        pickup: shipment.locations.find_by(is_for: 'pickup'),
+        delivery: shipment.locations.find_by(is_for: 'delivery')
       }
     end
   end
