@@ -1,56 +1,144 @@
-<div class="container">
-  <h2>(<%= @deals.count %>) My Shipments(deals)</h2>
-  <div>
-    <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
-      My Shipments
-    <% end %>
-
-    <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
-      Pre-Transit
-    <% end %>
-
-    <%= link_to carrier_shipments_in_transit_path, class: "btn btn-primary" do %>
-      In-Transit
-    <% end %>
-
-    <%= link_to carrier_shipments_post_transit_path, class: "btn btn-primary" do %>
-      Post-Transit
-    <% end %>
-  </div>
-
-  <% if @deals.present? %>
-    <% @deals.each do |deal| %>
+<div class="wrapper-deals">
+  <div class="container">
+    <h2>(<%= @deals.count %>) My Shipments(deals)</h2>
+    <div class="deals-nav-menu">
       <div>
-        <div>
-          Deal-ID:<%= deal[:deal].id %>
-        </div>
-        <div>
-          Ship-ID:<%= deal[:deal].shipment.id %> <%= deal[:deal].shipment.distance %>km <%= deal[:deal].shipment.rate %>円 <%= deal[:deal].shipment.car_type %> <%= deal[:deal].shipment.shipper.email %> | <%= deal[:deal].carrier.email %>
-        </div>
+        <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
+          My Shipments
+        <% end %>
 
-        <div>
-          P-ID:<%= deal[:pickup][:location].id %> <%= deal[:pickup][:location].facility.name %> <%= deal[:pickup][:location].commodity %> <%= deal[:pickup][:location].weight %>kg (<%= deal[:pickup][:location].is_for %>)
-        </div>
+        <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
+          Pre-Transit
+        <% end %>
 
-        <div>
-          D-ID:<%= deal[:delivery][:location].id %> <%= deal[:delivery][:location].facility.name %> (<%= deal[:delivery][:location].is_for %>)
-        </div>
+        <%= link_to carrier_shipments_in_transit_path, class: "btn btn-primary" do %>
+          In-Transit
+        <% end %>
 
-        <div>
-          <p><%= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> Status: <span style="color:blue"><%= deal[:deal].deal_status %></span></p>
-        </div>
+        <%= link_to carrier_shipments_post_transit_path, class: "btn btn-primary" do %>
+          Post-Transit
+        <% end %>
+      </div>
 
-        <br>
+      <div>
+        <%= link_to shipments_path, class: "btn btn-primary" do %>
+            Find New Shipments
+        <% end %>
+      </div>
+    </div>
+
+    <% if @deals.present? %>
+      <div class="deals-row">
+        <div class="deals-row-nColumn column-header deals-id">
+          <p>
+            Ship-ID
+          </p>
+        </div>
+        <div class="deals-row-nColumn column-header deals-pickup">
+          <p>
+            発地
+          </p>
+        </div>
+        <div class="deals-row-nColumn column-header deals-delivery">
+          <p>
+            着地
+          </p>
+        </div>
+        <div class="deals-row-nColumn column-header deals-terms">
+          <p>
+            Terms
+          </p>
+        </div>
+        <div class="deals-row-nColumn column-header deals-rate">
+          <p>
+            Rate
+          </p>
+        </div>
+        <div class="deals-row-nColumn column-header deals-carrier">
+          <p>
+            荷主
+          </p>
+        </div>
+        <div class="deals-row-nColumn column-header deals-status">
+          <p>
+            Status
+          </p>
+        </div>
+      </div>
+
+      <% @deals.each do |deal| %>
+        <div class="deals-row">
+          <div class="deals-row-nColumn deals-id">
+            <p>
+              Deal-ID:<%= deal[:deal].id %>
+            </p>
+            <p>
+              Ship-ID:<%= deal[:deal].shipment.id %>
+            </p>
+          </div>
+
+          <div class="deals-row-nColumn deals-pickup">
+            <p>
+              P-ID:<%= deal[:pickup].id %> <%= deal[:pickup].facility.name %>
+            </p>
+            <p>
+              <%= deal[:pickup].facility.prefecture %><%= deal[:pickup].facility.address %>
+            </p>
+          </div>
+
+          <div class="deals-row-nColumn deals-delivery">
+            <p>
+              D-ID:<%= deal[:delivery].id %> <%= deal[:delivery].facility.name %>
+            </p>
+            <p>
+              <%= deal[:delivery].facility.prefecture %><%= deal[:delivery].facility.address %>
+            </p>
+          </div>
+
+          <div class="deals-row-nColumn deals-terms">
+            <p>
+              <%= deal[:deal].shipment.car_type %>
+            </p>
+            <p>
+              <%= deal[:pickup].weight %>KG
+            </p>
+            <p>
+              <%= deal[:pickup].commodity %>
+            </p>
+          </div>
+
+          <div class="deals-row-nColumn deals-rate">
+            <p>
+              <%= deal[:deal].shipment.distance %>KM
+            </p>
+            <p>
+              <%= deal[:deal].shipment.rate %>円
+            </p>
+          </div>
+
+          <div class="deals-row-nColumn deals-carrier">
+            <p>
+              <%= deal[:deal].shipment.shipper.email %>
+            </p>
+          </div>
+          <div class="deals-row-nColumn deals-status">
+            <p>
+              <%= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %>
+            </p>
+            <p>
+              <span style="color:blue"><%= deal[:deal].deal_status %></span>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div>
+        <p>You have no shipments yet.</p>
+        <p>Find shippers who need your help!</p>
+        <%= link_to shipments_path, class: "btn btn-primary" do %>
+          Find New Shipments
+        <% end %>
       </div>
     <% end %>
-  <% else %>
-    <div>
-      <p>You have no shipments yet.</p>
-      <p>Find shippers who need your help!</p>
-      <%= link_to shipments_path, class: "btn btn-primary" do %>
-        Find New Shipments
-      <% end %>
-    </div>
-  <% end %>
-
+  </div>
 </div>

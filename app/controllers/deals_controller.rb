@@ -7,18 +7,11 @@ class DealsController < ApplicationController
     @deals = @all_deals.map do |deal|
       {
         deal: deal,
-        pickup: {
-          # find_by(is_for) needs to be changed after modifying
-          # shipment form to allow users to add more than 2 pickups or deliveries.
-          location: deal.shipment.locations.find_by(is_for: "pickup"),
-          prefecture: deal.shipment.locations.find_by(is_for: "pickup").facility.prefecture,
-          address: deal.shipment.locations.find_by(is_for: "pickup").facility.address
-        },
-        delivery: {
-          location: deal.shipment.locations.find_by(is_for: "delivery"),
-          prefecture: deal.shipment.locations.find_by(is_for: "delivery").facility.prefecture,
-          address: deal.shipment.locations.find_by(is_for: "delivery").facility.address
-        }
+
+        # find_by(is_for) needs to be changed after modifying
+        # shipment form to allow users to add more than 2 pickups or deliveries.
+        pickup: deal.shipment.locations.find_by(is_for: 'pickup'),
+        delivery: deal.shipment.locations.find_by(is_for: 'delivery')
       }
     end
   end
