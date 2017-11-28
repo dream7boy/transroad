@@ -10,23 +10,21 @@ class Shipper::ShipmentsController < ApplicationController
     @shipments = @all_shipments.map do |shipment|
       {
         shipment: shipment,
-        pickup: {
-          # find_by(is_for) needs to be changed after modifying
-          # shipment form to allow users to add more than 2 pickups or deliveries.
-          location: shipment.locations.find_by(is_for: "pickup"),
-          prefecture: shipment.locations.find_by(is_for: "pickup").facility.prefecture,
-          address: shipment.locations.find_by(is_for: "pickup").facility.address
-        },
-        delivery: {
-          location: shipment.locations.find_by(is_for: "delivery"),
-          prefecture: shipment.locations.find_by(is_for: "delivery").facility.prefecture,
-          address: shipment.locations.find_by(is_for: "delivery").facility.address
-        },
+
+        # find_by(is_for) needs to be changed after modifying
+        # shipment form to allow users to add more than 2 pickups or deliveries.
+        pickup: shipment.locations.find_by(is_for: 'pickup'),
+        delivery: shipment.locations.find_by(is_for: 'delivery'),
         deal:
           if shipment.deals.blank?
-            '入札なし'
+            { status: '入札なし' }
           else
-            shipment.deals.where(deal_status: 'won').present? ? '落札済' : '入札あり'
+            if deal = shipment.deals.find_by(deal_status: 'won')
+              { carrier: deal.carrier,
+                status: '落札済' }
+            else
+              { status: '入札あり' }
+            end
           end
       }
     end

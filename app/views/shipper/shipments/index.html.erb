@@ -54,6 +54,11 @@
             Rate
           </p>
         </div>
+        <div class="shipper-shipments-row-nColumn column-header shipper-shipments-carrier">
+          <p>
+            Carrier
+          </p>
+        </div>
       </div>
 
       <% @shipments.each do |shipment| %>
@@ -66,26 +71,25 @@
               <%= link_to "Details", shipper_shipment_path(shipment[:shipment]) %>
             </p>
             <p>
-              <span style="color:blue"><%= shipment[:deal] %></span>
+              <span style="color:blue"><%= shipment[:deal][:status] %></span>
             </p>
-               <%#= shipment[:shipment].shipper.email %>
           </div>
 
           <div class="shipper-shipments-row-nColumn shipper-shipments-pickup">
             <p>
-              P-ID:<%= shipment[:pickup][:location].id %> <%= shipment[:pickup][:location].facility.name %>
+              P-ID:<%= shipment[:pickup].id %> <%= shipment[:pickup].facility.name %>
             </p>
             <p>
-              <%= shipment[:pickup][:prefecture] %><%= shipment[:pickup][:address] %>
+              <%= shipment[:pickup].facility.prefecture %><%= shipment[:pickup].facility.address %>
             </p>
           </div>
 
           <div class="shipper-shipments-row-nColumn shipper-shipments-delivery">
             <p>
-              D-ID:<%= shipment[:delivery][:location].id %> <%= shipment[:delivery][:location].facility.name %>
+              D-ID:<%= shipment[:delivery].id %> <%= shipment[:delivery].facility.name %>
             </p>
             <p>
-              <%= shipment[:delivery][:prefecture] %><%= shipment[:delivery][:address] %>
+              <%= shipment[:delivery].facility.prefecture %><%= shipment[:delivery].facility.address %>
             </p>
           </div>
 
@@ -94,10 +98,10 @@
               <%= shipment[:shipment].car_type %>
             </p>
             <p>
-              <%= shipment[:pickup][:location].weight %>KG
+              <%= shipment[:pickup].weight %>KG
             </p>
             <p>
-              <%= shipment[:pickup][:location].commodity %>
+              <%= shipment[:pickup].commodity %>
             </p>
           </div>
 
@@ -110,8 +114,16 @@
             </p>
           </div>
 
-          <div>
-            Transit Status: <span style="color:blue"><%= shipment[:shipment].transit_status %></span>
+          <div class="shipper-shipments-row-nColumn shipper-shipments-carrier">
+            <% if shipment[:deal][:carrier].present? %>
+              <p>
+                <%= shipment[:deal][:carrier].email %>
+              </p>
+            <% end %>
+
+            <p>
+              <span style="color:blue"><%= shipment[:shipment].transit_status %></span>
+            </p>
           </div>
 
           <br>

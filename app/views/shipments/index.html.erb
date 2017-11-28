@@ -43,16 +43,16 @@
           <div><%= shipment[:shipment].id %></div>
         </div>
         <div class="search-results-row-nColumn shipment-pickup-prefecture">
-          <div><%= shipment[:pickup][:prefecture] %></div>
+          <div><%= shipment[:pickup].facility.prefecture %></div>
         </div>
         <div class="search-results-row-nColumn shipment-pickup-address">
-          <div><%= shipment[:pickup][:address] %></div>
+          <div><%= shipment[:pickup].facility.address %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-prefecture">
-          <div><%= shipment[:delivery][:prefecture] %></div>
+          <div><%= shipment[:delivery].facility.prefecture %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-address">
-          <div><%= shipment[:delivery][:address] %></div>
+          <div><%= shipment[:delivery].facility.address %></div>
         </div>
         <div class="search-results-row-nColumn shipment-distance">
           <div><%= shipment[:shipment].distance %>km</div>
