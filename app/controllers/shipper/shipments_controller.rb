@@ -50,17 +50,28 @@ class Shipper::ShipmentsController < ApplicationController
   end
 
   def pre_transit_index
-    @shipments = policy_scope(Shipment)
-                  .where(shipper: current_shipper, transit_status: 'pre-transit')
-                  .order(created_at: :asc)
+    @all_shipments = policy_scope(Shipment)
+                      .where(shipper: current_shipper, transit_status: 'pre-transit')
+                      .order(created_at: :desc)
 
-    authorize @shipments
+    @shipments = @all_shipments.map do |shipment|
+      {
+        shipment: shipment,
+
+        # find_by(is_for) needs to be changed after modifying
+        # shipment form to allow users to add more than 2 pickups or deliveries.
+        pickup: shipment.locations.find_by(is_for: 'pickup'),
+        delivery: shipment.locations.find_by(is_for: 'delivery'),
+        deal: shipment.deals.find_by(deal_status: 'won')
+      }
+    end
+    authorize @all_shipments
   end
 
   def in_transit_index
     @shipments = policy_scope(Shipment)
                   .where(shipper: current_shipper, transit_status: 'in-transit')
-                  .order(created_at: :asc)
+                  .order(created_at: :desc)
 
     authorize @shipments
   end
@@ -68,7 +79,7 @@ class Shipper::ShipmentsController < ApplicationController
   def post_transit_index
     @shipments = policy_scope(Shipment)
                   .where(shipper: current_shipper, transit_status: 'post-transit')
-                  .order(created_at: :asc)
+                  .order(created_at: :desc)
 
     authorize @shipments
   end
