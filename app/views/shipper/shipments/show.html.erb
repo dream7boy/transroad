@@ -2,7 +2,7 @@
   <h1>My Shipments Show Page</h1>
   <div>
     <div>
-      <%= link_to "Back", shipper_shipments_path, class: "btn btn-primary" %>
+      <%= link_to "Back", :back, class: "btn btn-primary" %>
       <%# if @shipment.available == true %>
         <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
         <%= link_to "Delete", shipment_path(@shipment),

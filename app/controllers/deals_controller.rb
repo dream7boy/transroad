@@ -41,7 +41,7 @@ class DealsController < ApplicationController
     @deals = policy_scope(Deal)
               .includes(:shipment)
               .where(deal_status: 'won', shipments: {transit_status: 'pre-transit'})
-              .order(created_at: :asc)
+              .order(created_at: :desc)
 
     authorize @deals
   end
@@ -57,7 +57,7 @@ class DealsController < ApplicationController
     @deals = policy_scope(Deal)
               .includes(:shipment)
               .where(deal_status: 'won', shipments: {transit_status: 'in-transit'})
-              .order(created_at: :asc)
+              .order(created_at: :desc)
 
     authorize @deals
   end
@@ -73,7 +73,7 @@ class DealsController < ApplicationController
     @deals = policy_scope(Deal)
               .includes(:shipment)
               .where(deal_status: 'won', shipments: {transit_status: 'post-transit'})
-              .order(created_at: :asc)
+              .order(created_at: :desc)
 
     authorize @deals
   end
