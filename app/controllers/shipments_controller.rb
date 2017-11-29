@@ -8,6 +8,11 @@ class ShipmentsController < ApplicationController
                       .where(available: true)
                       .order(created_at: :desc)
 
+    if params[:search].present? && params[:search][:p_prefecture].present?
+      @all_shipments = @all_shipments.includes(locations: :facility)
+                      .where(locations: {is_for: 'pickup'}, facilities: {prefecture: params[:search][:p_prefecture]})
+    end
+
     @shipments = @all_shipments.map do |shipment|
       {
         shipment: shipment,
