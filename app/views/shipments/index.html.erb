@@ -1,5 +1,12 @@
 <div class="wrapper-shipments">
   <div class="container">
+  <div>
+    <%= simple_form_for :search, method: :get, html: {class: 'form-inline'} do |f| %>
+      <%= f.input :p_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "発地（県）" %>
+      <%= f.input :d_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "着地（県）" %>
+      <%= f.button :submit, "SEARCH", class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <h1><%= @shipments.count %> Shipments</h1>
   <% if @shipments.present? %>
     <div class="search-results-row">
