@@ -8,12 +8,51 @@ class ShipmentsController < ApplicationController
                       .where(available: true)
                       .order(created_at: :desc)
 
-    if params[:search].present? && params[:search][:p_prefecture].present?
-      @all_shipments = @all_shipments.includes(locations: :facility)
+    # joins and includes (which one is faster?)
+    if params[:search].present?
+      if params[:search][:p_prefecture].present? && params[:search][:d_prefecture].present?
+        shipments_after_first_filter = @all_shipments.includes(locations: :facility)
                       .where(locations: {is_for: 'pickup'}, facilities: {prefecture: params[:search][:p_prefecture]})
+
+      shipments_ids = shipments_after_first_filter.map do |shipment|
+        shipment.id
+      end
+
+      shipments_after_filter = @all_shipments.includes(locations: :facility)
+                      .where(id: shipments_ids, locations: {is_for: 'delivery'}, facilities: {prefecture: params[:search][:d_prefecture]})
+
+      #   shipments_after_filter = shipments_first_filter.map do |shipment|
+      #     @all_shipments.includes(locations: :facility)
+      #       .where(id: shipment.id, locations: {is_for: 'delivery'}, facilities: {prefecture: params[:search][:d_prefecture]})
+      #   end
+
+      # shipments_after = shipments_after_filter.select do |shipment|
+      #   shipment.locations.each do |location|
+      #     (location.is_for == 'delivery') && (location.facility.prefecture == params[:search][:d_prefecture])
+      #   end
+      # end
+
+      # shipments_after_filter.each do |shipment|
+      #   shipment.locations.each do |location|
+      #     puts location.is_for
+      #   end
+      # end
+
+      elsif params[:search][:p_prefecture].present?
+        shipments_after_filter = @all_shipments.includes(locations: :facility)
+                      .where(locations: {is_for: 'pickup'}, facilities: {prefecture: params[:search][:p_prefecture]})
+
+      elsif params[:search][:d_prefecture].present?
+        shipments_after_filter = @all_shipments.includes(locations: :facility)
+                      .where(locations: {is_for: 'delivery'}, facilities: {prefecture: params[:search][:d_prefecture]})
+      else
+        shipments_after_filter = @all_shipments
+      end
+    else
+      shipments_after_filter = @all_shipments
     end
 
-    @shipments = @all_shipments.map do |shipment|
+    @shipments = shipments_after_filter.map do |shipment|
       {
         shipment: shipment,
 
@@ -41,6 +80,8 @@ class ShipmentsController < ApplicationController
 
   def new
     @shipment = Shipment.new
+    # @shipment.locations << PickupLocation.new
+    # @shipment.locations << DeliveryLocation.new
     @shipment.locations.build
     authorize @shipment
 
