@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="289" y="498" name="shippers">
+</datatypes><table x="350" y="495" name="shippers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -54,7 +54,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="505" y="160" name="shipments">
+<table x="581" y="166" name="shipments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -87,7 +87,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="226" y="46" name="locations">
+<table x="280" y="29" name="pickups">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -121,7 +121,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="899" y="505" name="carriers">
+<table x="1038" y="491" name="carriers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -165,7 +165,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="713" y="190" name="deals">
+<table x="817" y="192" name="deals">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -208,7 +208,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="598" y="621" name="reviews">
+<table x="681" y="579" name="reviews">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -233,7 +233,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1137" y="462" name="drivers">
+<table x="1271" y="457" name="drivers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -254,7 +254,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1088" y="106" name="dispatchers">
+<table x="172" y="640" name="dispatchers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -274,16 +274,18 @@
 <part>id</part>
 </key>
 </table>
-<table x="240" y="310" name="deliveries">
+<table x="286" y="296" name="deliveries">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="facility_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<datatype>DATE</datatype>
+<default>NULL</default><relation table="facilities" row="id" />
+</row>
 <row name="shipment_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<datatype>DATE</datatype>
+<default>NULL</default><relation table="shipments" row="id" />
+</row>
 <row name="date" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
