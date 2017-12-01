@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="314" y="459" name="shippers">
+</datatypes><table x="296" y="464" name="shippers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -54,7 +54,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="569" y="141" name="shipments">
+<table x="548" y="137" name="shipments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -66,7 +66,7 @@
 <datatype>DATE</datatype>
 <default>NULL</default></row>
 <row name="offer_rate" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
+<datatype>DATE</datatype>
 <default>NULL</default></row>
 <row name="car_type" null="1" autoincrement="0">
 <datatype>DATE</datatype>
@@ -132,7 +132,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1004" y="453" name="carriers">
+<table x="947" y="449" name="carriers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -179,7 +179,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="808" y="157" name="deals">
+<table x="769" y="157" name="deals">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -222,7 +222,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="674" y="550" name="reviews">
+<table x="630" y="552" name="reviews">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -247,7 +247,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1197" y="433" name="drivers">
+<table x="1123" y="594" name="drivers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -268,13 +268,14 @@
 <part>id</part>
 </key>
 </table>
-<table x="304" y="642" name="dispatchers">
+<table x="1124" y="410" name="dispatchers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="carrier_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<default>NULL</default><relation table="carriers" row="id" />
+</row>
 <row name="first_name" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
