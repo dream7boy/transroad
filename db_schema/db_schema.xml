@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="350" y="495" name="shippers">
+</datatypes><table x="314" y="459" name="shippers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -54,7 +54,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="581" y="166" name="shipments">
+<table x="569" y="141" name="shipments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -87,26 +87,37 @@
 <part>id</part>
 </key>
 </table>
-<table x="280" y="29" name="pickups">
+<table x="155" y="24" name="pickups">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="facility_id" null="1" autoincrement="0">
-<datatype>DATE</datatype>
-<default>NULL</default><relation table="facilities" row="id" />
-</row>
 <row name="shipment_id" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default><relation table="shipments" row="id" />
 </row>
+<row name="company_name" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="zip_code" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="prefecture" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="address" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
 <row name="commodity" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
 <row name="weight" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
-<row name="is_for" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
+<row name="contact_name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="phone" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="date" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -121,7 +132,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1038" y="491" name="carriers">
+<table x="1004" y="453" name="carriers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -138,7 +149,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="12" y="436" name="facilities">
+<table x="69" y="401" name="facilities">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -158,6 +169,9 @@
 <row name="address" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
+<row name="contact_name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <row name="phone" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -165,7 +179,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="817" y="192" name="deals">
+<table x="808" y="157" name="deals">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -208,7 +222,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="681" y="579" name="reviews">
+<table x="674" y="550" name="reviews">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -233,7 +247,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1271" y="457" name="drivers">
+<table x="1197" y="433" name="drivers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -254,7 +268,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="172" y="640" name="dispatchers">
+<table x="304" y="642" name="dispatchers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -274,18 +288,32 @@
 <part>id</part>
 </key>
 </table>
-<table x="286" y="296" name="deliveries">
+<table x="305" y="146" name="deliveries">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="facility_id" null="1" autoincrement="0">
-<datatype>DATE</datatype>
-<default>NULL</default><relation table="facilities" row="id" />
-</row>
 <row name="shipment_id" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default><relation table="shipments" row="id" />
 </row>
+<row name="company_name" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="zip_code" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="prefecture" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="address" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="contact_name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="phone" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <row name="date" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
