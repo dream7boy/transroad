@@ -33,14 +33,9 @@ class FacilitiesController < ApplicationController
   end
 
   def destroy
-    if @facility.locations.blank?
-      @facility.destroy
-      redirect_to facilities_path
-      flash[:notice] = "Your facility has been deleted"
-    else
-      redirect_to facilities_path
-      flash[:alert] = "Your facility has been used"
-    end
+    @facility.destroy
+    redirect_to facilities_path
+    flash[:notice] = "Your facility has been deleted"
   end
 
   private

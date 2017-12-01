@@ -8,19 +8,17 @@ class DealsController < ApplicationController
       {
         deal: deal,
 
-        # find_by(is_for) needs to be changed after modifying
+        # .first needs to be changed after modifying
         # shipment form to allow users to add more than 2 pickups or deliveries.
-        pickup: deal.shipment.locations.find_by(is_for: 'pickup'),
-        delivery: deal.shipment.locations.find_by(is_for: 'delivery')
+        pickup: deal.shipment.pickups.first,
+        delivery: deal.shipment.deliveries.first,
       }
     end
   end
 
   def create
     @shipment = Shipment.find(shipment_params)
-    @deal = @shipment.deals.build
-    @deal.deal_status = 'requesting'
-    @deal.carrier = current_carrier
+    @deal = @shipment.deals.build(deal_status: 'requesting', carrier: current_carrier)
     authorize @deal
     if @deal.save
       redirect_to carrier_shipments_path

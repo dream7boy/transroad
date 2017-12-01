@@ -9,29 +9,32 @@ class ShipmentsController < ApplicationController
                       .order(created_at: :desc)
 
     # joins and includes (which one is faster?)
+    # the results of joins and includes are different
+    # 1.includes only returns the results filtered by where
+    # 2.joins returns all instances that related to the results filtered by where
     if params[:search].present?
       if params[:search][:p_prefecture].present? && params[:search][:d_prefecture].present?
-        shipments_after_first_filter = @all_shipments.includes(locations: :facility)
-                                          .where(locations: {is_for: 'pickup'},
-                                          facilities: {prefecture: params[:search][:p_prefecture]})
+        shipments_after_filter = @all_shipments.includes(:pickups, :deliveries)
+                                  .where(pickups: {prefecture: params[:search][:p_prefecture]},
+                                         deliveries: {prefecture: params[:search][:d_prefecture]})
 
-        shipments_ids = shipments_after_first_filter.map do |shipment|
-          shipment.id
-        end
+        # shipments_after_first_filter = @all_shipments.includes(:pickups)
+        #                                 .where(pickups: {prefecture: params[:search][:p_prefecture]})
 
-        shipments_after_filter = @all_shipments.includes(locations: :facility)
-                                    .where(id: shipments_ids, locations: {is_for: 'delivery'},
-                                    facilities: {prefecture: params[:search][:d_prefecture]})
+        # shipments_ids = shipments_after_first_filter.map do |shipment|
+        #   shipment.id
+        # end
+
+        # shipments_after_filter = @all_shipments.includes(:deliveries)
+        #                           .where(id: shipments_ids, deliveries: {prefecture: params[:search][:d_prefecture]})
 
       elsif params[:search][:p_prefecture].present?
-        shipments_after_filter = @all_shipments.includes(locations: :facility)
-                                    .where(locations: {is_for: 'pickup'},
-                                    facilities: {prefecture: params[:search][:p_prefecture]})
+        shipments_after_filter = @all_shipments.includes(:pickups)
+                                  .where(pickups: {prefecture: params[:search][:p_prefecture]})
 
       elsif params[:search][:d_prefecture].present?
-        shipments_after_filter = @all_shipments.includes(locations: :facility)
-                                    .where(locations: {is_for: 'delivery'},
-                                    facilities: {prefecture: params[:search][:d_prefecture]})
+        shipments_after_filter = @all_shipments.includes(:deliveries)
+                                  .where(deliveries: {prefecture: params[:search][:d_prefecture]})
       else
         shipments_after_filter = @all_shipments
       end
@@ -43,10 +46,10 @@ class ShipmentsController < ApplicationController
       {
         shipment: shipment,
 
-        # find_by(is_for) needs to be changed after modifying
+        # .first needs to be changed after modifying
         # shipment form to allow users to add more than 2 pickups or deliveries.
-        pickup: shipment.locations.find_by(is_for: 'pickup'),
-        delivery: shipment.locations.find_by(is_for: 'delivery')
+        pickup: shipment.pickups.first,
+        delivery: shipment.deliveries.first,
       }
     end
   end
@@ -60,9 +63,9 @@ class ShipmentsController < ApplicationController
 
     if current_carrier
       @carrier_deal = current_carrier.deals.find_by(shipment: @shipment)
-      if @carrier_deal && @carrier_deal.deal_status == 'requesting'
+      if @carrier_deal && (@carrier_deal.deal_status == 'requesting')
         @message = "You've already booked the shipment."
-      elsif @carrier_deal && @carrier_deal.deal_status == 'bidding'
+      elsif @carrier_deal && (@carrier_deal.deal_status == 'bidding')
         @message = "You're already bidding for the shipment."
       end
     end
@@ -77,12 +80,12 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = Shipment.new(shipment_params)
+    @shipment.available = true
     @shipment.shipper = current_shipper
 
     authorize @shipment # use before saving(@shipmen.save) it in a database.
-    byebug
     if @shipment.save
-      redirect_to @shipment
+      redirect_to shipper_shipment_path(@shipment)
       flash[:notice] = "Your shipment has been created"
     else
       render :new

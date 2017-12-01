@@ -7,6 +7,7 @@
       <%= f.button :submit, "SEARCH", class: "btn btn-primary" %>
     <% end %>
   </div>
+
   <h1><%= @shipments.count %> Shipments</h1>
   <% if @shipments.present? %>
     <div class="search-results-row">
@@ -44,28 +45,28 @@
     <% @shipments.each do |shipment| %>
       <div class="search-results-row">
         <div class="search-results-row-nColumn shipment-details">
-          <div><%= link_to "Details", shipment_path(shipment[:shipment]) %></div>
+          <div><%= link_to "詳細", shipment_path(shipment[:shipment]) %></div>
         </div>
         <div class="search-results-row-nColumn shipment-id">
           <div><%= shipment[:shipment].id %></div>
         </div>
         <div class="search-results-row-nColumn shipment-pickup-prefecture">
-          <div><%= shipment[:pickup].facility.prefecture %></div>
+          <div><%= shipment[:pickup].prefecture %></div>
         </div>
         <div class="search-results-row-nColumn shipment-pickup-address">
-          <div><%= shipment[:pickup].facility.address %></div>
+          <div><%= shipment[:pickup].address %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-prefecture">
-          <div><%= shipment[:delivery].facility.prefecture %></div>
+          <div><%= shipment[:delivery].prefecture %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-address">
-          <div><%= shipment[:delivery].facility.address %></div>
+          <div><%= shipment[:delivery].address %></div>
         </div>
         <div class="search-results-row-nColumn shipment-distance">
-          <div><%= shipment[:shipment].distance %>km</div>
+          <div><%= shipment[:shipment].distance %>KM</div>
         </div>
         <div class="search-results-row-nColumn shipment-rate">
-          <div><%= shipment[:shipment].rate %>円</div>
+          <div><%= shipment[:shipment].offer_rate %>円</div>
         </div>
         <div class="search-results-row-nColumn shipment-car-type">
           <div><%= shipment[:shipment].car_type %></div>

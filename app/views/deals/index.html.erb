@@ -80,19 +80,19 @@
 
           <div class="deals-row-nColumn deals-pickup">
             <p>
-              P-ID:<%= deal[:pickup].id %> <%= deal[:pickup].facility.name %>
+              P-ID:<%= deal[:pickup].id %> <%= deal[:pickup].company_name %>
             </p>
             <p>
-              <%= deal[:pickup].facility.prefecture %><%= deal[:pickup].facility.address %>
+              <%= deal[:pickup].prefecture %><%= deal[:pickup].address %>
             </p>
           </div>
 
           <div class="deals-row-nColumn deals-delivery">
             <p>
-              D-ID:<%= deal[:delivery].id %> <%= deal[:delivery].facility.name %>
+              D-ID:<%= deal[:delivery].id %> <%= deal[:delivery].company_name %>
             </p>
             <p>
-              <%= deal[:delivery].facility.prefecture %><%= deal[:delivery].facility.address %>
+              <%= deal[:delivery].prefecture %><%= deal[:delivery].address %>
             </p>
           </div>
 
@@ -113,7 +113,7 @@
               <%= deal[:deal].shipment.distance %>KM
             </p>
             <p>
-              <%= deal[:deal].shipment.rate %>円
+              <%= deal[:deal].shipment.offer_rate %>円
             </p>
           </div>
 

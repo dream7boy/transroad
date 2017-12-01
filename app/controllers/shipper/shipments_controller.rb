@@ -63,8 +63,8 @@ class Shipper::ShipmentsController < ApplicationController
 
         # .first needs to be changed after modifying
         # shipment form to allow users to add more than 2 pickups or deliveries.
-        pickup: shipment.locations.find_by(is_for: 'pickup'),
-        delivery: shipment.locations.find_by(is_for: 'delivery'),
+        pickup: shipment.pickups.first,
+        delivery: shipment.deliveries.first,
         deal: shipment.deals.find_by(deal_status: 'won')
       }
     end

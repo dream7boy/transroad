@@ -2,7 +2,7 @@
   <h1>Shipments for all users</h1>
   <div>
     <div>
-      <%= link_to "Back", shipments_path, class: "btn btn-primary" %>
+      <%= link_to "Shipments", shipments_path, class: "btn btn-primary" %>
       <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
       <%= link_to "Delete", shipment_path(@shipment),
         method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
@@ -13,7 +13,7 @@
 
 
     <div>
-      P-ID:<%= @pickup.id %> <%= @pickup.company_name %> <%= @pickup.prefecture %> <%= @pickup.address %> <%= @pickup.commodity %> <%= @pickup.weight %>kg
+      P-ID:<%= @pickup.id %> <%= @pickup.company_name %> <%= @pickup.prefecture %> <%= @pickup.address %> <%= @pickup.commodity %> <%= @pickup.weight %>KG
     </div>
 
     <div>
