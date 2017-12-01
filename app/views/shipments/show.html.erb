@@ -8,23 +8,19 @@
         method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
     </div>
     <div>
-      Ship-ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
+      Ship-ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.offer_rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
     </div>
 
-    <% @locations.each do |location| %>
-      <% if location.is_for == 'pickup' %>
-        <div>
-          P-ID:<%= location.id %> <%= location.facility.name %> <%= location.facility.prefecture %> <%= location.facility.address %> <%= location.commodity %> <%= location.weight %>kg (<%= location.is_for %>)
-        </div>
-      <% end %>
+    <% @pickups.each do |pickup| %>
+      <div>
+        P-ID:<%= pickup.id %> <%= pickup.company_name %> <%= pickup.prefecture %> <%= pickup.address %> <%= pickup.commodity %> <%= pickup.weight %>kg
+      </div>
     <% end %>
 
-    <% @locations.each do |location| %>
-      <% if location.is_for == 'delivery' %>
-        <div>
-          D-ID:<%= location.id %> <%= location.facility.name %> <%= location.facility.prefecture %> <%= location.facility.address %> (<%= location.is_for %>)
-        </div>
-      <% end %>
+    <% @deliveries.each do |delivery| %>
+      <div>
+        D-ID:<%= delivery.id %> <%= delivery.company_name %> <%= delivery.prefecture %> <%= delivery.address %>
+      </div>
     <% end %>
 
     <% if current_carrier.present? %>

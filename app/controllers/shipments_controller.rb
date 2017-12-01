@@ -52,7 +52,8 @@ class ShipmentsController < ApplicationController
   end
 
   def show
-    @locations = @shipment.locations.order(created_at: :asc)
+    @pickups = @shipment.pickups.order(created_at: :asc)
+    @deliveries = @shipment.deliveries.order(created_at: :asc)
     @deal = @shipment.deals.build
 
     if current_carrier
@@ -67,37 +68,20 @@ class ShipmentsController < ApplicationController
 
   def new
     @shipment = Shipment.new
-    # @shipment.locations << PickupLocation.new
-    # @shipment.locations << DeliveryLocation.new
-    @shipment.locations.build
+    @shipment.pickups.build
+    @shipment.deliveries.build
     authorize @shipment
-
-    # 2.times { @shipment.locations.build }
-
-    # if @shipment.locations.empty?
-    #   @shipment.locations.build
-    # end
   end
 
   def create
     @shipment = Shipment.new(shipment_params)
     @shipment.shipper = current_shipper
 
-    # @pickup = @shipment.locations.build(location_params)
-    # @delivery = @shipment.locations.build(delivery_params)
-
-    # @pickup = Location.new(pickup_params)
-    # @delivery = Location.new(delivery_params)
-
     authorize @shipment # use before saving(@shipmen.save) it in a database.
     if @shipment.save
       redirect_to @shipment
       flash[:notice] = "Your shipment has been created"
     else
-      # temporary solution
-      # @shipment = Shipment.new
-      # @shipment.locations.build
-
       render :new
     end
   end
@@ -123,8 +107,9 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:distance, :rate, :car_type, :available,
-      locations_attributes: [:id, :facility_id, :commodity, :weight, :is_for, :_destroy])
+    params.require(:shipment).permit(:distance, :offer_rate, :car_type, :available,
+      pickups_attributes: [:id, :company_name, :prefecture, :address, :commodity, :weight],
+      deliveries_attributes: [:id, :company_name, :prefecture, :address])
   end
 
   def set_shipment

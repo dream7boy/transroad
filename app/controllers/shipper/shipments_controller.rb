@@ -4,17 +4,17 @@ class Shipper::ShipmentsController < ApplicationController
 
   def index
     @all_shipments = policy_scope(Shipment)
-                  .where(shipper: current_shipper)
-                  .order(created_at: :desc)
+                      .where(shipper: current_shipper)
+                      .order(created_at: :desc)
 
     @shipments = @all_shipments.map do |shipment|
       {
         shipment: shipment,
 
-        # find_by(is_for) needs to be changed after modifying
+        # .first needs to be changed after modifying
         # shipment form to allow users to add more than 2 pickups or deliveries.
-        pickup: shipment.locations.find_by(is_for: 'pickup'),
-        delivery: shipment.locations.find_by(is_for: 'delivery'),
+        pickup: shipment.pickups.first,
+        delivery: shipment.deliveries.first,
         deal:
           if shipment.deals.blank?
             { status: '入札なし' }
@@ -31,7 +31,10 @@ class Shipper::ShipmentsController < ApplicationController
   end
 
   def show
-    @locations = @shipment.locations.order(created_at: :asc)
+    # .first needs to be changed after modifying
+    # shipment form to allow users to add more than 2 pickups or deliveries.
+    @pickup = @shipment.pickups.first
+    @delivery = @shipment.deliveries.first
     authorize @shipment, :my_show?
   end
 
@@ -58,7 +61,7 @@ class Shipper::ShipmentsController < ApplicationController
       {
         shipment: shipment,
 
-        # find_by(is_for) needs to be changed after modifying
+        # .first needs to be changed after modifying
         # shipment form to allow users to add more than 2 pickups or deliveries.
         pickup: shipment.locations.find_by(is_for: 'pickup'),
         delivery: shipment.locations.find_by(is_for: 'delivery'),
