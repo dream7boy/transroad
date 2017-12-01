@@ -22,7 +22,7 @@ class ShipmentPolicy < ApplicationPolicy
   end
 
   def my_show?
-    user_is_owner? && scope.where(:id => record.id).exists?
+    user_is_owner? && show?
   end
 
   def create?

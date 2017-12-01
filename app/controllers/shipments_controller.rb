@@ -9,42 +9,32 @@ class ShipmentsController < ApplicationController
                       .order(created_at: :desc)
 
     # joins and includes (which one is faster?)
+    # the results of joins and includes are different
+    # 1.includes only returns the results filtered by where
+    # 2.joins returns all instances that related to the results filtered by where
     if params[:search].present?
       if params[:search][:p_prefecture].present? && params[:search][:d_prefecture].present?
-        shipments_after_first_filter = @all_shipments.includes(locations: :facility)
-                      .where(locations: {is_for: 'pickup'}, facilities: {prefecture: params[:search][:p_prefecture]})
+        shipments_after_filter = @all_shipments.includes(:pickups, :deliveries)
+                                  .where(pickups: {prefecture: params[:search][:p_prefecture]},
+                                         deliveries: {prefecture: params[:search][:d_prefecture]})
 
-      shipments_ids = shipments_after_first_filter.map do |shipment|
-        shipment.id
-      end
+        # shipments_after_first_filter = @all_shipments.includes(:pickups)
+        #                                 .where(pickups: {prefecture: params[:search][:p_prefecture]})
 
-      shipments_after_filter = @all_shipments.includes(locations: :facility)
-                      .where(id: shipments_ids, locations: {is_for: 'delivery'}, facilities: {prefecture: params[:search][:d_prefecture]})
+        # shipments_ids = shipments_after_first_filter.map do |shipment|
+        #   shipment.id
+        # end
 
-      #   shipments_after_filter = shipments_first_filter.map do |shipment|
-      #     @all_shipments.includes(locations: :facility)
-      #       .where(id: shipment.id, locations: {is_for: 'delivery'}, facilities: {prefecture: params[:search][:d_prefecture]})
-      #   end
-
-      # shipments_after = shipments_after_filter.select do |shipment|
-      #   shipment.locations.each do |location|
-      #     (location.is_for == 'delivery') && (location.facility.prefecture == params[:search][:d_prefecture])
-      #   end
-      # end
-
-      # shipments_after_filter.each do |shipment|
-      #   shipment.locations.each do |location|
-      #     puts location.is_for
-      #   end
-      # end
+        # shipments_after_filter = @all_shipments.includes(:deliveries)
+        #                           .where(id: shipments_ids, deliveries: {prefecture: params[:search][:d_prefecture]})
 
       elsif params[:search][:p_prefecture].present?
-        shipments_after_filter = @all_shipments.includes(locations: :facility)
-                      .where(locations: {is_for: 'pickup'}, facilities: {prefecture: params[:search][:p_prefecture]})
+        shipments_after_filter = @all_shipments.includes(:pickups)
+                                  .where(pickups: {prefecture: params[:search][:p_prefecture]})
 
       elsif params[:search][:d_prefecture].present?
-        shipments_after_filter = @all_shipments.includes(locations: :facility)
-                      .where(locations: {is_for: 'delivery'}, facilities: {prefecture: params[:search][:d_prefecture]})
+        shipments_after_filter = @all_shipments.includes(:deliveries)
+                                  .where(deliveries: {prefecture: params[:search][:d_prefecture]})
       else
         shipments_after_filter = @all_shipments
       end
@@ -56,23 +46,26 @@ class ShipmentsController < ApplicationController
       {
         shipment: shipment,
 
-        # find_by(is_for) needs to be changed after modifying
+        # .first needs to be changed after modifying
         # shipment form to allow users to add more than 2 pickups or deliveries.
-        pickup: shipment.locations.find_by(is_for: 'pickup'),
-        delivery: shipment.locations.find_by(is_for: 'delivery')
+        pickup: shipment.pickups.first,
+        delivery: shipment.deliveries.first,
       }
     end
   end
 
   def show
-    @locations = @shipment.locations.order(created_at: :asc)
+    # .first needs to be changed after modifying
+    # shipment form to allow users to add more than 2 pickups or deliveries.
+    @pickup = @shipment.pickups.first
+    @delivery = @shipment.deliveries.first
     @deal = @shipment.deals.build
 
     if current_carrier
       @carrier_deal = current_carrier.deals.find_by(shipment: @shipment)
-      if @carrier_deal && @carrier_deal.deal_status == 'requesting'
+      if @carrier_deal && (@carrier_deal.deal_status == 'requesting')
         @message = "You've already booked the shipment."
-      elsif @carrier_deal && @carrier_deal.deal_status == 'bidding'
+      elsif @carrier_deal && (@carrier_deal.deal_status == 'bidding')
         @message = "You're already bidding for the shipment."
       end
     end
@@ -80,37 +73,21 @@ class ShipmentsController < ApplicationController
 
   def new
     @shipment = Shipment.new
-    # @shipment.locations << PickupLocation.new
-    # @shipment.locations << DeliveryLocation.new
-    @shipment.locations.build
+    @shipment.pickups.build
+    @shipment.deliveries.build
     authorize @shipment
-
-    # 2.times { @shipment.locations.build }
-
-    # if @shipment.locations.empty?
-    #   @shipment.locations.build
-    # end
   end
 
   def create
     @shipment = Shipment.new(shipment_params)
+    @shipment.available = true
     @shipment.shipper = current_shipper
-
-    # @pickup = @shipment.locations.build(location_params)
-    # @delivery = @shipment.locations.build(delivery_params)
-
-    # @pickup = Location.new(pickup_params)
-    # @delivery = Location.new(delivery_params)
 
     authorize @shipment # use before saving(@shipmen.save) it in a database.
     if @shipment.save
-      redirect_to @shipment
+      redirect_to shipper_shipment_path(@shipment)
       flash[:notice] = "Your shipment has been created"
     else
-      # temporary solution
-      # @shipment = Shipment.new
-      # @shipment.locations.build
-
       render :new
     end
   end
@@ -119,6 +96,13 @@ class ShipmentsController < ApplicationController
   end
 
   def update
+    # how can we show the form if pickup or devliery info is more than two??
+   # 1. <%#= f.simple_fields_for :pickups, f.object.pickups.first do |p| %>
+   #  => generate edit form for one instance of pickups
+
+   # 2. <%#= f.simple_fields_for :pickups do |p| %>
+   #  => generate edit form for all instances of pickups automatically
+
     if @shipment.update(shipment_params)
       redirect_to shipper_shipment_path(@shipment)
       flash[:notice] = "Your shipment has been edited"
@@ -136,8 +120,9 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:distance, :rate, :car_type, :available,
-      locations_attributes: [:id, :facility_id, :commodity, :weight, :is_for, :_destroy])
+    params.require(:shipment).permit(:distance, :offer_rate, :car_type, :available,
+      pickups_attributes: [:id, :company_name, :prefecture, :address, :commodity, :weight],
+      deliveries_attributes: [:id, :company_name, :prefecture, :address])
   end
 
   def set_shipment

@@ -73,25 +73,25 @@
               <%= shipment[:shipment].id %>
             </p>
             <p>
-              <%= link_to "Details", shipper_shipment_path(shipment[:shipment]) %>
+              <%= link_to "詳細", shipper_shipment_path(shipment[:shipment]) %>
             </p>
           </div>
 
           <div class="shipper-shipments-row-nColumn shipper-shipments-pickup">
             <p>
-              P-ID:<%= shipment[:pickup].id %> <%= shipment[:pickup].facility.name %>
+              P-ID:<%= shipment[:pickup].id %> <%= shipment[:pickup].company_name %>
             </p>
             <p>
-              <%= shipment[:pickup].facility.prefecture %><%= shipment[:pickup].facility.address %>
+              <%= shipment[:pickup].prefecture %><%= shipment[:pickup].address %>
             </p>
           </div>
 
           <div class="shipper-shipments-row-nColumn shipper-shipments-delivery">
             <p>
-              D-ID:<%= shipment[:delivery].id %> <%= shipment[:delivery].facility.name %>
+              D-ID:<%= shipment[:delivery].id %> <%= shipment[:delivery].company_name %>
             </p>
             <p>
-              <%= shipment[:delivery].facility.prefecture %><%= shipment[:delivery].facility.address %>
+              <%= shipment[:delivery].prefecture %><%= shipment[:delivery].address %>
             </p>
           </div>
 
@@ -112,7 +112,7 @@
               <%= shipment[:shipment].distance %>KM
             </p>
             <p>
-              <%= shipment[:shipment].rate %>円
+              <%= shipment[:shipment].offer_rate %>円
             </p>
           </div>
 

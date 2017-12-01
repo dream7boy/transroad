@@ -1,30 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <h1>new shipment</h1>
+      <h1>Edit Shipment</h1>
       <%= simple_form_for @shipment do |f| %>
         <%= f.error_notification %>
 
         <%= f.input :distance %>
-        <%= f.input :rate %>
+        <%= f.input :offer_rate %>
         <%= f.input :car_type, collection: ["平ボディ", "バンボディ", "保冷車", "冷凍冷蔵車"], prompt: "車種をお選び下さい", label: "トラックの種類" %>
 
         <h3>Pickup</h3>
-        <%= f.simple_fields_for :locations, f.object.locations.order(created_at: :asc) do |p| %>
-          <% if p.object.is_for == 'pickup' %>
-            <%= p.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
-            <%= p.input :commodity, collection: ["建設資材", "機械製品", "木工製品", "農産物"], prompt: "荷種をお選び下さい", label: "荷物の種類" %>
-            <%= p.input :weight %>
-            <%= p.hidden_field :is_for, value: 'pickup' %>
-          <% end %>
+        <%= f.simple_fields_for :pickups do |p| %>
+          <%= p.input :company_name %>
+          <%= p.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
+          <%= p.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
+          <%= p.input :commodity, collection: ["建設資材", "機械製品", "木工製品", "農産物"], prompt: "荷種をお選び下さい", label: "荷物の種類" %>
+          <%= p.input :weight %>
         <% end %>
 
         <h3>Delivery</h3>
-        <%= f.simple_fields_for :locations, f.object.locations.order(created_at: :asc) do |d| %>
-          <% if d.object.is_for == 'delivery' %>
-            <%= d.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
-            <%= d.hidden_field :is_for, value: 'delivery' %>
-          <% end %>
+        <%= f.simple_fields_for :deliveries do |d| %>
+          <%= d.input :company_name %>
+          <%= d.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
+          <%= d.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
         <% end %>
 
         <%= f.button :submit %>

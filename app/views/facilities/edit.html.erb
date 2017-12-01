@@ -6,8 +6,8 @@
         <%= f.error_notification %>
 
         <%= f.input :name %>
-        <%= f.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "Choose a Prefecture" %>
-        <%= f.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "Choose an address" %>
+        <%= f.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
+        <%= f.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
 
         <%= f.button :submit %>
       <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126041518) do
+ActiveRecord::Schema.define(version: 20171201015330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20171126041518) do
     t.index ["shipment_id"], name: "index_deals_on_shipment_id"
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.bigint "shipment_id"
+    t.string "company_name"
+    t.string "prefecture"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipment_id"], name: "index_deliveries_on_shipment_id"
+  end
+
   create_table "facilities", force: :cascade do |t|
     t.bigint "shipper_id"
     t.string "name"
@@ -53,21 +63,21 @@ ActiveRecord::Schema.define(version: 20171126041518) do
     t.index ["shipper_id"], name: "index_facilities_on_shipper_id"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.bigint "facility_id"
+  create_table "pickups", force: :cascade do |t|
     t.bigint "shipment_id"
+    t.string "company_name"
+    t.string "prefecture"
+    t.string "address"
     t.string "commodity"
     t.integer "weight"
-    t.string "is_for"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["facility_id"], name: "index_locations_on_facility_id"
-    t.index ["shipment_id"], name: "index_locations_on_shipment_id"
+    t.index ["shipment_id"], name: "index_pickups_on_shipment_id"
   end
 
   create_table "shipments", force: :cascade do |t|
     t.integer "distance"
-    t.integer "rate"
+    t.integer "offer_rate"
     t.string "commodity"
     t.integer "weight"
     t.string "car_type"
@@ -98,8 +108,8 @@ ActiveRecord::Schema.define(version: 20171126041518) do
 
   add_foreign_key "deals", "carriers"
   add_foreign_key "deals", "shipments"
+  add_foreign_key "deliveries", "shipments"
   add_foreign_key "facilities", "shippers"
-  add_foreign_key "locations", "facilities"
-  add_foreign_key "locations", "shipments"
+  add_foreign_key "pickups", "shipments"
   add_foreign_key "shipments", "shippers"
 end
