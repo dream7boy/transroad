@@ -52,8 +52,10 @@ class ShipmentsController < ApplicationController
   end
 
   def show
-    @pickups = @shipment.pickups.order(created_at: :asc)
-    @deliveries = @shipment.deliveries.order(created_at: :asc)
+    # .first needs to be changed after modifying
+    # shipment form to allow users to add more than 2 pickups or deliveries.
+    @pickup = @shipment.pickups.first
+    @delivery = @shipment.deliveries.first
     @deal = @shipment.deals.build
 
     if current_carrier
@@ -78,6 +80,7 @@ class ShipmentsController < ApplicationController
     @shipment.shipper = current_shipper
 
     authorize @shipment # use before saving(@shipmen.save) it in a database.
+    byebug
     if @shipment.save
       redirect_to @shipment
       flash[:notice] = "Your shipment has been created"
@@ -90,6 +93,13 @@ class ShipmentsController < ApplicationController
   end
 
   def update
+    # how can we show the form if pickup or devliery info is more than two??
+   # 1. <%#= f.simple_fields_for :pickups, f.object.pickups.first do |p| %>
+   #  => generate edit form for one instance of pickups
+
+   # 2. <%#= f.simple_fields_for :pickups do |p| %>
+   #  => generate edit form for all instances of pickups automatically
+
     if @shipment.update(shipment_params)
       redirect_to shipper_shipment_path(@shipment)
       flash[:notice] = "Your shipment has been edited"

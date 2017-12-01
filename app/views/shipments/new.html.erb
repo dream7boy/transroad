@@ -4,6 +4,7 @@
       <h1>new shipment</h1>
       <%= simple_form_for @shipment do |f| %>
         <%= f.error_notification %>
+
         <%= f.input :distance, input_html: { value: '550' } %>
         <%= f.input :offer_rate, input_html: { value: '55000' } %>
         <%= f.input :car_type, collection: ["平ボディ", "バンボディ", "保冷車", "冷凍冷蔵車"], prompt: "車種をお選び下さい", label: "トラックの種類" %>
