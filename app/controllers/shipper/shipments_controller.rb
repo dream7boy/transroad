@@ -53,8 +53,30 @@ class Shipper::ShipmentsController < ApplicationController
   end
 
   def pre_transit_index
+    set_shipments('pre-transit')
+  end
+
+  def in_transit_index
+    set_shipments('in-transit')
+  end
+
+  def post_transit_index
+    set_shipments('post-transit')
+  end
+
+  private
+
+  def set_shipment
+    @shipment = Shipment.find(params[:id])
+  end
+
+  def carrier_params
+    params.require(:shipment).permit(:carrier_id)
+  end
+
+  def set_shipments(transit_status)
     @all_shipments = policy_scope(Shipment)
-                      .where(shipper: current_shipper, transit_status: 'pre-transit')
+                      .where(shipper: current_shipper, transit_status: transit_status)
                       .order(created_at: :desc)
 
     @shipments = @all_shipments.map do |shipment|
@@ -69,31 +91,5 @@ class Shipper::ShipmentsController < ApplicationController
       }
     end
     authorize @all_shipments
-  end
-
-  def in_transit_index
-    @shipments = policy_scope(Shipment)
-                  .where(shipper: current_shipper, transit_status: 'in-transit')
-                  .order(created_at: :desc)
-
-    authorize @shipments
-  end
-
-  def post_transit_index
-    @shipments = policy_scope(Shipment)
-                  .where(shipper: current_shipper, transit_status: 'post-transit')
-                  .order(created_at: :desc)
-
-    authorize @shipments
-  end
-
-  private
-
-  def set_shipment
-    @shipment = Shipment.find(params[:id])
-  end
-
-  def carrier_params
-    params.require(:shipment).permit(:carrier_id)
   end
 end
