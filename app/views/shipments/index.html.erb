@@ -2,9 +2,13 @@
   <div class="container">
   <div>
     <%= simple_form_for :search, method: :get, html: {class: 'form-inline'} do |f| %>
-      <%= f.input :p_start_date, as: :date, label: false, prompt: "発地日" %>
+      <div class='input-group date datepicker'>
+        <%= f.text_field :p_start_date, class: 'form-control', id: 'datepicker6' %>
+      </div>
       <%= f.input :p_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "発地（県）" %>
-      <%= f.input :d_start_date, label: false, prompt: "着地日" %>
+      <div class='input-group date datepicker'>
+        <%= f.text_field :d_start_date, class: 'form-control', id: 'datepicker7' %>
+      </div>
       <%= f.input :d_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "着地（県）" %>
       <%= f.button :submit, "SEARCH", class: "btn btn-primary" %>
     <% end %>
