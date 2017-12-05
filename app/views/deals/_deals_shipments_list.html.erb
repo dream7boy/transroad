@@ -29,13 +29,13 @@
       荷主
     </p>
   </div>
-  <div class="deals-row-nColumn column-header deals-status">
+  <div class="deals-row-nColumn column-header deals-shipping-status">
     <p>
       Shipping-Status
     </p>
   </div>
 </div>
-<%# byebug %>
+
 <%= simple_form_for :deal, url: carrier_shipments_next_transit_path, method: :patch do |f| %>
   <% @deals.each do |deal| %>
     <div class="deals-row">
@@ -46,7 +46,15 @@
         <p>
           Ship-ID:<%= deal[:deal].shipment.id %>
         </p>
-        <% unless params[:action] == 'post_transit_index' %>
+        <% if params[:action] == 'index' %>
+<!--           <p>
+            <%#= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %>
+          </p> -->
+          <p>
+            <span style="color:blue"><%= deal[:deal].deal_status %></span>
+          </p>
+        <% end %>
+        <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
           <p>
             <% @ids_for_params << deal[:deal].id %>
             <%= f.input_field deal[:deal].id, as: :boolean, checked_value: deal[:deal].id %>
@@ -98,14 +106,14 @@
           <%= deal[:deal].shipment.shipper.email %>
         </p>
       </div>
-      <div class="deals-row-nColumn deals-status">
+      <div class="deals-row-nColumn deals-shipping-status">
         <p>
           <span style="color:blue"><%= deal[:deal].shipment.transit_status %></span>
         </p>
       </div>
     </div>
   <% end %>
-  <% unless params[:action] == 'post_transit_index' %>
+  <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
     <%= f.hidden_field :action, value: params[:action] %>
     <%= f.hidden_field :ids, value: @ids_for_params %>
     <%= f.button :submit, 'COMPLETE', class: "btn btn-primary" %>

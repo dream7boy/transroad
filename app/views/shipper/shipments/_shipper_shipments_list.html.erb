@@ -45,6 +45,11 @@
       <p>
         <%= link_to "詳細", shipper_shipment_path(shipment[:shipment]) %>
       </p>
+      <% if params[:action] == 'index' %>
+        <p>
+          <span style="color:blue"><%= shipment[:deal][:status] %></span>
+        </p>
+      <% end %>
     </div>
 
     <div class="shipper-shipments-row-nColumn shipper-shipments-pickup">
@@ -87,9 +92,11 @@
     </div>
 
     <div class="shipper-shipments-row-nColumn shipper-shipments-carrier">
-      <p>
-        <%= shipment[:deal].carrier.email %>
-      </p>
+      <% if shipment[:deal][:carrier].present? %>
+        <p>
+          <%= shipment[:deal][:carrier].email %>
+        </p>
+      <% end %>
     </div>
 
     <div class="shipper-shipments-row-nColumn shipper-shipments-status">
