@@ -121,8 +121,8 @@ class ShipmentsController < ApplicationController
 
   def shipment_params
     params.require(:shipment).permit(:distance, :offer_rate, :car_type, :available,
-      pickups_attributes: [:id, :company_name, :prefecture, :address, :commodity, :weight],
-      deliveries_attributes: [:id, :company_name, :prefecture, :address])
+      pickups_attributes: [:id, :company_name, :prefecture, :address, :commodity, :weight, :start_date, :end_date],
+      deliveries_attributes: [:id, :company_name, :prefecture, :address, :start_date, :end_date])
   end
 
   def set_shipment

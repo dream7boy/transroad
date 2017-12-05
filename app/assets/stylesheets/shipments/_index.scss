@@ -29,11 +29,17 @@
   .shipment-id {
     width: 50px;
   }
+  .shipment-pickup-start-date {
+    width: 60px;
+  }
   .shipment-pickup-prefecture {
     min-width: 100px;
   }
   .shipment-pickup-address {
     min-width: 100px;
+  }
+  .shipment-delivery-start-date {
+    width: 60px;
   }
   .shipment-delivery-prefecture {
     min-width: 100px;

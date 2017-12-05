@@ -2,7 +2,9 @@
   <div class="container">
   <div>
     <%= simple_form_for :search, method: :get, html: {class: 'form-inline'} do |f| %>
+      <%= f.input :p_start_date, as: :date, label: false, prompt: "発地日" %>
       <%= f.input :p_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "発地（県）" %>
+      <%= f.input :d_start_date, label: false, prompt: "着地日" %>
       <%= f.input :d_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "着地（県）" %>
       <%= f.button :submit, "SEARCH", class: "btn btn-primary" %>
     <% end %>
@@ -17,11 +19,17 @@
       <div class="search-results-row-nColumn shipment-id">
         <div>ID</div>
       </div>
+      <div class="search-results-row-nColumn shipment-pickup-start-date">
+        <div>発地日</div>
+      </div>
       <div class="search-results-row-nColumn shipment-pickup-prefecture">
         <div>発地-P</div>
       </div>
       <div class="search-results-row-nColumn shipment-pickup-address">
         <div>発地-A</div>
+      </div>
+      <div class="search-results-row-nColumn shipment-delivery-start-date">
+        <div>着地日</div>
       </div>
       <div class="search-results-row-nColumn shipment-delivery-prefecture">
         <div>着地-P</div>
@@ -50,11 +58,17 @@
         <div class="search-results-row-nColumn shipment-id">
           <div><%= shipment[:shipment].id %></div>
         </div>
+        <div class="search-results-row-nColumn shipment-pickup-start-date">
+          <div><%= shipment[:pickup].start_date.strftime("%m/%d") %></div>
+        </div>
         <div class="search-results-row-nColumn shipment-pickup-prefecture">
           <div><%= shipment[:pickup].prefecture %></div>
         </div>
         <div class="search-results-row-nColumn shipment-pickup-address">
           <div><%= shipment[:pickup].address %></div>
+        </div>
+        <div class="search-results-row-nColumn shipment-delivery-start-date">
+          <div><%= shipment[:delivery].start_date.strftime("%m/%d") %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-prefecture">
           <div><%= shipment[:delivery].prefecture %></div>
