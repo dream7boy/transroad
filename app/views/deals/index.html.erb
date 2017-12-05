@@ -5,109 +5,7 @@
     <%= render 'deals_nav_menu' %>
 
     <% if @deals.present? %>
-      <div class="deals-row">
-        <div class="deals-row-nColumn column-header deals-id">
-          <p>
-            Ship-ID
-          </p>
-        </div>
-        <div class="deals-row-nColumn column-header deals-pickup">
-          <p>
-            発地
-          </p>
-        </div>
-        <div class="deals-row-nColumn column-header deals-delivery">
-          <p>
-            着地
-          </p>
-        </div>
-        <div class="deals-row-nColumn column-header deals-terms">
-          <p>
-            Terms
-          </p>
-        </div>
-        <div class="deals-row-nColumn column-header deals-rate">
-          <p>
-            Rate
-          </p>
-        </div>
-        <div class="deals-row-nColumn column-header deals-carrier">
-          <p>
-            荷主
-          </p>
-        </div>
-        <div class="deals-row-nColumn column-header deals-status">
-          <p>
-            Deal-Status
-          </p>
-        </div>
-      </div>
-
-      <% @deals.each do |deal| %>
-        <div class="deals-row">
-          <div class="deals-row-nColumn deals-id">
-            <p>
-              Deal-ID:<%= deal[:deal].id %>
-            </p>
-            <p>
-              Ship-ID:<%= deal[:deal].shipment.id %>
-            </p>
-          </div>
-
-          <div class="deals-row-nColumn deals-pickup">
-            <p>
-              P-ID:<%= deal[:pickup].id %> <%= deal[:pickup].company_name %>
-            </p>
-            <p>
-              <%= deal[:pickup].prefecture %><%= deal[:pickup].address %>
-            </p>
-          </div>
-
-          <div class="deals-row-nColumn deals-delivery">
-            <p>
-              D-ID:<%= deal[:delivery].id %> <%= deal[:delivery].company_name %>
-            </p>
-            <p>
-              <%= deal[:delivery].prefecture %><%= deal[:delivery].address %>
-            </p>
-          </div>
-
-          <div class="deals-row-nColumn deals-terms">
-            <p>
-              <%= deal[:deal].shipment.car_type %>
-            </p>
-            <p>
-              <%= deal[:pickup].weight %>KG
-            </p>
-            <p>
-              <%= deal[:pickup].commodity %>
-            </p>
-          </div>
-
-          <div class="deals-row-nColumn deals-rate">
-            <p>
-              <%= deal[:deal].shipment.distance %>KM
-            </p>
-            <p>
-              <%= deal[:deal].shipment.offer_rate %>円
-            </p>
-          </div>
-
-          <div class="deals-row-nColumn deals-carrier">
-            <p>
-              <%= deal[:deal].shipment.shipper.email %>
-            </p>
-          </div>
-          <div class="deals-row-nColumn deals-status">
-            <p>
-              <%= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %>
-            </p>
-            <p>
-              <span style="color:blue"><%= deal[:deal].deal_status %></span>
-            </p>
-          </div>
-        </div>
-      <% end %>
+      <%= render 'deals_shipments_list' %>
     <% else %>
       <div>
         <p>You have no shipments yet.</p>
@@ -117,5 +15,6 @@
         <% end %>
       </div>
     <% end %>
+
   </div>
 </div>

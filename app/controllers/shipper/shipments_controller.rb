@@ -15,17 +15,15 @@ class Shipper::ShipmentsController < ApplicationController
         # shipment form to allow users to add more than 2 pickups or deliveries.
         pickup: shipment.pickups.first,
         delivery: shipment.deliveries.first,
-        deal:
-          if shipment.deals.blank?
-            { status: '入札なし' }
-          else
-            if deal = shipment.deals.find_by(deal_status: 'won')
-              { carrier: deal.carrier,
-                status: '落札済' }
-            else
-              { status: '入札あり' }
-            end
-          end
+        deal: if shipment.deals.blank?
+                { status: '入札なし' }
+              else
+                if deal = shipment.deals.find_by(deal_status: 'won')
+                  { carrier: deal.carrier, status: '落札済' }
+                else
+                  { status: '入札あり' }
+                end
+              end
       }
     end
   end
@@ -78,6 +76,7 @@ class Shipper::ShipmentsController < ApplicationController
     @all_shipments = policy_scope(Shipment)
                       .where(shipper: current_shipper, transit_status: transit_status)
                       .order(created_at: :desc)
+    authorize @all_shipments
 
     @shipments = @all_shipments.map do |shipment|
       {
@@ -87,9 +86,10 @@ class Shipper::ShipmentsController < ApplicationController
         # shipment form to allow users to add more than 2 pickups or deliveries.
         pickup: shipment.pickups.first,
         delivery: shipment.deliveries.first,
-        deal: shipment.deals.find_by(deal_status: 'won')
+        deal: if deal = shipment.deals.find_by(deal_status: 'won')
+                { carrier: deal.carrier }
+              end
       }
     end
-    authorize @all_shipments
   end
 end
