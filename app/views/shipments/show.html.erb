@@ -13,11 +13,11 @@
 
 
     <div>
-      P-ID:<%= @pickup.id %> <%= @pickup.company_name %> <%= @pickup.prefecture %> <%= @pickup.address %> <%= @pickup.commodity %> <%= @pickup.weight %>KG
+      P-ID:<%= @pickup.id %> <%= @pickup.company_name %> <%= @pickup.start_date %> <%= @pickup.end_date %> <%= @pickup.prefecture %> <%= @pickup.address %> <%= @pickup.commodity %> <%= @pickup.weight %>KG
     </div>
 
     <div>
-      D-ID:<%= @delivery.id %> <%= @delivery.company_name %> <%= @delivery.prefecture %> <%= @delivery.address %>
+      D-ID:<%= @delivery.id %> <%= @delivery.company_name %> <%= @delivery.start_date %> <%= @delivery.end_date %> <%= @delivery.prefecture %> <%= @delivery.address %>
     </div>
 
     <% if current_carrier.present? %>

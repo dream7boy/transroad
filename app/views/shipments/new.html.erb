@@ -13,6 +13,12 @@
         <%= f.simple_fields_for :pickups do |p| %>
           <%#= p.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
           <%= p.input :company_name %>
+          <div class='input-group date datepicker'>
+            <%= p.text_field :start_date, class: 'form-control', id: 'datepicker6' %>
+          </div>
+          <div class='input-group date datepicker'>
+            <%= p.text_field :end_date, class: 'form-control', id: 'datepicker7' %>
+          </div>
           <%= p.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
           <%= p.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
           <%= p.input :commodity, collection: ["建設資材", "機械製品", "木工製品", "農産物"], prompt: "荷種をお選び下さい", label: "荷物の種類" %>
@@ -22,6 +28,12 @@
         <h3>Delivery</h3>
         <%= f.simple_fields_for :deliveries do |d| %>
           <%= d.input :company_name %>
+          <div class='input-group date datepicker'>
+            <%= d.text_field :start_date, class: 'form-control', id: 'datepicker8' %>
+          </div>
+          <div class='input-group date datepicker'>
+            <%= d.text_field :end_date, class: 'form-control', id: 'datepicker9' %>
+          </div>
           <%= d.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
           <%= d.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
         <% end %>

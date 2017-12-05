@@ -12,6 +12,8 @@
         <h3>Pickup</h3>
         <%= f.simple_fields_for :pickups do |p| %>
           <%= p.input :company_name %>
+          <%= p.input :start_date %>
+          <%= p.input :end_date %>
           <%= p.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
           <%= p.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
           <%= p.input :commodity, collection: ["建設資材", "機械製品", "木工製品", "農産物"], prompt: "荷種をお選び下さい", label: "荷物の種類" %>
@@ -21,6 +23,8 @@
         <h3>Delivery</h3>
         <%= f.simple_fields_for :deliveries do |d| %>
           <%= d.input :company_name %>
+          <%= d.input :start_date %>
+          <%= d.input :end_date %>
           <%= d.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
           <%= d.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
         <% end %>
