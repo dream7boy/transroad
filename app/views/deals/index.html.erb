@@ -2,31 +2,7 @@
   <div class="container">
   <%= link_to "(Carrier)Change your password", edit_carrier_registration_path %>
     <h2>(<%= @deals.count %>) My Shipments(deals)</h2>
-    <div class="deals-nav-menu">
-      <div>
-        <%= link_to carrier_shipments_path, class: "btn btn-primary" do %>
-          My Shipments
-        <% end %>
-
-        <%= link_to carrier_shipments_pre_transit_path, class: "btn btn-primary" do %>
-          Pre-Transit
-        <% end %>
-
-        <%= link_to carrier_shipments_in_transit_path, class: "btn btn-primary" do %>
-          In-Transit
-        <% end %>
-
-        <%= link_to carrier_shipments_post_transit_path, class: "btn btn-primary" do %>
-          Post-Transit
-        <% end %>
-      </div>
-
-      <div>
-        <%= link_to shipments_path, class: "btn btn-primary" do %>
-            Find New Shipments
-        <% end %>
-      </div>
-    </div>
+    <%= render 'deals_nav_menu' %>
 
     <% if @deals.present? %>
       <div class="deals-row">
@@ -62,7 +38,7 @@
         </div>
         <div class="deals-row-nColumn column-header deals-status">
           <p>
-            Status
+            Deal-Status
           </p>
         </div>
       </div>

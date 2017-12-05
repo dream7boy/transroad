@@ -29,51 +29,46 @@ class DealsController < ApplicationController
   end
 
   def pre_transit_index
-    # 1.
-    # all_won_deals = policy_scope(Deal).where(deal_status: 'won').order(created_at: :asc)
-    # @deals = all_won_deals.includes(:shipment).where(shipments: {transit_status: 'pre-transit'})
-
-    # 2.
-    # @deals = policy_scope(Deal).includes(:shipment).where(deal_status: 'won', shipments: {transit_status: 'pre-transit'})
-
-    @deals = policy_scope(Deal)
-              .includes(:shipment)
-              .where(deal_status: 'won', shipments: {transit_status: 'pre-transit'})
-              .order(created_at: :desc)
-
-    authorize @deals
-  end
-
-  def to_in_transit
-    @deal = Deal.find(deal_params[:id])
-    authorize @deal
-    @deal.shipment.update(transit_status: 'in-transit')
-    redirect_to carrier_shipments_pre_transit_path
+    set_deals('pre-transit')
+    @ids_for_params = []
   end
 
   def in_transit_index
-    @deals = policy_scope(Deal)
-              .includes(:shipment)
-              .where(deal_status: 'won', shipments: {transit_status: 'in-transit'})
-              .order(created_at: :desc)
-
-    authorize @deals
-  end
-
-  def to_post_transit
-    @deal = Deal.find(deal_params[:id])
-    authorize @deal
-    @deal.shipment.update(transit_status: 'post-transit')
-    redirect_to carrier_shipments_in_transit_path
+    set_deals('in-transit')
+    @ids_for_params = []
   end
 
   def post_transit_index
-    @deals = policy_scope(Deal)
-              .includes(:shipment)
-              .where(deal_status: 'won', shipments: {transit_status: 'post-transit'})
-              .order(created_at: :desc)
+    set_deals('post-transit')
+  end
 
-    authorize @deals
+  def to_next_transit
+    selected_ids = []
+    deal_params.each do |param|
+      if ['0', 'pre_transit_index', 'in_transit_index'].exclude?(deal_params[param])
+        selected_ids << deal_params[param]
+      end
+    end
+
+    if selected_ids.present?
+      @deals = Deal.where(id: selected_ids)
+      authorize @deals
+      if deal_params[:action] == 'pre_transit_index'
+        @deals.each { |deal| deal.shipment.update(transit_status: 'in-transit') }
+        redirect_to carrier_shipments_pre_transit_path
+      else
+        @deals.each { |deal| deal.shipment.update(transit_status: 'post-transit') }
+        redirect_to carrier_shipments_in_transit_path
+      end
+    else
+      @deal = Deal.new
+      authorize @deal, :no_value?
+      if deal_params[:action] == 'pre_transit_index'
+        redirect_to carrier_shipments_pre_transit_path
+      else
+        redirect_to carrier_shipments_in_transit_path
+      end
+    end
   end
 
   private
@@ -82,7 +77,38 @@ class DealsController < ApplicationController
     params.require(:shipment_id)
   end
 
+  def ids_params
+    params.require(:deal).permit(:ids)
+  end
+
   def deal_params
-    params.require(:deal).permit(:id)
+    ids_string = ids_params[:ids].split
+    params.require(:deal).permit(ids_string, :action)
+  end
+
+  def set_deals(transit_status)
+    # 1.
+    # all_won_deals = policy_scope(Deal).where(deal_status: 'won').order(created_at: :asc)
+    # @deals = all_won_deals.includes(:shipment).where(shipments: {transit_status: 'pre-transit'})
+
+    # 2.
+    # @deals = policy_scope(Deal).includes(:shipment).where(deal_status: 'won', shipments: {transit_status: 'pre-transit'})
+
+    @all_deals = policy_scope(Deal)
+                  .includes(:shipment)
+                  .where(deal_status: 'won', shipments: {transit_status: transit_status})
+                  .order(created_at: :desc)
+    authorize @all_deals
+
+    @deals = @all_deals.map do |deal|
+      {
+        deal: deal,
+
+        # .first needs to be changed after modifying
+        # shipment form to allow users to add more than 2 pickups or deliveries.
+        pickup: deal.shipment.pickups.first,
+        delivery: deal.shipment.deliveries.first,
+      }
+    end
   end
 end

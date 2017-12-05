@@ -2,31 +2,7 @@
   <div class="container">
     <%= link_to "(Shipper)Change your password", edit_shipper_registration_path %>
     <h2>(<%= @shipments.count %>) My Shipments</h2>
-    <div class="shipper-shipments-nav-menu">
-      <div>
-        <%= link_to shipper_shipments_path, class: "btn btn-primary" do %>
-          My Shipments
-        <% end %>
-
-        <%= link_to pre_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-          Pre-Transit
-        <% end %>
-
-        <%= link_to in_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-          In-Transit
-        <% end %>
-
-        <%= link_to post_transit_shipper_shipments_path, class: "btn btn-primary" do %>
-          Post-Transit
-        <% end %>
-      </div>
-
-      <div>
-        <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-          + ADD NEW SHIPMENT
-        <% end %>
-      </div>
-    </div>
+    <%= render 'shipper_shipments_nav_menu' %>
 
     <% if @shipments.present? %>
       <div class="shipper-shipments-row">
@@ -62,7 +38,7 @@
         </div>
         <div class="shipper-shipments-row-nColumn column-header shipper-shipments-status">
           <p>
-            Status
+            Shipping-Status
           </p>
         </div>
       </div>

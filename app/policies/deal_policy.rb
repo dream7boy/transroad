@@ -9,20 +9,20 @@ class DealPolicy < ApplicationPolicy
     true
   end
 
+  def no_value?
+    true
+  end
+
+  def to_next_transit?
+    user_is_owner?
+  end
+
   def pre_transit_index?
     true
   end
 
-  def to_in_transit?
-    user_is_owner?
-  end
-
   def in_transit_index?
     true
-  end
-
-  def to_post_transit?
-    user_is_owner?
   end
 
   def post_transit_index?
@@ -33,6 +33,6 @@ class DealPolicy < ApplicationPolicy
     # Inside a policy:
     # 1. 'user' is the current_user from the Devise
     # 2. 'record' is the argument passed to 'authorize' in Controller.
-    record.carrier == user
+    record.each { |r| r.carrier == user }
   end
 end

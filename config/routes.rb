@@ -28,9 +28,8 @@ Rails.application.routes.draw do
 
   get 'carrier/shipments', to: 'deals#index'
   get 'carrier/shipments/pre-transit', to: 'deals#pre_transit_index'
-  patch 'carrier/shipments/pre-transit', to: 'deals#to_in_transit'
+  patch 'carrier/shipments/next-transit', to: 'deals#to_next_transit'
   get 'carrier/shipments/in-transit', to: 'deals#in_transit_index'
-  patch 'carrier/shipments/in-transit', to: 'deals#to_post_transit'
   get 'carrier/shipments/post-transit', to: 'deals#post_transit_index'
 
   resources :facilities, only: [:index, :new, :create, :edit, :update, :destroy]
