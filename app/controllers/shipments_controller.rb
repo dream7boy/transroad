@@ -101,6 +101,15 @@ class ShipmentsController < ApplicationController
     @shipment.pickups.build
     @shipment.deliveries.build
     authorize @shipment
+
+    respond_to do |format|
+      format.html { render "shipments/new" }
+      format.json do
+        @selected_facility_id = new_form_params[:id].to_i
+        @selected_facility = Facility.find(@selected_facility_id)
+      end
+    end
+    # byebug
   end
 
   def create
@@ -159,5 +168,9 @@ class ShipmentsController < ApplicationController
     if @shipment.available == false
       redirect_to shipper_shipment_path(@shipment)
     end
+  end
+
+  def new_form_params
+    params.require(:facility).permit(:id)
   end
 end
