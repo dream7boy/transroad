@@ -13,6 +13,7 @@ class ShipmentsController < ApplicationController
     end
 
     @all_shipments = policy_scope(Shipment)
+                      .includes(:pickups, :deliveries)
                       .where(available: true)
                       .order(created_at: :desc)
 
@@ -22,7 +23,7 @@ class ShipmentsController < ApplicationController
     # 2.joins returns all instances that related to the results filtered by where
     if params[:search].present?
       if params[:search][:p_prefecture].present? && params[:search][:d_prefecture].present?
-        after_prefecture_filter = @all_shipments.includes(:pickups, :deliveries)
+        after_prefecture_filter = @all_shipments
                                   .where(pickups: {prefecture: params[:search][:p_prefecture]},
                                          deliveries: {prefecture: params[:search][:d_prefecture]})
 
@@ -37,26 +38,28 @@ class ShipmentsController < ApplicationController
         #                           .where(id: shipments_ids, deliveries: {prefecture: params[:search][:d_prefecture]})
 
       elsif params[:search][:p_prefecture].present?
-        after_prefecture_filter = @all_shipments.includes(:pickups)
+        after_prefecture_filter = @all_shipments
                                   .where(pickups: {prefecture: params[:search][:p_prefecture]})
 
       elsif params[:search][:d_prefecture].present?
-        after_prefecture_filter = @all_shipments.includes(:deliveries)
+        after_prefecture_filter = @all_shipments
                                   .where(deliveries: {prefecture: params[:search][:d_prefecture]})
       else
         after_prefecture_filter = @all_shipments
       end
 
       if params[:search][:p_start_date].present? && params[:search][:d_start_date].present?
-        after_all_filters = after_prefecture_filter.includes(:pickups, :deliveries)
-                                  .where(pickups: {start_date: selected_p_start_date},
-                                         deliveries: {start_date: selected_d_start_date})
+        after_all_filters = after_prefecture_filter
+                              .where(pickups: {start_date: selected_p_start_date},
+                                     deliveries: {start_date: selected_d_start_date})
+
       elsif params[:search][:p_start_date].present?
-        after_all_filters = after_prefecture_filter.includes(:pickups)
-                                .where(pickups: {start_date: selected_p_start_date})
+        after_all_filters = after_prefecture_filter
+                              .where(pickups: {start_date: selected_p_start_date})
+
       elsif params[:search][:d_start_date].present?
-        after_all_filters = after_prefecture_filter.includes(:deliveries)
-                                .where(deliveries: {start_date: selected_d_start_date})
+        after_all_filters = after_prefecture_filter
+                              .where(deliveries: {start_date: selected_d_start_date})
       else
         after_all_filters = after_prefecture_filter
       end

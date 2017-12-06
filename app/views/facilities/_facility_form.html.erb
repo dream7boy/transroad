@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <% if params[:action] == 'new' %>
+        <h1>New Facility</h1>
+      <% else %>
+        <h1>Edit Facility</h1>
+      <% end %>
+
+      <%= simple_form_for @facility do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :name %>
+        <%= f.input :prefecture, collection: Facility::PREFECTURES, prompt: "県をお選び下さい" %>
+        <%= f.input :address, collection: Facility::ADDRESSES, prompt: "住所をお選び下さい" %>
+
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>

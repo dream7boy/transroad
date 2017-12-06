@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <% if params[:action] == 'new' %>
+        <h1>New Shipment</h1>
+      <% else %>
+        <h1>Edit Shipment</h1>
+      <% end %>
+
+      <%= simple_form_for @shipment do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :distance, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
+        <%= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
+        <%= f.input :car_type, collection: Shipment::CAR_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
+
+        <h3>Pickup</h3>
+        <%= f.simple_fields_for :pickups do |p| %>
+          <%#= p.input :facility_id, collection: current_shipper.facilities.order(name: :asc) %>
+          <%= p.input :company_name, collection: ['東京運輸（株）', '神奈川運輸（株）', '大阪運輸（株）', '北海道運輸（株）'] %>
+          <div class='form-inline'>
+            <div class='input-group date datepicker'>
+              <label>Start Date</label>
+              <%= p.text_field :start_date, class: 'form-control', id: 'datepicker1' %>
+            </div>
+            <div class='input-group date datepicker'>
+              <label>End Date</label>
+              <%= p.text_field :end_date, class: 'form-control', id: 'datepicker2' %>
+            </div>
+          </div>
+          <%= p.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
+          <%= p.input :address, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
+          <%= p.input :commodity, collection: Shipment::COMMODITIES, prompt: "荷種をお選び下さい", label: "荷物の種類" %>
+          <%= p.input :weight, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
+        <% end %>
+
+        <h3>Delivery</h3>
+        <%= f.simple_fields_for :deliveries do |d| %>
+          <%= d.input :company_name, collection: ['東京運輸（株）', '神奈川運輸（株）', '大阪運輸（株）', '北海道運輸（株）'] %>
+          <div class='form-inline'>
+            <div class='input-group date datepicker'>
+              <label>Start Date</label>
+              <%= d.text_field :start_date, class: 'form-control', id: 'datepicker3' %>
+            </div>
+            <div class='input-group date datepicker'>
+              <label>End Date</label>
+              <%= d.text_field :end_date, class: 'form-control', id: 'datepicker4' %>
+            </div>
+          </div>
+          <%= d.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
+          <%= d.input :address, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
+        <% end %>
+
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
