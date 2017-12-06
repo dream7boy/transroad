@@ -3,13 +3,13 @@
   <div>
     <%= simple_form_for :search, method: :get, html: {class: 'form-inline'} do |f| %>
       <div class='input-group date datepicker'>
-        <%= f.text_field :p_start_date, class: 'form-control', id: 'datepicker6' %>
+        <%= f.text_field :p_start_date, placeholder: '発地日', class: 'form-control', id: 'datepicker1' %>
       </div>
-      <%= f.input :p_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "発地（県）" %>
+      <%= f.input :p_prefecture, label: false, collection: Shipment::PREFECTURES, prompt: "発地（県）" %>
       <div class='input-group date datepicker'>
-        <%= f.text_field :d_start_date, class: 'form-control', id: 'datepicker7' %>
+        <%= f.text_field :d_start_date, placeholder: '着地日', class: 'form-control', id: 'datepicker2' %>
       </div>
-      <%= f.input :d_prefecture, label: false, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "着地（県）" %>
+      <%= f.input :d_prefecture, label: false, collection: Shipment::PREFECTURES, prompt: "着地（県）" %>
       <%= f.button :submit, "SEARCH", class: "btn btn-primary" %>
     <% end %>
   </div>

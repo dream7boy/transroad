@@ -1,13 +1,14 @@
+//DatePicker and DateTimePicker
 $(function(){
   //DatePicker
-  $('#datepicker6').datetimepicker({
+  $('#datepicker1').datetimepicker({
     format : "YYYY/MM/DD",
     icons: {
       previous: "fa fa-arrow-left",
       next: "fa fa-arrow-right"
     }
   });
-  $('#datepicker7').datetimepicker({
+  $('#datepicker2').datetimepicker({
     format : "YYYY/MM/DD",
     icons: {
       previous: "fa fa-arrow-left",
@@ -15,21 +16,21 @@ $(function(){
     },
     useCurrent: false //Important! See issue #1075
   });
-  $("#datepicker6").on("dp.change", function (e) {
-    $('#datepicker7').data("DateTimePicker").minDate(e.date);
+  $("#datepicker1").on("dp.change", function (e) {
+    $('#datepicker2').data("DateTimePicker").minDate(e.date);
   });
-  $("#datepicker7").on("dp.change", function (e) {
-    $('#datepicker6').data("DateTimePicker").maxDate(e.date);
+  $("#datepicker2").on("dp.change", function (e) {
+    $('#datepicker1').data("DateTimePicker").maxDate(e.date);
   });
 
-  $('#datepicker8').datetimepicker({
+  $('#datepicker3').datetimepicker({
     format : "YYYY/MM/DD",
     icons: {
       previous: "fa fa-arrow-left",
       next: "fa fa-arrow-right"
     }
   });
-  $('#datepicker9').datetimepicker({
+  $('#datepicker4').datetimepicker({
     format : "YYYY/MM/DD",
     icons: {
       previous: "fa fa-arrow-left",
@@ -37,15 +38,15 @@ $(function(){
     },
     useCurrent: false //Important! See issue #1075
   });
-  $("#datepicker8").on("dp.change", function (e) {
-    $('#datepicker9').data("DateTimePicker").minDate(e.date);
+  $("#datepicker3").on("dp.change", function (e) {
+    $('#datepicker4').data("DateTimePicker").minDate(e.date);
   });
-  $("#datepicker9").on("dp.change", function (e) {
-    $('#datepicker8').data("DateTimePicker").maxDate(e.date);
+  $("#datepicker4").on("dp.change", function (e) {
+    $('#datepicker3').data("DateTimePicker").maxDate(e.date);
   });
 
   //DateTimePicker
-  $('#datetimepicker6').datetimepicker({
+  $('#datetimepicker1').datetimepicker({
     format : "YYYY/MM/DD HH:mm",
     icons: {
       time: "fa fa-clock-o",
@@ -56,7 +57,7 @@ $(function(){
       next: "fa fa-arrow-right"
     }
   });
-  $('#datetimepicker7').datetimepicker({
+  $('#datetimepicker2').datetimepicker({
     format : "YYYY/MM/DD HH:mm",
     icons: {
       time: "fa fa-clock-o",
@@ -68,10 +69,10 @@ $(function(){
     },
     useCurrent: false //Important! See issue #1075
   });
-  $("#datetimepicker6").on("dp.change", function (e) {
-    $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+  $("#datetimepicker1").on("dp.change", function (e) {
+    $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
   });
-  $("#datetimepicker7").on("dp.change", function (e) {
-    $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+  $("#datetimepicker2").on("dp.change", function (e) {
+    $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
   });
 });

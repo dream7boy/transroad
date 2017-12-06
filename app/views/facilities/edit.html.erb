@@ -1,16 +1,1 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <h1>Edit facility</h1>
-      <%= simple_form_for @facility do |f| %>
-        <%= f.error_notification %>
-
-        <%= f.input :name %>
-        <%= f.input :prefecture, collection: ["東京都", "神奈川県", "大阪府", "北海道"], prompt: "県をお選び下さい" %>
-        <%= f.input :address, collection: ["新宿区", "川崎市", "大阪市", "札幌市"], prompt: "住所をお選び下さい" %>
-
-        <%= f.button :submit %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render 'facility_form' %>
