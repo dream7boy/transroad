@@ -11,6 +11,7 @@ class Shipment < ApplicationRecord
   CAR_TYPES = %w(平型 バン型 ウィング型 保冷車 冷凍車 車載車 重機運搬車 危険物運搬車
                  ダンプ 幌 ユニック 海上コンテナ その他)
 
+  COMPANIES = %w(東京運輸（株） 神奈川運輸（株） 大阪運輸（株） 北海道運輸（株）)
   PREFECTURES = %w(東京都 神奈川県 大阪府 北海道)
   ADDRESSES = %w(新宿区 川崎市 大阪市 札幌市)
 
