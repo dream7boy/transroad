@@ -103,13 +103,12 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     respond_to do |format|
-      format.html { render "shipments/new" }
+      format.html
       format.json do
         @selected_facility_id = new_form_params[:id].to_i
         @selected_facility = Facility.find(@selected_facility_id)
       end
     end
-    # byebug
   end
 
   def create
@@ -127,6 +126,13 @@ class ShipmentsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.json do
+        @selected_facility_id = new_form_params[:id].to_i
+        @selected_facility = Facility.find(@selected_facility_id)
+      end
+    end
   end
 
   def update

@@ -2,7 +2,7 @@
   <%= javascript_tag do %>
     $(document).ready(function() {
 
-      const pickupFacility = $('#shipment_pickups_attributes_0_company_name')
+      const pickupFacility = $('.pickup-facility')
       pickupFacility.on('change', function () {
         if(pickupFacility.val()){
           const pickupFacilityId = pickupFacility.val();
@@ -16,13 +16,14 @@
           })
           .always(function(pickupJsonFromJbuilder){
             console.log(pickupJsonFromJbuilder);
+            $('#shipment_pickups_attributes_0_company_name').val(pickupJsonFromJbuilder.name);
             $('#shipment_pickups_attributes_0_prefecture').val(pickupJsonFromJbuilder.prefecture);
             $('#shipment_pickups_attributes_0_address').val(pickupJsonFromJbuilder.address);
           });
         };
       });
 
-      const deliveryFacility = $('#shipment_deliveries_attributes_0_company_name')
+      const deliveryFacility = $('.delivery-facility')
       deliveryFacility.on('change', function () {
         if(deliveryFacility.val()){
           const deliveryFacilityId = deliveryFacility.val();
@@ -36,6 +37,7 @@
           })
           .always(function(deliveryJsonFromJbuilder){
             console.log(deliveryJsonFromJbuilder);
+            $('#shipment_deliveries_attributes_0_company_name').val(deliveryJsonFromJbuilder.name);
             $('#shipment_deliveries_attributes_0_prefecture').val(deliveryJsonFromJbuilder.prefecture);
             $('#shipment_deliveries_attributes_0_address').val(deliveryJsonFromJbuilder.address);
           });
