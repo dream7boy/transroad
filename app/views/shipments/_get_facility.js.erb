@@ -1,11 +1,11 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
-    $(document).ready(function() {
-
-      const pickupFacility = $('.pickup-facility')
-      pickupFacility.on('change', function () {
-        if(pickupFacility.val()){
-          const pickupFacilityId = pickupFacility.val();
+    $(document).ready(function(){
+// use $('xxx').find('xxx') to get more than two elements
+      const $pickupFacility = $('.pickup-facility')
+      $pickupFacility.on('change', function(){
+        if($pickupFacility.val()){
+          const pickupFacilityId = $pickupFacility.val();
           $.ajax({
             url: location.href,
             type: 'GET',
@@ -14,19 +14,19 @@
             },
             dataType: 'json'
           })
-          .always(function(pickupJsonFromJbuilder){
+          .done(function(pickupJsonFromJbuilder){
             console.log(pickupJsonFromJbuilder);
             $('#shipment_pickups_attributes_0_company_name').val(pickupJsonFromJbuilder.name);
             $('#shipment_pickups_attributes_0_prefecture').val(pickupJsonFromJbuilder.prefecture);
             $('#shipment_pickups_attributes_0_address').val(pickupJsonFromJbuilder.address);
           });
-        };
+        }
       });
 
-      const deliveryFacility = $('.delivery-facility')
-      deliveryFacility.on('change', function () {
-        if(deliveryFacility.val()){
-          const deliveryFacilityId = deliveryFacility.val();
+      const $deliveryFacility = $('.delivery-facility')
+      $deliveryFacility.on('change', function(){
+        if($deliveryFacility.val()){
+          const deliveryFacilityId = $deliveryFacility.val();
           $.ajax({
             url: location.href,
             type: 'GET',
@@ -35,13 +35,13 @@
             },
             dataType: 'json'
           })
-          .always(function(deliveryJsonFromJbuilder){
+          .done(function(deliveryJsonFromJbuilder){
             console.log(deliveryJsonFromJbuilder);
             $('#shipment_deliveries_attributes_0_company_name').val(deliveryJsonFromJbuilder.name);
             $('#shipment_deliveries_attributes_0_prefecture').val(deliveryJsonFromJbuilder.prefecture);
             $('#shipment_deliveries_attributes_0_address').val(deliveryJsonFromJbuilder.address);
           });
-        };
+        }
       });
 
     });
