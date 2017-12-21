@@ -65,6 +65,18 @@ ActiveRecord::Schema.define(version: 20171205094054) do
     t.index ["shipper_id"], name: "index_facilities_on_shipper_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.bigint "facility_id"
+    t.bigint "shipment_id"
+    t.string "commodity"
+    t.integer "weight"
+    t.string "is_for"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_locations_on_facility_id"
+    t.index ["shipment_id"], name: "index_locations_on_shipment_id"
+  end
+
   create_table "pickups", force: :cascade do |t|
     t.bigint "shipment_id"
     t.string "company_name"
@@ -114,6 +126,8 @@ ActiveRecord::Schema.define(version: 20171205094054) do
   add_foreign_key "deals", "shipments"
   add_foreign_key "deliveries", "shipments"
   add_foreign_key "facilities", "shippers"
+  add_foreign_key "locations", "facilities"
+  add_foreign_key "locations", "shipments"
   add_foreign_key "pickups", "shipments"
   add_foreign_key "shipments", "shippers"
 end
