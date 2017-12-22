@@ -1,9 +1,11 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+// @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+// $body-font: "Open Sans", "Helvetica", "sans-serif";
+// $headers-font: "Raleway", "Helvetica", "sans-serif";
+$font__header: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
+$font__body: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
@@ -14,3 +16,74 @@ $headers-font: "Raleway", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+/*------------  xs < 768px (.container @ auto)  ------------*/
+h1, h2, h3, h4, h5, h6 {
+  color: $color__theme--main;
+  font-family: $font__header;
+  font-weight: normal;
+}
+h1 {
+  font-size: 6rem;
+}
+h2 {
+  font-size: 3.6rem;
+  line-height: 1.5;
+}
+h3 {
+  font-size: 2.7rem;
+}
+h4 {
+  font-size: 2rem;
+  padding-bottom: calc(2.35rem * 1);
+}
+h5, h6 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding-bottom: calc(1.8rem * 0.5);
+  padding-top: calc(1.8rem * 2);
+}
+p, ul.points li {
+  font-size: 1.8rem;
+  font-weight: normal;
+  line-height: 1.65;
+  text-align: left;
+}
+ul.points li {
+  font-weight: bold;
+  line-height: 2.2;
+}
+a {
+  font-size: 1.8rem;
+  &:visited, &:focus, &:active {
+    outline: none;
+    text-decoration: none;
+  }
+}
+p, a {
+  color: $color--black;
+  font-family: $font__body;
+}
+p + a {
+  line-height: unset !important;
+}
+/*------------ } @media (max-width: 768px) ------------*/
+
+
+
+
+
+
+/*------------  md >= 992px (.container @ 970px)  ------------*/
+@media (min-width: 992px) {
+  p {
+    font-size: 1.8rem;
+    line-height: 1.65;
+  }
+  h5, h6 {
+    font-size: 1.8rem;
+    padding-top: calc(1.8rem * 2);
+    padding-bottom: calc(1.8rem * 0.5);
+  }
+}
+/*------------ } @media (min-width: 992px) ------------*/
