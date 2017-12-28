@@ -1,15 +1,16 @@
-// Graphical variables
-@import "config/reset";
-@import "config/colors";
-@import "config/fonts";
-@import "config/bootstrap_variables";
-
 // External libraries
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'bootstrap-datetimepicker';
+
+// Graphical variables
+@import "config/reset";
+@import "config/colors";
+@import "config/fonts";
+@import "config/variables";
+@import "config/bootstrap_variables";
 
 // Your CSS partials
 @import "layouts/index";

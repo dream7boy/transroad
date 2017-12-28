@@ -1,16 +1,18 @@
 /* Main navbar */
   // 1. this line is for sticky navbar
 body {
-  padding-top: 70px;
+  padding-top: $navbar__height;
+}
+.nav > li {
+  background-color: $color--white--transparent;
 }
 .navbar-wagon {
   // 2. these 5 lines is for sticky navbar
-  height: 70px;
+  height: $navbar__height;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 1;
-
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   background: white;
   transition: all 0.3s ease;
@@ -85,3 +87,13 @@ body {
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+/*------------  md >= 992px (.container @ 970px)  ------------*/
+@media (min-width: 992px) {
+  .nav > li {
+    &:last-child > a {
+      padding: 15px 0 15px 15px;
+    }
+  }
+}
+/*------------ } @media (min-width: 992px) ------------*/
