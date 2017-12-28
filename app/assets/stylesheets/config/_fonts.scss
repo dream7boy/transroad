@@ -6,6 +6,13 @@
 // $headers-font: "Raleway", "Helvetica", "sans-serif";
 $font__header: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
 $font__body: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
+$font__brand: 'Raleway', "Open Sans", "Helvetica Neue",  sans-serif;
+$font__h1: 4rem;
+$font__h2: 2.2rem;
+$font__h3: 1.6rem;
+$font__h4: 1.6rem;
+$font__p: 1.6rem;
+$font__btn--lg: 2.0rem;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
@@ -17,44 +24,50 @@ $font__body: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragin
 // }
 // $my-font: "Font Name";
 
-/*------------  xs < 768px (.container @ auto)  ------------*/
 h1, h2, h3, h4, h5, h6 {
   color: $color__theme--main;
   font-family: $font__header;
   font-weight: normal;
 }
 h1 {
-  font-size: 6rem;
+  font-size: $font__h1;
 }
 h2 {
-  font-size: 3.6rem;
+  font-size: $font__h2;
   line-height: 1.5;
 }
 h3 {
-  font-size: 2.7rem;
+  font-size: $font__h3;
 }
 h4 {
-  font-size: 2rem;
-  padding-bottom: calc(2.35rem * 1);
+  font-size: $font__h4;
+  // padding-bottom: calc(2.35rem * 1);
 }
 h5, h6 {
-  font-size: 1.8rem;
+  font-size: $font__p;
   font-weight: bold;
-  padding-bottom: calc(1.8rem * 0.5);
-  padding-top: calc(1.8rem * 2);
 }
 p, ul.points li {
-  font-size: 1.8rem;
+  font-size: $font__p;
   font-weight: normal;
   line-height: 1.65;
   text-align: left;
 }
-ul.points li {
-  font-weight: bold;
-  line-height: 2.2;
+ul.points {
+  padding-left: 2.8rem;
+  li {
+    font-weight: bold;
+    line-height: 1.65;
+    text-indent: -2.8rem;
+    .checkmark {
+      font-family: unset;
+      font-size: calc(#{$font__p * 1.2});
+      line-height: 0;
+    }
+  }
 }
 a {
-  font-size: 1.8rem;
+  font-size: $font__p;
   &:visited, &:focus, &:active {
     outline: none;
     text-decoration: none;
@@ -64,26 +77,44 @@ p, a {
   color: $color--black;
   font-family: $font__body;
 }
-p + a {
-  line-height: unset !important;
+.color__sub {
+    color: $color__theme--sub;
 }
-/*------------ } @media (max-width: 768px) ------------*/
-
-
-
-
-
 
 /*------------  md >= 992px (.container @ 970px)  ------------*/
 @media (min-width: 992px) {
-  p {
-    font-size: 1.8rem;
-    line-height: 1.65;
+  h1 {
+    font-size: calc(#{$font__h1} * 1.5);
+  }
+  h2 {
+    font-size: calc(#{$font__h2} * 1.5);
+    line-height: 1.5;
+  }
+  h3 {
+    font-size: calc(#{$font__h3} * 1.125);
+  }
+  h4 {
+    font-size: calc(#{$font__h4} * 1.125);
+    // padding-bottom: calc(2.35rem * 1);
   }
   h5, h6 {
-    font-size: 1.8rem;
-    padding-top: calc(1.8rem * 2);
-    padding-bottom: calc(1.8rem * 0.5);
+    font-size: calc(#{$font__p} * 1.125);
+    font-weight: bold;
+    padding-top: calc(#{$font__p} * 2);
+  }
+  p {
+    font-size: calc(#{$font__p} * 1.125);
+  }
+  p, ul.points li  {
+    font-size: calc(#{$font__p} * 1.125);
+  }
+  ul.points {
+    li {
+      text-indent: -3.1rem;
+      .checkmark {
+        font-size: calc(#{$font__p * 1.35});
+      }
+    }
   }
 }
 /*------------ } @media (min-width: 992px) ------------*/

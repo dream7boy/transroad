@@ -1,0 +1,86 @@
+%extBtnNull {
+  background-color: $color__theme--main;
+  border-radius: 1px;
+  border: 0;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24);
+  font-size: $font__p;
+  font-weight: bold;
+  padding: 8px 16px;
+  &:active {
+    transform: translateY(2px);
+    background-color: $color__theme--main;
+    &:focus {
+      background-color: darken($color__theme--main, 10%);
+    }
+  }
+  &:focus {
+    background-color: $color__theme--main;
+  }
+  &:hover {
+    background-color: darken($color__theme--main, 10%);
+  }
+}
+%extBtnTriangle {
+  border-color: $color__theme--main transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px 8px 0 8px;
+  content: "";
+  height: 0;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 50%);
+  width: 0;
+}
+.btn__case {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 260px;
+  width:85%;
+}
+.btn__invert {
+  background-color: $color--white;
+  color: $color__theme--main;
+  font-weight: bolder;
+  &:active {
+    background-color: $color--white;
+    &:focus {
+      background-color: $color--white;
+      color: darken($color__theme--main, 15%);
+    }
+  }
+  &:focus {
+    background-color: $color--white;
+    color: $color__theme--main;
+  }
+  &:hover {
+    background-color: $color--white;
+    color: darken($color__theme--main, 15%);
+  }
+}
+.btn__null {
+  @extend %extBtnNull;
+}
+.btn__triangle {
+  position: relative;
+  &:before {
+    @extend %extBtnTriangle;
+    bottom: -14px;
+  }
+  &:after {
+    @extend %extBtnTriangle;
+    bottom: -30px;
+  }
+}
+
+/*------------  md >= 992px (.container @ 970px)  ------------*/
+@media (min-width: 992px) {
+  .btn__case {
+    max-width: 650px;
+    width: 50%;
+  }
+  .btn__null {
+    font-size: $font__btn--lg;
+  }
+}
+/*------------ } @media (min-width: 992px) ------------*/

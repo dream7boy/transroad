@@ -1,4 +1,198 @@
- <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path 'home-truck.jpg'%>);">
+<div id="home">
+
+
+
+
+  <!-- LANDING / START -->
+  <div id="landing--initial" class="fullscreen ignore__navbar">
+    <!-- LANDING TOP / START -->
+    <div class="navbar navbar-default landing--navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand brand--wordmark" href="#">TransRoad</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#landing--carrier">荷物を運びたい</a></li>
+            <li><a href="#landing--shipper">荷物を送りたい</a></li>
+            <li class="sub-list--parent">
+              <a href="#">ログインする</a>
+              <ul class="sub-list--child">
+                <li><%= link_to "運送会社", new_carrier_session_path, class: "" %></li>
+                <li><%= link_to "荷主会社", new_shipper_session_path, class: "" %></li>
+              </ul>
+            </li>
+            <li class="sub-list--parent">
+              <a href="#">新規登録する</a>
+              <ul class="sub-list--child">
+                <li><%= link_to "運送会社", new_carrier_registration_path, class: "" %></li>
+                <li><%= link_to "荷主会社", new_shipper_registration_path, class: "" %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- LANDING TOP / END -->
+    <!-- LANDING MAIN / START -->
+    <div class="landing--center">
+      <div class="img__box--horizontal">
+        <%= inline_svg "00_carrier_set", class: "" %>
+        <%= inline_svg "00_shipper_set", class: "" %>
+      </div>
+      <div>
+        <h2>荷物を運びたい会社<span class="color__sub">と</span><br>荷物を送りたい会社<span class="color__sub">を</span><br>マッチング<span class="color__sub">します</span></h2>
+      </div>
+    </div>
+    <!-- LANDING MAIN / END -->
+    <!-- LANDING BOTTOM / START -->
+    <div>
+      <a class="btn btn-primary btn__null btn__triangle" href="#landing--description" role="button">詳しく知りたい</a>
+    </div>
+    <!-- LANDING BOTTOM / END -->
+  </div>
+  <!-- LANDING / END -->
+
+
+
+
+  <!-- DESCRIPTION / START -->
+  <div id="landing--description" class="fullscreen">
+    <div>
+      <h2>荷物に合った<br class="hidden-sm hidden-md hidden-lg">マッチングを<br class="hidden-sm hidden-md hidden-lg">お届けします</h2>
+    </div>
+    <div class="description__image-box">
+      <%= inline_svg "01_carrier", class: "carrier_01" %>
+      <%= inline_svg "01_shipper", class: "shipper_01" %>
+      <%= inline_svg "02_carrier", class: "carrier_02" %>
+      <%= inline_svg "02_shipper", class: "shipper_02" %>
+      <%= inline_svg "03_carrier", class: "carrier_03" %>
+      <%= inline_svg "03_shipper", class: "shipper_03" %>
+      <%= inline_svg "04_carrier", class: "carrier_04" %>
+      <%= inline_svg "04_shipper", class: "shipper_04" %>
+      <%= inline_svg "05_carrier", class: "carrier_05" %>
+      <%= inline_svg "05_shipper", class: "shipper_05" %>
+      <%= inline_svg "06_carrier", class: "carrier_06" %>
+      <%= inline_svg "06_shipper", class: "shipper_06" %>
+      <%= inline_svg "07_carrier", class: "carrier_07" %>
+      <%= inline_svg "07_shipper", class: "shipper_07" %>
+      <%= inline_svg "08_carrier", class: "carrier_08" %>
+      <%= inline_svg "08_shipper", class: "shipper_08" %>
+      <%= inline_svg "09_carrier", class: "carrier_09" %>
+      <%= inline_svg "09_shipper", class: "shipper_09" %>
+      <%= inline_svg "10_carrier", class: "carrier_10" %>
+      <%= inline_svg "10_shipper", class: "shipper_10" %>
+    </div>
+    <div class="btn__case">
+      <a class="btn btn-primary btn__null btn__triangle" href="#landing--carrier" role="button">荷物を<br class="hidden-sm hidden-md hidden-lg">運びたい</a>
+      <a class="btn btn-primary btn__null btn__triangle" href="#landing--shipper" role="button">荷物を<br class="hidden-sm hidden-md hidden-lg">送りたい</a>
+    </div>
+  </div>
+  <!-- DESCRIPTION / END -->
+
+
+
+
+  <!-- CARRIER SECTION / START -->
+  <section id="landing--carrier" class="container-fluid section__carrier">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+        <div class="text__block">
+          <h2>荷物を運びたい</h2>
+          <p>物流の主な機能として、輸送・配送の他、保管・荷役(にやく)・包装・流通加工・物流情報処理がある。その中でも、輸送・保管・荷役・包装・流通加工は「物流5大機能」と言われる。</p>
+        </div>
+        <div class="text__block">
+          <h5>登録するメリット</h5>
+          <ul class="points">
+            <li><span class="color__sub checkmark">&check;</span>︎&emsp;貴社の強みにマッチする新規案件が見つかります。</li>
+            <li><span class="color__sub checkmark">&check;</span>︎&emsp;見積もり依頼をいつでも受けられる。</li>
+            <li><span class="color__sub checkmark">&check;</span>︎&emsp;登録料、その他諸経費は一切かかりません。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="img__box--horizontal col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
+        <%= inline_svg "00_carrier_set", class: "" %>
+      </div>
+    </div>
+    <hr>
+    <div class="row text__block">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+        <h5>登録・ご利用の流れ</h5>
+        <ul class="points">
+          <li><span class="color__sub">①</span>&emsp;無料で登録する。</li>
+          <li><span class="color__sub">②</span>&emsp;貴社の強みにマッチする案件を見つける。</li>
+          <li><span class="color__sub">③</span>&emsp;お見積もりを提案する。</li>
+          <li><span class="color__sub">④</span>&emsp;配送手配の確定。</li>
+        </ul>
+        <%= link_to "無料で登録する", new_carrier_registration_path, class: "btn btn-primary btn__null" %>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
+        <div class="img__box--horizontal">
+          <%= inline_svg "00_carrier_set", class: "" %>
+          <%= inline_svg "00_shipper_set", class: "" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CARRIER SECTION / END -->
+
+
+
+
+  <!-- SHIPPER SECTION / START -->
+  <section id="landing--shipper" class="container-fluid section__shipper">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+        <div class="text__block">
+          <h2>荷物を送りたい</h2>
+          <p>物流の主な機能として、輸送・配送の他、保管・荷役(にやく)・包装・流通加工・物流情報処理がある。その中でも、輸送・保管・荷役・包装・流通加工は「物流5大機能」と言われる。</p>
+        </div>
+        <div class="text__block">
+          <h5>登録するメリット</h5>
+          <ul class="points">
+            <li><span class="color__sub checkmark">&check;</span>︎&emsp;貴社の商材にマッチする運送会社が見つかります。</li>
+            <li><span class="color__sub checkmark">&check;</span>︎&emsp;お見積もりの中から予算に合うを選択できます。</li>
+            <li><span class="color__sub checkmark">&check;</span>︎&emsp;登録料、その他諸経費は一切かかりません。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="img__box--horizontal col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
+        <%= inline_svg "00_shipper_set", class: "img__flip-y" %>
+      </div>
+    </div>
+    <hr>
+    <div class="row text__block">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+        <h5>登録・ご利用の流れ</h5>
+        <ul class="points">
+          <li><span class="color__sub">①</span>&emsp;無料で登録する。</li>
+          <li><span class="color__sub">②</span>&emsp;貴社の商材にマッチする運送会社を見つける。</li>
+          <li><span class="color__sub">③</span>&emsp;お見積もりを比較、検討、選択する。</li>
+          <li><span class="color__sub">④</span>&emsp;配送手配の確定。</li>
+        </ul>
+        <%= link_to "無料で登録する", new_shipper_registration_path, class: "btn btn-primary btn__null" %>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
+        <div class="img__box--horizontal img__flip-y">
+          <%= inline_svg "00_carrier_set", class: "" %>
+          <%= inline_svg "00_shipper_set", class: "" %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SHIPPER SECTION / END -->
+
+
+
+</div>
+<!--
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path 'home-truck.jpg'%>);">
   <div class="banner-content">
     <h1>Welcome to TransRoad</h1>
     <p>The marketplace where carriers can easily find shippers</p>
@@ -11,3 +205,4 @@
 
   </div>
 </div>
+ -->

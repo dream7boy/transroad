@@ -1,0 +1,18 @@
+.brand-- {
+  &wordmark {
+    color: $color__theme--main !important;
+    font-family: $font__brand;
+    font-weight: bolder;
+    letter-spacing: -1px;
+  }
+}
+
+/* md >= 992px (.container @ 970px) / START */
+@media (min-width: 992px) {
+  .brand-- {
+    &wordmark {
+      font-size: 3.6rem;
+    }
+  }
+}
+/* md >= 992px (.container @ 970px) / END */

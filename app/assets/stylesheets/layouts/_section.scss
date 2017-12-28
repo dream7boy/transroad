@@ -1,0 +1,134 @@
+section {
+  &.section__ {
+    &carrier .row, &shipper .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1 50%
+    }
+    &carrier {
+      border: 10px solid $color__theme--main;
+      padding-bottom: $spacer--sm;
+      padding-top: $spacer--sm;
+    }
+    &shipper {
+      background: repeating-linear-gradient(
+        -45deg,
+        $color--white,
+        $color--white 10px,
+        $color__theme--main 10px,
+        $color__theme--main 20px
+        );
+      position: relative;
+      z-index: 0;
+      &:before {
+        background-color: $color--white;
+        content: "";
+        display: block;
+        height: calc(100% - 20px);
+        left: 10px;
+        position: absolute;
+        top: 10px;
+        width: calc(100% - 20px);
+        z-index: -10;
+      }
+      &.container-fluid {
+        padding-top: calc(#{$spacer--sm} + 10px);
+        padding-bottom: calc(#{$spacer--sm} + 10px);
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+    }
+  }
+  & hr {
+    border: 0;
+    border-top: 3px solid $color__theme--sub;
+    margin: $spacer--sm 0 calc(#{$spacer--sm} + 4px) 0;
+    width: 100%;
+  }
+  .img__box--horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & svg {
+      padding: 10px;
+      width: 50%;
+      min-width: 200px;
+      max-width: 250px;
+    }
+  }
+  .text__block {
+    padding-bottom: calc(#{$font__p} * 2.0);
+    text-align: center;
+    &:last-child {
+      padding-bottom: 0;
+    }
+    h2 {
+      padding-bottom: calc(#{$font__h2} * 0.25);
+    }
+    h5, h6 {
+      padding-bottom: calc(#{$font__p} * 0.5);
+      padding-top: calc(#{$font__p} * 2.0);
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+    a.btn {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: calc(#{$font__p} * 2.0);
+    }
+  }
+}
+
+/* md >= 992px (.container @ 970px) / START */
+@media (min-width: 992px) {
+  .fullscreen {
+    padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
+  }
+  section {
+    & hr {
+      margin: $spacer--md 0 calc(#{$spacer--md} + 4px) 0;
+    }
+    &.section__ {
+      &carrier {
+        border: 18px solid $color__theme--main;
+        &.container-fluid {
+          padding-bottom: $spacer--xl;
+          padding-top: $spacer--xl;
+          padding-left: $spacer--xl;
+          padding-right: $spacer--xl;
+        }
+      }
+      &shipper {
+        background: repeating-linear-gradient(
+          -45deg,
+          $color--white,
+          $color--white 18px,
+          $color__theme--main 18px,
+          $color__theme--main 36px
+          );
+        &:before {
+          height: calc(100% - 36px);
+          left: 18px;
+          top: 18px;
+          width: calc(100% - 36px);
+        }
+        &.container-fluid {
+          padding-bottom: $spacer--xl;
+          padding-top: $spacer--xl;
+          padding-left: calc(#{$spacer--xl} + 18px);
+          padding-right: calc(#{$spacer--xl} + 18px);
+        }
+      }
+    }
+    .text__block {
+      padding-bottom: calc(#{$font__p} * 3.0);
+      text-align: unset;
+      a.btn {
+        margin-top: calc(#{$font__p} * 3.0);
+      }
+    }
+  }
+}
+/* md >= 992px (.container @ 970px) / END */

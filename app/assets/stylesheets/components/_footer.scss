@@ -4,12 +4,12 @@ html {
   position: relative;
 }
 body {
-  padding-bottom: 70px;
+  // padding-bottom: $footer__height;
 }
 
 .footer {
   // 2. 4 lines below are for the footer to stay bottom
-  height: 70px;
+  height: $footer__height;
   width: 100%;
   position: absolute;
   bottom: 0;

@@ -6,13 +6,16 @@
     <title>TODO</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:800i" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <% unless current_page?(root_path) %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-    <%= render 'shared/footer' %>
+    <%#= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= yield(:after_js) %>
   </body>

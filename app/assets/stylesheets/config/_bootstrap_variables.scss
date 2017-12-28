@@ -10,12 +10,13 @@ $body-bg:                 $color--white;
 $font-size-base: 18px;
 
 // Colors
-// $gray-base:       $gray;
 $brand-primary:   $color__theme--main;
 $brand-success:   $color__theme--main;
 $brand-info:      $color__theme--sub;
 $brand-danger:    $red;
 $brand-warning:   $color__theme--sub;
+$gray-light: $color--gray;
+$gray-dark: $color--gray-dark;
 
 // Buttons & inputs' radius
 $border-radius-base:  2px;
