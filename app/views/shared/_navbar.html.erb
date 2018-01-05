@@ -1,80 +1,104 @@
-<div class="navbar-wagon">
-  <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
-  <% end %>
+<div id="navigation__bar">
+  <%= link_to "TransRoad", root_path, class: "navbar-brand brand--wordmark"%>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <!-- DESKTOP DROPDOWN / START-->
+  <div id="desktop--dropdown" class="hidden-xs hidden-sm navbar--right">
 
+    <!-- IF user (shipper or carrier) is signed in show the following. -->
     <% if user_signed_in? %>
+      <ul>
+        <li>
+          <%= link_to t(".shipments_search", default: "案件を見つける"), shipments_path %>
+        </li>
 
-      <!-- Links when logged in -->
-      <%= current_user.email %>
-      <%= link_to shipments_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-        <i class="fa fa-table"></i> Shipments
-      <% end %>
-      <% if current_shipper.present? %>
-        <%= link_to shipper_shipments_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-table"></i> My Shipments
-        <% end %>
-        <%= link_to facilities_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-table"></i> My Facilities
-        <% end %>
-      <% else %>
-        <%= link_to carrier_shipments_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-table"></i> My Shipments
-        <% end %>
-      <% end %>
+        <!-- Signed in + IS Shipper -->
+        <% if current_shipper.present? %>
+        <li>
+          <%= link_to t(".my_shipments", default: "案件を確認する"), shipper_shipments_path %>
+        </li>
+        <li>
+          <%= link_to t(".my_facilities", default: "施設を確認する"), facilities_path %>
+        </li>
 
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
+        <!-- Signed in + IS Carrier -->
+        <% else %>
+        <li>
+          <%= link_to t(".my_shipments", default: "案件を確認する"), carrier_shipments_path %>
+        </li>
+        <% end %>
+
+        <!-- DESKTOP DROPDOWN / Avatar + Account Dropdown Menu -->
+        <!-- Might be best to change from a "click-toggle" to a "hover-toggle" and keep it consistent with the rest of the menu. 999 -->
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <%#= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <i class="fa fa-user-circle avatar dropdown-toggle" data-toggle="dropdown"></i>
+          <ul id="avatar__navbar" class="dropdown-menu dropdown-menu-right">
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
+              <%= link_to t(".company_profile", default: "会社情報"), edit_carrier_registration_path %>
             </li>
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
+              <!-- Signed in + IS Shipper -->
               <% if current_shipper.present? %>
-                <%= link_to destroy_shipper_session_path, method: :delete do %>
-                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-                <% end %>
+                <%= link_to t(".sign_out", default: "ログアウトする"), destroy_shipper_session_path, method: :delete %>
               <% else %>
-                <%= link_to destroy_carrier_session_path, method: :delete do %>
-                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-                <% end %>
+              <!-- Signed in + IS Carrier -->
+                <%= link_to t(".sign_out", default: "ログアウトする"), destroy_carrier_session_path, method: :delete %>
               <% end %>
             </li>
           </ul>
         </div>
-      </div>
+      </ul>
+
     <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Shipper Sign In"), new_shipper_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_in", default: "Carrier Sign In"), new_carrier_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+      <!-- DESKTOP DROPDOWN / Logged Out -->
+      <ul>
+        <li><%= link_to t(".want_to_carry", default: "荷物を運びたい"), root_path(anchor: "landing--carrier"), class: "" %></li>
+        <li><%= link_to t(".want_to_carry", default: "荷物を送りたい"), root_path(anchor: "landing--shipper"), class: "" %></li>
+        <li>
+          <a href="#">ログインする</a>
+          <ul class="sub-list">
+            <%= link_to new_carrier_session_path, class: "" do %>
+              <li><%= t(".carrier", default: "運送会社") %></li>
+            <% end %>
+            <%= link_to new_shipper_session_path, class: "" do %>
+              <li><%= t(".shipper", default: "荷主会社") %></li>
+            <% end %>
+          </ul>
+        </li>
+        <li>
+          <a href="#">新規登録する</a>
+          <ul class="sub-list">
+            <%= link_to new_carrier_registration_path, class: "" do %>
+              <li><%= t(".carrier", default: "運送会社") %></li>
+            <% end %>
+            <%= link_to new_shipper_registration_path, class: "" do %>
+              <li><%= t(".shipper", default: "荷主会社") %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
     <% end %>
   </div>
 
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
+  <!-- MOBILE DROPDOWN / START -->
+  <div id="mobile--dropdown" class="navbar--item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+      <ul class="dropdown-menu dropdown-menu-right dropdown--menu">
+
+        <!-- IF user (shipper or carrier) is signed in show the following. -->
         <% if user_signed_in? %>
-          <%= current_user.email %>
           <li>
-            <%= link_to shipments_path do %>
-              <i class="fa fa-table"></i> Shipments
-            <% end %>
+            <!-- 999 Change to current_user.name once model is updated. -->
+            <p class="user__name">こんにちは、田中 優さん<span class="user__date"><%= Time.now.strftime("%m/%d (#{%w(日 月 火 水 木 金 土)[Time.now.wday]})") %></span></p>
+            <p class="hidden"><%= current_user.email %></p>
           </li>
+          <li>
+            <%= link_to t(".shipments_search", default: "案件を見つける"), shipments_path %>
+          </li>
+
+          <!-- Signed in + IS Shipper -->
           <% if current_shipper.present? %>
             <li>
               <%= link_to shipper_shipments_path do %>
@@ -82,9 +106,9 @@
               <% end %>
             </li>
             <li>
-              <%= link_to facilities_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-              <i class="fa fa-table"></i> My Facilities
-            <% end %>
+              <%= link_to facilities_path, class: "navbar--item" do %>
+                <i class="fa fa-table"></i> My Facilities
+              <% end %>
             </li>
             <li>
               <%= link_to destroy_shipper_session_path, method: :delete do %>
@@ -92,27 +116,36 @@
               <% end %>
             </li>
           <% else %>
+
+          <!-- Signed in + IS Carrier  -->
             <li>
-              <%= link_to carrier_shipments_path do %>
-                <i class="fa fa-table"></i> My Shipments
-              <% end %>
+              <%= link_to t(".my_shipments", default: "案件を確認する"), carrier_shipments_path %>
             </li>
             <li>
-              <%= link_to destroy_carrier_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
+              <%= link_to t(".sign_out", default: "ログアウトする"), destroy_carrier_session_path, method: :delete %>
             </li>
           <% end %>
         <% else %>
+
+          <!-- MOBILE DROPDOWN / Logged Out -->
+          <li><%= link_to "荷物を運びたい", root_path(anchor: "landing--carrier"), class: "" %></li>
+          <li><%= link_to "荷物を送りたい", root_path(anchor: "landing--shipper"), class: "" %></li>
           <li>
-            <%= link_to t(".sign_in", default: "Shipper Sign In"), new_shipper_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+            <p>ログインする</p>
+            <ul class="sub-list">
+              <li><%= link_to "運送会社", new_carrier_session_path, class: "" %></li>
+              <li><%= link_to "荷主会社", new_shipper_session_path, class: "" %></li>
+            </ul>
           </li>
           <li>
-            <%= link_to t(".sign_in", default: "Carrier Sign In"), new_carrier_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+            <p>新規登録する</p>
+            <ul class="sub-list">
+              <li><%= link_to "運送会社", new_carrier_registration_path, class: "" %></li>
+              <li><%= link_to "荷主会社", new_shipper_registration_path, class: "" %></li>
+            </ul>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
 </div>
-

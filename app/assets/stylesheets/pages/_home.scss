@@ -3,6 +3,9 @@
   &.fullscreen {
     padding: $spacer--xs $spacer--xs $spacer--md $spacer--xs;
   }
+  #landing--navbar--collapse {
+    box-shadow: $box-shadow--default;
+  }
   .img__box--horizontal {
     margin: 0 auto;
     width: 75%;
@@ -41,7 +44,7 @@
       li {
         padding: 10px 0;
         &:first-child {
-          padding: 0 0 10px 0;
+          // padding: 0 0 10px 0;
         }
       }
       a {
@@ -50,6 +53,12 @@
           color: $color--gray-dark;
           text-decoration: none;
         }
+      }
+    }
+    .nav > li {
+      background-color: $color--white--transparent;
+      &:last-child > a {
+        padding: 15px 0 15px 15px;
       }
     }
     .navbar-brand {
@@ -190,6 +199,9 @@
   #landing--initial {
     &.fullscreen {
       padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
+    }
+    #landing--navbar--collapse {
+      box-shadow: none;
     }
     .img__box--horizontal {
       margin: unset;
