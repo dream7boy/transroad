@@ -1,23 +1,111 @@
-<div class="container-fluid dummy--height">
+<!-- app/views/carriers/registrations/new.html.erb -->
+
+<section id="carrier__registration" class="container-fluid section__carrier well--xs">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-      <h2>Sign up</h2>
+    <!-- BS offset is not included since "section.section__carrier > div.row" has flex center assigned. / Shun-->
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+      <h2>新規登録</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
-
         <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-          <%= f.input :password_confirmation, required: true %>
+          <div class="input--group">
+            <h3>会社情報</h3>
+            <%= f.input :company_name, label: "会社名", as: :fake, required: true, autofocus: true %>
+            <div class="container-fluid input--container">
+              <div class="row input--row">
+                <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, as: :fake, required: true %>
+              </div>
+            </div>
+            <div class="container-fluid input--container">
+              <div class="row input--row">
+                <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, as: :fake, required: true %>
+                <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, as: :fake, required: true %>
+              </div>
+            </div>
+            <%= f.input :street, label: "住所", as: :fake, required: true %>
+          </div>
+
+          <div class="input--group">
+            <!-- CONTINUE HERE / as: :fake conflicts with any further functionality -->
+            <h3>運送 ＆ 保有車両情報</h3>
+            <!-- Below is dummy, but I don't think the selectable options should be here and should be associated with the model. Shun -->
+            <select class="form-control fake required hidden">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
+            <%= f.input :carrier_areas_covered, label: "運送をしている地域（複数選択できます）", as: :fake, required: true %>
+            <%= f.input :carrier_favourite_products, label: "運送が得意な品目（4種類まで）", as: :fake, required: true %>
+            <%= f.input :carrier_vehicles, label: "保有車両", as: :fake, required: true %>
+          </div>
+
+          <div class="input--group">
+            <h3>連絡先 ＆ ログイン情報</h3>
+            <div class="container-fluid input--container">
+              <div class="row input--row">
+                <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, as: :fake, required: true %>
+                <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, as: :fake, required: true %>
+              </div>
+            </div>
+            <%= f.input :phone, label: "電話番号", as: :fake, required: true %>
+            <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
+            <%# REF ONLY FOR COLLECTION / Delete later 888 / Shun = f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", collection: %w[Mike Nick Jason Tim], required: true %>
+            <%= f.input :password, label: "パスワード（英字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
+            <%#= f.input :password, label: "パスワード", required: true, hint: ("英字で#{@minimum_password_length}文字以上のパスワードを入力してください。" if @minimum_password_length) %>
+            <%= f.input :password_confirmation, label: "パスワード確認", required: true %>
+          </div>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
+          <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
         </div>
       <% end %>
 
-      <%= render "carriers/shared/links" %>
+      <%#= render "carriers/shared/links" %>
     </div>
   </div>
-</div>
+</section>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<%= javascript_include_tag('jquery.jpostal') %>
+<!-- autoKana removed due to lack of support for flick-nyuryoku and yosoku henkan -->
+<%#= javascript_include_tag('jquery.autoKana') %>
+<script>
+  $(function (){
+    $('#post_code').jpostal({
+
+      postcode : [ '#post_code' ],
+      address  : {
+        '#prefecture' : '%3',
+        '#ward'       : '%4',
+        '#street'     : '%5'
+      }
+    });
+  });
+
+  // AutoKana
+  // $(function() {
+  //   $.fn.autoKana('#name_kanji', '#name_furigana', {
+  //       katakana: true  //true：カタカナ、false：ひらがな（デフォルト）
+  //   });
+  // });
+
+  // AutoRubyCopy
+  // Cancelled due to same issue as Autokana, key detection stops upon yosoku henkan.
+  // Considering input flow, most logical is the request name with api.
+  // var autoInputNameRuby = function(inputName, inputNameRuby) {
+  //   var ruby = $(inputName).val();
+  //   if (ruby.match(/^[\u3040-\u309F]+$/) || ruby === '') {
+  //     ruby = ruby.replace(/[ぁ-ん]/g, function(str) {
+  //         return String.fromCharCode(str.charCodeAt(0) + 0x60);
+  //     });
+  //     $(inputNameRuby).val(ruby);
+  //   }
+  // };
+  // $('#name_kanji').on('keyup', function(e){
+  //   autoInputNameRuby(e.target, $('#name_furigana'));
+  // });
+
+</script>

@@ -13,3 +13,12 @@
 .alert-warning {
   background: $red;
 }
+.alert--null {
+  &.alert-danger {
+    background-color: $red;
+    border-radius: 0;
+    border: none;
+    margin: $spacer--sm 0;
+    padding: $spacer--xs;
+  }
+}

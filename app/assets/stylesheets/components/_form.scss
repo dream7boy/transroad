@@ -1,0 +1,45 @@
+#carrier__registration {
+  h2 {
+    margin: 0 0 40px 0;
+  }
+  input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 30px white inset;
+  }
+  .form {
+    &-actions {
+      margin-bottom: 80px;
+    }
+    &-group {
+      margin-bottom: 20px;
+    }
+    &--required {
+      background-color: $color__theme--sub;
+      border-radius: 2px;
+      border: 0 !important;
+      color: $color--white;
+      float: right;
+      font-size: 1.2rem;
+      padding: 4px 5px 3px 5px;
+      text-decoration: none;
+      transform: translateY(-5px);
+    }
+  }
+  .input--container {
+    padding: 0;
+    .input--row {
+      justify-content: left;
+    }
+  }
+  .input--group {
+    margin: 0 0 80px 0;
+    h3 {
+      font-weight: bold;
+      margin: 0 0 12px 0;
+    }
+  }
+  .label--null {
+    color: $color--gray;
+    font-weight: normal;
+    width: 100%;
+  }
+}
