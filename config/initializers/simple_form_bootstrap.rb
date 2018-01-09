@@ -1,6 +1,6 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
-  config.error_notification_class = 'alert alert-danger'
+  config.error_notification_class = 'alert alert-danger alert--null'
   config.button_class = 'btn btn-default'
   config.boolean_label_class = nil
 
@@ -12,7 +12,7 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'control-label'
+    b.use :label, class: 'control-label label--null'
 
     b.use :input, class: 'form-control'
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }

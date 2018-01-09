@@ -3,6 +3,7 @@
   border-radius: 1px;
   border: 0;
   box-shadow: $box-shadow--default;
+  font-family: $font__body;
   font-size: $font__p;
   font-weight: bold;
   padding: 8px 16px;
@@ -71,6 +72,9 @@
     @extend %extBtnTriangle;
     bottom: -30px;
   }
+}
+.btn__width--100 {
+  width: 100%;
 }
 
 /*------------  md >= 992px (.container @ 970px)  ------------*/

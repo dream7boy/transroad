@@ -1,15 +1,24 @@
+%extSectWellXS {
+  padding: $spacer--xs;
+}
 section {
   &.section__ {
     &carrier .row, &shipper .row {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-grow: 1 50%
+      flex-grow: 1 50%;
+      &.input--row {
+        display: block;
+      }
     }
     &carrier {
       border: 10px solid $color__theme--main;
       padding-bottom: $spacer--sm;
       padding-top: $spacer--sm;
+      &.container-fluid.well--xs {
+        @extend %extSectWellXS;
+      }
     }
     &shipper {
       background: repeating-linear-gradient(
@@ -37,6 +46,9 @@ section {
         padding-bottom: calc(#{$spacer--sm} + 10px);
         padding-left: 25px;
         padding-right: 25px;
+        &.well--xs {
+          @extend %extSectWellXS;
+        }
       }
     }
   }
@@ -83,6 +95,9 @@ section {
 
 /* md >= 992px (.container @ 970px) / START */
 @media (min-width: 992px) {
+  %extSectWellXS--desktop {
+    padding: $spacer--md;
+  }
   .fullscreen {
     padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
   }
@@ -98,6 +113,9 @@ section {
           padding-top: $spacer--xl;
           padding-left: $spacer--xl;
           padding-right: $spacer--xl;
+          &.well--xs {
+            @extend %extSectWellXS--desktop;
+          }
         }
       }
       &shipper {
@@ -117,8 +135,12 @@ section {
         &.container-fluid {
           padding-bottom: $spacer--xl;
           padding-top: $spacer--xl;
+          // Different padding from carrier due to striped background.
           padding-left: calc(#{$spacer--xl} + 18px);
           padding-right: calc(#{$spacer--xl} + 18px);
+          &.well--xs {
+            @extend %extSectWellXS--desktop;
+          }
         }
       }
     }

@@ -28,7 +28,7 @@
         <% end %>
 
         <!-- DESKTOP DROPDOWN / Avatar + Account Dropdown Menu -->
-        <!-- Might be best to change from a "click-toggle" to a "hover-toggle" and keep it consistent with the rest of the menu. 999 -->
+        <!-- Might be best to change from a "click-toggle" to a "hover-toggle" and keep it consistent with the rest of the menu. 888 -->
         <div class="dropdown">
           <%#= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <i class="fa fa-user-circle avatar dropdown-toggle" data-toggle="dropdown"></i>
@@ -90,7 +90,7 @@
         <!-- IF user (shipper or carrier) is signed in show the following. -->
         <% if user_signed_in? %>
           <li>
-            <!-- 999 Change to current_user.name once model is updated. -->
+            <!-- 888 Change to current_user.name once model is updated. -->
             <p class="user__name">こんにちは、田中 優さん<span class="user__date"><%= Time.now.strftime("%m/%d (#{%w(日 月 火 水 木 金 土)[Time.now.wday]})") %></span></p>
             <p class="hidden"><%= current_user.email %></p>
           </li>
