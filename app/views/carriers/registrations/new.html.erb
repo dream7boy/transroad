@@ -11,10 +11,10 @@
         <div class="form-inputs">
           <div class="input--group">
             <h3>会社情報</h3>
-            <%= f.input :company_name, label: "会社名", as: :fake, required: true, autofocus: true %>
+            <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
             <div class="container-fluid input--container">
               <div class="row input--row">
-                <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, as: :fake, required: true %>
+                <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
               </div>
             </div>
             <div class="container-fluid input--container">
@@ -45,11 +45,11 @@
             <h3>連絡先 ＆ ログイン情報</h3>
             <div class="container-fluid input--container">
               <div class="row input--row">
-                <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, as: :fake, required: true %>
-                <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, as: :fake, required: true %>
+                <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
+                <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
               </div>
             </div>
-            <%= f.input :phone, label: "電話番号", as: :fake, required: true %>
+            <%= f.input :phone, label: "電話番号", required: true %>
             <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
             <%# REF ONLY FOR COLLECTION / Delete later 888 / Shun = f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", collection: %w[Mike Nick Jason Tim], required: true %>
             <%= f.input :password, label: "パスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
@@ -74,9 +74,9 @@
 <%#= javascript_include_tag('jquery.autoKana') %>
 <script>
   $(function (){
-    $('#post_code').jpostal({
+    $('#carrier_post_code').jpostal({
 
-      postcode : [ '#post_code' ],
+      postcode : [ '#carrier_post_code' ],
       address  : {
         '#prefecture' : '%3',
         '#ward'       : '%4',
