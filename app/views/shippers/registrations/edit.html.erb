@@ -10,8 +10,12 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <p>変更後の暗証番号</p>
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+    <p>変更後の暗証番号（再確認）</p>
     <%= f.input :password_confirmation, required: false %>
+
+    <p>今の暗証番号</p>
     <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
   </div>
 
