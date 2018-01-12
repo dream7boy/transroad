@@ -19,11 +19,11 @@
             </div>
             <div class="container-fluid input--container">
               <div class="row input--row">
-                <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, as: :fake, required: true %>
-                <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, as: :fake, required: true %>
+                <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+                <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
               </div>
             </div>
-            <%= f.input :street, label: "住所", as: :fake, required: true %>
+            <%= f.input :street, label: "住所", required: true %>
           </div>
 
           <div class="input--group">
@@ -78,9 +78,9 @@
 
       postcode : [ '#carrier_post_code' ],
       address  : {
-        '#prefecture' : '%3',
-        '#ward'       : '%4',
-        '#street'     : '%5'
+        '#carrier_prefecture' : '%3',
+        '#carrier_ward'       : '%4',
+        '#carrier_street'     : '%5'
       }
     });
   });

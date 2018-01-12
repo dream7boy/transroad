@@ -47,7 +47,13 @@
 <row name="post_code" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="address" null="1" autoincrement="0">
+<row name="prefecture" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="ward" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="street" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="industry" null="1" autoincrement="0">
@@ -63,7 +69,7 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="fax" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -163,7 +169,13 @@
 <row name="post_code" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="address" null="1" autoincrement="0">
+<row name="prefecture" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="ward" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="street" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="areas_covered" null="1" autoincrement="0">
@@ -182,7 +194,7 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="fax" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
