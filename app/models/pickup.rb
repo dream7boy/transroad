@@ -1,5 +1,5 @@
 class Pickup < ApplicationRecord
-  belongs_to :shipment
+  belongs_to :shipment, optional: true
 
   validates :shipment, presence: true
   validates :prefecture, presence: true

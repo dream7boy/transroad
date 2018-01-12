@@ -1,0 +1,19 @@
+<div class='form-inline'>
+  <div class='input-group date datepicker'>
+    <label>Start Date</label>
+    <%= p.text_field :start_date, class: 'form-control', id: 'datepicker1' %>
+  </div>
+  <div class='input-group date datepicker'>
+    <label>End Date</label>
+    <%= p.text_field :end_date, class: 'form-control', id: 'datepicker2' %>
+  </div>
+</div>
+<%= p.input :facilities_list, as: :fake_select, collection: current_shipper.facilities.order(name: :asc), input_html: { class: 'pickup-facility' }, prompt: "自社のリストより撰べます"  %>
+<%= p.input :company_name %>
+<%= p.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
+<%= p.input :address, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
+<%= p.input :commodity, collection: Shipment::COMMODITIES, prompt: "荷種をお選び下さい", label: "荷物の種類" %>
+<%= p.input :weight, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
+<%= p.input_field :_destroy, as: :hidden %>
+<%= link_to 'Delete', '#', class: 'remove_record' %>
+<%#= link_to_remove_association '集荷先を削除する', p, :pickups, class: 'btn btn-primary btn__null' %>
