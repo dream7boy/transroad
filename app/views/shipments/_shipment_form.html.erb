@@ -14,20 +14,12 @@
         <%= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
         <%= f.input :car_type, collection: Shipment::CAR_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
 
-        <h3>集荷先</h3>
-        <div class="pickup__container ">
-
-          <div class="pickup__form debug">
-            <%= f.simple_fields_for :pickups do |pickup| %>
-              <%= render 'pickup_fields', f: pickup %>
-            <% end %>
-          </div>
-
-          <div class="pickup__btn--add">
-            <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null', data: { association_insertion_node: '.pickup__form', association_insertion_method: :append } %>
-            <%#= link_to_add_association '集荷先を追加する', f, :pickups %>
-          </div>
-
+        <div class="pickup__container debug">
+          <h3>集荷先</h3>
+          <%= f.simple_fields_for :pickups do |pickup| %>
+            <%= render 'pickup_fields', f: pickup %>
+          <% end %>
+          <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '.pickup__form', association_insertion_method: :append } %>
         </div>
 
         <h3>Delivery</h3>
