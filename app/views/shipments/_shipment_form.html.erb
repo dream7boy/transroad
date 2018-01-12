@@ -18,13 +18,14 @@
         <div class="pickup__container ">
 
           <div class="pickup__form debug">
-            <%= f.simple_fields_for :pickups do |p| %>
-              <%= render 'pickup_fields', f: @shipment, p: p %>
+            <%= f.simple_fields_for :pickups do |pickup| %>
+              <%= render 'pickup_fields', f: pickup %>
             <% end %>
           </div>
 
           <div class="pickup__btn--add">
-            <%#= link_to_add_association '集荷先を追加する', f, p, :pickups, class: 'btn btn-primary btn__null', data: { association_insertion_node: '.pickup__form', association_insertion_method: :append } %>
+            <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null', data: { association_insertion_node: '.pickup__form', association_insertion_method: :append } %>
+            <%#= link_to_add_association '集荷先を追加する', f, :pickups %>
           </div>
 
         </div>
