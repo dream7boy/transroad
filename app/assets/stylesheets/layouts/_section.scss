@@ -2,12 +2,22 @@
   padding: $spacer--xs;
 }
 section {
+  // Use this if the section is likely to be less than 100vh.
+  &.one--page {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 44px);
+    .row {
+      width: 100%;
+    }
+  }
   &.section__ {
     &carrier .row, &shipper .row {
+      align-items: center;
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-grow: 1 50%;
+      // flex: 1 50%;
       &.input--row {
         display: block;
       }
