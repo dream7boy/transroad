@@ -19,7 +19,6 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
-gem 'inline_svg' #https://github.com/jamesmartin/inline_svg
 
 group :development, :test do
   gem 'pry-byebug'
@@ -29,3 +28,6 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+gem 'inline_svg' #https://github.com/jamesmartin/inline_svg
+gem 'cocoon'

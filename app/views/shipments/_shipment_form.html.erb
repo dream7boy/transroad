@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
       <% if params[:action] == 'new' %>
-        <h1>New Shipment</h1>
+        <h2>New Shipment</h2>
       <% else %>
-        <h1>Edit Shipment</h1>
+        <h2>Edit Shipment</h2>
       <% end %>
 
       <%= simple_form_for @shipment do |f| %>
@@ -14,25 +14,13 @@
         <%= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
         <%= f.input :car_type, collection: Shipment::CAR_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
 
-        <h3>Pickup</h3>
-        <%= f.simple_fields_for :pickups do |p| %>
-          <div class='form-inline'>
-            <div class='input-group date datepicker'>
-              <label>Start Date</label>
-              <%= p.text_field :start_date, class: 'form-control', id: 'datepicker1' %>
-            </div>
-            <div class='input-group date datepicker'>
-              <label>End Date</label>
-              <%= p.text_field :end_date, class: 'form-control', id: 'datepicker2' %>
-            </div>
-          </div>
-          <%= p.input :facilities_list, as: :fake_select, collection: current_shipper.facilities.order(name: :asc), input_html: { class: 'pickup-facility' }, prompt: "自社のリストより撰べます"  %>
-          <%= p.input :company_name %>
-          <%= p.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
-          <%= p.input :address, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
-          <%= p.input :commodity, collection: Shipment::COMMODITIES, prompt: "荷種をお選び下さい", label: "荷物の種類" %>
-          <%= p.input :weight, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
-        <% end %>
+        <div class="pickup__container debug">
+          <h3>集荷先</h3>
+          <%= f.simple_fields_for :pickups do |pickup| %>
+            <%= render 'pickup_fields', f: pickup %>
+          <% end %>
+          <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '.pickup__form', association_insertion_method: :append } %>
+        </div>
 
         <h3>Delivery</h3>
         <%= f.simple_fields_for :deliveries do |d| %>
