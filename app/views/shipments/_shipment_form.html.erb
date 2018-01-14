@@ -25,7 +25,7 @@
         <h3>Delivery</h3>
         <%= f.simple_fields_for :deliveries do |d| %>
           <div class='form-inline'>
-            <div class='input-group d e datepicker'>
+            <div class='input-group date datepicker'>
               <label>Start Date</label>
               <%= d.text_field :start_date, class: 'form-control', id: 'datepicker3' %>
             </div>
