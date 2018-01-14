@@ -1,3 +1,9 @@
+.checkbox label {
+  font-size: 1.2rem;
+  input {
+    margin: 0 0 0 -20px;
+  }
+}
 #carrier__registration, #sign_in {
   h2 {
     margin: 0 0 40px 0;
@@ -7,7 +13,7 @@
   }
   .form {
     &-actions {
-      margin-bottom: 80px;
+      // margin-bottom: 80px;
     }
     &-group {
       margin-bottom: 20px;
@@ -34,6 +40,9 @@
   }
   .input--group {
     margin: 0 0 80px 0;
+    &:only-child {
+      margin: 0;
+    }
     h3 {
       font-weight: bold;
       margin: 0 0 12px 0;
@@ -44,5 +53,14 @@
     font-weight: normal;
     padding: 0 0 5px 0;
     width: 100%;
+    &.label__append--container {
+      width: unset;
+    }
+  }
+  .label__append--text{
+    float: right;
+    a {
+      font-size: 1.2rem;
+    }
   }
 }
