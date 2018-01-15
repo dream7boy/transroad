@@ -1,47 +1,53 @@
-<div class="container">
+<section id="new__shipment" class="container-fluid section__user well--xs">
   <div class="row">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
       <% if params[:action] == 'new' %>
-        <h2>New Shipment</h2>
+        <h2>運送依頼を作成する</h2>
       <% else %>
-        <h2>Edit Shipment</h2>
+        <h2>運送依頼を変更する</h2>
       <% end %>
 
       <%= simple_form_for @shipment do |f| %>
         <%= f.error_notification %>
+        <div class="form-inputs">
 
-        <%= f.input :distance, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
-        <%= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
-        <%= f.input :car_type, collection: Shipment::VEHICLE_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
-
-        <div class="pickup__container debug">
-          <h3>集荷先</h3>
-          <%= f.simple_fields_for :pickups do |pickup| %>
-            <%= render 'pickup_fields', f: pickup %>
-          <% end %>
-          <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '.pickup__form', association_insertion_method: :append } %>
-        </div>
-
-        <h3>Delivery</h3>
-        <%= f.simple_fields_for :deliveries do |d| %>
-          <div class='form-inline'>
-            <div class='input-group date datepicker'>
-              <label>Start Date</label>
-              <%= d.text_field :start_date, class: 'form-control', id: 'datepicker3' %>
+          <div class="input--group">
+            <%= f.input :distance, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
+            <%= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
+            <%= f.input :car_type, collection: Shipment::VEHICLE_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
+            <div id="shipment__pickup__container" class="pickup__container">
+              <h3>集荷先</h3>
+              <%= f.simple_fields_for :pickups do |pickup| %>
+                <%= render 'pickup_fields', f: pickup %>
+              <% end %>
             </div>
-            <div class='input-group date datepicker'>
-              <label>End Date</label>
-              <%= d.text_field :end_date, class: 'form-control', id: 'datepicker4' %>
-            </div>
+            <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '.pickup__container', association_insertion_method: :append } %>
           </div>
-          <%= d.input :facilities_list, as: :fake_select, collection: current_shipper.facilities.order(name: :asc), input_html: { class: 'delivery-facility' }, prompt: "自社のリストより撰べます"  %>
-          <%= d.input :company_name %>
-          <%= d.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
-          <%= d.input :address, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
-        <% end %>
 
-        <%= f.button :submit %>
+          <div class="input--group">
+            <h3>Delivery</h3>
+            <%= f.simple_fields_for :deliveries do |d| %>
+              <div class='form-inline'>
+                <div class='input-group date datepicker'>
+                  <label>Start Date</label>
+                  <%= d.text_field :start_date, class: 'form-control', id: 'datepicker3' %>
+                </div>
+                <div class='input-group date datepicker'>
+                  <label>End Date</label>
+                  <%= d.text_field :end_date, class: 'form-control', id: 'datepicker4' %>
+                </div>
+              </div>
+              <%= d.input :facilities_list, as: :fake_select, collection: current_shipper.facilities.order(name: :asc), input_html: { class: 'delivery-facility' }, prompt: "自社のリストより撰べます"  %>
+              <%= d.input :company_name %>
+              <%= d.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
+              <%= d.input :address, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
+            <% end %>
+          </div>
+
+          <%= f.button :submit %>
+
+        </div>
       <% end %>
     </div>
   </div>
-</div>
+</section>

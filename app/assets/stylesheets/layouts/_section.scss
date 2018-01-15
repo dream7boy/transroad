@@ -13,8 +13,7 @@ section {
     }
   }
   &.section__ {
-    &carrier .row, &shipper .row {
-      align-items: center;
+    &carrier .row, &shipper .row, &user .row {
       display: flex;
       justify-content: center;
       // flex: 1 50%;
@@ -60,6 +59,10 @@ section {
           @extend %extSectWellXS;
         }
       }
+    }
+    &user {
+      padding-top: $spacer--sm;
+      padding-bottom: $spacer--sm;
     }
   }
   & hr {
