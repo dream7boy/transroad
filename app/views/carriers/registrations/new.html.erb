@@ -37,14 +37,13 @@
               <option value="mercedes">Mercedes</option>
               <option value="audi">Audi</option>
             </select>
-            <%= f.input :carrier_areas_covered, label: "運送をしている地域（複数選択できます）", as: :fake, required: true %>
-            <%= f.input :carrier_favourite_products, label: "運送が得意な品目（4種類まで）", as: :fake, required: true %>
-            <%#= f.input :carrier_vehicles, label: "保有車両", as: :fake, required: true %>
-              <%= f.simple_fields_for :vehicles do |v| %>
-                <%= v.input :size, label: "車両サイズ", collection: Vehicle::SIZES, prompt: "選択してください", required: true %>
-                <%= v.input :vehicle_type, label: "車両形状", collection: Vehicle::VEHICLE_TYPES, prompt: "選択してください", required: true %>
-                <%= v.input :quantity, label: "車両数", required: true %>
-              <% end %>
+            <%= f.input :areas_covered, label: "運送をしている地域（複数選択できます）", collection: %w(東京都 神奈川県 大阪府 北海道), prompt: "選択してください", required: true %>
+            <%= f.input :favorite_products, label: "運送が得意な品目（3種類まで）", collection: Carrier::FAVORITE_PRODUCTS, prompt: "選択してください", required: true %>
+            <%= f.simple_fields_for :vehicles do |v| %>
+              <%= v.input :size, label: "車両サイズ", collection: Vehicle::SIZES, prompt: "選択してください", required: true %>
+              <%= v.input :vehicle_type, label: "車両形状", collection: Vehicle::VEHICLE_TYPES, prompt: "選択してください", required: true %>
+              <%= v.input :quantity, label: "車両数", required: true %>
+            <% end %>
           </div>
 
           <div class="input--group">
