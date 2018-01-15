@@ -1,19 +1,32 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-      <h2>Shipper Sign up</h2>
+      <h2>新規登録 or 荷主企業新規登録 or 荷主企業登録</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-          <%= f.input :password_confirmation, required: true %>
+          <h3>会社情報</h3>
+          <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
+          <%= f.input :industry, label: "業種", collection: Shipper::INDUSTRIES, prompt: "選択してください", required: true %>
+          <%= f.input :post_code, label: "郵便番号", required: true %>
+          <%= f.input :prefecture, label: "都道府県", required: true %>
+          <%= f.input :ward, label: "市区町村", required: true %>
+          <%= f.input :street, label: "住所", required: true %>
+
+          <h3>連絡先 ＆ ログイン情報</h3>
+          <%= f.input :name_kanji, label: "お名前", required: true %>
+          <%= f.input :name_furigana, label: "お名前（フリガナ）", required: true %>
+          <%= f.input :phone, label: "電話番号", required: true %>
+          <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
+          <%= f.input :password, label: "パスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
+          <%#= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password_confirmation, label: "パスワード確認", required: true %>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
+          <%= f.button :submit, "無料で登録する" %>
         </div>
       <% end %>
 
