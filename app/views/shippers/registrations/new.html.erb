@@ -9,31 +9,31 @@
         <div class="form-inputs">
           <div class="input--group">
             <h3>会社情報</h3>
-            <%= f.input :company_name, label: "会社名", as: :fake, required: true, autofocus: true %>
-            <%= f.input :email, label: "業種", collection: %w[業種1 業種2 業種3 業種3 業種4 業種5], required: true %>
+            <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
+            <%= f.input :industry, label: "業種", collection: Shipper::INDUSTRIES, prompt: "選択してください", required: true %>
             <div class="container-fluid input--container">
               <div class="row input--row">
-                <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, as: :fake, required: true %>
+                <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
               </div>
             </div>
             <div class="container-fluid input--container">
               <div class="row input--row">
-                <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, as: :fake, required: true %>
-                <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, as: :fake, required: true %>
+                <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+                <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
               </div>
             </div>
-            <%= f.input :street, label: "住所", as: :fake, required: true %>
+            <%= f.input :street, label: "住所", required: true %>
           </div>
 
           <div class="input--group">
             <h3>連絡先 ＆ ログイン情報</h3>
             <div class="container-fluid input--container">
               <div class="row input--row">
-                <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, as: :fake, required: true %>
-                <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, as: :fake, required: true %>
+                <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
+                <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
               </div>
             </div>
-            <%= f.input :phone, label: "電話番号", as: :fake, required: true %>
+            <%= f.input :phone, label: "電話番号", required: true %>
             <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
             <%= f.input :password, label: "パスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
             <%= f.input :password_confirmation, label: "パスワード確認", required: true %>

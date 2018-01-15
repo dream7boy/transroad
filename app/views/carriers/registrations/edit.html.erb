@@ -4,14 +4,33 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
+    <%= f.input :post_code, label: "郵便番号", required: true %>
+    <%= f.input :prefecture, label: "都道府県", required: true %>
+    <%= f.input :ward, label: "市区町村", required: true %>
+    <%= f.input :street, label: "住所", required: true %>
+
+    <%= f.simple_fields_for :vehicles do |v| %>
+      <%= v.input :size, label: "車両サイズ", collection: Vehicle::SIZES, prompt: "大きさをお選び下さい", required: true %>
+      <%= v.input :vehicle_type, label: "車両形状", collection: Vehicle::VEHICLE_TYPES, prompt: "形状をお選び下さい", required: true %>
+      <%= v.input :quantity, label: "車両数", required: true %>
+    <% end %>
+
+    <%= f.input :name_kanji, label: "お名前", required: true %>
+    <%= f.input :name_furigana, label: "お名前（フリガナ）", required: true %>
+    <%= f.input :phone, label: "電話番号", required: true %>
+    <%= f.input :email, label: "メールアドレス", required: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <p>変更後の暗証番号</p>
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+    <p>変更後の暗証番号（再確認）</p>
     <%= f.input :password_confirmation, required: false %>
+
+    <p>今の暗証番号</p>
     <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
   </div>
 
@@ -24,4 +43,4 @@
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "My Shipment", carrier_shipments_path %>
+<%= link_to "Go Back to My Shipment", carrier_shipments_path %>

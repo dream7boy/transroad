@@ -50,6 +50,7 @@ GEM
       momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (9.1.0)
+    cocoon (1.2.11)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
@@ -196,6 +197,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass
   bootstrap3-datetimepicker-rails (~> 4.17.47)
+  cocoon
   devise
   figaro
   font-awesome-sass

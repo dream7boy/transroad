@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205094054) do
+ActiveRecord::Schema.define(version: 20180115072816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20171205094054) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company_name"
+    t.string "post_code"
+    t.string "prefecture"
+    t.string "name_kanji"
+    t.string "name_furigana"
+    t.string "phone"
+    t.string "ward"
+    t.string "street"
     t.index ["email"], name: "index_carriers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_carriers_on_reset_password_token", unique: true
   end
@@ -106,8 +114,27 @@ ActiveRecord::Schema.define(version: 20171205094054) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company_name"
+    t.string "post_code"
+    t.string "prefecture"
+    t.string "ward"
+    t.string "street"
+    t.string "industry"
+    t.string "name_kanji"
+    t.string "name_furigana"
+    t.string "phone"
     t.index ["email"], name: "index_shippers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_shippers_on_reset_password_token", unique: true
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "size"
+    t.string "vehicle_type"
+    t.integer "quantity"
+    t.bigint "carrier_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carrier_id"], name: "index_vehicles_on_carrier_id"
   end
 
   add_foreign_key "deals", "carriers"
@@ -116,4 +143,5 @@ ActiveRecord::Schema.define(version: 20171205094054) do
   add_foreign_key "facilities", "shippers"
   add_foreign_key "pickups", "shipments"
   add_foreign_key "shipments", "shippers"
+  add_foreign_key "vehicles", "carriers"
 end
