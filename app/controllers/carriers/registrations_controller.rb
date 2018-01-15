@@ -10,6 +10,11 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def new
+    @carrier = Carrier.new
+    @carrier.vehicles.build
+  end
+
   # POST /resource
   # def create
   #   super
