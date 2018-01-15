@@ -2,12 +2,22 @@
   padding: $spacer--xs;
 }
 section {
+  // Use this if the section is likely to be less than 100vh.
+  &.one--page {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 44px);
+    .row {
+      width: 100%;
+    }
+  }
   &.section__ {
     &carrier .row, &shipper .row {
+      align-items: center;
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-grow: 1 50%;
+      // flex: 1 50%;
       &.input--row {
         display: block;
       }
@@ -95,9 +105,6 @@ section {
 
 /* md >= 992px (.container @ 970px) / START */
 @media (min-width: 992px) {
-  %extSectWellXS--desktop {
-    padding: $spacer--md;
-  }
   .fullscreen {
     padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
   }
@@ -114,7 +121,7 @@ section {
           padding-left: $spacer--xl;
           padding-right: $spacer--xl;
           &.well--xs {
-            @extend %extSectWellXS--desktop;
+            padding: $spacer--md;
           }
         }
       }
@@ -139,7 +146,10 @@ section {
           padding-left: calc(#{$spacer--xl} + 18px);
           padding-right: calc(#{$spacer--xl} + 18px);
           &.well--xs {
-            @extend %extSectWellXS--desktop;
+            padding-top: calc(#{$spacer--md} + 18px);
+            padding-bottom: calc(#{$spacer--md} + 18px);
+            padding-left: calc(#{$spacer--md} + 18px);
+            padding-right: calc(#{$spacer--md} + 18px);
           }
         }
       }

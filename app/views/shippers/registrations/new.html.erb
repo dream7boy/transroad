@@ -1,36 +1,64 @@
-<div class="container">
+<section id="shipper__registration" class="container-fluid section__shipper well--xs">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-      <h2>新規登録 or 荷主企業新規登録 or 荷主企業登録</h2>
+    <!-- BS offset is not included since "section.section__shipper > div.row" has flex center assigned. / Shun-->
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+      <h2>新規登録</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
-
         <div class="form-inputs">
-          <h3>会社情報</h3>
-          <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
-          <%= f.input :industry, label: "業種", collection: Shipper::INDUSTRIES, prompt: "選択してください", required: true %>
-          <%= f.input :post_code, label: "郵便番号", required: true %>
-          <%= f.input :prefecture, label: "都道府県", required: true %>
-          <%= f.input :ward, label: "市区町村", required: true %>
-          <%= f.input :street, label: "住所", required: true %>
+          <div class="input--group">
+            <h3>会社情報</h3>
+            <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
+            <%= f.input :industry, label: "業種", collection: Shipper::INDUSTRIES, prompt: "選択してください", required: true %>
+            <div class="container-fluid input--container">
+              <div class="row input--row">
+                <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+              </div>
+            </div>
+            <div class="container-fluid input--container">
+              <div class="row input--row">
+                <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+                <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
+              </div>
+            </div>
+            <%= f.input :street, label: "住所", required: true %>
+          </div>
 
-          <h3>連絡先 ＆ ログイン情報</h3>
-          <%= f.input :name_kanji, label: "お名前", required: true %>
-          <%= f.input :name_furigana, label: "お名前（フリガナ）", required: true %>
-          <%= f.input :phone, label: "電話番号", required: true %>
-          <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
-          <%= f.input :password, label: "パスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
-          <%#= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-          <%= f.input :password_confirmation, label: "パスワード確認", required: true %>
+          <div class="input--group">
+            <h3>連絡先 ＆ ログイン情報</h3>
+            <div class="container-fluid input--container">
+              <div class="row input--row">
+                <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
+                <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
+              </div>
+            </div>
+            <%= f.input :phone, label: "電話番号", required: true %>
+            <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
+            <%= f.input :password, label: "パスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
+            <%= f.input :password_confirmation, label: "パスワード確認", required: true %>
+          </div>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "無料で登録する" %>
+          <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
         </div>
       <% end %>
-
-      <%= render "shippers/shared/links" %>
     </div>
   </div>
-</div>
+</section>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<%= javascript_include_tag('jquery.jpostal') %>
+<script>
+  $(function (){
+    $('#post_code').jpostal({
+      postcode : [ '#post_code' ],
+      address  : {
+        '#prefecture' : '%3',
+        '#ward'       : '%4',
+        '#street'     : '%5'
+      }
+    });
+  });
+</script>
