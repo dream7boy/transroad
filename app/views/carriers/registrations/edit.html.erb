@@ -10,6 +10,8 @@
     <%= f.input :ward, label: "市区町村", required: true %>
     <%= f.input :street, label: "住所", required: true %>
 
+    <%= f.input :areas_covered, label: "運送をしている地域（複数選択できます）", collection: %w(東京都 神奈川県 大阪府 北海道), prompt: "選択してください", required: true %>
+    <%= f.input :favorite_products, label: "運送が得意な品目（3種類まで）", collection: Carrier::FAVORITE_PRODUCTS, prompt: "選択してください", required: true %>
     <%= f.simple_fields_for :vehicles do |v| %>
       <%= v.input :size, label: "車両サイズ", collection: Vehicle::SIZES, prompt: "大きさをお選び下さい", required: true %>
       <%= v.input :vehicle_type, label: "車両形状", collection: Vehicle::VEHICLE_TYPES, prompt: "形状をお選び下さい", required: true %>
