@@ -5,4 +5,7 @@ class Carrier < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :deals, dependent: :destroy
+  has_many :vehicles, dependent: :destroy
+
+  accepts_nested_attributes_for :vehicles, allow_destroy: true
 end

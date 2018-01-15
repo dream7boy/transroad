@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112124739) do
+ActiveRecord::Schema.define(version: 20180115003450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,10 +118,21 @@ ActiveRecord::Schema.define(version: 20180112124739) do
     t.index ["reset_password_token"], name: "index_shippers_on_reset_password_token", unique: true
   end
 
+  create_table "vehicles", force: :cascade do |t|
+    t.string "size"
+    t.string "vehicle_type"
+    t.integer "quantity"
+    t.bigint "carrier_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carrier_id"], name: "index_vehicles_on_carrier_id"
+  end
+
   add_foreign_key "deals", "carriers"
   add_foreign_key "deals", "shipments"
   add_foreign_key "deliveries", "shipments"
   add_foreign_key "facilities", "shippers"
   add_foreign_key "pickups", "shipments"
   add_foreign_key "shipments", "shippers"
+  add_foreign_key "vehicles", "carriers"
 end
