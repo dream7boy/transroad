@@ -1,15 +1,20 @@
-<h2>Forgot your password?</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+<section id="forgot_password" class="container-fluid section__shipper one--page well--xs">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6">
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="form-inputs">
+          <div class="input--group">
+            <h3>パスワードを再発行します</h3>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :email, label: 'アカウント登録に使用したメールアドレス', required: false, autofocus: true %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, "パスワードを再発行する", class:"btn-primary btn__null btn__width--100" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "shippers/shared/links" %>
+</section>

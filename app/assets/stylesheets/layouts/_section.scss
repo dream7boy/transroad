@@ -105,9 +105,6 @@ section {
 
 /* md >= 992px (.container @ 970px) / START */
 @media (min-width: 992px) {
-  %extSectWellXS--desktop {
-    padding: $spacer--md;
-  }
   .fullscreen {
     padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
   }
@@ -124,7 +121,7 @@ section {
           padding-left: $spacer--xl;
           padding-right: $spacer--xl;
           &.well--xs {
-            @extend %extSectWellXS--desktop;
+            padding: $spacer--md;
           }
         }
       }
@@ -149,7 +146,10 @@ section {
           padding-left: calc(#{$spacer--xl} + 18px);
           padding-right: calc(#{$spacer--xl} + 18px);
           &.well--xs {
-            @extend %extSectWellXS--desktop;
+            padding-top: calc(#{$spacer--md} + 18px);
+            padding-bottom: calc(#{$spacer--md} + 18px);
+            padding-left: calc(#{$spacer--md} + 18px);
+            padding-right: calc(#{$spacer--md} + 18px);
           }
         }
       }

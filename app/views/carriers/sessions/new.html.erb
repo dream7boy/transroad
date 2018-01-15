@@ -7,7 +7,7 @@
             <h3>運送アカウントにログインする</h3>
             <%= f.input :email, label: 'メールアドレス', required: false, autofocus: true %>
             <%= f.input :password, label: 'パスワード', label_html: { class: 'label__append--container' } do %>
-              <span class="label__append--text"><%= render "carriers/shared/forgotpw"%></span>
+              <span class="label__append--text"><%= render "shared/user_forgotpw"%></span>
               <%= f.input :password, label: false, hint: false, wrapper: false, error: false %>
             <% end %>
             <%= f.input :remember_me, label: 'ログインしたままにする', as: :boolean if devise_mapping.rememberable? %>
