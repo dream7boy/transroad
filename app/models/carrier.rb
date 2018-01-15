@@ -8,4 +8,6 @@ class Carrier < ApplicationRecord
   has_many :vehicles, dependent: :destroy
 
   accepts_nested_attributes_for :vehicles, allow_destroy: true
+
+  FAVORITE_PRODUCTS = %w(精密機器 建築資材 印刷物 家具 楽器 衣料品 農産物 食料品)
 end
