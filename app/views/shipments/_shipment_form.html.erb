@@ -12,7 +12,7 @@
 
         <%= f.input :distance, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
         <%= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
-        <%= f.input :car_type, collection: Shipment::CAR_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
+        <%= f.input :car_type, collection: Shipment::VEHICLE_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
 
         <div class="pickup__container debug">
           <h3>集荷先</h3>
