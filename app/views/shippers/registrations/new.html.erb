@@ -2,7 +2,7 @@
   <div class="row">
     <!-- BS offset is not included since "section.section__shipper > div.row" has flex center assigned. / Shun-->
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-      <h2>新規登録</h2>
+      <h2>荷主アカウント登録</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
@@ -52,12 +52,12 @@
 <%= javascript_include_tag('jquery.jpostal') %>
 <script>
   $(function (){
-    $('#post_code').jpostal({
-      postcode : [ '#post_code' ],
+    $('#shipper_post_code').jpostal({
+      postcode : [ '#shipper_post_code' ],
       address  : {
-        '#prefecture' : '%3',
-        '#ward'       : '%4',
-        '#street'     : '%5'
+        '#shipper_prefecture' : '%3',
+        '#shipper_ward'       : '%4',
+        '#shipper_street'     : '%5'
       }
     });
   });
