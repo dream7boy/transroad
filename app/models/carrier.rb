@@ -9,5 +9,5 @@ class Carrier < ApplicationRecord
 
   accepts_nested_attributes_for :vehicles, allow_destroy: true
 
-  FAVORITE_PRODUCTS = %w(精密機器 建築資材 印刷物 家具 楽器 衣料品 農産物 食料品)
+  FAVORITE_PRODUCTS = %w(精密機器 重量物 展示会用品 建築資材 印刷物 家具 楽器 衣料品 農産物 食料品)
 end
