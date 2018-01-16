@@ -165,10 +165,12 @@
         if (this.$el.prop('disabled')) {
             this.$choice.addClass('disabled');
         }
+        // START / ORIGINAL
         // this.$parent.css('width',
         //     this.options.width ||
         //     this.$el.css('width') ||
         //     this.$el.outerWidth() + 20);
+        // START / END
 
         this.selectAllName = 'data-name="selectAll' + name + '"';
         this.selectGroupName = 'data-name="selectGroup' + name + '"';
@@ -475,18 +477,46 @@
         update: function (isInit) {
             var selects = this.options.displayValues ? this.getSelects() : this.getSelects('text'),
                 $span = this.$choice.find('>span'),
+                // START / ADJUST  [SEARCH TAG 999]
+                selectedPrefectures = this.getSelects().length - 1,
+                // console.log(sl);
+                // console.log(selectedPrefectures);
+                // console.log(this.$selectItems.length);
+                // console.log(this);
+                // console.log(Boolean(this.options.allSelected));
+                // console.log(this.$disableItems.length);
+                // console.log(this.$selectItems.length + this.$disableItems.length);
+                // console.log(this.getSelects().length - 1);
+                // END / ADJUST  [SEARCH TAG 999]
                 sl = selects.length;
+
+
 
             if (sl === 0) {
                 $span.addClass('placeholder').html(this.options.placeholder);
-            } else if (this.options.allSelected && sl === this.$selectItems.length + this.$disableItems.length) {
+
+            // START / ADJUST  [SEARCH TAG 999]
+            } else if (this.options.allSelected && selectedPrefectures === (this.$selectItems.length - 1) + this.$disableItems.length) {
+            // END / ADJUST  [SEARCH TAG 999]
+
+            // START / ORIGINAL
+            // } else if (this.options.allSelected && sl === this.$selectItems.length + this.$disableItems.length) {
+            // END / ORIGINAL
+
                 $span.removeClass('placeholder').html(this.options.allSelected);
             } else if (this.options.ellipsis && sl > this.options.minimumCountSelected) {
                 $span.removeClass('placeholder').text(selects.slice(0, this.options.minimumCountSelected)
                     .join(this.options.delimiter) + '...');
             } else if (this.options.countSelected && sl > this.options.minimumCountSelected) {
                 $span.removeClass('placeholder').html(this.options.countSelected
-                    .replace('#', selects.length)
+
+                    // START / ADJUST  [SEARCH TAG 999]
+                    .replace('#', selectedPrefectures)
+                    // END / ADJUST  [SEARCH TAG 999]
+
+                    // START / ORIGINAL
+                    // .replace('#', selects.length)
+                    // END / ORIGINAL
                     .replace('%', this.$selectItems.length + this.$disableItems.length));
             } else {
                 $span.removeClass('placeholder').text(selects.join(this.options.delimiter));
@@ -557,17 +587,37 @@
                         return;
                     }
 
-                    html.push('[');
-                    html.push(text);
-                    if ($children.length > $selected.length) {
+                    // START / ADJUSTED VERSION [SEARCH TAG 999]
+                    if ($children.length >= $selected.length) {
+                      // IF TRUE, show the group name not the individual childrens as a list.
+                      if ($selected.length === $children.length) {
+                        html.push(text);
+                      }
+                      // IF TRUE, show the individual childrens as a list.
+                      if ($children.length > $selected.length) {
                         var list = [];
                         $selected.each(function () {
-                            list.push($(this).parent().text());
-                        });
-                        html.push(': ' + list.join(', '));
+                          list.push($(this).parent().text());
+                        })
+                        html.push(list.join(', '));
+                      }
+                      texts.push(html.join(''));
                     }
-                    html.push(']');
-                    texts.push(html.join(''));
+                    // END / ADJUSTED VERSION [SEARCH TAG 999]
+
+                    // START / ORIGINAL
+                    // html.push('[');
+                    // html.push(text);
+                    // if ($children.length > $selected.length) {
+                    //     var list = [];
+                    //     $selected.each(function () {
+                    //         list.push($(this).parent().text());
+                    //     });
+                    //     html.push(': ' + list.join(', '));
+                    // }
+                    // html.push(']');
+                    // texts.push(html.join(''));
+                    // END / ORIGINAL
                 });
             }
             return type === 'text' ? texts : values;
