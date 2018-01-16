@@ -486,7 +486,7 @@
                 $span.addClass('placeholder').html(this.options.placeholder);
 
             // START / ADJUST  [SEARCH TAG 999]
-            } else if (this.options.allSelected && selectedPrefectures === (this.$selectItems.length - 1) + this.$disableItems.length) {
+            } else if (this.options.allSelected && selectedPrefectures === this.$selectItems.length + this.$disableItems.length) {
             // END / ADJUST  [SEARCH TAG 999]
 
             // START / ORIGINAL
@@ -531,24 +531,25 @@
                 this.$el.trigger('change');
             }
 
-            // VALUES WERE NO LONGER BEING PASSED, THE FOLLOWING FUNCTION WAS MADE TO SOLVE THAT.
+            // VALUES WERE NO LONGER BEING PASSED, THE FOLLOWING FUNCTION WAS MADE TO SOLVE THAT. [READ UPDATE]
+            // [UPDATE] This was unnecessary but I'm keeping here just incase we need to get back to it. / DELETE LATER 888
             // START / ADJUSTED VERSION [SEARCH TAG 999]
-            if(selectedPrefectures > 0) {
-              var selectedPrefecturesArray = [];
-              var valueForSimpleForm = $('#carrier_areas_covered')[0].value;
-              // var valueForSimpleForm = element.value;
-              for (var i = 0; i < selectedPrefectures; i++) {
-                selectedPrefecturesArray.push($('li.multiple.selected input')[i].value);
-                valueForSimpleForm = selectedPrefecturesArray.join(', ');
-                console.log('--------------------');
-                console.log('selectedPrefecturesArray is');
-                console.log(selectedPrefecturesArray);
-                console.log('--------------------');
-                console.log('valueForSimpleForm is');
-                console.log(valueForSimpleForm);
-                console.log('--------------------');
-              }
-            }
+            // console.log(selectedPrefectures);
+            // if(selectedPrefectures > 0) {
+            //   var selectedPrefecturesArray = [];
+            //   var valueForSimpleForm = $('#carrier_areas_covered')[0].value;
+            //   for (var i = 0; i <= selectedPrefectures - 1; i++) {
+            //     selectedPrefecturesArray.push($('li.multiple.selected input')[i].value);
+            //     valueForSimpleForm = selectedPrefecturesArray.join(', ');
+            //     console.log('--------------------');
+            //     console.log('selectedPrefecturesArray is');
+            //     console.log(selectedPrefecturesArray);
+            //     console.log('--------------------');
+            //     console.log('valueForSimpleForm is');
+            //     console.log(valueForSimpleForm);
+            //     console.log('--------------------');
+            //   }
+            // }
             // END / ADJUSTED VERSION [SEARCH TAG 999]
 
         },
