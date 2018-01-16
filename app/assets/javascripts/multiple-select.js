@@ -478,19 +478,9 @@
             var selects = this.options.displayValues ? this.getSelects() : this.getSelects('text'),
                 $span = this.$choice.find('>span'),
                 // START / ADJUST  [SEARCH TAG 999]
-                selectedPrefectures = this.getSelects().length - 1,
-                // console.log(sl);
-                // console.log(selectedPrefectures);
-                // console.log(this.$selectItems.length);
-                // console.log(this);
-                // console.log(Boolean(this.options.allSelected));
-                // console.log(this.$disableItems.length);
-                // console.log(this.$selectItems.length + this.$disableItems.length);
-                // console.log(this.getSelects().length - 1);
+                selectedPrefectures = this.getSelects().length,
                 // END / ADJUST  [SEARCH TAG 999]
                 sl = selects.length;
-
-
 
             if (sl === 0) {
                 $span.addClass('placeholder').html(this.options.placeholder);
@@ -517,6 +507,7 @@
                     // START / ORIGINAL
                     // .replace('#', selects.length)
                     // END / ORIGINAL
+
                     .replace('%', this.$selectItems.length + this.$disableItems.length));
             } else {
                 $span.removeClass('placeholder').text(selects.join(this.options.delimiter));
@@ -539,6 +530,27 @@
             if (!isInit) {
                 this.$el.trigger('change');
             }
+
+            // VALUES WERE NO LONGER BEING PASSED, THE FOLLOWING FUNCTION WAS MADE TO SOLVE THAT.
+            // START / ADJUSTED VERSION [SEARCH TAG 999]
+            if(selectedPrefectures > 0) {
+              var selectedPrefecturesArray = [];
+              var valueForSimpleForm = $('#carrier_areas_covered')[0].value;
+              // var valueForSimpleForm = element.value;
+              for (var i = 0; i < selectedPrefectures; i++) {
+                selectedPrefecturesArray.push($('li.multiple.selected input')[i].value);
+                valueForSimpleForm = selectedPrefecturesArray.join(', ');
+                console.log('--------------------');
+                console.log('selectedPrefecturesArray is');
+                console.log(selectedPrefecturesArray);
+                console.log('--------------------');
+                console.log('valueForSimpleForm is');
+                console.log(valueForSimpleForm);
+                console.log('--------------------');
+              }
+            }
+            // END / ADJUSTED VERSION [SEARCH TAG 999]
+
         },
 
         updateSelectAll: function (isInit) {
@@ -618,6 +630,7 @@
                     // html.push(']');
                     // texts.push(html.join(''));
                     // END / ORIGINAL
+
                 });
             }
             return type === 'text' ? texts : values;
