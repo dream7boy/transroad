@@ -75,6 +75,9 @@
         line-height: 1;
         min-height: unset;
         padding: 0;
+        &.disabled {
+          color: $color--gray-light;
+        }
       }
     }
   }
