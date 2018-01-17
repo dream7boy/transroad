@@ -21,7 +21,7 @@
                 <%= render 'pickup_fields', f: pickup %>
               <% end %>
             </div>
-            <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '.pickup__container', association_insertion_method: :append } %>
+            <%= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '#shipment__pickup__container', association_insertion_method: :append } %>
           </div>
 
           <div class="input--group">
