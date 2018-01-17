@@ -12,7 +12,7 @@ body {
   top: 0;
   transition: all 0.3s ease;
   width: 100%;
-  z-index: 10;
+  z-index: 1000;
   #mobile--dropdown.navbar--item, #desktop--dropdown.navbar--item {
     cursor: pointer;
     padding: 11px 11px 0 0;
