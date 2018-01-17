@@ -20,8 +20,8 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  def create
-    super
+  # def create
+    # super
 
     # if resource.save
     #   # redirect_to shipper_shipment_path(@shipment)
@@ -29,7 +29,7 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
     # else
     #   render :new
     # end
-  end
+  # end
 
 
   # GET /resource/edit

@@ -19,6 +19,6 @@ class Shipment < ApplicationRecord
   validates :deliveries, presence: true
   # validates :commodity, inclusion: { in: COMMODITIES }
   # validates :car_type, inclusion: { in: VEHICLE_TYPES }
-  accepts_nested_attributes_for :pickups, allow_destroy: true, reject_if: :all_blank
-  accepts_nested_attributes_for :deliveries, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :pickups, allow_destroy: true
+  accepts_nested_attributes_for :deliveries, allow_destroy: true
 end
