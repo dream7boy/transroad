@@ -20,6 +20,18 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def create
+    super
+
+    # if resource.save
+    #   # redirect_to shipper_shipment_path(@shipment)
+    #   # flash[:notice] = "Welcome! You have signed up successfully."
+    # else
+    #   render :new
+    # end
+  end
+
+
   # GET /resource/edit
   # def edit
   #   super
