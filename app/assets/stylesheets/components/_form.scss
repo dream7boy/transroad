@@ -58,9 +58,39 @@
     }
   }
 }
-.checkbox label {
-  font-size: 1.2rem;
-  input {
-    margin: 0 0 0 -20px;
+#carrier_favorite_products--container {
+  div.checkbox--container {
+    height: unset;
+    margin: 0;
+    padding: 7px 12px 8px 12px;
+    span.checkbox {
+      display: inline-block;
+      margin: 0 0 0 15px;
+      padding: 4px 0 0 0;
+      width: 110px;
+      input {
+        margin: 0 0 0 -15px;
+      }
+      label {
+        line-height: 1;
+        min-height: unset;
+        padding: 0;
+      }
+    }
   }
+  label.control-label {
+    display: block;
+  }
+}
+#sign_in {
+  .checkbox label {
+    font-size: 1.2rem;
+    input {
+      margin: 0 0 0 -20px;
+    }
+  }
+}
+.form-control {
+  // color: $color--black;
+  color: $color--gray-dark;
 }
