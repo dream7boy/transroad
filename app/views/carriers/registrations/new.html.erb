@@ -8,7 +8,7 @@
       <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
-          <div class="input--group hidden">
+          <div class="input--group">
             <h3>会社情報</h3>
             <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
             <div class="container-fluid input--container">
