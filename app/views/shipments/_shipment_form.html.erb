@@ -13,19 +13,6 @@
 
           <div class="input--group">
             <h3>荷物情報</h3>
-            <% if false %>
-              <%= f.input :category, label: "荷物の種類", collection: Shipment::COMMODITIES, required: true, prompt: "選択してください", include_hidden: false  %>
-              <div class="container-fluid input--container">
-                <div class="row input--row">
-                  <%= f.input :size_height, label: "縦幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
-                  <%= f.input :size_width, label: "横幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
-                  <%= f.input :size_depth, label: "奥行 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
-                </div>
-              </div>
-              <%= f.input :weight, label: "重量 (単体, kg)", required: true %>
-              <%= f.input :quantity, label: "個数 (1回の運送につき、発送する予定の数)", required: true %>
-              <%= f.input :temperature, label: "温度管理", collection: ['常温','保冷','冷蔵','冷凍','分からない'], required: true, selected: [1] %>
-            <% end %>
             <div class="container-fluid input--container">
               <div class="row input--row">
                 <%= f.input :duration_start, label: "案件の開始予定日", required: true, wrapper_html: { class: "col-xs-6" } %>
@@ -49,84 +36,90 @@
 
           <div class="input--group">
             <h3>荷物の集荷先</h3>
-            <div class="container-fluid input--container">
-              <div class="row input--row">
-                <%= f.input :shipment_pickup_post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true, as: :fake %>
+            <%= f.simple_fields_for :pickups do |p| %>
+              <div class="container-fluid input--container">
+                <div class="row input--row">
+                  <%= p.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+                </div>
               </div>
-            </div>
-            <div class="container-fluid input--container">
-              <div class="row input--row">
-                <%= f.input :shipment_pickup_prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true, as: :fake %>
-                <%= f.input :shipment_pickup_ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true, as: :fake %>
+              <div class="container-fluid input--container">
+                <div class="row input--row">
+                  <%= p.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+                  <%= p.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
+                </div>
               </div>
-            </div>
-            <%= f.input :shipment_pickup_street, label: "住所", required: true, as: :fake %>
-            <%= f.input :shipment_pickup_time, label: "集荷希望時間", collection: ['平日の午前','平日の午後','月曜日の午後','月曜日の早朝','その他'], required: true, as: :fake_select %>
-            <%= f.input :category, label: "荷物の種類", collection: Shipment::COMMODITIES, required: true, prompt: "選択してください", include_hidden: false  %>
-            <div class="container-fluid input--container">
-              <div class="row input--row">
-                <%= f.input :size_height, label: "縦幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
-                <%= f.input :size_width, label: "横幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
-                <%= f.input :size_depth, label: "奥行 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
+              <%= p.input :street, label: "住所", required: true %>
+              <%= p.input :time, label: "集荷希望時間", collection: ['平日の午前','平日の午後','月曜日の午後','月曜日の早朝','その他'], prompt: "選択してください", required: true %>
+              <%= p.input :category, label: "荷物の種類", collection: Shipment::COMMODITIES, required: true, prompt: "選択してください", include_hidden: false  %>
+              <div class="container-fluid input--container">
+                <div class="row input--row">
+                  <%= p.input :size_height, label: "縦幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
+                  <%= p.input :size_width, label: "横幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
+                  <%= p.input :size_depth, label: "奥行 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
+                </div>
               </div>
-            </div>
-            <%= f.input :weight, label: "重量 (単体, kg)", required: true %>
-            <%= f.input :quantity, label: "個数 (1回の運送につき、発送する予定の数)", required: true %>
-            <%= f.input :temperature, label: "温度管理", collection: ['常温','保冷','冷蔵','冷凍','分からない'], required: true, selected: [1] %>
-            <%= f.input :additional_info, label: "備考欄 (記入例：フォークリフト必要)", required: false %>
+              <%= p.input :weight, label: "重量 (単体, kg)", required: true %>
+              <%= p.input :quantity, label: "個数 (1回の運送につき、発送する予定の数)", required: true %>
+              <%= p.input :temperature, label: "温度管理", collection: ['常温','保冷','冷蔵','冷凍','分からない'], prompt: "選択してください", required: true %>
+              <%= p.input :additional_info, label: "備考欄 (記入例：フォークリフト必要)", required: false %>
+            <% end %>
           </div>
 
           <div class="input--group">
             <h3>荷物の配達先</h3>
-            <div class="container-fluid input--container">
-              <div class="row input--row">
-                <%= f.input :shipment_delivery_post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true, as: :fake %>
+            <%= f.simple_fields_for :deliveries do |d| %>
+              <div class="container-fluid input--container">
+                <div class="row input--row">
+                  <%= d.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+                </div>
               </div>
-            </div>
-            <div class="container-fluid input--container">
-              <div class="row input--row">
-                <%= f.input :shipment_delivery_prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true, as: :fake %>
-                <%= f.input :shipment_delivery_ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true, as: :fake %>
+              <div class="container-fluid input--container">
+                <div class="row input--row">
+                  <%= d.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+                  <%= d.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
+                </div>
               </div>
-            </div>
-            <%= f.input :shipment_delivery_street, label: "住所", required: true, as: :fake %>
-            <%= f.input :shipment_delivery_time, label: "配達希望時間", collection: ['平日の午前','平日の午後','月曜日の午後','月曜日の早朝','その他'], required: true, as: :fake_select %>
+              <%= d.input :street, label: "住所", required: true %>
+              <%= d.input :time, label: "配達希望時間", collection: ['平日の午前','平日の午後','月曜日の午後','月曜日の早朝','その他'], prompt: "選択してください", required: true %>
+            <% end %>
           </div>
 
           <!-- START / ORIGINAL FORM INPUT KEPT TO KEEP FUNCTION ALIVE. DELETE LATER. -->
-          <div class="debug">
-            <div class="input--group">
-              <%#= f.input :distance, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
-              <%#= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
-              <%#= f.input :car_type, collection: Shipment::VEHICLE_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
-              <div id="shipment__pickup__container" class="pickup__container">
-                <h3>集荷先</h3>
-                <%= f.simple_fields_for :pickups do |pickup| %>
-                  <%= render 'pickup_fields', f: pickup %>
+          <% if false %>
+            <div class="debug">
+              <div class="input--group">
+                <%#= f.input :distance, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
+                <%#= f.input :offer_rate, collection: ['15000', '25000', '35000', '45000', '55000', '65000', '75000'] %>
+                <%#= f.input :car_type, collection: Shipment::VEHICLE_TYPES, prompt: "車種をお選び下さい", label: "トラックの種類" %>
+                <div id="shipment__pickup__container" class="pickup__container">
+                  <h3>集荷先</h3>
+                  <%= f.simple_fields_for :pickups do |pickup| %>
+                    <%= render 'pickup_fields', f: pickup %>
+                  <% end %>
+                </div>
+                <%#= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '#shipment__pickup__container', association_insertion_method: :append } %>
+              </div>
+              <div class="input--group">
+                <h3>Delivery</h3>
+                <%= f.simple_fields_for :deliveries do |d| %>
+                  <div class='form-inline'>
+                    <div class='input-group date datepicker'>
+                      <label>Start Date</label>
+                      <%#= d.text_field :start_date, class: 'form-control', id: 'datepicker3' %>
+                    </div>
+                    <div class='input-group date datepicker'>
+                      <label>End Date</label>
+                      <%#= d.text_field :end_date, class: 'form-control', id: 'datepicker4' %>
+                    </div>
+                  </div>
+                  <%#= d.input :facilities_list, as: :fake_select, collection: current_shipper.facilities.order(name: :asc), input_html: { class: 'delivery-facility' }, prompt: "自社のリストより撰べます"  %>
+                  <%#= d.input :company_name %>
+                  <%= d.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
+                  <%= d.input :ward, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
                 <% end %>
               </div>
-              <%#= link_to_add_association '集荷先を追加する', f, :pickups, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '#shipment__pickup__container', association_insertion_method: :append } %>
             </div>
-            <div class="input--group">
-              <h3>Delivery</h3>
-              <%= f.simple_fields_for :deliveries do |d| %>
-                <div class='form-inline'>
-                  <div class='input-group date datepicker'>
-                    <label>Start Date</label>
-                    <%#= d.text_field :start_date, class: 'form-control', id: 'datepicker3' %>
-                  </div>
-                  <div class='input-group date datepicker'>
-                    <label>End Date</label>
-                    <%#= d.text_field :end_date, class: 'form-control', id: 'datepicker4' %>
-                  </div>
-                </div>
-                <%#= d.input :facilities_list, as: :fake_select, collection: current_shipper.facilities.order(name: :asc), input_html: { class: 'delivery-facility' }, prompt: "自社のリストより撰べます"  %>
-                <%#= d.input :company_name %>
-                <%= d.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
-                <%= d.input :ward, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
-              <% end %>
-            </div>
-          </div>
+          <% end %>
           <!-- END / ORIGINAL FORM INPUT KEPT TO KEEP FUNCTION ALIVE. DELETE LATER. -->
 
           <div class="form-actions">
