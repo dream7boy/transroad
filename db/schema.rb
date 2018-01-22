@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122015635) do
+ActiveRecord::Schema.define(version: 20180122050927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180122015635) do
     t.bigint "shipment_id"
     t.string "company_name"
     t.string "prefecture"
-    t.string "address"
+    t.string "ward"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "start_date"
@@ -79,13 +79,16 @@ ActiveRecord::Schema.define(version: 20180122015635) do
     t.bigint "shipment_id"
     t.string "company_name"
     t.string "prefecture"
-    t.string "address"
+    t.string "ward"
     t.string "commodity"
     t.integer "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.string "post_code"
+    t.string "street"
+    t.string "time"
     t.index ["shipment_id"], name: "index_pickups_on_shipment_id"
   end
 
