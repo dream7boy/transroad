@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180117031631) do
+ActiveRecord::Schema.define(version: 20180122015635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20180117031631) do
   create_table "shipments", force: :cascade do |t|
     t.integer "distance"
     t.integer "offer_rate"
-    t.string "commodity"
+    t.string "category"
     t.integer "weight"
     t.string "car_type"
     t.bigint "shipper_id"
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 20180117031631) do
     t.datetime "updated_at", null: false
     t.boolean "available"
     t.string "transit_status"
+    t.integer "size_height"
+    t.integer "size_width"
+    t.integer "size_depth"
+    t.integer "quantity"
+    t.string "temperature"
+    t.date "duration_start"
+    t.date "duration_end"
+    t.string "frequency"
+    t.string "additional_info"
     t.index ["shipper_id"], name: "index_shipments_on_shipper_id"
   end
 
