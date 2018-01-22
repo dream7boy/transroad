@@ -69,7 +69,7 @@
           <div><%= shipment[:pickup].prefecture %></div>
         </div>
         <div class="search-results-row-nColumn shipment-pickup-address">
-          <div><%= shipment[:pickup].address %></div>
+          <div><%= shipment[:pickup].ward %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-start-date">
           <div><%#= shipment[:delivery].start_date.strftime("%m/%d") %></div>
@@ -78,7 +78,7 @@
           <div><%= shipment[:delivery].prefecture %></div>
         </div>
         <div class="search-results-row-nColumn shipment-delivery-address">
-          <div><%= shipment[:delivery].address %></div>
+          <div><%= shipment[:delivery].ward %></div>
         </div>
         <div class="search-results-row-nColumn shipment-distance">
           <div><%= shipment[:shipment].distance %>KM</div>

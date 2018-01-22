@@ -162,9 +162,7 @@ class ShipmentsController < ApplicationController
   def shipment_params
     params
       .require(:shipment)
-      .permit(:category, :size_height, :size_width, :size_depth, :weight,
-              :quantity, :temperature, :duration_start, :duration_end,
-              :frequency, :additional_info, :available,
+      .permit(:duration_start, :duration_end, :frequency, :available,
         # pickups_attributes: [:id, :company_name, :prefecture, :address, :commodity, :weight, :start_date, :end_date],
         pickups_attributes: Pickup.attribute_names.map(&:to_sym).push(:_destroy),
         deliveries_attributes: Delivery.attribute_names.map(&:to_sym).push(:_destroy))
