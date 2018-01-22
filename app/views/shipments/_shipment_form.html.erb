@@ -115,7 +115,7 @@
                 <%#= d.input :facilities_list, as: :fake_select, collection: current_shipper.facilities.order(name: :asc), input_html: { class: 'delivery-facility' }, prompt: "自社のリストより撰べます"  %>
                 <%#= d.input :company_name %>
                 <%= d.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
-                <%= d.input :address, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
+                <%= d.input :ward, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
               <% end %>
             </div>
           </div>
