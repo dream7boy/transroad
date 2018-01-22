@@ -4,5 +4,4 @@ class Pickup < ApplicationRecord
 
   validates :shipment, presence: true
   validates :prefecture, presence: true
-  validates :address, presence: true
 end
