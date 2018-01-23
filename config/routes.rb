@@ -23,7 +23,17 @@ Rails.application.routes.draw do
         get 'in-transit', to: 'shipments#in_transit_index'
         get 'post-transit', to: 'shipments#post_transit_index'
       end
+
+      member do
+        get 'quotes', to: 'shipments#quotes'
+        get 'request', to: 'shipments#request'
+        get 'complete', to: 'shipments#complete'
+      end
     end
+
+    # resources :shipments, path: '/s', only: [:show] do
+    #   get 'quotes', on: :member
+    # end
   end
 
   get 'carrier/shipments', to: 'deals#index'
