@@ -4,7 +4,7 @@ class Shipment < ApplicationRecord
   has_many :pickups, dependent: :destroy
   has_many :deliveries, dependent: :destroy
 
-  COMMODITIES = %w(農産物 畜産物 水産物 食料品 飲料品 木材 木工製品 砂利・砂等 金属製品
+  COMMODITIES = %w(精密機器 洋紙 農産物 畜産物 水産物 食料品 飲料品 木材 木工製品 砂利・砂等 金属製品
                    鋼材 建材 電気製品 機械・装置 セメント セメント製品 紙・パルプ製品
                    石油製品 化学製品 その他危険物 衣料・雑貨 引越貨物 その他)
 
