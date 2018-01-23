@@ -33,6 +33,8 @@ class Shipper::ShipmentsController < ApplicationController
     # shipment form to allow users to add more than 2 pickups or deliveries.
     @pickup = @shipment.pickups.first
     @delivery = @shipment.deliveries.first
+    # @carriers = Carrier.where("areas_covered @> ?", '{東京都, 北海道}')
+    @carriers = Carrier.where("areas_covered @> ARRAY[?]::varchar[]", [@pickup.prefecture, @delivery.prefecture])
     authorize @shipment, :my_show?
   end
 

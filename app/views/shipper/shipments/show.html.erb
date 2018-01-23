@@ -9,6 +9,8 @@
         method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
       <% end %>
     </div>
+
+    <h3>Shipment Details</h3>
     <div>
       Ship-ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.offer_rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
     </div>
@@ -21,21 +23,34 @@
       D-ID:<%= @delivery.id %> <%= @delivery.company_name %> <%= @delivery.start_date %> <%= @delivery.end_date %> <%= @delivery.prefecture %> <%= @delivery.ward %>
     </div>
 
+    <h3>Carriers matched</h3>
+
     <div>
-      <% @shipment.deals.each do |deal| %>
+      <% @carriers.each do |carrier| %>
         <div>
-          <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
+          <%= carrier.company_name %> - <%= carrier.email %>
         </div>
-        <% if @shipment.available == true %>
-          <div>
-            <%= simple_form_for @shipment, url: shipper_shipment_path do |f| %>
-              <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
-              <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
-            <% end %>
-          </div>
-        <% end %>
       <% end %>
     </div>
+
+    <!-- Chose a Carrier from the list -->
+    <% if false %>
+      <div>
+        <% @shipment.deals.each do |deal| %>
+          <div>
+            <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
+          </div>
+          <% if @shipment.available == true %>
+            <div>
+              <%= simple_form_for @shipment, url: shipper_shipment_path do |f| %>
+                <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
+                <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
 
   </div>
 </div>
