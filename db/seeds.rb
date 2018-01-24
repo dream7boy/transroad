@@ -7,37 +7,65 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # require "faker"
+require 'csv'
 
 puts 'Cleaning database...'
-# Carrier.destroy_all
+Carrier.destroy_all
 
 puts 'Creating database...'
 
-# seeds for Carriers
-count = 1
-5.times do
-  puts "03-#{rand(1000..9999)}-#{rand(1000..9999)}"
-  puts "carrier#{count}@gmail.com"
+address_csv_file = './lib/assets/csv/japan_address.csv'
+addresses_raw_data = CSV.read(address_csv_file, headers: :first_row, skip_blanks: true)
 
-  # carrier = Carrier.create!(
-  #   company_name:,
-  #   post_code: "211-0063",
-  #   prefecture:,
-  #   ward:,
-  #   street:,
-  #   areas_covered:,
-  #   favorite_products:,
-  #   name_kanji:,
-  #   name_furigana:,
-  #   phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
-  #   email: "carrier#{count}@gmail.com",
-  #   password: "123123"
-  #   )
+addresses = addresses_raw_data.map do |address|
+  {
+    id: address["ID"],
+    post_code: address["郵便番号"],
+    prefecture: address["都道府県"],
+    ward: address["市区町村"],
+    street: address["町域"]
+  }
+end
+
+# seeds for Carriers
+count = 0
+addresses.count.times do
+  gimei = Gimei.name
+
+  prefecture =
+      ["北海道","青森県","秋田県","岩手県","山形県","宮城県","福島県","山梨県",
+       "長野県","新潟県","富山県","石川県","福井県","茨城県","栃木県","群馬県",
+       "埼玉県","千葉県","東京都","神奈川県","愛知県","静岡県","岐阜県","三重県",
+       "大阪府","兵庫県","京都府","滋賀県","奈良県","和歌山県","岡山県","広島県",
+       "鳥取県","島根県","山口県","徳島県","香川県","愛媛県","高知県","福岡県",
+       "佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"]
+
+  favorite_products =
+      %w(精密機器 重量物 展示会用品 建築資材 印刷物 家具 楽器 衣料品 農産物
+         食料品 美術品 仏壇・仏具 洋紙 遊技機)
+
+  carrier = Carrier.create!(
+    company_name: "#{["株式会社", "有限会社"].sample}#{gimei.last.kanji}運輸",
+    post_code: addresses[count][:post_code],
+    prefecture: addresses[count][:prefecture],
+    ward: addresses[count][:ward],
+    street: addresses[count][:street],
+    areas_covered: prefecture.sample(20),
+    favorite_products: favorite_products.sample(3),
+    name_kanji: gimei.kanji,
+    name_furigana: gimei.hiragana,
+    phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
+    email: "carrier#{addresses[count][:id]}@gmail.com",
+    password: "123123"
+    )
+
   count += 1
 end
 
 puts 'Finished!'
 
+
+# SEEDS EXAMPLE
 ################################################################################
 # seeds for programming as required skill
 if false
