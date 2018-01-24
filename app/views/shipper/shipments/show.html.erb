@@ -23,17 +23,27 @@
       D-ID:<%= @delivery.id %> <%= @delivery.company_name %> <%= @delivery.start_date %> <%= @delivery.end_date %> <%= @delivery.prefecture %> <%= @delivery.ward %>
     </div>
 
-    <h3>Carriers matched</h3>
-
+    <br>
+    <h3><%= @carriers_two_conditions.count %> Carriers matched with pickup and delivery prefectures and favorite products</h3>
     <div>
-      <% @carriers.each do |carrier| %>
+      <% @carriers_two_conditions.each do |carrier| %>
         <div>
           <%= carrier.company_name %> - <%= carrier.email %> - <%= carrier.favorite_products %> - <%= carrier.areas_covered %>
         </div>
       <% end %>
     </div>
 
-    <!-- Chose a Carrier from the list -->
+    <br>
+    <h3><%= @carriers_location_condition.count %> Carriers matched only with pickup and delivery prefectures</h3>
+    <div>
+      <% @carriers_location_condition.each do |carrier| %>
+        <div>
+          <%= carrier.company_name %> - <%= carrier.email %> - <%= carrier.favorite_products %> - <%= carrier.areas_covered %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- (START)DON'T DELETE BELOW CODE!! Chose a Carrier from the list -->
     <% if false %>
       <div>
         <% @shipment.deals.each do |deal| %>
@@ -51,6 +61,7 @@
         <% end %>
       </div>
     <% end %>
+    <!-- (END)Chose a Carrier from the list -->
 
   </div>
 </div>

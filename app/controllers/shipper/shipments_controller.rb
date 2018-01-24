@@ -36,9 +36,15 @@ class Shipper::ShipmentsController < ApplicationController
 
     # @carriers = Carrier.where("areas_covered @> ?", '{東京都, 北海道}')
     # @carriers = Carrier.where("areas_covered @> ARRAY[?]::varchar[]", [@pickup.prefecture, @delivery.prefecture])
-    @carriers =
+    @carriers_two_conditions =
       Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[]",
                     [@pickup.prefecture, @delivery.prefecture], @pickup.category)
+
+    @all_carriers_location_condition =
+      Carrier.where("areas_covered @> ARRAY[?]::varchar[]", [@pickup.prefecture, @delivery.prefecture])
+
+    @carriers_location_condition = @all_carriers_location_condition - @carriers_two_conditions
+
     authorize @shipment, :my_show?
   end
 
