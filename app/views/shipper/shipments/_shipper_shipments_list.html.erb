@@ -43,8 +43,14 @@
         <%= shipment[:shipment].id %>
       </p>
       <p>
-        <%= link_to "詳細", shipper_shipment_path(shipment[:shipment]) %>
+        <%= link_to "Carriers Matched", shipper_shipment_path(shipment[:shipment]), class: "btn btn-primary" %>
       </p>
+        <% if shipment[:shipment].available == true %>
+          <%= link_to "Edit", edit_shipment_path(shipment[:shipment]), class: "btn btn-primary" %>
+          <%= link_to "Delete", shipment_path(shipment[:shipment]),
+        method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+        <% end %>
+
       <% if params[:action] == 'index' %>
         <p>
           <span style="color:blue"><%= shipment[:deal][:status] %></span>
