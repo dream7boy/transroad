@@ -8,7 +8,7 @@ gem 'puma'
 gem 'rails', '5.1.4'
 gem 'redis'
 gem 'devise'
-gem "pundit"
+gem 'pundit'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'gimei'
 
 group :development, :test do
   gem 'pry-byebug'
