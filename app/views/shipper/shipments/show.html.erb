@@ -50,27 +50,6 @@
           <% end %>
         </div>
     </div>
-
-    <!-- (START)DON'T DELETE BELOW CODE!! Chose a Carrier from the list -->
-    <% if false %>
-      <div>
-        <% @shipment.deals.each do |deal| %>
-          <div>
-            <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
-          </div>
-          <% if @shipment.available == true %>
-            <div>
-              <%= simple_form_for @shipment, url: shipper_shipment_path do |f| %>
-                <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
-                <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-    <!-- (END)Chose a Carrier from the list -->
-
   </div>
 </section>
 
