@@ -35,10 +35,16 @@ $form__progress--unit: 32px;
     &:last-child:after {
       display: none;
     }
-    p {
+    p, a {
       color: $color--white;
+    }
+    p {
+      font-size: $font__p;
       font-weight: bold;
       position: absolute;
+      a {
+        position: unset;
+      }
     }
   }
 }

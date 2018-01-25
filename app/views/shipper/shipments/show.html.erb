@@ -3,7 +3,9 @@
 
     <div class="form__progress--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="form__progress--step">
-        <p>運送案件を作成</p>
+        <% if @shipment.available == true %>
+          <p><%= link_to "運送案件を作成", edit_shipment_path(@shipment) %></p>
+        <% end %>
       </div>
       <div class="form__progress--step active">
         <p>運送会社を選択</p>
@@ -22,12 +24,6 @@
         <h3 class="inline__block bold"><%= @carriers_two_conditions.count %>社とマッチしました！</h3>
       </div>
       <button class="btn btn-primary btn__null btn__sub-color col-xs-5 float--right">依頼内容を確認する</button>
-    </div>
-
-    <div class="hidden">
-      <% if @shipment.available == true %>
-        <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
-      <% end %>
     </div>
 
     <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
