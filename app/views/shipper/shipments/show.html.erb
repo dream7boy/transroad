@@ -1,3 +1,78 @@
+<section id="shipper__registration" class="container-fluid section__shipper well--xs">
+  <div class="row">
+    <!-- BS offset is not included since "section.section__shipper > div.row" has flex center assigned. / Shun-->
+    <div class="col-xs-12">
+
+      <div class="form__progress--container">
+        <div class="form__progress--step">
+          <p>運送案件を作成</p>
+        </div>
+        <div class="form__progress--step active">
+          <p>運送会社を選択</p>
+        </div>
+        <div class="form__progress--step">
+          <p>内容を確認</p>
+        </div>
+        <div class="form__progress--step">
+          <p>完了</p>
+        </div>
+      </div>
+
+      <div class="debug">
+        <h3><span class="bold">運送会社<%= @carriers_two_conditions.count %>社</span><span class="behead">とマッチしました！</span></h3>
+        <p>Button here</p>
+      </div>
+
+      <div class="hidden">
+        <% if @shipment.available == true %>
+          <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+      <div class="debug hidden">
+        <p>Cards here</p>
+        <% @carriers_two_conditions.each do |carrier| %>
+          <div>
+            <%= carrier.email %> - <%= carrier.company_name %> - <%= carrier.favorite_products %> - <%= carrier.areas_covered %>
+          </div>
+          <br>
+        <% end %>
+      </div>
+
+      <!-- (START)DON'T DELETE BELOW CODE!! Chose a Carrier from the list -->
+      <% if false %>
+        <div>
+          <% @shipment.deals.each do |deal| %>
+            <div>
+              <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
+            </div>
+            <% if @shipment.available == true %>
+              <div>
+                <%= simple_form_for @shipment, url: shipper_shipment_path do |f| %>
+                  <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
+                  <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <!-- (END)Chose a Carrier from the list -->
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- BACKUP COPY / Shun -->
+<% if false %>
 <div class="container">
   <h1>Carriers matched</h1>
   <div>
@@ -67,3 +142,4 @@
 
   </div>
 </div>
+<% end %>

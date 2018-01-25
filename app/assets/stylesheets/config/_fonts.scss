@@ -77,6 +77,12 @@ p, a {
   color: $color--black;
   font-family: $font__body;
 }
+.bold {
+  font-weight: bolder;
+}
+.behead {
+  font-size: $font__p;
+}
 .color__sub {
     color: $color__theme--sub;
 }
