@@ -429,7 +429,7 @@
 <row name="size" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="type" null="1" autoincrement="0">
+<row name="vehicle_type" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="quantity" null="1" autoincrement="0">

@@ -52,6 +52,11 @@ delivery_addresses = delivery_addresses_raw_data.map do |address|
   }
 end
 
+sizes = %w(軽貨物 小型 中型 大型 その他)
+
+vehicle_types = %w(平ボディ 平ボディ（幌付き） バン バン（保冷） バン（冷凍・冷蔵）
+                   ウィング ウィング（保冷） ウィング（冷凍・冷蔵） 幌ウィング)
+
 prefecture =
     ["北海道","青森県","秋田県","岩手県","山形県","宮城県","福島県","山梨県",
      "長野県","新潟県","富山県","石川県","福井県","茨城県","栃木県","群馬県",
@@ -73,7 +78,7 @@ temperature = %w(常温 保冷 冷蔵 冷凍 分からない)
 additional_info = %w(パレット必要 フォークリフト必要 割れ物多数)
 
 # Seeds for Carriers
-puts 'Creating Carriers...'
+puts 'Creating Carriers and Vehicles...'
 
 count = 0
 carrier_addresses.count.times do
@@ -94,10 +99,19 @@ carrier_addresses.count.times do
       password: "123123"
     )
 
+  5.times do
+    vehicle = carrier.vehicles.build(
+      size: sizes.sample,
+      vehicle_type: vehicle_types.sample,
+      quantity: rand(5..10)
+      )
+    vehicle.save
+  end
+
   count += 1
 end
 
-puts 'Carriers Created!'
+puts 'Carriers and Vehicles Created!'
 
 # Seeds for Carriers
 puts 'Creating Shippers, Shipments, Pickups and Deliveries...'
@@ -167,7 +181,7 @@ count = 0
   count += 1
 end
 
-puts 'Shippers Created!'
+puts 'Shippers, Shipments, Pickups and Deliveries Created!'
 
 
 ################################################################################
