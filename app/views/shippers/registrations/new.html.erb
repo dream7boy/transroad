@@ -1,7 +1,7 @@
 <section id="shipper__registration" class="container-fluid section__shipper well--xs">
   <div class="row">
     <!-- BS offset is not included since "section.section__shipper > div.row" has flex center assigned. / Shun-->
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 §">
       <h2>荷主アカウント登録</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -12,12 +12,12 @@
             <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
             <%= f.input :industry, label: "業種", collection: Shipper::INDUSTRIES, prompt: "選択してください", required: true %>
             <div class="container-fluid input--container">
-              <div class="row input--row">
+              <div class="row row--block">
                 <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
               </div>
             </div>
             <div class="container-fluid input--container">
-              <div class="row input--row">
+              <div class="row row--block">
                 <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
                 <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
               </div>
@@ -28,7 +28,7 @@
           <div class="input--group">
             <h3>連絡先 ＆ ログイン情報</h3>
             <div class="container-fluid input--container">
-              <div class="row input--row">
+              <div class="row row--block">
                 <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
                 <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
               </div>

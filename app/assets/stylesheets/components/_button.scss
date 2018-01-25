@@ -61,6 +61,22 @@
 }
 .btn__null {
   @extend %extBtnNull;
+  &.btn__sub-color {
+    background-color: $color__theme--sub;
+    &:active {
+      transform: translateY(2px);
+      background-color: $color__theme--sub;
+      &:focus {
+        background-color: darken($color__theme--sub, 10%);
+      }
+    }
+    &:focus {
+      background-color: $color__theme--sub;
+    }
+    &:hover {
+      background-color: darken($color__theme--sub, 10%);
+    }
+  }
 }
 .btn__triangle {
   position: relative;
