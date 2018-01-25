@@ -6,6 +6,14 @@
 @import "section";
 
 
+.float-- {
+  &right {
+    float: right;
+  }
+  &left {
+    float: left;
+  }
+}
 .fullscreen {
   align-items: center;
   display: flex;
@@ -23,6 +31,9 @@
 }
 .img__flip-y {
   transform: rotateY(180deg);
+}
+.inline__block {
+  display: inline-block;
 }
 
 /* md >= 992px (.container @ 970px) / START */

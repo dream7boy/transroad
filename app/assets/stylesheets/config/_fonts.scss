@@ -40,8 +40,9 @@ h3 {
   font-size: $font__h3;
 }
 h4 {
+  color: $color--black;
   font-size: $font__h4;
-  // padding-bottom: calc(2.35rem * 1);
+  font-weight: bold;
 }
 h5, h6 {
   font-size: $font__p;
@@ -76,6 +77,12 @@ a {
 p, a {
   color: $color--black;
   font-family: $font__body;
+}
+.bold {
+  font-weight: bolder;
+}
+.behead {
+  font-size: $font__p;
 }
 .color__sub {
     color: $color__theme--sub;

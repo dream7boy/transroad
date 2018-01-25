@@ -17,7 +17,7 @@ section {
       display: flex;
       justify-content: center;
       // flex: 1 50%;
-      &.input--row {
+      &.row--block {
         display: block;
       }
     }
@@ -148,6 +148,12 @@ section {
           // Different padding from carrier due to striped background.
           padding-left: calc(#{$spacer--xl} + 18px);
           padding-right: calc(#{$spacer--xl} + 18px);
+          &.well--sm {
+            padding-top: calc(#{$spacer--md} + 18px);
+            padding-bottom: calc(#{$spacer--md} + 18px);
+            padding-left: calc(#{$spacer--xl} + 18px);
+            padding-right: calc(#{$spacer--xl} + 18px);
+          }
           &.well--xs {
             padding-top: calc(#{$spacer--md} + 18px);
             padding-bottom: calc(#{$spacer--md} + 18px);

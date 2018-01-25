@@ -1,0 +1,50 @@
+$form__progress--unit: 32px;
+
+.form__progress {
+  &--container {
+    background-color: $color--gray-light;
+    display: flex;
+    height: $form__progress--unit;
+    margin: 0 0 $spacer--md 0;
+    width: 100%;
+  }
+  &--step {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    justify-content: center;
+    &.active {
+      background-color: $color__theme--sub;
+      &:after {
+        background-color: $color__theme--sub;
+      }
+    }
+    &:after {
+      background-color: $color--gray-light;
+      border-right: 4px solid $color--white;
+      border-top: 4px solid $color--white;
+      content: "";
+      height: calc(#{$form__progress--unit} - 6px);
+      position: absolute;
+      right: -12px;
+      transform: rotate(45deg) translateZ(1px);
+      width: calc(#{$form__progress--unit} - 6px);
+      z-index: 10;
+    }
+    &:last-child:after {
+      display: none;
+    }
+    p, a {
+      color: $color--white;
+    }
+    p {
+      font-size: $font__p;
+      font-weight: bold;
+      position: absolute;
+      a {
+        position: unset;
+      }
+    }
+  }
+}

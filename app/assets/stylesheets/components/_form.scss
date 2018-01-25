@@ -3,7 +3,7 @@
 #new__shipment,
 #shipper__registration,
 #sign_in {
-  h2 {
+  h2, h3 {
     margin: 0 0 40px 0;
   }
   input:-webkit-autofill {
@@ -32,7 +32,7 @@
   }
   .input--container {
     padding: 0;
-    .input--row {
+    .row--block {
       justify-content: left;
     }
   }
@@ -87,6 +87,17 @@
   }
   label.control-label {
     display: block;
+  }
+}
+#shipper__shipment__match {
+  .header_and_btn--container{
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    h2 {
+      line-height: unset;
+    }
   }
 }
 #sign_in {
