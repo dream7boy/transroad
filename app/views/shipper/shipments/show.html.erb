@@ -4,7 +4,7 @@
     <div class="form__progress--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="form__progress--step">
         <% if @shipment.available == true %>
-          <p><%= link_to "運送案件を作成", edit_shipment_path(@shipment) %></p>
+          <p><%= link_to "運送案件を修正", edit_shipment_path(@shipment) %></p>
         <% end %>
       </div>
       <div class="form__progress--step active">
