@@ -10,14 +10,15 @@
 require 'csv'
 
 puts 'Cleaning database...'
+
 Carrier.destroy_all
+Shipper.destroy_all
 
 puts 'Creating database...'
 
-address_csv_file = './lib/assets/csv/japan_address.csv'
-addresses_raw_data = CSV.read(address_csv_file, headers: :first_row, skip_blanks: true)
-
-addresses = addresses_raw_data.map do |address|
+carrier_address_csv_file = './lib/assets/csv/carrier_address.csv'
+carrier_addresses_raw_data = CSV.read(carrier_address_csv_file, headers: :first_row, skip_blanks: true)
+carrier_addresses = carrier_addresses_raw_data.map do |address|
   {
     id: address["ID"],
     post_code: address["郵便番号"],
@@ -27,46 +28,166 @@ addresses = addresses_raw_data.map do |address|
   }
 end
 
-# seeds for Carriers
+pickup_address_csv_file = './lib/assets/csv/pickup_address.csv'
+pickup_addresses_raw_data = CSV.read(pickup_address_csv_file, headers: :first_row, skip_blanks: true)
+pickup_addresses = pickup_addresses_raw_data.map do |address|
+  {
+    id: address["ID"],
+    post_code: address["郵便番号"],
+    prefecture: address["都道府県"],
+    ward: address["市区町村"],
+    street: address["町域"]
+  }
+end
+
+delivery_address_csv_file = './lib/assets/csv/delivery_address.csv'
+delivery_addresses_raw_data = CSV.read(delivery_address_csv_file, headers: :first_row, skip_blanks: true)
+delivery_addresses = delivery_addresses_raw_data.map do |address|
+  {
+    id: address["ID"],
+    post_code: address["郵便番号"],
+    prefecture: address["都道府県"],
+    ward: address["市区町村"],
+    street: address["町域"]
+  }
+end
+
+sizes = %w(軽貨物 小型 中型 大型 その他)
+
+vehicle_types = %w(平ボディ 平ボディ（幌付き） バン バン（保冷） バン（冷凍・冷蔵）
+                   ウィング ウィング（保冷） ウィング（冷凍・冷蔵） 幌ウィング)
+
+prefecture =
+    ["北海道","青森県","秋田県","岩手県","山形県","宮城県","福島県","山梨県",
+     "長野県","新潟県","富山県","石川県","福井県","茨城県","栃木県","群馬県",
+     "埼玉県","千葉県","東京都","神奈川県","愛知県","静岡県","岐阜県","三重県",
+     "大阪府","兵庫県","京都府","滋賀県","奈良県","和歌山県","岡山県","広島県",
+     "鳥取県","島根県","山口県","徳島県","香川県","愛媛県","高知県","福岡県",
+     "佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"]
+
+products =
+    %w(精密機器 重量物 展示会用品 建築資材 印刷物 家具 楽器 衣料品 農産物
+       食料品 美術品 仏壇・仏具 洋紙 遊技機)
+
+industries = %w(製造 土木・建設 農業 林業 漁業 飲食 小売 卸売 印刷 商社)
+
+time = %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 未定)
+
+temperature = %w(常温 保冷 冷蔵 冷凍 分からない)
+
+additional_info = %w(パレット必要 フォークリフト必要 割れ物多数)
+
+# Seeds for Carriers
+puts 'Creating Carriers and Vehicles...'
+
 count = 0
-addresses.count.times do
-  gimei = Gimei.name
-
-  prefecture =
-      ["北海道","青森県","秋田県","岩手県","山形県","宮城県","福島県","山梨県",
-       "長野県","新潟県","富山県","石川県","福井県","茨城県","栃木県","群馬県",
-       "埼玉県","千葉県","東京都","神奈川県","愛知県","静岡県","岐阜県","三重県",
-       "大阪府","兵庫県","京都府","滋賀県","奈良県","和歌山県","岡山県","広島県",
-       "鳥取県","島根県","山口県","徳島県","香川県","愛媛県","高知県","福岡県",
-       "佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"]
-
-  favorite_products =
-      %w(精密機器 重量物 展示会用品 建築資材 印刷物 家具 楽器 衣料品 農産物
-         食料品 美術品 仏壇・仏具 洋紙 遊技機)
+carrier_addresses.count.times do
+  gimei_carrier = Gimei.name
 
   carrier = Carrier.create!(
-    company_name: "#{["株式会社", "有限会社"].sample}#{gimei.last.kanji}運輸",
-    post_code: addresses[count][:post_code],
-    prefecture: addresses[count][:prefecture],
-    ward: addresses[count][:ward],
-    street: addresses[count][:street],
-    areas_covered: prefecture.sample(20),
-    favorite_products: favorite_products.sample(3),
-    name_kanji: gimei.kanji,
-    name_furigana: gimei.hiragana,
-    phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
-    email: "carrier#{addresses[count][:id]}@gmail.com",
-    password: "123123"
+      company_name: "#{["株式会社", "有限会社"].sample}#{gimei_carrier.last.kanji}運輸",
+      post_code: carrier_addresses[count][:post_code],
+      prefecture: carrier_addresses[count][:prefecture],
+      ward: carrier_addresses[count][:ward],
+      street: carrier_addresses[count][:street],
+      areas_covered: prefecture.sample(20),
+      favorite_products: products.sample(3),
+      name_kanji: gimei_carrier.kanji,
+      name_furigana: gimei_carrier.hiragana,
+      phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
+      email: "carrier#{carrier_addresses[count][:id]}@gmail.com",
+      password: "123123"
     )
+
+  5.times do
+    vehicle = carrier.vehicles.build(
+      size: sizes.sample,
+      vehicle_type: vehicle_types.sample,
+      quantity: rand(5..10)
+      )
+    vehicle.save
+  end
 
   count += 1
 end
 
-puts 'Finished!'
+puts 'Carriers and Vehicles Created!'
+
+# Seeds for Carriers
+puts 'Creating Shippers, Shipments, Pickups and Deliveries...'
+
+count = 0
+1.times do
+  gimei_shipper = Gimei.name
+
+  shipper = Shipper.create!(
+      company_name: "#{["株式会社", "有限会社"].sample}#{gimei_shipper.last.kanji}商社",
+      post_code: "211-0063",
+      prefecture: "神奈川県",
+      ward: "川崎市中原区",
+      street: "小杉町3-472",
+      industry: industries.sample,
+      name_kanji: gimei_shipper.kanji,
+      name_furigana: gimei_shipper.hiragana,
+      phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
+      email: "shipper#{count + 1}@gmail.com",
+      password: "123123"
+    )
+
+  10.times do
+    pickup_csv_id = rand(0..142)
+    delivery_csv_id = rand(0..142)
+
+    duration_start_from = Date.parse("2018/2/1")
+    duration_start_to = Date.parse("2018/4/30")
+    duration_end_from = Date.parse("2018/7/31")
+    duration_end_to = Date.parse("2018/12/31")
+
+    shipment = Shipment.new(
+        shipper_id: shipper.id,
+        available: true,
+        duration_start: Random.rand(duration_start_from..duration_start_to),
+        duration_end: Random.rand(duration_end_from..duration_end_to),
+        frequency: ["週に1回","2週間に1回","月に1回"].sample
+      )
+
+    pickup = shipment.pickups.build(
+        post_code: pickup_addresses[pickup_csv_id][:post_code],
+        prefecture: pickup_addresses[pickup_csv_id][:prefecture],
+        ward: pickup_addresses[pickup_csv_id][:ward],
+        street: pickup_addresses[pickup_csv_id][:street],
+        time: time.sample,
+        category: products.sample,
+        size_height: rand(100..200).round(-1),
+        size_width: rand(100..200).round(-1),
+        size_depth: rand(100..500).round(-1),
+        weight: rand(10..50).round,
+        quantity: rand(10..500).round(-1),
+        temperature: temperature.sample,
+        additional_info: additional_info.sample
+      )
+
+    delivery = shipment.deliveries.build(
+        post_code: delivery_addresses[delivery_csv_id][:post_code],
+        prefecture: delivery_addresses[delivery_csv_id][:prefecture],
+        ward: delivery_addresses[delivery_csv_id][:ward],
+        street: delivery_addresses[delivery_csv_id][:street],
+        time: time.sample
+      )
+
+    shipment.save
+  end
+
+  count += 1
+end
+
+puts 'Shippers, Shipments, Pickups and Deliveries Created!'
 
 
-# SEEDS EXAMPLE
 ################################################################################
+################################################################################
+################################################################################
+# SEEDS EXAMPLE
 # seeds for programming as required skill
 if false
 3.times do
