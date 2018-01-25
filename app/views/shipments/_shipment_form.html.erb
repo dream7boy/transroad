@@ -49,7 +49,7 @@
                 </div>
               </div>
               <%= p.input :street, label: "住所", required: true %>
-              <%= p.input :time, label: "集荷希望時間", collection: ['平日の午前','平日の午後','月曜日の午後','月曜日の早朝','その他'], prompt: "選択してください", required: true %>
+              <%= p.input :time, label: "集荷希望時間", collection: %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 その他), prompt: "選択してください", required: true %>
               <%= p.input :category, label: "荷物の種類", collection: Shipment::COMMODITIES, required: true, prompt: "選択してください", include_hidden: false  %>
               <div class="container-fluid input--container">
                 <div class="row input--row">
@@ -60,7 +60,7 @@
               </div>
               <%= p.input :weight, label: "重量 (単体, kg)", required: true %>
               <%= p.input :quantity, label: "個数 (1回の運送につき、発送する予定の数)", required: true %>
-              <%= p.input :temperature, label: "温度管理", collection: ['常温','保冷','冷蔵','冷凍','分からない'], prompt: "選択してください", required: true %>
+              <%= p.input :temperature, label: "温度管理", collection: %w(常温 保冷 冷蔵 冷凍 分からない), prompt: "選択してください", required: true %>
               <%= p.input :additional_info, label: "備考欄 (記入例：フォークリフト必要)", required: false %>
             <% end %>
           </div>
@@ -80,7 +80,7 @@
                 </div>
               </div>
               <%= d.input :street, label: "住所", required: true %>
-              <%= d.input :time, label: "配達希望時間", collection: ['平日の午前','平日の午後','月曜日の午後','月曜日の早朝','その他'], prompt: "選択してください", required: true %>
+              <%= d.input :time, label: "配達希望時間", collection: %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 その他), prompt: "選択してください", required: true %>
             <% end %>
           </div>
 
