@@ -105,8 +105,7 @@ count = 0
       frequency: ["週に1回","2週間に1回","月に1回"].sample
       )
 
-    pickup = Pickup.new(
-      shipment_id: shipment.id,
+    pickup = shipment.pickups.build(
       post_code: "111-1111",
       prefecture: prefecture.sample,
       ward: "品川区",
@@ -122,8 +121,7 @@ count = 0
       additional_info: additional_info.sample
       )
 
-    delivery = Delivery.new(
-      shipment_id: shipment.id,
+    delivery = shipment.deliveries.build(
       post_code: "111-1111",
       prefecture: prefecture.sample,
       ward: "品川区",
