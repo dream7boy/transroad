@@ -3,4 +3,5 @@ class Deal < ApplicationRecord
   belongs_to :carrier
 
   validates :shipment, presence: true
+  validates :carrier_id, uniqueness: { scope: [:shipment_id] }
 end
