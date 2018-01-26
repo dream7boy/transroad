@@ -24,7 +24,7 @@
         <h3 class="inline__block bold"><%= @carriers_two_conditions.count %>社とマッチしました！</h3>
       </div>
       <%= simple_form_for :carriers, method: :get, url: quotes_req_shipper_shipment_path, html: {id:'selected__carriers__form', class:'col-xs-5'} do |f| %>
-        <%= f.hidden_field :ids, value: 'test' %>
+        <%= f.hidden_field :ids, value: '' %>
         <%= f.button :submit, '依頼内容を確認する', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color float--right col-xs-12' %>
       <% end %>
       <!-- <button id="btn__submit__ids" class="btn btn-primary btn__null btn__sub-color col-xs-5 float--right">依頼内容を確認する</button> -->
