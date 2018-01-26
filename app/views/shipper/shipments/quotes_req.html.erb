@@ -3,8 +3,11 @@
   <h3>Shipment</h3>
     <p>Shipment's ID: <%= @shipment.id %></p>
   <h3>Carriers</h3>
-  <% @carriers_ids.each do |id| %>
-    <p>- Carrier's ID : <%= id %></p>
+  <% @carriers.each do |carrier| %>
+    <p>- Carrier's ID : <%= carrier.id %></p>
+    <p>- Carrier's company_name : <%= carrier.company_name %></p>
+    <p>- Carrier's email : <%= carrier.email %></p>
+    <br>
   <% end %>
 
   <div>
