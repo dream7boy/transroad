@@ -45,11 +45,11 @@
       <p>
         <%= link_to "Carriers Matched", shipper_shipment_path(shipment[:shipment]), class: "btn btn-primary" %>
       </p>
-        <% if shipment[:shipment].available == true %>
-          <%= link_to "Edit", edit_shipment_path(shipment[:shipment]), class: "btn btn-primary" %>
-          <%= link_to "Delete", shipment_path(shipment[:shipment]),
-        method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-        <% end %>
+      <% if shipment[:shipment].deals.blank? %>
+        <%= link_to "Edit", edit_shipment_path(shipment[:shipment]), class: "btn btn-primary" %>
+        <%= link_to "Delete", shipment_path(shipment[:shipment]),
+      method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+      <% end %>
     </div>
 
     <div class="shipper-shipments-row-nColumn shipper-shipments-pickup">
