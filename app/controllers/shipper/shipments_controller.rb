@@ -15,17 +15,34 @@ class Shipper::ShipmentsController < ApplicationController
         # shipment form to allow users to add more than 2 pickups or deliveries.
         pickup: shipment.pickups.first,
         delivery: shipment.deliveries.first,
-        deal: if shipment.deals.blank?
-                { status: '入札なし' }
-              else
-                if deal = shipment.deals.find_by(deal_status: 'won')
-                  { carrier: deal.carrier, status: '落札済' }
-                else
-                  { status: '入札あり' }
-                end
-              end
+        carriers: if shipment.deals.present?
+                    carriers_ids = shipment.deals.map do |deal|
+                      deal.carrier_id
+                    end
+                  carriers = Carrier.where(id: carriers_ids)
+                  end
       }
     end
+
+    # @shipments = @all_shipments.map do |shipment|
+    #   {
+    #     shipment: shipment,
+
+    #     # .first needs to be changed after modifying
+    #     # shipment form to allow users to add more than 2 pickups or deliveries.
+    #     pickup: shipment.pickups.first,
+    #     delivery: shipment.deliveries.first,
+    #     deal: if shipment.deals.blank?
+    #             { status: '入札なし' }
+    #           else
+    #             if deal = shipment.deals.find_by(deal_status: 'won')
+    #               { carrier: deal.carrier, status: '落札済' }
+    #             else
+    #               { status: '入札あり' }
+    #             end
+    #           end
+    #   }
+    # end
   end
 
   def show
@@ -34,11 +51,24 @@ class Shipper::ShipmentsController < ApplicationController
     @pickup = @shipment.pickups.first
     @delivery = @shipment.deliveries.first
 
+    if @shipment.deals.present?
+      carriers_ids = @shipment.deals.map do |deal|
+        deal.carrier_id
+      end
+      carriers_with_deals = Carrier.where(id: carriers_ids)
+    end
+
     # @carriers = Carrier.where("areas_covered @> ?", '{東京都, 北海道}')
     # @carriers = Carrier.where("areas_covered @> ARRAY[?]::varchar[]", [@pickup.prefecture, @delivery.prefecture])
-    @carriers_two_conditions =
+    @all_carriers_two_conditions =
       Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[]",
                     [@pickup.prefecture, @delivery.prefecture], @pickup.category)
+
+    if carriers_with_deals
+      @carriers_two_conditions = @all_carriers_two_conditions - carriers_with_deals
+    else
+      @carriers_two_conditions = @all_carriers_two_conditions
+    end
 
     @all_carriers_location_condition =
       Carrier.where("areas_covered @> ARRAY[?]::varchar[]", [@pickup.prefecture, @delivery.prefecture])

@@ -50,12 +50,6 @@
           <%= link_to "Delete", shipment_path(shipment[:shipment]),
         method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
         <% end %>
-
-      <% if params[:action] == 'index' %>
-        <p>
-          <span style="color:blue"><%= shipment[:deal][:status] %></span>
-        </p>
-      <% end %>
     </div>
 
     <div class="shipper-shipments-row-nColumn shipper-shipments-pickup">
@@ -98,17 +92,14 @@
     </div>
 
     <div class="shipper-shipments-row-nColumn shipper-shipments-carrier">
-      <% if shipment[:deal][:carrier].present? %>
-        <p>
-          <%= shipment[:deal][:carrier].email %>
-        </p>
+      <% if shipment[:carriers].present? %>
+        <% shipment[:carriers].each do |carrier| %>
+          <p><%= carrier.id %>:<%= carrier.company_name %></p>
+        <% end %>
       <% end %>
     </div>
 
     <div class="shipper-shipments-row-nColumn shipper-shipments-status">
-      <p>
-        <span style="color:blue"><%= shipment[:shipment].transit_status %></span>
-      </p>
     </div>
 
   </div>

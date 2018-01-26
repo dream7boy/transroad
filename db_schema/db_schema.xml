@@ -266,44 +266,44 @@
 <part>id</part>
 </key>
 </table>
-<table x="769" y="157" name="deals">
+<table x="748" y="157" name="deals">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="shipment_id" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default><relation table="shipments" row="id" />
 </row>
 <row name="carrier_id" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default><relation table="carriers" row="id" />
 </row>
 <row name="deal_status" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="bid_rate" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="prefecture" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="address" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="date" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="phone" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="payment" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="dispatcher_name" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="driver_name" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
