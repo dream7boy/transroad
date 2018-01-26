@@ -8,7 +8,9 @@
         <% end %>
       </div>
       <div class="form__progress--step">
-        <p><%= link_to "運送会社を選択", shipper_shipment_path(@shipment) %></p>
+        <% if @shipment.available == true %>
+          <p><%= link_to "運送会社を選択", shipper_shipment_path(@shipment) %></p>
+        <% end %>
       </div>
       <div class="form__progress--step active">
         <p>内容を確認</p>
@@ -66,21 +68,6 @@
         </div>
       </div>
     </div>
-
-    <!-- 888 REF DEL LATER / shun -->
-    <div class="hidden">
-      <h2>入力内容の確認</h2>
-      <h3>Shipment</h3>
-        <p>Shipment's ID: <%= @shipment.id %></p>
-      <h3>Carriers</h3>
-      <% @carriers.each do |carrier| %>
-        <p>- Carrier's ID : <%= carrier.id %></p>
-        <p>- Carrier's company_name : <%= carrier.company_name %></p>
-        <p>- Carrier's email : <%= carrier.email %></p>
-        <br>
-      <% end %>
-    </div>
-    <!-- 888 REF DEL LATER / shun -->
 
   </div>
 </section>

@@ -3,13 +3,16 @@
 }
 section {
   // Use this if the section is likely to be less than 100vh.
-  &.one--page {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    min-height: calc(100vh - 44px);
-    .row {
-      width: 100%;
+  &.one__page {
+    min-height: calc(100vh - #{$navbar__height});
+    &--center {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      min-height: calc(100vh - #{$navbar__height});
+      .row {
+        width: 100%;
+      }
     }
   }
   &.section__ {

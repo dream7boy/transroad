@@ -1,20 +1,40 @@
-<div>
-  <h2>見積り依頼完了</h2>
-  <h3>Shipment info</h3>
-  <p>
-    Shipment'id : <%= @shipment.id %>
-  </p>
-  <div>
-    <p>
-      <%= link_to shipper_shipments_path, class: "btn btn-primary" do %>
-        管理画面に戻る
-      <% end %>
-    </p>
-    <br>
-    <p>
-      <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-        別の案件を作成する
-      <% end %>
-    </p>
+<section id="shipper__quotation" class="container-fluid section__shipper well--sm one__page">
+  <div class="row row--block">
+
+    <div class="form__progress--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="form__progress--step">
+        <p>運送案件を作成</p>
+      </div>
+      <div class="form__progress--step">
+        <p>運送会社を選択</p>
+      </div>
+      <div class="form__progress--step">
+        <p>内容を確認</p>
+      </div>
+      <div class="form__progress--step active">
+        <p>完了</p>
+      </div>
+    </div>
+
+    <div class="quotation__header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2 class="inline__block">御見積もり依頼完了&ensp;</h2>
+    </div>
+
+    <div class="quotation__body--container">
+      <div class="row--block">
+        <div class="col-xs-12 quotation__block">
+          <p>選択された運送会社宛に御見積もり依頼を送信いたしました。</p>
+          <p>またご登録されたメールアドレスに、確認メールを送信いたしました。</p>
+          <br>
+          <p>見積もり依頼番号： <%=@shipment.id%></p>
+          <div class="btn btn-primary btn__null col-xs-3">依頼内容を印刷する</div>
+        </div>
+        <div class="col-xs-12 quotation__block">
+          <%= link_to '管理画面に戻る', shipper_shipments_path, class: "btn btn-primary btn__null col-xs-3" %>
+          <%= link_to '別の案件を作成する', new_shipment_path, class: "btn btn-primary btn__null col-xs-3" %>
+        </div>
+      </div>
+    </div>
+
   </div>
-</div>
+</section>

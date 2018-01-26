@@ -6,6 +6,7 @@ $form__progress--unit: 32px;
     display: flex;
     height: $form__progress--unit;
     margin: 0 0 $spacer--md 0;
+    padding: 0;
     width: 100%;
   }
   &--step {

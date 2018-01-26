@@ -90,9 +90,16 @@
   }
 }
 #shipper__quotation {
+  #shipper_quotation_form {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .quotation__body--container {
     h4 {
       margin: 0 0 $spacer--xs 0;
+    }
+    .btn__null {
+      margin: $spacer--sm $spacer--sm $spacer--sm 0;
     }
     .quotation__block {
       border-bottom: 1px solid $color--gray-light;
@@ -117,10 +124,6 @@
       line-height: unset;
     }
   }
-}
-#shipper_quotation_form {
-  padding-left: 0;
-  padding-right: 0;
 }
 #sign_in {
   .checkbox label {
