@@ -1,0 +1,31 @@
+<% content_for(:after_js) do %>
+<%= javascript_tag do %>
+
+$(document).ready(function() {
+  var selectedCarriersInput = document.querySelector("#quoteRequestCarriers_carrier_ids");
+  var carrierCards = document.querySelectorAll(".card__carrier");
+  carrierCards.forEach(function(card, i) {
+    selectedCarriersInput.selectedIndex = 0;
+    var cardValue = card.attributes[0].value;
+    // On click
+    card.addEventListener("click", function(e) {
+      // Find the target to adjust classes...
+      var clickedCard = $(e.target).closest("div.card__carrier");
+      // Adjust the classes...
+      clickedCard.toggleClass("selected");
+      // If the card has been selected...
+      if(clickedCard.hasClass("selected")) {
+        console.log('Selected!')
+        selectedCarriersInput = '';
+      }
+      // If the card has been deselected...
+      if(!clickedCard.hasClass("selected")) {
+        console.log('Deselected!')
+        selectedCarriersInput = '';
+      }
+    });
+  })
+});
+
+<% end %>
+<% end %>

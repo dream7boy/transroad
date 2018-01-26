@@ -50,6 +50,13 @@
           <% end %>
         </div>
     </div>
+
+    <%= simple_form_for :quoteRequestCarriers do |f| %>
+      <%= f.hidden_field :carrier_ids, value: '' %>
+      <%= f.input :carrier_ids, value: '', label_html: {class: 'hidden'} %>
+      <%= f.button :submit, class: "hidden" %>
+    <% end %>
+
   </div>
 
 <div>
@@ -60,6 +67,10 @@
 </div>
 
 </section>
+<!-- START / Add class to selected cards and send value to form -->
+<%= render partial: 'matchedCarriers_selectable', formats: :js %>
+<!-- END / Add class to selected cards and send value to form -->
+
 
 
 
