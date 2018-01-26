@@ -1,0 +1,16 @@
+<div>
+  <h2>入力内容の確認</h2>
+  <h3>Shipment</h3>
+    <p>Shipment's ID: <%= @shipment.id %></p>
+  <h3>Carriers</h3>
+  <% @carriers_ids.each do |id| %>
+    <p>- Carrier's ID : <%= id %></p>
+  <% end %>
+
+  <div>
+  <%= simple_form_for :carriers, url: shipment_deals_path(@shipment) do |f| %>
+    <%= f.hidden_field :ids, value: @carriers_ids %>
+    <%= f.button :submit, 'この内容で見積もりを依頼', class: "btn btn-primary" %>
+  <% end %>
+  </div>
+</div>

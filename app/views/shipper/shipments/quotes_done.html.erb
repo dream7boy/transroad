@@ -1,0 +1,20 @@
+<div>
+  <h2>見積り依頼完了</h2>
+  <h3>Shipment info</h3>
+  <p>
+    Shipment'id : <%= @shipment.id %>
+  </p>
+  <div>
+    <p>
+      <%= link_to shipper_shipments_path, class: "btn btn-primary" do %>
+        管理画面に戻る
+      <% end %>
+    </p>
+    <br>
+    <p>
+      <%= link_to new_shipment_path, class: "btn btn-primary" do %>
+        別の案件を作成する
+      <% end %>
+    </p>
+  </div>
+</div>
