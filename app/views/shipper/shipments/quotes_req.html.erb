@@ -1,19 +1,86 @@
-<div>
-  <h2>入力内容の確認</h2>
-  <h3>Shipment</h3>
-    <p>Shipment's ID: <%= @shipment.id %></p>
-  <h3>Carriers</h3>
-  <% @carriers.each do |carrier| %>
-    <p>- Carrier's ID : <%= carrier.id %></p>
-    <p>- Carrier's company_name : <%= carrier.company_name %></p>
-    <p>- Carrier's email : <%= carrier.email %></p>
-    <br>
-  <% end %>
+<section id="shipper__quotation" class="container-fluid section__shipper well--sm">
+  <div class="row row--block">
 
-  <div>
-  <%= simple_form_for :carriers, url: shipment_deals_path(@shipment) do |f| %>
-    <%= f.hidden_field :ids, value: @carriers_ids %>
-    <%= f.button :submit, 'この内容で見積もりを依頼', class: "btn btn-primary" %>
-  <% end %>
+    <div class="form__progress--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="form__progress--step">
+        <% if @shipment.available == true %>
+          <p><%= link_to "運送案件を作成", edit_shipment_path(@shipment) %></p>
+        <% end %>
+      </div>
+      <div class="form__progress--step">
+        <p><%= link_to "運送会社を選択", shipper_shipment_path(@shipment) %></p>
+      </div>
+      <div class="form__progress--step active">
+        <p>内容を確認</p>
+      </div>
+      <div class="form__progress--step">
+        <p>完了</p>
+      </div>
+    </div>
+
+    <div class="quotation__header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div>
+        <h2 class="inline__block">入力内容の確認&ensp;</h2>
+      </div>
+      <%= simple_form_for :carriers, url: shipment_deals_path(@shipment), html: {id:'shipper_quotation_form', class:'col-xs-5'} do |f| %>
+        <%= f.hidden_field :ids, value: @carriers_ids %>
+        <%= f.button :submit, '見積もりを依頼', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color float--right col-xs-12' %>
+      <% end %>
+      <!-- <button id="btn__submit__ids" class="btn btn-primary btn__null btn__sub-color col-xs-5 float--right">依頼内容を確認する</button> -->
+    </div>
+
+    <div class="quotation__body--container">
+      <div class="row row--block">
+        <div class="col-xs-8">
+          <h4>運送案件の内容</h4>
+          <div class="quotation__overview quotation__block">
+            <p>予定期間：<%= @shipment.duration_start %>〜<%= @shipment.duration_end %></p>
+            <p>運送頻度：<%= @shipment.frequency %></p>
+          </div>
+          <!-- START / INCLUDE A FOR EACH ONCE THE PRODUCTS ARE ADDED -->
+          <div class="quotation__product quotation__block">
+            <div class="quotation__product--detail">
+              <p>荷物の種類：<%=  %></p>
+              <p>寸法(cm)：<%=  %></p>
+              <p>単体重量：<%=  %></p>
+              <p>個数：<%=  %></p>
+              <p>温度管理：<%=  %></p>
+              <p>その他：<%=  %></p>
+            </div>
+            <div class="quotation__product--pickup">
+              <p>集荷先：<%=  %></p>
+              <p>集荷時間：<%=  %></p>
+            </div>
+            <div class="quotation__product--delivery">
+              <p>配達先：<%=  %></p>
+              <p>配達時間：<%=  %></p>
+            </div>
+          </div>
+          <!-- END / INCLUDE A FOR EACH ONCE THE PRODUCTS ARE ADDED -->
+        </div>
+        <div class="col-xs-4">
+            <h4>選択した運送会社</h4>
+            <% @carriers.each do |carrier| %>
+              <p><%= carrier.company_name %></p>
+            <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 888 REF DEL LATER / shun -->
+    <div class="hidden">
+      <h2>入力内容の確認</h2>
+      <h3>Shipment</h3>
+        <p>Shipment's ID: <%= @shipment.id %></p>
+      <h3>Carriers</h3>
+      <% @carriers.each do |carrier| %>
+        <p>- Carrier's ID : <%= carrier.id %></p>
+        <p>- Carrier's company_name : <%= carrier.company_name %></p>
+        <p>- Carrier's email : <%= carrier.email %></p>
+        <br>
+      <% end %>
+    </div>
+    <!-- 888 REF DEL LATER / shun -->
+
   </div>
-</div>
+</section>
