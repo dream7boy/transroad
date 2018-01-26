@@ -126,6 +126,8 @@ class ShipmentsController < ApplicationController
   end
 
   def edit
+    limit_access_to
+
     respond_to do |format|
       format.html
       format.json do
@@ -152,6 +154,8 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
+    limit_access
+
     @shipment.destroy
     redirect_to shipper_shipments_path
     flash[:notice] = "Your shipment has been deleted"
@@ -171,6 +175,12 @@ class ShipmentsController < ApplicationController
   def set_shipment
     @shipment = Shipment.find(params[:id])
     authorize @shipment
+  end
+
+  def limit_access_to
+    if @shipment.deals.present?
+      redirect_to shipper_shipments_path
+    end
   end
 
   def check_available
