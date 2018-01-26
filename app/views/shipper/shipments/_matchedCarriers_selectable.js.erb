@@ -4,29 +4,33 @@
 $(document).ready(function() {
   var selectedCarriersInput = document.querySelector("#quoteRequestCarriers_carrier_ids");
   var inputValues = selectedCarriersInput.value;
-  var carrierCards = document.querySelectorAll(".card__carrier");
+  var clickTargets = document.querySelectorAll(".card__btn");
   var carrierIdArray = [];
-  carrierCards.forEach(function(card, i) {
+  clickTargets.forEach(function(btn, i) {
     selectedCarriersInput.selectedIndex = 0;
-    var cardValue = card.attributes[0].value;
+    var cardValue = btn.attributes[0].value;
     // On click
-    card.addEventListener("click", function(e) {
+    btn.addEventListener("click", function(e) {
       var clickedCard = $(e.target).closest("div.card__carrier");
       var selectedCarrierId = clickedCard.find(".carrier__id")[0].id;
-
       clickedCard.toggleClass("selected");
-
       if(clickedCard.hasClass("selected")) {
-        inputValues = carrierIdArray.push(selectedCarrierId);
-        console.log('----ARRAY----');
-        console.log(carrierIdArray)
+        carrierIdArray.push(selectedCarrierId);
+        inputValues = carrierIdArray;
+        // console.log('----ADD----');
+        // console.log(carrierIdArray)
+        // console.log(inputValues);
       } else if(!clickedCard.hasClass("selected")) {
-        console.log('----ARRAY----');
-        console.log(carrierIdArray)
-        inputValues = inputValues.splice(inputValues.indexOf(selectedCarrierId), 1);
+        carrierIdArray.splice(carrierIdArray.indexOf(selectedCarrierId), 1);
+        inputValues = carrierIdArray;
+        // console.log('----REMOVE----');
+        // console.log(carrierIdArray)
+        // console.log(inputValues);
       }
       console.log('----FINAL----');
-      console.log(inputValues);
+      // console.log(carrierIdArray)
+      // console.log(selectedCarriersInput);
+      // console.log(inputValues);
     });
   })
 });
