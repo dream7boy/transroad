@@ -62,6 +62,12 @@ class Shipper::ShipmentsController < ApplicationController
     flash[:notice] = "Your Carrier has been selected"
   end
 
+  def quotes_req
+    @shipment = Shipment.find(params[:id])
+    @carriers_id = params[:carriers][:ids].split(" ")
+    authorize @shipment, :my_show?
+  end
+
   def pre_transit_index
     set_shipments('pre-transit')
   end
