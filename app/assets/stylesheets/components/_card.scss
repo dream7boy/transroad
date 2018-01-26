@@ -5,7 +5,34 @@
   padding: $spacer--sm 0 0 0;
   margin: 0 -30px 0 -30px;
   .card__wrapper {
+    // transition-duration: $transition--md;
     padding: 0 15px 30px 15px;
+    width: 25%;
+    // &.active {
+    //   position: relative;
+    //   width: 50%;
+    //   .card__carrier {
+    //     &--img {
+    //       padding-top: 30.9%;
+    //       position: absolute;
+    //       right: 30px;
+    //       width: calc(50% - 30px);
+    //     }
+    //     .card__list--container {
+    //       .card__list--item {
+
+    //       }
+    //     }
+    //     .card__carrier--info {
+    //       display: inline-block;
+    //       left: calc(50% + 15px);
+    //       position: absolute;
+    //     }
+    //     .card__btn {
+
+    //     }
+    //   }
+    // }
     .card__carrier {
       background-color: $color--white;
       border-radius: $border-radius;
