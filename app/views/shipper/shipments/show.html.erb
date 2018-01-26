@@ -33,6 +33,7 @@
               <div class="card__carrier">
                 <div class="card__carrier--img"></div>
                 <h4><%= carrier.company_name %></h4>
+                <%= text_area_tag name="#{carrier.id}", nil, class:'carrier__id hidden' %>
                 <ul class="card__list--container">
                   <% carrier.favorite_products.each do |product| %>
                     <li class="card__list--item"><%= product %></li>
@@ -51,9 +52,8 @@
         </div>
     </div>
 
-    <%= simple_form_for :quoteRequestCarriers do |f| %>
-      <%= f.hidden_field :carrier_ids, value: '' %>
-      <%= f.input :carrier_ids, value: '', label_html: {class: 'hidden'} %>
+    <%= simple_form_for :carriers, method: :get, url: quotes_req_shipper_shipment_path do |f| %>
+      <%= f.hidden_field :ids, value: '' %>
       <%= f.button :submit, class: "hidden" %>
     <% end %>
 

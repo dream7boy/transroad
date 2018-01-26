@@ -3,26 +3,30 @@
 
 $(document).ready(function() {
   var selectedCarriersInput = document.querySelector("#quoteRequestCarriers_carrier_ids");
+  var inputValues = selectedCarriersInput.value;
   var carrierCards = document.querySelectorAll(".card__carrier");
+  var carrierIdArray = [];
   carrierCards.forEach(function(card, i) {
     selectedCarriersInput.selectedIndex = 0;
     var cardValue = card.attributes[0].value;
     // On click
     card.addEventListener("click", function(e) {
-      // Find the target to adjust classes...
       var clickedCard = $(e.target).closest("div.card__carrier");
-      // Adjust the classes...
+      var selectedCarrierId = clickedCard.find(".carrier__id")[0].id;
+
       clickedCard.toggleClass("selected");
-      // If the card has been selected...
+
       if(clickedCard.hasClass("selected")) {
-        console.log('Selected!')
-        selectedCarriersInput = '';
+        inputValues = carrierIdArray.push(selectedCarrierId);
+        console.log('----ARRAY----');
+        console.log(carrierIdArray)
+      } else if(!clickedCard.hasClass("selected")) {
+        console.log('----ARRAY----');
+        console.log(carrierIdArray)
+        inputValues = inputValues.splice(inputValues.indexOf(selectedCarrierId), 1);
       }
-      // If the card has been deselected...
-      if(!clickedCard.hasClass("selected")) {
-        console.log('Deselected!')
-        selectedCarriersInput = '';
-      }
+      console.log('----FINAL----');
+      console.log(inputValues);
     });
   })
 });
