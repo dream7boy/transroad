@@ -51,6 +51,14 @@
         </div>
     </div>
   </div>
+
+<div>
+  <%= simple_form_for :carriers, method: :get, url: quotes_req_shipper_shipment_path do |f| %>
+    <%= f.hidden_field :ids, value: [536,537,538] %>
+    <%= f.button :submit, 'Submit', class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 </section>
 
 
