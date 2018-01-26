@@ -71,7 +71,7 @@ products =
 
 industries = %w(製造 土木・建設 農業 林業 漁業 飲食 小売 卸売 印刷 商社)
 
-time = %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 未定)
+time = %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 その他)
 
 temperature = %w(常温 保冷 冷蔵 冷凍 分からない)
 
@@ -85,7 +85,7 @@ carrier_addresses.count.times do
   gimei_carrier = Gimei.name
 
   carrier = Carrier.create!(
-      company_name: "#{["株式会社", "有限会社"].sample}#{gimei_carrier.last.kanji}運輸",
+      company_name: "#{%w(株式会社 有限会社).sample}#{gimei_carrier.last.kanji}運輸",
       post_code: carrier_addresses[count][:post_code],
       prefecture: carrier_addresses[count][:prefecture],
       ward: carrier_addresses[count][:ward],
@@ -121,7 +121,7 @@ count = 0
   gimei_shipper = Gimei.name
 
   shipper = Shipper.create!(
-      company_name: "#{["株式会社", "有限会社"].sample}#{gimei_shipper.last.kanji}商社",
+      company_name: "#{%w(株式会社 有限会社).sample}#{gimei_shipper.last.kanji}商社",
       post_code: "211-0063",
       prefecture: "神奈川県",
       ward: "川崎市中原区",
@@ -148,7 +148,7 @@ count = 0
         available: true,
         duration_start: Random.rand(duration_start_from..duration_start_to),
         duration_end: Random.rand(duration_end_from..duration_end_to),
-        frequency: ["週に1回","2週間に1回","月に1回"].sample
+        frequency: %w(週に1回 2週間に1回 月に1回 その他).sample
       )
 
     pickup = shipment.pickups.build(
