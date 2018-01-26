@@ -64,8 +64,16 @@ class Shipper::ShipmentsController < ApplicationController
 
   def quotes_req
     @shipment = Shipment.find(params[:id])
-    @carriers_id = params[:carriers][:ids].split(" ")
-    authorize @shipment, :my_show?
+    authorize @shipment
+    @carriers_ids = params[:carriers][:ids].split(" ")
+  end
+
+  def quotes_done
+    @shipment = Shipment.find(params[:id])
+    authorize @shipment
+    if @shipment.deals.blank?
+      redirect_to shipper_shipments_path
+    end
   end
 
   def pre_transit_index

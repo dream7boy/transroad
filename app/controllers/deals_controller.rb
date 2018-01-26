@@ -1,5 +1,5 @@
 class DealsController < ApplicationController
-  before_action :authenticate_carrier!
+  before_action :authenticate_carrier!, except: :create
 
   def index
     @all_deals = policy_scope(Deal).order(created_at: :desc)
@@ -18,14 +18,22 @@ class DealsController < ApplicationController
 
   def create
     @shipment = Shipment.find(shipment_params)
-    @deal = @shipment.deals.build(deal_status: 'requesting', carrier: current_carrier)
-    authorize @deal
-    if @deal.save
-      redirect_to carrier_shipments_path
-      flash[:notice] = "Your booking has been made"
-    else
-      render 'shipments/show'
+    @carriers_ids = params[:carriers][:ids].split(" ")
+    @carriers_ids.each do |carrier_id|
+      @deal = @shipment.deals.build(deal_status: 'new', carrier_id: carrier_id)
+      authorize @deal
+      @deal.save
     end
+    redirect_to quotes_done_shipper_shipment_path(@shipment)
+
+    # @deal = @shipment.deals.build(deal_status: 'requesting', carrier: current_carrier)
+    # authorize @deal
+    # if @deal.save
+    #   redirect_to carrier_shipments_path
+    #   flash[:notice] = "Your booking has been made"
+    # else
+    #   render 'shipments/show'
+    # end
   end
 
   def pre_transit_index

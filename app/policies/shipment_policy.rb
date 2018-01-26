@@ -9,6 +9,14 @@ class ShipmentPolicy < ApplicationPolicy
     end
   end
 
+  def quotes_req?
+    user_is_owner?
+  end
+
+  def quotes_done?
+    user_is_owner?
+  end
+
   def pre_transit_index?
     true
   end

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       member do
         get 'quotes', to: 'shipments#quotes'
         get 'quotes_req', to: 'shipments#quotes_req'
-        get 'complete', to: 'shipments#complete'
+        get 'quotes_done', to: 'shipments#quotes_done'
       end
     end
 
