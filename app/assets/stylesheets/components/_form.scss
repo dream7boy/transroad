@@ -89,16 +89,38 @@
     display: block;
   }
 }
-#shipper__shipment__match {
-  .header_and_btn--container{
+#shipper__quotation {
+  .quotation__body--container {
+    h4 {
+      margin: 0 0 $spacer--xs 0;
+    }
+    .quotation__block {
+      border-bottom: 1px solid $color--gray-light;
+      padding: 0 0 15px 0;
+      margin: 0 0 15px 0;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+    .quotation__product {
+      div {
+        margin: 0 0 15px 0;
+      }
+    }
+  }
+  .quotation__header--container {
     align-items: flex-end;
     display: flex;
     justify-content: space-between;
-    padding: 0;
+    padding: 0 0 $spacer--sm 0;
     h2 {
       line-height: unset;
     }
   }
+}
+#shipper_quotation_form {
+  padding-left: 0;
+  padding-right: 0;
 }
 #sign_in {
   .checkbox label {
