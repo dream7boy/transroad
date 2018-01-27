@@ -95,6 +95,13 @@ class Shipper::ShipmentsController < ApplicationController
   def quotes_req
     @shipment = Shipment.find(params[:id])
     authorize @shipment
+
+    @shipment_details = {
+      shipment: @shipment,
+      pickup: @shipment.pickups.first,
+      delivery: @shipment.deliveries.first
+    }
+
     @carriers_ids = params[:carriers][:ids].split(",")
     @carriers = Carrier.where(id: @carriers_ids)
   end
