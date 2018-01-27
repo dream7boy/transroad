@@ -53,12 +53,12 @@
               <%= p.input :category, label: "荷物の種類", collection: Shipment::COMMODITIES, required: true, prompt: "選択してください", include_hidden: false  %>
               <div class="container-fluid input--container">
                 <div class="row row--block">
-                  <%= p.input :size_height, label: "縦幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
                   <%= p.input :size_width, label: "横幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
                   <%= p.input :size_depth, label: "奥行 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
+                  <%= p.input :size_height, label: "縦幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
                 </div>
               </div>
-              <%= p.input :weight, label: "重量 (単体, kg)", required: true %>
+              <%= p.input :weight, label: "単体重量 (kg)", required: true %>
               <%= p.input :quantity, label: "個数 (1回の運送につき、発送する予定の数)", required: true %>
               <%= p.input :temperature, label: "温度管理", collection: %w(常温 保冷 冷蔵 冷凍 分からない), prompt: "選択してください", required: true %>
               <%= p.input :additional_info, label: "備考欄 (記入例：フォークリフト必要)", required: false %>
