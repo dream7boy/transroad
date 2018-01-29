@@ -24,7 +24,8 @@ class DealsController < ApplicationController
       authorize @deal
       @deal.save
     end
-    redirect_to quotes_done_shipper_shipment_path(@shipment)
+    # redirect_to quotes_done_shipper_shipment_path(@shipment)
+    render '/shipper/shipments/quotes_done'
 
     # @deal = @shipment.deals.build(deal_status: 'requesting', carrier: current_carrier)
     # authorize @deal
@@ -36,29 +37,29 @@ class DealsController < ApplicationController
     # end
   end
 
-  def quotes_make
+  def new
     set_deal
-    authorize @deal
-
-    @deal_details = {
-      shipper: @deal.shipment.shipper,
-      deal: @deal,
-      shipment: @deal.shipment,
-      pickup: @deal.shipment.pickups.first,
-      delivery: @deal.shipment.deliveries.first
-    }
   end
 
-  def quotes_confirm
+  def confirm
     set_deal
-    authorize @deal
+
+    @deal.total_price = quote_params[:total_price]
+    render :new if @deal.invalid?
   end
 
-  def quotes_update
+  def update
     set_deal
-    authorize @deal
-    @deal.update(quote_params)
-    redirect_to carrier_shipments_path
+
+    if params[:back]
+      @deal.total_price = quote_params[:total_price]
+      render :new
+    elsif @deal.update(quote_params)
+      # redirect_to carrier_shipments_path
+      render :complete
+    else
+      render :new
+    end
   end
 
   def pre_transit_index
@@ -108,6 +109,15 @@ class DealsController < ApplicationController
 
   def set_deal
     @deal = Deal.find(params[:id])
+    authorize @deal
+
+    @deal_details = {
+      shipper: @deal.shipment.shipper,
+      deal: @deal,
+      shipment: @deal.shipment,
+      pickup: @deal.shipment.pickups.first,
+      delivery: @deal.shipment.deliveries.first
+    }
   end
 
   def shipment_params
@@ -124,7 +134,7 @@ class DealsController < ApplicationController
   end
 
   def quote_params
-    params.require(:deal).permit(:bid_rate)
+    params.require(:deal).permit(:total_price)
   end
 
   def set_deals(transit_status)

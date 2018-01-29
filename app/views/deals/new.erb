@@ -1,0 +1,38 @@
+<div>
+  <h2>見積書作成</h2>
+  <div>
+    <p>依頼主：<%= @deal_details[:shipper].company_name %></p>
+    <p>予定期間：<%= @deal_details[:shipment].duration_start %>〜<%= @deal_details[:shipment].duration_end %></p>
+    <p>運送頻度：<%= @deal_details[:shipment].frequency %></p>
+    <p>荷物の種類：<%= @deal_details[:pickup].category %></p>
+    <p>寸法(cm)：横幅 <%= @deal_details[:pickup].size_width %> x 奥行 <%= @deal_details[:pickup].size_depth %> x 縦幅 <%= @deal_details[:pickup].size_height %></p>
+    <p>単体重量：<%= @deal_details[:pickup].weight %> kg</p>
+    <p>個数：<%= @deal_details[:pickup].quantity %> 個</p>
+    <p>温度管理：<%= @deal_details[:pickup].temperature %></p>
+    <p>備考欄：<%= @deal_details[:pickup].additional_info %></p>
+  </div>
+
+  <br>
+
+  <div>
+    <p>集荷先</p>
+    <p>住所：<%= @deal_details[:pickup].post_code %> <%= @deal_details[:pickup].prefecture %><%= @deal_details[:pickup].ward %><%= @deal_details[:pickup].street %></p>
+    <p>集荷時間：<%= @deal_details[:pickup].time %></p>
+
+  <br>
+
+    <p>配達先</p>
+    <p>住所：<%= @deal_details[:delivery].post_code %> <%= @deal_details[:delivery].prefecture %><%= @deal_details[:delivery].ward %><%= @deal_details[:delivery].street %></p>
+    <p>配達時間：<%= @deal_details[:delivery].time %></p>
+  </div>
+
+  <br>
+
+  <div>
+    <%= simple_form_for @deal, method: :post, url: confirm_quotes_path do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :total_price, label: "合計金額", required: true %>
+      <%= f.button :submit, "見積り内容を確認する" %>
+    <% end %>
+  </div>
+</div>

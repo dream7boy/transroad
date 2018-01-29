@@ -1,5 +1,5 @@
 <div>
-  <h2>見積書作成</h2>
+  <h2>Confirm</h2>
   <div>
     <p>依頼主：<%= @deal_details[:shipper].company_name %></p>
     <p>予定期間：<%= @deal_details[:shipment].duration_start %>〜<%= @deal_details[:shipment].duration_end %></p>
@@ -29,10 +29,13 @@
   <br>
 
   <div>
-    <%= simple_form_for @deal, method: :get, url: quotes_confirm_path do |f| %>
+    <%= simple_form_for @deal, url: update_quotes_path do |f| %>
       <%= f.error_notification %>
-      <%= f.input :bid_rate, label: "Price", required: true %>
-      <%= f.button :submit, "見積り内容を確認する" %>
+      <p>合計金額</p>
+      <p><%= @deal.total_price %></p>
+      <%= f.hidden_field :total_price, label: "合計金額", required: true %>
+      <%= f.button :submit, "見積りを修正する", name: "back" %>
+      <%= f.button :submit, "見積りを送信する" %>
     <% end %>
   </div>
 </div>
