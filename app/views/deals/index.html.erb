@@ -4,6 +4,7 @@
   <div class="container">
   <%= link_to "(Carrier)Edit your profile", edit_carrier_registration_path %>
     <h2>(<%= @deals.count %>) My Shipments(deals)</h2>
+    <h3><%= current_carrier.company_name %>(<%= current_carrier.email %>)</h3>
     <%= render 'deals_nav_menu' %>
 
     <% if @deals.present? %>
