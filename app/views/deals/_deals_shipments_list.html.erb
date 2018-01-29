@@ -47,7 +47,7 @@
           Ship-ID:<%= deal[:deal].shipment.id %>
         </p>
         <p>
-          <%= link_to "見積書を作成", quotes_make_path(deal[:deal]), class: "btn btn-primary" %>
+          <%= link_to "見積書を作成", new_quotes_path(deal[:deal]), class: "btn btn-primary" %>
         </p>
         <% if params[:action] == 'index' %>
 <!--           <p>

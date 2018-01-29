@@ -36,7 +36,7 @@ class DealsController < ApplicationController
     # end
   end
 
-  def quotes_make
+  def new
     set_deal
     authorize @deal
 
@@ -49,12 +49,29 @@ class DealsController < ApplicationController
     }
   end
 
-  def quotes_confirm
-    set_deal
+  def confirm
+    @deal = Deal.find(params[:id])
     authorize @deal
+
+    @deal_details = {
+      shipper: @deal.shipment.shipper,
+      deal: @deal,
+      shipment: @deal.shipment,
+      pickup: @deal.shipment.pickups.first,
+      delivery: @deal.shipment.deliveries.first
+    }
+
+    # @deal = Deal.new(quote_params)
+    # @deal.shipment = @deal_details[:shipment]
+    # @deal.carrier = current_carrier
+    # authorize @deal
+
+    @deal.bid_rate = quote_params[:bid_rate]
+
+    render :new if @deal.invalid?
   end
 
-  def quotes_update
+  def update
     set_deal
     authorize @deal
     @deal.update(quote_params)

@@ -5,15 +5,15 @@ class DealPolicy < ApplicationPolicy
     end
   end
 
-  def quotes_make?
+  def new?
     user_is_owner?
   end
 
-  def quotes_confirm?
+  def confirm?
     user_is_owner?
   end
 
-  def quotes_update?
+  def update?
     user_is_owner?
   end
 
