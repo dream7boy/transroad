@@ -36,6 +36,23 @@ class DealsController < ApplicationController
     # end
   end
 
+  def quotes_make
+    @deal = Deal.find(params[:id])
+    # set_shipment
+    # @shipment.deals.each do |deal|
+    #   @deal = deal if deal.carrier == current_carrier
+    # end
+
+    authorize @deal
+  end
+
+  def quotes_update
+    @deal = Deal.find(params[:id])
+    authorize @deal
+    @deal.update(quote_params)
+    redirect_to carrier_shipments_path
+  end
+
   def pre_transit_index
     set_deals('pre-transit')
     @ids_for_params = []
@@ -81,6 +98,10 @@ class DealsController < ApplicationController
 
   private
 
+  def set_shipment
+    @shipment = Shipment.find(params[:id])
+  end
+
   def shipment_params
     params.require(:shipment_id)
   end
@@ -92,6 +113,10 @@ class DealsController < ApplicationController
   def deal_params
     ids_string = ids_params[:ids].split
     params.require(:deal).permit(ids_string, :action)
+  end
+
+  def quote_params
+    params.require(:deal).permit(:bid_rate)
   end
 
   def set_deals(transit_status)

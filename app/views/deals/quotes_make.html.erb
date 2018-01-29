@@ -1,0 +1,8 @@
+<div>
+  <%= simple_form_for @deal, url: quotes_update_path do |f| %>
+    <%= f.error_notification %>
+    <h2>quotes make</h2>
+    <%= f.input :bid_rate, label: "Price", required: true %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

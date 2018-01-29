@@ -5,6 +5,14 @@ class DealPolicy < ApplicationPolicy
     end
   end
 
+  def quotes_make?
+    record.carrier == user
+  end
+
+  def quotes_update?
+    record.carrier == user
+  end
+
   def create?
     true
   end
@@ -28,6 +36,8 @@ class DealPolicy < ApplicationPolicy
   def post_transit_index?
     true
   end
+
+  private
 
   def user_is_owner?
     # Inside a policy:
