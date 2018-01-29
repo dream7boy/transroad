@@ -6,11 +6,15 @@ class DealPolicy < ApplicationPolicy
   end
 
   def quotes_make?
-    record.carrier == user
+    user_is_owner?
+  end
+
+  def quotes_confirm?
+    user_is_owner?
   end
 
   def quotes_update?
-    record.carrier == user
+    user_is_owner?
   end
 
   def create?
@@ -22,7 +26,7 @@ class DealPolicy < ApplicationPolicy
   end
 
   def to_next_transit?
-    user_is_owner?
+    record.each { |r| r.carrier == user }
   end
 
   def pre_transit_index?
@@ -43,6 +47,6 @@ class DealPolicy < ApplicationPolicy
     # Inside a policy:
     # 1. 'user' is the current_user from the Devise
     # 2. 'record' is the argument passed to 'authorize' in Controller.
-    record.each { |r| r.carrier == user }
+    record.carrier == user
   end
 end

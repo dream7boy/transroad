@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   get 'carrier/shipments', to: 'deals#index'
   get 'carrier/quotes/:id/quotes_make', to: 'deals#quotes_make', as: :quotes_make
+  get 'carrier/quotes/:id/quotes_confirm', to: 'deals#quotes_confirm', as: :quotes_confirm
   patch 'carrier/quotes/:id', to: 'deals#quotes_update', as: :quotes_update
   get 'carrier/shipments/pre-transit', to: 'deals#pre_transit_index'
   patch 'carrier/shipments/next-transit', to: 'deals#to_next_transit'

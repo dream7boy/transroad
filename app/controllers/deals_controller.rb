@@ -49,6 +49,11 @@ class DealsController < ApplicationController
     }
   end
 
+  def quotes_confirm
+    set_deal
+    authorize @deal
+  end
+
   def quotes_update
     set_deal
     authorize @deal

@@ -29,7 +29,7 @@
   <br>
 
   <div>
-    <%= simple_form_for @deal, url: quotes_update_path do |f| %>
+    <%= simple_form_for @deal, method: :get, url: quotes_confirm_path do |f| %>
       <%= f.error_notification %>
       <%= f.input :bid_rate, label: "Price", required: true %>
       <%= f.button :submit, "見積り内容を確認する" %>
