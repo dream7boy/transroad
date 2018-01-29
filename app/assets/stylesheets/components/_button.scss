@@ -61,6 +61,17 @@
 }
 .btn__null {
   @extend %extBtnNull;
+  &.btn__size {
+    &--xs {
+      font-size: 1.2rem;
+      padding: 4px 12px;
+      font-weight: normal;
+    }
+    &--sm {
+      font-size: 1.6rem;
+      padding: 4px 12px;
+    }
+  }
   &.btn__sub-color {
     background-color: $color__theme--sub;
     &:active {
@@ -76,6 +87,17 @@
     &:hover {
       background-color: darken($color__theme--sub, 10%);
     }
+  }
+}
+.btn__margin {
+  &--sm {
+    margin: $spacer--xs;
+  }
+  &--md {
+    margin: $spacer--sm;
+  }
+  &--lg {
+    margin: $spacer--md;
   }
 }
 .btn__triangle {

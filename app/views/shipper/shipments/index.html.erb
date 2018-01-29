@@ -1,20 +1,61 @@
-<div class="wrapper-shipper-shipments">
-  <div class="container">
-    <%= link_to "(Shipper)Edit your profile", edit_shipper_registration_path %>
-    <h2>(<%= @shipments.count %>) My Shipments</h2>
-    <%= render 'shipper_shipments_nav_menu' %>
+<% if @shipments.present? %>
 
-    <% if @shipments.present? %>
-      <%= render 'shipper_shipments_list' %>
-    <% else %>
-      <div>
-        <p>You have no shipments yet.</p>
-        <p>Add a new shipment to find carrier!</p>
-        <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-         <i class="fa fa-table"></i> + ADD NEW SHIPMENT
-        <% end %>
+  <section id="shipper__dashboard" class="container-fluid section__shipper well--sm">
+    <div class="row row--block">
+      <div class="header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 class="bold inline__block">管理画面</h3>
+        <%= render 'shipper_shipments_nav_menu' %>
       </div>
-    <% end %>
-  </div>
-</div>
+      <div class="body--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render 'shipper_shipments_list' %>
+      </div>
+    </div>
+  </section>
 
+<% else %>
+
+  <section id="shipper__dashboard" class="container-fluid section__shipper flex--center--center well--sm">
+    <div class="row row--block">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+          <h2>御見積もり依頼がありません</h2>
+          <%= link_to "新しい運送案件を作成して見積もりを依頼しましょう！", new_shipment_path, class: "btn btn-primary btn__null btn__margin--md" %>
+      </div>
+    </div>
+  </section>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- BACKUP DELETE LATER 888 -->
+<% if false %>
+  <div class="wrapper-shipper-shipments">
+    <div class="container">
+      <h2>(<%= @shipments.count %>) My Shipments </h2>
+      <%= render 'shipper_shipments_nav_menu' %>
+
+      <% if @shipments.present? %>
+        <%= render 'shipper_shipments_list' %>
+      <% else %>
+        <div>
+          <p>You have no shipments yet.</p>
+          <p>Add a new shipment to find carrier!</p>
+          <%= link_to new_shipment_path, class: "btn btn-primary" do %>
+           <i class="fa fa-table"></i> + ADD NEW SHIPMENT
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

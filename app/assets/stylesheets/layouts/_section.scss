@@ -3,25 +3,23 @@
 }
 section {
   // Use this if the section is likely to be less than 100vh.
-  &.one__page {
-    min-height: calc(100vh - #{$navbar__height});
-    &--center {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      min-height: calc(100vh - #{$navbar__height});
-      .row {
-        width: 100%;
-      }
-    }
-  }
   &.section__ {
-    &carrier .row, &shipper .row, &user .row {
-      display: flex;
-      justify-content: center;
-      // flex: 1 50%;
-      &.row--block {
-        display: block;
+    &carrier, &shipper, &user {
+      min-height: calc(100vh - #{$navbar__height});
+      &.flex--center--center {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        .row {
+          width: 100%;
+        }
+      }
+      .row {
+        display: flex;
+        justify-content: center;
+        &.row--block {
+          display: block;
+        }
       }
     }
     &carrier {
