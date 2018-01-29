@@ -24,7 +24,8 @@ class DealsController < ApplicationController
       authorize @deal
       @deal.save
     end
-    redirect_to quotes_done_shipper_shipment_path(@shipment)
+    # redirect_to quotes_done_shipper_shipment_path(@shipment)
+    render '/shipper/shipments/quotes_done'
 
     # @deal = @shipment.deals.build(deal_status: 'requesting', carrier: current_carrier)
     # authorize @deal
@@ -38,44 +39,27 @@ class DealsController < ApplicationController
 
   def new
     set_deal
-    authorize @deal
-
-    @deal_details = {
-      shipper: @deal.shipment.shipper,
-      deal: @deal,
-      shipment: @deal.shipment,
-      pickup: @deal.shipment.pickups.first,
-      delivery: @deal.shipment.deliveries.first
-    }
   end
 
   def confirm
-    @deal = Deal.find(params[:id])
-    authorize @deal
-
-    @deal_details = {
-      shipper: @deal.shipment.shipper,
-      deal: @deal,
-      shipment: @deal.shipment,
-      pickup: @deal.shipment.pickups.first,
-      delivery: @deal.shipment.deliveries.first
-    }
-
-    # @deal = Deal.new(quote_params)
-    # @deal.shipment = @deal_details[:shipment]
-    # @deal.carrier = current_carrier
-    # authorize @deal
+    set_deal
 
     @deal.total_price = quote_params[:total_price]
-
     render :new if @deal.invalid?
   end
 
   def update
     set_deal
-    authorize @deal
-    @deal.update(quote_params)
-    redirect_to carrier_shipments_path
+
+    if params[:back]
+      @deal.total_price = quote_params[:total_price]
+      render :new
+    elsif @deal.update(quote_params)
+      # redirect_to carrier_shipments_path
+      render :complete
+    else
+      render :new
+    end
   end
 
   def pre_transit_index
@@ -125,6 +109,15 @@ class DealsController < ApplicationController
 
   def set_deal
     @deal = Deal.find(params[:id])
+    authorize @deal
+
+    @deal_details = {
+      shipper: @deal.shipment.shipper,
+      deal: @deal,
+      shipment: @deal.shipment,
+      pickup: @deal.shipment.pickups.first,
+      delivery: @deal.shipment.deliveries.first
+    }
   end
 
   def shipment_params

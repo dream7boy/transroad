@@ -106,13 +106,13 @@ class Shipper::ShipmentsController < ApplicationController
     @carriers = Carrier.where(id: @carriers_ids)
   end
 
-  def quotes_done
-    @shipment = Shipment.find(params[:id])
-    authorize @shipment
-    if @shipment.deals.blank?
-      redirect_to shipper_shipments_path
-    end
-  end
+  # def quotes_done
+  #   @shipment = Shipment.find(params[:id])
+  #   authorize @shipment
+  #   if @shipment.deals.blank?
+  #     redirect_to shipper_shipments_path
+  #   end
+  # end
 
   def pre_transit_index
     set_shipments('pre-transit')
