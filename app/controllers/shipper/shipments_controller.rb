@@ -19,7 +19,7 @@ class Shipper::ShipmentsController < ApplicationController
                     carriers_ids = shipment.deals.map do |deal|
                       deal.carrier_id
                     end
-                  carriers = Carrier.where(id: carriers_ids)
+                    carriers = Carrier.where(id: carriers_ids)
                   end
       }
     end
