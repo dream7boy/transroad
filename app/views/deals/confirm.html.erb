@@ -31,9 +31,9 @@
   <div>
     <%= simple_form_for @deal, url: update_quotes_path do |f| %>
       <%= f.error_notification %>
-      <p>Price</p>
-      <p><%= @deal.bid_rate %></p>
-      <%= f.hidden_field :bid_rate, label: "Price", required: true %>
+      <p>合計金額</p>
+      <p><%= @deal.total_price %></p>
+      <%= f.hidden_field :total_price, label: "合計金額", required: true %>
       <%= f.button :submit, "見積り内容を確認する" %>
     <% end %>
   </div>

@@ -66,7 +66,7 @@ class DealsController < ApplicationController
     # @deal.carrier = current_carrier
     # authorize @deal
 
-    @deal.bid_rate = quote_params[:bid_rate]
+    @deal.total_price = quote_params[:total_price]
 
     render :new if @deal.invalid?
   end
@@ -141,7 +141,7 @@ class DealsController < ApplicationController
   end
 
   def quote_params
-    params.require(:deal).permit(:bid_rate)
+    params.require(:deal).permit(:total_price)
   end
 
   def set_deals(transit_status)

@@ -31,7 +31,7 @@
   <div>
     <%= simple_form_for @deal, method: :post, url: confirm_quotes_path do |f| %>
       <%= f.error_notification %>
-      <%= f.input :bid_rate, label: "Price", required: true %>
+      <%= f.input :total_price, label: "合計金額", required: true %>
       <%= f.button :submit, "見積り内容を確認する" %>
     <% end %>
   </div>

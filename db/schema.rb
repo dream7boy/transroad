@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126102619) do
+ActiveRecord::Schema.define(version: 20180129094611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180126102619) do
     t.bigint "shipment_id"
     t.bigint "carrier_id"
     t.string "deal_status"
-    t.integer "bid_rate"
+    t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["carrier_id", "shipment_id"], name: "index_deals_on_carrier_id_and_shipment_id", unique: true
