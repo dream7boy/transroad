@@ -37,17 +37,20 @@ class DealsController < ApplicationController
   end
 
   def quotes_make
-    @deal = Deal.find(params[:id])
-    # set_shipment
-    # @shipment.deals.each do |deal|
-    #   @deal = deal if deal.carrier == current_carrier
-    # end
-
+    set_deal
     authorize @deal
+
+    @deal_details = {
+      shipper: @deal.shipment.shipper,
+      deal: @deal,
+      shipment: @deal.shipment,
+      pickup: @deal.shipment.pickups.first,
+      delivery: @deal.shipment.deliveries.first
+    }
   end
 
   def quotes_update
-    @deal = Deal.find(params[:id])
+    set_deal
     authorize @deal
     @deal.update(quote_params)
     redirect_to carrier_shipments_path
@@ -98,8 +101,8 @@ class DealsController < ApplicationController
 
   private
 
-  def set_shipment
-    @shipment = Shipment.find(params[:id])
+  def set_deal
+    @deal = Deal.find(params[:id])
   end
 
   def shipment_params

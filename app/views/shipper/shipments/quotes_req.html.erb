@@ -50,11 +50,13 @@
               <p>備考欄：<%= @shipment_details[:pickup].additional_info %></p>
             </div>
             <div class="quotation__product--pickup">
-              <p>集荷先：<%= @shipment_details[:pickup].post_code %> <%= @shipment_details[:pickup].prefecture %><%= @shipment_details[:pickup].ward %><%= @shipment_details[:pickup].street %></p>
+              <p>集荷先</p>
+              <p>住所：<%= @shipment_details[:pickup].post_code %> <%= @shipment_details[:pickup].prefecture %><%= @shipment_details[:pickup].ward %><%= @shipment_details[:pickup].street %></p>
               <p>集荷時間：<%= @shipment_details[:pickup].time %></p>
             </div>
             <div class="quotation__product--delivery">
-              <p>配達先：<%= @shipment_details[:delivery].post_code %> <%= @shipment_details[:delivery].prefecture %><%= @shipment_details[:delivery].ward %><%= @shipment_details[:delivery].street %></p>
+              <p>配達先</p>
+              <p>住所：<%= @shipment_details[:delivery].post_code %> <%= @shipment_details[:delivery].prefecture %><%= @shipment_details[:delivery].ward %><%= @shipment_details[:delivery].street %></p>
               <p>配達時間：<%= @shipment_details[:delivery].time %></p>
             </div>
           </div>
