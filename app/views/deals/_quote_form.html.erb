@@ -38,7 +38,7 @@
         <%= f.error_notification %>
         <p>合計金額</p>
         <p><%= @deal.total_price %></p>
-        <%= f.hidden_field :total_price, label: "合計金額", required: true %>
+        <%= f.hidden_field :total_price, required: true %>
         <%= f.button :submit, "見積りを修正する", name: "back" %>
         <%= f.button :submit, "見積りを送信する" %>
       <% end %>
