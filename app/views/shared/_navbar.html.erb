@@ -34,7 +34,13 @@
           <i class="fa fa-user-circle avatar dropdown-toggle" data-toggle="dropdown"></i>
           <ul id="avatar__navbar" class="dropdown-menu dropdown-menu-right">
             <li>
-              <%= link_to t(".company_profile", default: "会社情報"), edit_carrier_registration_path %>
+              <!-- Signed in + IS Shipper -->
+              <% if current_shipper.present? %>
+                <%= link_to t(".company_profile", default: "会社情報"), edit_shipper_registration_path %>
+              <% else %>
+              <!-- Signed in + IS Carrier -->
+                <%= link_to t(".company_profile", default: "会社情報"), edit_carrier_registration_path %>
+              <% end %>
             </li>
             <li>
               <!-- Signed in + IS Shipper -->

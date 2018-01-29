@@ -1,0 +1,9 @@
+.header--container {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 $spacer--sm 0;
+  h3 {
+    line-height: unset;
+  }
+}
