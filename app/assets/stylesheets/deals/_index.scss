@@ -1,68 +1,85 @@
-.wrapper-deals {
-  padding: 10px;
-  .container {
-    background-color: #ffffff;
-    padding: 10px;
-  }
-  p {
-    margin: 0;
-  }
-}
-.deals-nav-menu {
-  margin: 10px 0px;
-  display: flex;
-  justify-content: space-between;
-  // align-items: center;
-}
-.deals-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  display: flex;
-  white-space: nowrap;
-  &:hover {
-    background-color: #e1e8f2;
+#deals__table {
+  .deals-- {
+    // CONTINUE HERE
+    // Give growth limit based on ... nth-child?
+    // Calc definite values and allocate the rest later.
+    &cell {
+      flex-grow: 1;
+    }
+    &header {
+      flex-grow: 1;
+    }
+    &row {
+      display: flex;
+    }
   }
 }
-.deals-row-nColumn {
-  border-right: 1px solid rgba(0, 0, 0, 0.5);
-  height: 140px;
-  // line-height: 40px;
-  padding-right: 15px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.deals-id {
-  width: 120px;
-}
-.deals-pickup {
-  width: 200px;
-  p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-.deals-delivery {
-  width: 200px;
-  p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-.deals-terms {
-  width: 100px;
-}
-.deals-rate {
-  width: 100px;
-  text-align: right;
-}
-.deals-carrier {
-  width: 200px;
-}
-.deals-shipping-status {
-  width: 200px;
-}
-.deals-row {
-  .column-header {
-    height: 40px;
-    line-height: 40px;
-  }
-}
+
+// .wrapper-deals {
+//   padding: 10px;
+//   .container {
+//     background-color: #ffffff;
+//     padding: 10px;
+//   }
+//   p {
+//     margin: 0;
+//   }
+// }
+// .deals-nav-menu {
+//   margin: 10px 0px;
+//   display: flex;
+//   justify-content: space-between;
+//   // align-items: center;
+// }
+// .deals--row {
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+//   display: flex;
+//   white-space: nowrap;
+//   &:hover {
+//     background-color: #e1e8f2;
+//   }
+// }
+// .deals--row-nColumn {
+//   border-right: 1px solid rgba(0, 0, 0, 0.5);
+//   height: 140px;
+//   // line-height: 40px;
+//   padding-right: 15px;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+// .deals-id {
+//   width: 120px;
+// }
+// .deals-pickup {
+//   width: 200px;
+//   p {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//   }
+// }
+// .deals-delivery {
+//   width: 200px;
+//   p {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//   }
+// }
+// .deals-terms {
+//   width: 100px;
+// }
+// .deals-rate {
+//   width: 100px;
+//   text-align: right;
+// }
+// .deals-carrier {
+//   width: 200px;
+// }
+// .deals-shipping-status {
+//   width: 200px;
+// }
+// .deals--row {
+//   .column-header {
+//     height: 40px;
+//     line-height: 40px;
+//   }
+// }

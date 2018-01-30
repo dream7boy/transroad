@@ -1,35 +1,111 @@
-<div class="deals-row">
-  <div class="deals-row-nColumn column-header deals-id">
+<div id="deals__table" class="row row--block">
+
+  <div class="deals--row">
+    <div class="deals--header debug"></div>
+    <div class="deals--header debug">運送予定期間</div>
+    <div class="deals--header debug">運送頻度</div>
+    <div class="deals--header debug">荷物の種類</div>
+    <div class="deals--header debug">集荷先</div>
+    <div class="deals--header debug">配送先</div>
+    <div class="deals--header debug">往復距離<i class="fa fa-question-circle" aria-hidden="true"></i></div>
+  </div>
+
+  <%= simple_form_for :deal, url: carrier_shipments_next_transit_path, method: :patch do |f| %>
+    <% @deals.each do |deal| %>
+      <div class="deals--row">
+
+        <div class="deals--cell debug">
+          <% if params[:action] == 'index' %>
+            <p><span style="color:blue"><%= deal[:deal].deal_status %></span></p>
+          <% end %>
+        </div>
+
+        <div class="deals--cell debug">
+          <p>Deal-ID:<%= deal[:deal].id %></p>
+          <p>Ship-ID:<%= deal[:deal].shipment.id %></p>
+          <p><%= link_to "見積書を作成", new_quotes_path(deal[:deal]), class: "btn btn-primary" %></p>
+          <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
+            <p><% @ids_for_params << deal[:deal].id %><%= f.input_field deal[:deal].id, as: :boolean, checked_value: deal[:deal].id %></p>
+          <% end %>
+        </div>
+
+        <div class="deals--cell debug">
+          <p>P-ID:<%= deal[:pickup].id %> <%= deal[:pickup].company_name %></p>
+          <p><%= deal[:pickup].prefecture %><%= deal[:pickup].ward %></p>
+        </div>
+
+        <div class="deals--cell debug">
+          <p>D-ID:<%= deal[:delivery].id %> <%= deal[:delivery].company_name %></p>
+          <p><%= deal[:delivery].prefecture %><%= deal[:delivery].ward %></p>
+        </div>
+
+        <div class="deals--cell debug">
+          <p><%= deal[:deal].shipment.car_type %></p>
+          <p><%= deal[:pickup].weight %>KG</p>
+          <p><%= deal[:pickup].category %></p>
+        </div>
+
+        <div class="deals--cell debug">
+          <p><%= deal[:deal].shipment.distance %>KM</p>
+          <p><%= deal[:deal].shipment.offer_rate %>円</p>
+        </div>
+
+        <div class="deals--cell debug">
+          <p><%= deal[:deal].shipment.shipper.email %></p>
+        </div>
+
+      </div>
+    <% end %>
+
+    <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
+      <%= f.hidden_field :action, value: params[:action] %>
+      <%= f.hidden_field :ids, value: @ids_for_params %>
+      <%= f.button :submit, 'COMPLETE', class: "btn btn-primary" %>
+    <% end %>
+
+  <% end %>
+</div>
+
+
+
+
+
+
+
+<!-- BACKUP DEL LATER 888 -->
+<% if false %>
+<div class="deals--row">
+  <div class="deals--row-nColumn column-header deals-id">
     <p>
       Ship-ID
     </p>
   </div>
-  <div class="deals-row-nColumn column-header deals-pickup">
+  <div class="deals--row-nColumn column-header deals-pickup">
     <p>
       発地
     </p>
   </div>
-  <div class="deals-row-nColumn column-header deals-delivery">
+  <div class="deals--row-nColumn column-header deals-delivery">
     <p>
       着地
     </p>
   </div>
-  <div class="deals-row-nColumn column-header deals-terms">
+  <div class="deals--row-nColumn column-header deals-terms">
     <p>
       Terms
     </p>
   </div>
-  <div class="deals-row-nColumn column-header deals-rate">
+  <div class="deals--row-nColumn column-header deals-rate">
     <p>
       Rate
     </p>
   </div>
-  <div class="deals-row-nColumn column-header deals-carrier">
+  <div class="deals--row-nColumn column-header deals-carrier">
     <p>
       荷主
     </p>
   </div>
-  <div class="deals-row-nColumn column-header deals-shipping-status">
+  <div class="deals--row-nColumn column-header deals-shipping-status">
     <p>
       Shipping-Status
     </p>
@@ -38,8 +114,8 @@
 
 <%= simple_form_for :deal, url: carrier_shipments_next_transit_path, method: :patch do |f| %>
   <% @deals.each do |deal| %>
-    <div class="deals-row">
-      <div class="deals-row-nColumn deals-id">
+    <div class="deals--row">
+      <div class="deals--row-nColumn deals-id">
         <p>
           Deal-ID:<%= deal[:deal].id %>
         </p>
@@ -51,21 +127,18 @@
         </p>
         <% if params[:action] == 'index' %>
 <!--           <p>
-            <%#= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %>
-          </p> -->
+            <%#= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %></p> -->
           <p>
-            <span style="color:blue"><%= deal[:deal].deal_status %></span>
-          </p>
+            <span style="color:blue"><%= deal[:deal].deal_status %></span></p>
         <% end %>
         <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
           <p>
             <% @ids_for_params << deal[:deal].id %>
-            <%= f.input_field deal[:deal].id, as: :boolean, checked_value: deal[:deal].id %>
-          </p>
+            <%= f.input_field deal[:deal].id, as: :boolean, checked_value: deal[:deal].id %></p>
         <% end %>
       </div>
 
-      <div class="deals-row-nColumn deals-pickup">
+      <div class="deals--row-nColumn deals-pickup">
         <p>
           P-ID:<%= deal[:pickup].id %> <%= deal[:pickup].company_name %>
         </p>
@@ -74,7 +147,7 @@
         </p>
       </div>
 
-      <div class="deals-row-nColumn deals-delivery">
+      <div class="deals--row-nColumn deals-delivery">
         <p>
           D-ID:<%= deal[:delivery].id %> <%= deal[:delivery].company_name %>
         </p>
@@ -83,7 +156,7 @@
         </p>
       </div>
 
-      <div class="deals-row-nColumn deals-terms">
+      <div class="deals--row-nColumn deals-terms">
         <p>
           <%= deal[:deal].shipment.car_type %>
         </p>
@@ -95,7 +168,7 @@
         </p>
       </div>
 
-      <div class="deals-row-nColumn deals-rate">
+      <div class="deals--row-nColumn deals-rate">
         <p>
           <%= deal[:deal].shipment.distance %>KM
         </p>
@@ -104,12 +177,12 @@
         </p>
       </div>
 
-      <div class="deals-row-nColumn deals-carrier">
+      <div class="deals--row-nColumn deals-carrier">
         <p>
           <%= deal[:deal].shipment.shipper.email %>
         </p>
       </div>
-      <div class="deals-row-nColumn deals-shipping-status">
+      <div class="deals--row-nColumn deals-shipping-status">
         <p>
           <span style="color:blue"><%= deal[:deal].shipment.transit_status %></span>
         </p>
@@ -122,4 +195,4 @@
     <%= f.button :submit, 'COMPLETE', class: "btn btn-primary" %>
   <% end %>
 <% end %>
-
+<% end %>
