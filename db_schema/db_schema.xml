@@ -266,7 +266,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="748" y="157" name="deals">
+<table x="739" y="156" name="deals">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -304,6 +304,9 @@
 <default>NULL</default></row>
 <row name="driver_name" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
+<default>NULL</default></row>
+<row name="total_price" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -433,6 +436,27 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="quantity" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="967.7999877929688" y="96.4000015258789" name="items">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="deal_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="deals" row="id" />
+</row>
+<row name="name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="price" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
