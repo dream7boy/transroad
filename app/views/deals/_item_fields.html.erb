@@ -1,0 +1,8 @@
+<div class="nested-fields">
+  <div class="form-inline">
+    <%= f.input :name, label: "項目", required: true %>
+    <%= f.input :description, label: "内訳", required: true %>
+    <%= f.input :price, label: "金額", required: true %>
+    <%= link_to_remove_association '項目を削除する', f, class: 'btn btn-primary' %>
+  </div>
+</div>
