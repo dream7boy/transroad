@@ -36,7 +36,7 @@
         <div class="col-xs-8">
           <h4>運送案件の内容</h4>
           <div class="quotation__overview quotation__block">
-            <p>予定期間：<%= @shipment.duration_start %>〜<%= @shipment.duration_end %></p>
+            <p>予定期間：<%= @shipment.duration_start.strftime("%Y年%m月%d日") %>〜<%= @shipment.duration_end.strftime("%Y年%m月%d日") %></p>
             <p>運送頻度：<%= @shipment.frequency %></p>
           </div>
           <!-- START / INCLUDE A FOR EACH ONCE THE PRODUCTS ARE ADDED -->
