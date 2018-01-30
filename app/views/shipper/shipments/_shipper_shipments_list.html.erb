@@ -1,17 +1,5 @@
 <div id="cards__container" class="row row--block">
   <% @shipments.each do |shipment| %>
-    <%# dealYear = dealDateCreated.year %>
-    <%# dealMonth = dealDateCreated.month %>
-    <%# dealDay = dealDateCreated.day %>
-    <%# durationStart = shipment[:shipment].duration_start %>
-    <%# durationStartYear = durationStart.year %>
-    <%# durationStartMonth = durationStart.month %>
-    <%# durationStartDay = durationStart.day %>
-    <%# durationEnd = shipment[:shipment].duration_end %>
-    <%# durationEndYear = durationEnd.year %>
-    <%# durationEndMonth = durationEnd.month %>
-    <%# durationEndDay = durationEnd.day %>
-
     <div class="card__wrapper">
       <div class="card__carrier">
 
@@ -20,7 +8,6 @@
             <% weekday_index = shipment[:shipment].deals.first.created_at.wday %>
             <p><span>依頼日：</span><%= shipment[:shipment].deals.first.created_at.strftime("%Y年%m月%d日") %>(<%= @weekday[weekday_index] %>)</p>
           <% end %>
-
           <p><span>荷物：</span><%= shipment[:pickup].category %></p>
             <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
             <%#= shipment[:pickup].each do | pickup | %>
@@ -55,7 +42,6 @@
 
       </div>
     </div>
-
   <% end %>
 </div>
 

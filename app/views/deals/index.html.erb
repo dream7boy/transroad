@@ -1,23 +1,28 @@
-<!-- app/views/deals/index.html.erb -->
+<% if @deals.present? %>
 
-<div class="wrapper-deals">
-  <div class="container">
-  <%= link_to "(Carrier)Edit your profile", edit_carrier_registration_path %>
-    <h2>(<%= @deals.count %>) My Shipments(deals)</h2>
-    <h3><%= current_carrier.company_name %>(<%= current_carrier.email %>)</h3>
-    <%= render 'deals_nav_menu' %>
-
-    <% if @deals.present? %>
-      <%= render 'deals_shipments_list' %>
-    <% else %>
-      <div>
-        <p>You have no shipments yet.</p>
-        <p>Find shippers who need your help!</p>
-        <%= link_to shipments_path, class: "btn btn-primary" do %>
-          Find New Shipments
-        <% end %>
+  <section id="carrier__dashboard" class="container-fluid section__carrier well--sm">
+    <div class="row row--block">
+      <div class="header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h3 class="bold inline__block">管理画面</h3>
+        <%= render 'deals_nav_menu' %>
+        <%= render 'deals_shipments_list' %>
       </div>
-    <% end %>
+      <div class="body--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%#= render 'shipper_shipments_list' %>
+      </div>
+    </div>
+  </section>
 
-  </div>
-</div>
+<% else %>
+
+  <section id="carrier__dashboard" class="container-fluid section__carrier flex--center--center well--sm">
+    <div class="row row--block">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+          <h2>御見積もり依頼・運送案件はまだありません</h2>
+          <p class="text-center">Btn below is kept for access to Shipments index, remove or comment out if unnecessary.</p>
+          <%= link_to "案件を探す", shipments_path, class: "btn btn-primary btn__null btn__margin--md" %>
+      </div>
+    </div>
+  </section>
+
+<% end %>
