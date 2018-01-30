@@ -36,6 +36,14 @@
     <div>
       <%= simple_form_for @deal, url: update_quotes_path do |f| %>
         <%= f.error_notification %>
+        <div class='form-inline'>
+          <%= f.simple_fields_for :items do |i| %>
+            <%= i.input :name, label: "項目", required: true %>
+            <%= i.input :description, label: "内訳", required: true %>
+            <%= i.input :price, label: "金額", required: true %>
+          <% end %>
+        </div>
+
         <p>合計金額</p>
         <p><%= @deal.total_price %></p>
         <%= f.hidden_field :total_price, required: true %>
@@ -47,6 +55,14 @@
     <div>
       <%= simple_form_for @deal, method: :post, url: confirm_quotes_path do |f| %>
         <%= f.error_notification %>
+        <div class='form-inline'>
+          <%= f.simple_fields_for :items do |i| %>
+            <%= i.input :name, label: "項目", required: true %>
+            <%= i.input :description, label: "内訳", required: true %>
+            <%= i.input :price, label: "金額", required: true %>
+          <% end %>
+        </div>
+
         <%= f.input :total_price, label: "合計金額", required: true %>
         <%= f.button :submit, "見積り内容を確認する" %>
       <% end %>

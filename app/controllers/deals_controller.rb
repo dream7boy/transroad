@@ -21,6 +21,7 @@ class DealsController < ApplicationController
     @carriers_ids = params[:carriers][:ids].split(" ")
     @carriers_ids.each do |carrier_id|
       @deal = @shipment.deals.build(deal_status: 'new', carrier_id: carrier_id)
+      @deal.items.build
       authorize @deal
       @deal.save
     end
@@ -44,7 +45,8 @@ class DealsController < ApplicationController
   def confirm
     set_deal
 
-    @deal.total_price = quote_params[:total_price]
+    @deal.attributes = quote_params
+    # @deal.total_price = quote_params[:total_price]
     render :new if @deal.invalid?
   end
 
@@ -52,12 +54,13 @@ class DealsController < ApplicationController
     set_deal
 
     if params[:back]
-      @deal.total_price = quote_params[:total_price]
+      @deal.attributes = quote_params
       render :new
     elsif @deal.update(quote_params)
       # redirect_to carrier_shipments_path
       render :complete
     else
+      @deal.attributes = quote_params
       render :new
     end
   end
@@ -134,7 +137,8 @@ class DealsController < ApplicationController
   end
 
   def quote_params
-    params.require(:deal).permit(:total_price)
+    params.require(:deal).permit(:total_price,
+      items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy))
   end
 
   def set_deals(transit_status)
