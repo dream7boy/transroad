@@ -1,31 +1,32 @@
 <div id="cards__container" class="row row--block">
   <% @shipments.each do |shipment| %>
-    <% weekDay = %w(月 火 水 木 金 土 日) %>
-    <% dealDateCreated = shipment[:shipment].deals.first.created_at  %>
-    <% dealWeekDayInteger = dealDateCreated.wday %>
-    <% dealYear = dealDateCreated.year %>
-    <% dealMonth = dealDateCreated.month %>
-    <% dealDay = dealDateCreated.day %>
-    <% durationStart = shipment[:shipment].duration_start %>
-    <% durationStartYear = durationStart.year %>
-    <% durationStartMonth = durationStart.month %>
-    <% durationStartDay = durationStart.day %>
-    <% durationEnd = shipment[:shipment].duration_end %>
-    <% durationEndYear = durationEnd.year %>
-    <% durationEndMonth = durationEnd.month %>
-    <% durationEndDay = durationEnd.day %>
+    <%# dealYear = dealDateCreated.year %>
+    <%# dealMonth = dealDateCreated.month %>
+    <%# dealDay = dealDateCreated.day %>
+    <%# durationStart = shipment[:shipment].duration_start %>
+    <%# durationStartYear = durationStart.year %>
+    <%# durationStartMonth = durationStart.month %>
+    <%# durationStartDay = durationStart.day %>
+    <%# durationEnd = shipment[:shipment].duration_end %>
+    <%# durationEndYear = durationEnd.year %>
+    <%# durationEndMonth = durationEnd.month %>
+    <%# durationEndDay = durationEnd.day %>
 
     <div class="card__wrapper">
       <div class="card__carrier">
 
         <div class="card__carrier--info">
-          <p><span>依頼日：</span><%= dealYear %>年<%= dealMonth %>月<%= dealDay %>日(<%= weekDay[dealWeekDayInteger] %>)</p>
+          <% if shipment[:shipment].deals.present? %>
+            <% weekday_index = shipment[:shipment].deals.first.created_at.wday %>
+            <p><span>依頼日：</span><%= shipment[:shipment].deals.first.created_at.strftime("%Y年%m月%d日") %>(<%= @weekday[weekday_index] %>)</p>
+          <% end %>
+
           <p><span>荷物：</span><%= shipment[:pickup].category %></p>
             <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
             <%#= shipment[:pickup].each do | pickup | %>
               <!-- <p><%#= pickup.category %></p> -->
             <%# end %>
-          <p><span>予定期間：</span><%= durationStartYear %>年<%= durationStartMonth %>月〜<%= durationEndYear %>年<%= durationEndMonth %>月</p>
+          <p><span>予定期間：</span><%= shipment[:shipment].duration_start.strftime("%Y年%m月") %>〜<%= shipment[:shipment].duration_end.strftime("%Y年%m月") %></p>
         </div>
 
         <ul class="card__list--container">

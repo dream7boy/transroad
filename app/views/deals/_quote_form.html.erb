@@ -6,7 +6,7 @@
   <% end %>
   <div>
     <p>依頼主：<%= @deal_details[:shipper].company_name %></p>
-    <p>予定期間：<%= @deal_details[:shipment].duration_start %>〜<%= @deal_details[:shipment].duration_end %></p>
+    <p>予定期間：<%= @deal_details[:shipment].duration_start.strftime("%Y年%m月%d日") %>〜<%= @deal_details[:shipment].duration_end.strftime("%Y年%m月%d日") %></p>
     <p>運送頻度：<%= @deal_details[:shipment].frequency %></p>
     <p>荷物の種類：<%= @deal_details[:pickup].category %></p>
     <p>寸法(cm)：横幅 <%= @deal_details[:pickup].size_width %> x 奥行 <%= @deal_details[:pickup].size_depth %> x 縦幅 <%= @deal_details[:pickup].size_height %></p>

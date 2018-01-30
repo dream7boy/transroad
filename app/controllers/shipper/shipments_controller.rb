@@ -23,6 +23,7 @@ class Shipper::ShipmentsController < ApplicationController
                   end
       }
     end
+    @weekday = %w(日 月 火 水 木 金 土)
 
     # @shipments = @all_shipments.map do |shipment|
     #   {
