@@ -44,7 +44,6 @@ class DealsController < ApplicationController
 
   def confirm
     set_deal
-
     @deal.attributes = quote_params
     # @deal.total_price = quote_params[:total_price]
     render :new if @deal.invalid?
