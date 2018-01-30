@@ -1,5 +1,5 @@
 <div class="pickup__form nested-fields fields-row debug">
-  <div class='form-inline'>
+  <div class="form-inline">
     <%= f.input :size, label: "車両サイズ", collection: Vehicle::SIZES, prompt: "選択してください", required: true %>
     <%#= f.input :size, label: "車両サイズ", collection: Vehicle::SIZES, selected: Vehicle::SIZES[2], required: true %>
     <%= f.input :vehicle_type, label: "車両形状", collection: Vehicle::VEHICLE_TYPES, prompt: "選択してください", required: true %>
