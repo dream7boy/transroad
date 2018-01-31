@@ -34,9 +34,9 @@
 
   <% if params[:action] == 'confirm' %>
     <div>
-      <% @deal.items.each do |item| %>
+      <% @deal_items.each do |item| %>
         <div>
-          <p>項目：<%= item.name %> 内訳：<%= item.description %> 金額：<%= item.price %>
+          <p>項目：<%= item[:name] %> 内訳：<%= item[:description] %> 金額：<%= item[:price] %>
           </p>
         </div>
       <% end %>
@@ -52,6 +52,7 @@
             <%= i.hidden_field :name, label: "項目", required: true %>
             <%= i.hidden_field :description, label: "内訳", required: true %>
             <%= i.hidden_field :price, label: "金額", required: true %>
+            <%= i.hidden_field :_destroy %>
           </div>
         <% end %>
 

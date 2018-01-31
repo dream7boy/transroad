@@ -45,8 +45,23 @@ class DealsController < ApplicationController
   def confirm
     set_deal
 
+    permitted = params.require(:deal).permit(items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy))
+    attributes = permitted[:items_attributes].to_h || {}
+
+    @deal_items = attributes.map do |attribute|
+      unless attribute[1][:_destroy] == "1" || attribute[1][:_destroy] == "true"
+        {
+          id: attribute[1][:id],
+          name: attribute[1][:name],
+          description: attribute[1][:description],
+          price: attribute[1][:price],
+          _destroy: attribute[1][:_destroy]
+        }
+      end
+    end
+    @deal_items.compact!
+
     @deal.attributes = quote_params
-    # @deal.total_price = quote_params[:total_price]
     render :new if @deal.invalid?
   end
 
