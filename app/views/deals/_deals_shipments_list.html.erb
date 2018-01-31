@@ -10,52 +10,42 @@
     <div class="deals--header"><p>往復距離&ensp;<i class="fa fa-question-circle" aria-hidden="true"></i></p></div>
   </div>
 
-  <%= simple_form_for :deal, url: carrier_shipments_next_transit_path, method: :patch do |f| %>
-    <% @deals.each do |deal| %>
-      <div class="deals--row">
+  <% @deals.each do |deal| %>
+    <div class="deals--row">
 
-        <% if params[:action] == 'index' %>
-          <div class="deals--cell new">
-            <p>新規</p>
-          </div>
-        <% end %>
-
-        <div class="deals--cell">
-          <p><%= deal[:deal].shipment.duration_start.strftime("%Y年%m月%d日") %>〜<%= deal[:deal].shipment.duration_end.strftime("%Y年%m月%d日") %></p>
-        </div>
-
-        <div class="deals--cell">
-          <p><%= deal[:deal].shipment.frequency %></p>
-        </div>
-        <div class="deals--cell">
-          <p><%= deal[:pickup].category %></p>
-        </div>
-
-        <div class="deals--cell">
-          <p><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %></p>
-          <p><%= deal[:pickup].time %></p>
-        </div>
-
-        <div class="deals--cell">
-          <p><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %></p>
-          <p><%= deal[:delivery].time %></p>
-        </div>
-
-        <div class="deals--cell">
-          <p class="hidden"><%= deal[:deal].shipment.distance %></p>
-          <p>約250km</p>
-        </div>
-
+      <div class="deals--cell new">
+        <p>新規</p>
       </div>
-    <% end %>
 
-    <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
-      <%= f.hidden_field :action, value: params[:action] %>
-      <%= f.hidden_field :ids, value: @ids_for_params %>
-      <%= f.button :submit, 'COMPLETE', class: "btn btn-primary" %>
-    <% end %>
+      <div class="deals--cell">
+        <p><%= deal[:deal].shipment.duration_start.strftime("%Y年%m月%d日") %>〜<%= deal[:deal].shipment.duration_end.strftime("%Y年%m月%d日") %></p>
+      </div>
 
+      <div class="deals--cell">
+        <p><%= deal[:deal].shipment.frequency %></p>
+      </div>
+      <div class="deals--cell">
+        <p><%= deal[:pickup].category %></p>
+      </div>
+
+      <div class="deals--cell">
+        <p><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %></p>
+        <p><%= deal[:pickup].time %></p>
+      </div>
+
+      <div class="deals--cell">
+        <p><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %></p>
+        <p><%= deal[:delivery].time %></p>
+      </div>
+
+      <div class="deals--cell">
+        <p class="hidden"><%= deal[:deal].shipment.distance %></p>
+        <p>約250km</p>
+      </div>
+
+    </div>
   <% end %>
+
 </div>
 
 
