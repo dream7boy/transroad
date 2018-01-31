@@ -1,68 +1,61 @@
-.wrapper-deals {
-  padding: 10px;
-  .container {
-    background-color: #ffffff;
-    padding: 10px;
-  }
-  p {
-    margin: 0;
-  }
+%extTableCellBasics {
+  flex-grow: 1;
+  padding: 4px 0 4px 18px;
 }
-.deals-nav-menu {
-  margin: 10px 0px;
-  display: flex;
-  justify-content: space-between;
-  // align-items: center;
-}
-.deals-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  display: flex;
-  white-space: nowrap;
-  &:hover {
-    background-color: #e1e8f2;
-  }
-}
-.deals-row-nColumn {
-  border-right: 1px solid rgba(0, 0, 0, 0.5);
-  height: 140px;
-  // line-height: 40px;
-  padding-right: 15px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.deals-id {
-  width: 120px;
-}
-.deals-pickup {
-  width: 200px;
-  p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-.deals-delivery {
-  width: 200px;
-  p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-.deals-terms {
-  width: 100px;
-}
-.deals-rate {
-  width: 100px;
-  text-align: right;
-}
-.deals-carrier {
-  width: 200px;
-}
-.deals-shipping-status {
-  width: 200px;
-}
-.deals-row {
-  .column-header {
-    height: 40px;
-    line-height: 40px;
+#deals__table {
+  .deals-- {
+    &cell {
+      @extend %extTableCellBasics;
+      padding: 12px 0 12px 18px;
+      &.new {
+        background-color: $color__green;
+        height: 100%;
+        padding: 24px 0;
+        p {
+          color: $color--white;
+          font-weight: bolder;
+        }
+      }
+    }
+    &header {
+      @extend %extTableCellBasics;
+      p {
+        font-weight: bolder;
+      }
+    }
+    &row {
+      align-items: center;
+      border-bottom: 1px solid $color--gray-light;
+      display: flex;
+      div{
+        &:nth-child(1) {
+          display: flex;
+          flex-grow: 0;
+          justify-content: center;
+          width: 50px;
+        }
+        &:nth-child(2) {
+          width: 300px;
+        }
+        &:nth-child(3) {
+          flex-grow: 0;
+          width: 132px;
+        }
+        &:nth-child(4) {
+          flex-grow: 0;
+          width: 132px;
+        }
+        &:nth-child(5) {
+          width: 132px;
+        }
+        &:nth-child(6) {
+          width: 132px;
+        }
+        &:nth-child(7) {
+          flex-grow: 0;
+          width: 110px;
+        }
+      }
+    }
   }
 }
