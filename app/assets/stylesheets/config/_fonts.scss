@@ -82,7 +82,9 @@ p, a {
 .bold {
   font-weight: bolder;
 }
-.color__sub {
+.color__main {
+    color: $color__theme--main;
+}.color__sub {
     color: $color__theme--sub;
 }
 
