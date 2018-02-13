@@ -45,7 +45,7 @@
         <p>合計金額：<%= @deal.total_price %></p>
       </div>
 
-      <%= simple_form_for @deal, url: update_quotes_path do |f| %>
+      <%= simple_form_for @deal, url: update_quote_path do |f| %>
         <%= f.error_notification %>
         <%= f.simple_fields_for :items do |i| %>
           <div class='form-inline'>
@@ -67,7 +67,7 @@
     </div>
   <% else %>
     <div>
-      <%= simple_form_for @deal, method: :post, url: confirm_quotes_path do |f| %>
+      <%= simple_form_for @deal, method: :post, url: confirm_quote_path do |f| %>
         <%= f.error_notification %>
         <div id="deal__items__container">
           <%= f.simple_fields_for :items do |i| %>
