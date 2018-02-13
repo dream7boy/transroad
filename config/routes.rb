@@ -41,9 +41,9 @@ Rails.application.routes.draw do
   # end
 
   get 'carrier/shipments', to: 'deals#index'
-  get 'carrier/quotes/:id/new', to: 'deals#new', as: :new_quotes
-  post 'carrier/quotes/:id/confirm', to: 'deals#confirm', as: :confirm_quotes
-  patch 'carrier/quotes/:id', to: 'deals#update', as: :update_quotes
+  get 'carrier/quotes/:id/new', to: 'deals#new', as: :new_quote
+  post 'carrier/quotes/:id/confirm', to: 'deals#confirm', as: :confirm_quote
+  patch 'carrier/quotes/:id', to: 'deals#update', as: :update_quote
   get 'carrier/shipments/pre-transit', to: 'deals#pre_transit_index'
   patch 'carrier/shipments/next-transit', to: 'deals#to_next_transit'
   get 'carrier/shipments/in-transit', to: 'deals#in_transit_index'
