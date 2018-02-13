@@ -11,183 +11,109 @@
   </div>
 
   <% @deals.each do |deal| %>
-    <div class="deals--row">
 
+    <div class="deals--row" data-toggle="modal" data-target='#modalDeal<%= deal[:deal].id %>'>
       <div class="deals--cell new">
         <p>新規</p>
       </div>
-
       <div class="deals--cell">
         <p><%= deal[:deal].shipment.duration_start.strftime("%Y年%m月%d日") %>〜<%= deal[:deal].shipment.duration_end.strftime("%Y年%m月%d日") %></p>
       </div>
-
       <div class="deals--cell">
         <p><%= deal[:deal].shipment.frequency %></p>
       </div>
       <div class="deals--cell">
         <p><%= deal[:pickup].category %></p>
       </div>
-
       <div class="deals--cell">
         <p><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %></p>
         <p><%= deal[:pickup].time %></p>
       </div>
-
       <div class="deals--cell">
         <p><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %></p>
         <p><%= deal[:delivery].time %></p>
       </div>
-
       <div class="deals--cell">
         <p class="hidden"><%= deal[:deal].shipment.distance %></p>
         <p>約250km</p>
       </div>
-
     </div>
+
+    <div id='modalDeal<%= deal[:deal].id %>' class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="sidebar">
+            <div class="modal--summary">
+              <h4>運送案件概要</h4>
+              <p><span class="bold">予定期間：</span><%= deal[:deal].shipment.duration_start.strftime("%Y年%m月%d日") %>〜<br>&emsp;&emsp;&emsp;&emsp;&emsp;<%= deal[:deal].shipment.duration_end.strftime("%Y年%m月%d日") %></p>
+              <p><span class="bold">運送頻度：</span><%= deal[:deal].shipment.frequency %></p>
+              <p><span class="bold">荷物：</span><%= deal[:pickup].category %></p>
+              <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
+              <%#= deal[:pickup].each do | pickup | %>
+                <!-- <p><%#= pickup.category %></p> -->
+              <%# end %>
+              <p><span class="bold">依頼主：</span><%= deal[:deal].shipment.shipper.name_kanji %></p>
+              <p><span class="bold">集荷先：</span><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %></p>
+              <p><span class="bold">配達先：</span><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %></p>
+              <p><span class="bold">往復距離：</span><%= deal[:deal].shipment.distance %>215km</p>
+            </div>
+            <div class="modal--map"></div>
+          </div>
+
+          <div class="modal--details">
+            <div class="row--block">
+
+              <div class="modal--details--pickup">
+                <h4>集荷先</h4>
+                <div class="details--pickup--case">
+                  <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
+                  <%#= deal[:pickup].each do | pickup | %>
+                  <div class="details--pickup--card">
+                    <p class="bold"><i class="fa fa-map-marker color__sub" aria-hidden="true"></i>&emsp;集荷先(1/1)</p>
+                    <p><span class="bold">住所：</span><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %><br>&emsp;&emsp;&emsp;<%= deal[:pickup].street %></p>
+                    <p><span class="bold">集荷時間：</span><%= deal[:pickup].time %></p>
+                    <p><span class="bold">車庫からの距離：</span>約<%= deal[:deal].shipment.distance %>215km*</p>
+                    <br>
+                    <p><span class="bold">荷物：</span><%= deal[:pickup].category %></p>
+                    <p><span class="bold">寸法：</span>横<%= deal[:pickup].size_width %> x 奥<%= deal[:pickup].size_depth %> x 縦<%= deal[:pickup].size_height %></p>
+                    <p><span class="bold">個数：</span><%= deal[:pickup].quantity %>個</p>
+                    <p><span class="bold">単体重量：</span><%= deal[:pickup].weight %>kg</p>
+                    <p><span class="bold">単体容積重量：</span>777kg*</p>
+                    <p><span class="bold">温度管理：</span><%= deal[:pickup].temperature %></p>
+                    <p><span class="bold">備考欄：</span><%= deal[:pickup].additional_info %></p>
+                  </div>
+                  <%# end %>
+                </div>
+              </div>
+              <hr class="simple">
+              <div class="modal--details--delivery">
+                <h4><i class="fa fa-map-marker color__main" aria-hidden="true"></i>&emsp;配送先</h4>
+                <div class="details--delivery--case">
+                  <div>
+                    <p><span class="bold">住所：</span><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %>&emsp;<%= deal[:delivery].street %></p>
+                    <p><span class="bold">配達時間：</span><%= deal[:delivery].time %></p>
+                  </div>
+                  <div>
+                    <p><span class="bold">最終集荷地からの距離：</span>約<%= deal[:deal].shipment.distance %>35km*</p>
+                    <p><span class="bold">車庫までの距離：</span>約<%= deal[:deal].shipment.distance %>85km*</p>
+                  </div>
+                </div>
+              </div>
+              <hr class="simple">
+              <div class="modal--details--btnCase">
+                <%#= link_to '依頼主に質問', '#', class: 'btn btn-primary btn__null btn__size--sm col-xs-3' %>
+                <!-- path to new new quotation? -->
+                <%= link_to '見積書を作成', '#', class: 'btn btn-primary btn__null btn__size--sm col-xs-12' %>
+              </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <% end %>
 
 </div>
-
-
-
-
-
-
-
-<!-- BACKUP DEL LATER 888 -->
-<% if false %>
-
-<% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
-<p class="hidden"><% @ids_for_params << deal[:deal].id %><%= f.input_field deal[:deal].id, as: :boolean, checked_value: deal[:deal].id %></p>
-<% end %>
-<p class="hidden"><%= link_to "見積書を作成", new_quotes_path(deal[:deal]), class: "btn btn-primary" %></p>
-<p class="hidden"><%= deal[:delivery].prefecture %><%= deal[:delivery].ward %></p>
-<p class="hidden"><%= deal[:deal].shipment.car_type %></p>
-<p class="hidden"><%= deal[:pickup].weight %>KG</p>
-<p class="hidden"><%= deal[:pickup].category %></p>
-<p class="hidden"><%= deal[:deal].shipment.distance %>KM</p>
-<p class="hidden"><%= deal[:deal].shipment.offer_rate %>円</p>
-
-<div class="deals--row">
-  <div class="deals--row-nColumn column-header deals-id">
-    <p>
-      Ship-ID
-    </p>
-  </div>
-  <div class="deals--row-nColumn column-header deals-pickup">
-    <p>
-      発地
-    </p>
-  </div>
-  <div class="deals--row-nColumn column-header deals-delivery">
-    <p>
-      着地
-    </p>
-  </div>
-  <div class="deals--row-nColumn column-header deals-terms">
-    <p>
-      Terms
-    </p>
-  </div>
-  <div class="deals--row-nColumn column-header deals-rate">
-    <p>
-      Rate
-    </p>
-  </div>
-  <div class="deals--row-nColumn column-header deals-carrier">
-    <p>
-      荷主
-    </p>
-  </div>
-  <div class="deals--row-nColumn column-header deals-shipping-status">
-    <p>
-      Shipping-Status
-    </p>
-  </div>
-</div>
-
-<%= simple_form_for :deal, url: carrier_shipments_next_transit_path, method: :patch do |f| %>
-  <% @deals.each do |deal| %>
-    <div class="deals--row">
-      <div class="deals--row-nColumn deals-id">
-        <p>
-          Deal-ID:<%= deal[:deal].id %>
-        </p>
-        <p>
-          Ship-ID:<%= deal[:deal].shipment.id %>
-        </p>
-        <p>
-          <%= link_to "見積書を作成", new_quotes_path(deal[:deal]), class: "btn btn-primary" %>
-        </p>
-        <% if params[:action] == 'index' %>
-<!--           <p>
-            <%#= deal[:deal].created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %></p> -->
-          <p>
-            <span style="color:blue"><%= deal[:deal].deal_status %></span></p>
-        <% end %>
-        <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
-          <p>
-            <% @ids_for_params << deal[:deal].id %>
-            <%= f.input_field deal[:deal].id, as: :boolean, checked_value: deal[:deal].id %></p>
-        <% end %>
-      </div>
-
-      <div class="deals--row-nColumn deals-pickup">
-        <p>
-          P-ID:<%= deal[:pickup].id %> <%= deal[:pickup].company_name %>
-        </p>
-        <p>
-          <%= deal[:pickup].prefecture %><%= deal[:pickup].ward %>
-        </p>
-      </div>
-
-      <div class="deals--row-nColumn deals-delivery">
-        <p>
-          D-ID:<%= deal[:delivery].id %> <%= deal[:delivery].company_name %>
-        </p>
-        <p>
-          <%= deal[:delivery].prefecture %><%= deal[:delivery].ward %>
-        </p>
-      </div>
-
-      <div class="deals--row-nColumn deals-terms">
-        <p>
-          <%= deal[:deal].shipment.car_type %>
-        </p>
-        <p>
-          <%= deal[:pickup].weight %>KG
-        </p>
-        <p>
-          <%= deal[:pickup].category %>
-        </p>
-      </div>
-
-      <div class="deals--row-nColumn deals-rate">
-        <p>
-          <%= deal[:deal].shipment.distance %>KM
-        </p>
-        <p>
-          <%= deal[:deal].shipment.offer_rate %>円
-        </p>
-      </div>
-
-      <div class="deals--row-nColumn deals-carrier">
-        <p>
-          <%= deal[:deal].shipment.shipper.email %>
-        </p>
-      </div>
-      <div class="deals--row-nColumn deals-shipping-status">
-        <p>
-          <span style="color:blue"><%= deal[:deal].shipment.transit_status %></span>
-        </p>
-      </div>
-    </div>
-  <% end %>
-  <% unless params[:action] == 'post_transit_index' || params[:action] == 'index' %>
-    <%= f.hidden_field :action, value: params[:action] %>
-    <%= f.hidden_field :ids, value: @ids_for_params %>
-    <%= f.button :submit, 'COMPLETE', class: "btn btn-primary" %>
-  <% end %>
-<% end %>
-
-<% end %>

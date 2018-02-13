@@ -1,0 +1,89 @@
+$modalHeight: 90vh;
+$modalWidth: 85vw;
+div[id^=modalDeal] {
+  .modal-dialog {
+    height: $modalHeight;
+    margin: calc((100vh - #{$modalHeight}) / 2) auto;
+    width: $modalWidth;
+    .modal-content {
+      border-radius: $border-radius;
+      display: flex;
+      height: 100%;
+      overflow: hidden;
+      h4 {
+        margin: 0 0 $spacer--xs 0;
+      }
+      .modal-- {
+        &details {
+          display: inline-block;
+          flex-grow: 1;
+          padding: $spacer--sm;
+          div.row--block {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+            div[class^=modal--details--] {
+              // border-bottom: 1px solid $color--gray-light;
+              // padding: $spacer--sm 0 $spacer--sm 0;
+              &:first-child {
+                // padding: 0 0 $spacer--sm 0;
+              }
+              &:last-child {
+                // border-bottom: none;
+                // padding: $spacer--sm 0 0 0;
+              }
+            }
+          }
+          i {
+            font-size: 2.8rem;
+          }
+          &--pickup,&--delivery,&--btnCase {
+            width: 100%;
+          }
+          &--pickup {
+            .details--pickup--case {
+              width: 100%;
+            }
+            .details--pickup--card {
+              width: 33.333333%;
+            }
+          }
+          &--delivery {
+            .details--delivery--case {
+              display: flex;
+              div {
+                flex-grow: 1;
+              }
+            }
+          }
+          &--btnCase {
+          }
+        }
+        &map {
+          height: calc(#{$modalHeight} / 2);
+          background-image: url(image_path('dummy_map'));
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 135%;
+        }
+        &summary {
+          background-color: $color__theme--main;
+          height: calc(#{$modalHeight} / 2);
+          padding: $spacer--sm;
+          h4,p {
+            color: $color--white;
+          }
+          p {
+            margin: 0 0 5px 0;
+          }
+        }
+      }
+      .sidebar {
+        display: inline-block;
+        height: 100%;
+        width: calc(#{$modalHeight} / 2);
+      }
+    }
+  }
+}

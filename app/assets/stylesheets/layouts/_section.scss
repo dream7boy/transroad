@@ -71,6 +71,10 @@ section {
     border-top: 3px solid $color__theme--sub;
     margin: $spacer--sm 0 calc(#{$spacer--sm} + 4px) 0;
     width: 100%;
+    &.simple {
+      border-top: 1px solid $color--gray;
+      margin: 0;
+    }
   }
   .img__box--horizontal {
     display: flex;
