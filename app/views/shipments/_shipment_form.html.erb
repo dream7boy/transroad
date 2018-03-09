@@ -15,8 +15,8 @@
             <h3>荷物情報</h3>
             <div class="container-fluid input--container">
               <div class="row row--block">
-                <%= f.input :duration_start, label: "案件の開始予定日", required: true, wrapper_html: { class: "col-xs-6" } %>
-                <%= f.input :duration_end, label: "案件の終了予定日", required: true, wrapper_html: { class: "col-xs-6" } %>
+                <%= f.input :duration_start, label: "案件の開始予定日", required: true, wrapper_html: { class: "col-xs-6" }, start_year: Date.today.year, end_year: Date.today.year + 2 %>
+                <%= f.input :duration_end, label: "案件の終了予定日", required: true, wrapper_html: { class: "col-xs-6" }, start_year: Date.today.year, end_year: Date.today.year + 2 %>
               </div>
             </div>
             <%= f.input :frequency, label: "運送頻度", collection: %w(週に1回 2週間に1回 月に1回 その他), prompt: "選択してください", required: true %>
@@ -131,3 +131,29 @@
     </div>
   </div>
 </section>
+
+
+<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<%= javascript_include_tag('jquery.jpostal') %>
+<script>
+  $(function (){
+    $('#shipment_pickups_attributes_0_post_code').jpostal({
+      postcode : [ '#shipment_pickups_attributes_0_post_code' ],
+      address  : {
+        '#shipment_pickups_attributes_0_prefecture' : '%3',
+        '#shipment_pickups_attributes_0_ward'       : '%4',
+        '#shipment_pickups_attributes_0_street'     : '%5'
+      }
+    });
+  });
+  $(function (){
+    $('#shipment_deliveries_attributes_0_post_code').jpostal({
+      postcode : [ '#shipment_deliveries_attributes_0_post_code' ],
+      address  : {
+        '#shipment_deliveries_attributes_0_prefecture' : '%3',
+        '#shipment_deliveries_attributes_0_ward'       : '%4',
+        '#shipment_deliveries_attributes_0_street'     : '%5'
+      }
+    });
+  });
+</script>
