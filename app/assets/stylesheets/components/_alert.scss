@@ -1,24 +1,40 @@
-/* -------------------------------------
- * Your CSS code for flash notices and alerts
-* ------------------------------------- */
-
+// CSS CODE FOR FLASH NOTICES AND ALERTS
 .alert {
-  margin: 0;
-  text-align: center;
-  color: white;
-}
-.alert-info {
-  background: $green;
-}
-.alert-warning {
-  background: $red;
-}
-.alert--null {
-  &.alert-danger {
-    background-color: $red;
-    border-radius: 0;
-    border: none;
-    margin: $spacer--sm 0;
-    padding: $spacer--xs;
+  align-items: center;
+  border-radius: 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  min-height: $navbar__height;
+  margin: 0 auto;
+  padding: $spacer--xs;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  &-info {
+    background: $green;
+  }
+  &-warning {
+    background: $red;
+  }
+  &--null {
+    &.alert-danger {
+      color: $color--white;
+      background-color: $red;
+    }
+  }
+  button.close {
+    color: $color--white;
+    font-size: 42px;
+    opacity: 0.6;
+    position: absolute;
+    right: 20px;
+    top: -5px;
+  }
+  p {
+    color: white;
+    font-weight: bolder;
   }
 }
