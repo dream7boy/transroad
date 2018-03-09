@@ -6,3 +6,11 @@
 //= require bootstrap-datetimepicker
 //= require cocoon
 //= require_tree .
+
+
+// AUTO CLEAR ALERT AFTER X SECONDS
+$('document').ready(function() {
+  setTimeout(function() {
+    $('.alert').slideUp();
+  }, 1250);
+});
