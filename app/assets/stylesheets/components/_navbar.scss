@@ -2,7 +2,6 @@ body {
   padding-top: $navbar__height;
 }
 #navigation__bar {
-  // align-items: center;
   background: $color--white--transparent;
   box-shadow: $box-shadow--default;
   display: flex;
@@ -65,6 +64,7 @@ body {
 @media (min-width: 992px) {
   #navigation__bar {
     padding: 0 $spacer--sm;
+    // START / AVATAR MENU
     #avatar__navbar {
       background-color: $color__theme--sub;
       border-radius: $border-radius;
@@ -106,6 +106,7 @@ body {
         }
       }
     }
+    // END / AVATAR MENU
     #desktop--dropdown {
       .avatar {
         color: $color__theme--sub;
@@ -116,9 +117,10 @@ body {
         height: 100%;
       }
     }
-    div.dropdown.open > #avatar__navbar { // Temporary test to disable click
+    div.dropdown.open > #avatar__navbar {
       display: block !important;
     }
+    // START / NAVBAR RIGHT-SIDE MENU
     .navbar--right {
       ul {
         align-items: unset;
@@ -130,18 +132,16 @@ body {
           display: none;
         }
         &.sub-list {
+          background-color: $color__theme--main;
           box-shadow: $box-shadow--default;
           display: none;
           margin-top: 14px;
           padding: 0;
           a {
             padding: 0;
-            &:hover li {
-              text-decoration: underline;
-            }
             li {
               color: $color--white;
-              padding: 15px 13px;
+              padding: 14px 13px;
             }
           }
         }
@@ -150,7 +150,6 @@ body {
           &:hover {
             background-color: $color__theme--main;
             max-height: $navbar__height;
-            padding: 14px 0 0 0;
             a {
               color: $color--white;
               font-weight: bold;
@@ -160,14 +159,15 @@ body {
             }
             ul.sub-list {
               display: block;
-              li:hover {
-                padding: 15px 13px;
+              a:hover {
+                text-decoration: underline;
               }
             }
           }
         }
       }
     }
+    // END / NAVBAR RIGHT-SIDE MENU
     .user__name {
       float: left;
       font-size: $font__p;
