@@ -28,7 +28,6 @@
         <% end %>
 
         <!-- DESKTOP DROPDOWN / Avatar + Account Dropdown Menu -->
-        <!-- Might be best to change from a "click-toggle" to a "hover-toggle" and keep it consistent with the rest of the menu. 888 -->
         <div class="dropdown">
           <%#= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <i class="fa fa-user-circle avatar dropdown-toggle" data-toggle="dropdown"></i>
@@ -45,10 +44,10 @@
             <li>
               <!-- Signed in + IS Shipper -->
               <% if current_shipper.present? %>
-                <%= link_to t(".sign_out", default: "ログアウトする"), destroy_shipper_session_path, method: :delete %>
+                <%= link_to t(".sign_out", default: "ログアウト"), destroy_shipper_session_path, method: :delete %>
               <% else %>
               <!-- Signed in + IS Carrier -->
-                <%= link_to t(".sign_out", default: "ログアウトする"), destroy_carrier_session_path, method: :delete %>
+                <%= link_to t(".sign_out", default: "ログアウト"), destroy_carrier_session_path, method: :delete %>
               <% end %>
             </li>
           </ul>
