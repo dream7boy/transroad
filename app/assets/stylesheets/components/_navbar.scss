@@ -66,7 +66,7 @@ body {
   #navigation__bar {
     padding: 0 $spacer--sm;
     #avatar__navbar {
-      background-color: $color__theme--main;
+      background-color: $color__theme--sub;
       border-radius: $border-radius;
       border: 0;
       box-shadow: $box-shadow--default;
@@ -75,10 +75,10 @@ body {
       right: -15px;
       top: 64px;
       &:before {
-        background-color: $color__theme--main;
-        border-left: 1px solid $color__theme--main;
+        background-color: $color__theme--sub;
+        border-left: 1px solid $color__theme--sub;
         border-radius: $border-radius;
-        border-top: 1px solid $color__theme--main;
+        border-top: 1px solid $color__theme--sub;
         content: " ";
         height: 40px;
         position: absolute;
@@ -92,8 +92,13 @@ body {
         &:last-child {
           padding-bottom: 14px;
         }
+        &:hover {
+          background-color: initial;
+          text-decoration: underline;
+        }
         a {
           color: $color--white;
+          font-weight: bolder;
           padding: 0 0 0 0;
           &:hover {
             background-color: initial;
@@ -103,22 +108,17 @@ body {
     }
     #desktop--dropdown {
       .avatar {
-        color: $color__theme--main;
+        color: $color__theme--sub;
         font-size: 30px;
         padding: 8px 0 8px 16px;
       }
       .dropdown {
         height: 100%;
-        &:hover {
-          & > #avatar__navbar {
-            display: block !important;
-          }
-        }
       }
     }
-    // div.dropdown.open > #avatar__navbar { // Temporary test to disable click
-      // display: block !important;
-    // }
+    div.dropdown.open > #avatar__navbar { // Temporary test to disable click
+      display: block !important;
+    }
     .navbar--right {
       ul {
         align-items: unset;
@@ -149,6 +149,7 @@ body {
           padding: 14px 0;
           &:hover {
             background-color: $color__theme--main;
+            max-height: $navbar__height;
             padding: 14px 0 0 0;
             a {
               color: $color--white;
