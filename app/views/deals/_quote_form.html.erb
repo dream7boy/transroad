@@ -1,87 +1,25 @@
-<div>
-  <% if params[:action] == 'confirm' %>
-    <h2>見積書の内容確認</h2>
-  <% else %>
-    <h2>見積書を作成</h2>
-  <% end %>
-  <div>
-    <p>依頼主：<%= @deal_details[:shipper].company_name %></p>
-    <p>予定期間：<%= @deal_details[:shipment].duration_start.strftime("%Y年%m月%d日") %>〜<%= @deal_details[:shipment].duration_end.strftime("%Y年%m月%d日") %></p>
-    <p>運送頻度：<%= @deal_details[:shipment].frequency %></p>
-    <p>荷物の種類：<%= @deal_details[:pickup].category %></p>
-    <p>寸法(cm)：横幅 <%= @deal_details[:pickup].size_width %> x 奥行 <%= @deal_details[:pickup].size_depth %> x 縦幅 <%= @deal_details[:pickup].size_height %></p>
-    <p>単体重量：<%= @deal_details[:pickup].weight %> kg</p>
-    <p>個数：<%= @deal_details[:pickup].quantity %> 個</p>
-    <p>温度管理：<%= @deal_details[:pickup].temperature %></p>
-    <p>備考欄：<%= @deal_details[:pickup].additional_info %></p>
-  </div>
+<section id="carrier__quote" class="container-fluid section__carrier well--xs">
+  <div class="row">
 
-  <br>
-
-  <div>
-    <p>集荷先</p>
-    <p>住所：<%= @deal_details[:pickup].post_code %> <%= @deal_details[:pickup].prefecture %><%= @deal_details[:pickup].ward %><%= @deal_details[:pickup].street %></p>
-    <p>集荷時間：<%= @deal_details[:pickup].time %></p>
-
-  <br>
-
-    <p>配達先</p>
-    <p>住所：<%= @deal_details[:delivery].post_code %> <%= @deal_details[:delivery].prefecture %><%= @deal_details[:delivery].ward %><%= @deal_details[:delivery].street %></p>
-    <p>配達時間：<%= @deal_details[:delivery].time %></p>
-  </div>
-
-  <br>
-
-  <% if params[:action] == 'confirm' %>
-    <div>
-      <% @deal_items.each do |item| %>
-        <div>
-          <p>項目：<%= item[:name] %> 内訳：<%= item[:description] %> 金額：<%= item[:price] %>
-          </p>
-        </div>
-      <% end %>
-
-      <div>
-        <p>合計金額：<%= @deal.total_price %></p>
+      <!-- START / LEFT COLUMN -->
+      <div class="col-md-4 col-lg4 debug">
+        <%= render "quote_form_left" %>
       </div>
+      <!-- END / LEFT COLUMN -->
 
-      <%= simple_form_for @deal, url: update_quote_path do |f| %>
-        <%= f.error_notification %>
-        <%= f.simple_fields_for :items do |i| %>
-          <div class='form-inline'>
-            <%= i.hidden_field :name, label: "項目", required: true %>
-            <%= i.hidden_field :description, label: "内訳", required: true %>
-            <%= i.hidden_field :price, label: "金額", required: true %>
-            <%= i.hidden_field :_destroy %>
-          </div>
+      <!-- START / RIGHT COLUMN -->
+      <div class="col-md-8 col-lg-8 debug">
+
+        <!-- IF quotation exists -->
+        <% if params[:action] == 'confirm' %>
+          <%= render "quote_form_right_confirm" %>
+        <% else %>
+        <!-- IF quotation DOES NOT exist -->
+          <%= render "quote_form_right_make" %>
         <% end %>
 
-        <%= f.hidden_field :total_price, required: true %>
+      </div>
+      <!-- END / RIGHT COLUMN -->
 
-        <div class="form-actions">
-          <%= f.button :submit, "見積りを修正する", name: "back" %>
-          <%= f.button :submit, "見積りを送信する" %>
-        </div>
-      <% end %>
-
-    </div>
-  <% else %>
-    <div>
-      <%= simple_form_for @deal, method: :post, url: confirm_quote_path do |f| %>
-        <%= f.error_notification %>
-        <div id="deal__items__container">
-          <%= f.simple_fields_for :items do |i| %>
-            <%= render 'item_fields', f: i %>
-          <% end %>
-        </div>
-        <%= link_to_add_association '項目を追加する', f, :items, class: 'btn btn-primary', data: { association_insertion_node: '#deal__items__container', association_insertion_method: :append } %>
-
-        <br>
-        <%= f.input :total_price, label: "合計金額", required: true %>
-        <div class="form-actions">
-          <%= f.button :submit, "見積り内容を確認する" %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+  </div>
+</section>
