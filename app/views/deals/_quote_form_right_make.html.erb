@@ -1,0 +1,38 @@
+<div>
+  <%= simple_form_for @deal, html: {class: ''}, method: :post, url: confirm_quote_path do |f| %>
+
+    <div class="UNCHINANDFUTAISAGYOU debug">
+      <h3>運賃＆附帯業務料金</h3>
+        <%= f.error_notification %>
+        <div class="label--container">
+          <p>項目</p>
+          <p>内訳</p>
+          <p>金額</p>
+        </div>
+        <div id="deal__items__container">
+          <%= f.simple_fields_for :items do |i| %>
+            <%= render 'item_fields', f: i %>
+          <% end %>
+        </div>
+        <%= link_to_add_association '項目を追加する', f, :items, class: 'btn btn-primary', data: { association_insertion_node: '#deal__items__container', association_insertion_method: :append } %>
+    </div>
+
+    <div class="UNSOUVEHICLE">
+      <h3>運送に使用する車両</h3>
+      <%= f.input :delivery_vehicles, as: :fake_select, input_html: { class: '' } %>
+      <% if false %>
+        <%= f.simple_fields_for :vehicles do |v| %>
+          <%= render 'vehicle_fields', f: v %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="GOUKEIKINGAKU">
+      <%= f.input :total_price, label: "合計金額", required: true %>
+      <div class="form-actions">
+        <%= f.button :submit, "見積り内容を確認する" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

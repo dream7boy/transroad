@@ -1,0 +1,27 @@
+<div>
+  <% @deal_items.each do |item| %>
+    <div>
+      <p>項目：<%= item[:name] %> 内訳：<%= item[:description] %> 金額：<%= item[:price] %>
+      </p>
+    </div>
+  <% end %>
+  <div>
+    <p>合計金額：<%= @deal.total_price %></p>
+  </div>
+  <%= simple_form_for @deal, url: update_quote_path do |f| %>
+    <%= f.error_notification %>
+    <%= f.simple_fields_for :items do |i| %>
+      <div class='form-inline'>
+        <%= i.hidden_field :name, label: "項目", required: true %>
+        <%= i.hidden_field :description, label: "内訳", required: true %>
+        <%= i.hidden_field :price, label: "金額", required: true %>
+        <%= i.hidden_field :_destroy %>
+      </div>
+    <% end %>
+    <%= f.hidden_field :total_price, required: true %>
+    <div class="form-actions">
+      <%= f.button :submit, "見積りを修正する", name: "back" %>
+      <%= f.button :submit, "見積りを送信する" %>
+    </div>
+  <% end %>
+</div>
