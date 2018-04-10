@@ -27,119 +27,20 @@
         <%= f.hidden_field :ids, value: '' %>
         <%= f.button :submit, '依頼内容を確認する', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color float--right col-xs-12' %>
       <% end %>
-      <!-- <button id="btn__submit__ids" class="btn btn-primary btn__null btn__sub-color col-xs-5 float--right">依頼内容を確認する</button> -->
     </div>
 
     <div class="quotation__body--container container col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div id="cards__container" class="row row--block">
         <% @carriers_two_conditions.each do |carrier| %>
-          <div class="card__wrapper">
-            <div class="card__carrier">
-              <div class="card__carrier--img"></div>
-              <h4><%= carrier.company_name %></h4>
-              <%= text_area_tag name="#{carrier.id}", nil, class:'carrier__id hidden' %>
-              <ul class="card__list--container">
-                <% carrier.favorite_products.each do |product| %>
-                  <li class="card__list--item"><%= product %></li>
-                <% end %>
-              </ul>
-              <div class="card__carrier--info">
-                <p><%= carrier.prefecture %> <%= carrier.ward %></p>
-                <p class="hidden"><%= carrier.street %> #-##-##</p>
-                <p class="hidden"><%= carrier.phone %></p>
-                <p>www.<%= carrier.company_name %>.co.jp</p>
-              </div>
-              <button class="btn btn-primary btn__null card__btn">御見積もりを依頼</button>
-            </div>
-          </div>
+          <%= render 'carrierCard', carrier: carrier %>
         <% end %>
       </div>
     </div>
 
   </div>
 </section>
-<!-- START / Add class to selected cards and send value to form -->
+
+
+
+<!-- Add class to selected cards and send value to form -->
 <%= render partial: 'matchedCarriers_selectable', formats: :js %>
-<!-- END / Add class to selected cards and send value to form -->
-
-
-
-
-
-
-
-
-
-
-<!-- BACKUP COPY / Shun -->
-<% if false %>
-<div class="container">
-  <h1>Carriers matched</h1>
-  <div>
-    <div>
-      <%= link_to "My Shipments", shipper_shipments_path, class: "btn btn-primary" %>
-      <% if @shipment.available == true %>
-        <%= link_to "Edit", edit_shipment_path(@shipment), class: "btn btn-primary" %>
-        <%= link_to "Delete", shipment_path(@shipment),
-        method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-      <% end %>
-    </div>
-
-    <h3>Shipment Details</h3>
-    <div>
-      Ship-ID:<%= @shipment.id %> <%= @shipment.distance %>km <%= @shipment.offer_rate %>yen <%= @shipment.car_type %> <%= @shipment.shipper.email %> |
-    </div>
-
-    <div>
-      P-ID:<%= @pickup.id %> <%= @pickup.company_name %> <%= @pickup.start_date %> <%= @pickup.end_date %> <%= @pickup.prefecture %> <%= @pickup.ward %> <%= @pickup.category %> <%= @pickup.weight %>kg
-    </div>
-
-    <div>
-      D-ID:<%= @delivery.id %> <%= @delivery.company_name %> <%= @delivery.start_date %> <%= @delivery.end_date %> <%= @delivery.prefecture %> <%= @delivery.ward %>
-    </div>
-
-    <br>
-    <h3><%= @carriers_two_conditions.count %> Carriers matched with pickup and delivery prefectures and favorite products</h3>
-    <div>
-      <% @carriers_two_conditions.each do |carrier| %>
-        <div>
-          <%= carrier.email %> - <%= carrier.company_name %> - <%= carrier.favorite_products %> - <%= carrier.areas_covered %>
-        </div>
-        <br>
-      <% end %>
-    </div>
-
-    <br>
-    <h3><%= @carriers_location_condition.count %> Carriers matched only with pickup and delivery prefectures</h3>
-    <div>
-      <% @carriers_location_condition.each do |carrier| %>
-        <div>
-          <%= carrier.email %> - <%= carrier.company_name %> - <%= carrier.favorite_products %> - <%= carrier.areas_covered %>
-        </div>
-        <br>
-      <% end %>
-    </div>
-
-    <!-- (BACKUP START)Chose a Carrier from the list -->
-    <% if false %>
-      <div>
-        <% @shipment.deals.each do |deal| %>
-          <div>
-            <%= deal.created_at.getlocal.strftime("%Y/%m/%e - %H:%M%p") %> <%= deal.carrier.email %> <span style="color:blue"><%= deal.deal_status %></span>
-          </div>
-          <% if @shipment.available == true %>
-            <div>
-              <%= simple_form_for @shipment, url: shipper_shipment_path do |f| %>
-                <%= f.hidden_field :carrier_id, value: deal.carrier_id %>
-                <%= f.button :submit, 'ACCEPT', class: "btn btn-primary" %>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-    <!-- (BACKUP END)Chose a Carrier from the list -->
-
-  </div>
-</div>
-<% end %>

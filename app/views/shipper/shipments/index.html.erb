@@ -24,38 +24,3 @@
   </section>
 
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- BACKUP DELETE LATER 888 -->
-<% if false %>
-  <div class="wrapper-shipper-shipments">
-    <div class="container">
-      <h2>(<%= @shipments.count %>) My Shipments </h2>
-      <%= render 'shipper_shipments_nav_menu' %>
-
-      <% if @shipments.present? %>
-        <%= render 'shipper_shipments_list' %>
-      <% else %>
-        <div>
-          <p>You have no shipments yet.</p>
-          <p>Add a new shipment to find carrier!</p>
-          <%= link_to new_shipment_path, class: "btn btn-primary" do %>
-           <i class="fa fa-table"></i> + ADD NEW SHIPMENT
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-<% end %>

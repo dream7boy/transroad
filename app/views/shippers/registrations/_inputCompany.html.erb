@@ -1,0 +1,17 @@
+<div class="input--group">
+  <h3>会社情報</h3>
+  <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
+  <%= f.input :industry, label: "業種", collection: Shipper::INDUSTRIES, prompt: "選択してください", required: true %>
+  <div class="container-fluid input--container">
+    <div class="row row--block">
+      <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+    </div>
+  </div>
+  <div class="container-fluid input--container">
+    <div class="row row--block">
+      <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
+      <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
+    </div>
+  </div>
+  <%= f.input :street, label: "住所", required: true %>
+</div>
