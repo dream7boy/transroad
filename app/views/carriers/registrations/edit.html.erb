@@ -2,23 +2,23 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
 
-    <h2>運送アカウント情報</h2>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
-      <div class="form-inputs">
-        <%= render "inputCompany.html.erb", f: f %>
-        <%= render "inputAreaAndVehicles.html.erb", f: f %>
-        <%= render "editContact.html.erb", f: f %>
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>メールアドレスの確認中です、認証メールを送信したのでご確認ください。<%= resource.unconfirmed_email %></p>
-        <% end %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit, "更新", class:"btn-primary btn__null btn__width--100" %>
-      </div>
-    <% end %>
+      <h2>運送アカウント情報</h2>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= render "inputCompany.html.erb", f: f %>
+          <%= render "inputAreaAndVehicles.html.erb", f: f %>
+          <%= render "editContact.html.erb", f: f %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>メールアドレスの確認中です、認証メールを送信したのでご確認ください。<%= resource.unconfirmed_email %></p>
+          <% end %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "更新", class:"btn-primary btn__null btn__width--100" %>
+        </div>
+      <% end %>
 
-    <%= link_to "アカウントを解約する", registration_path(resource_name), data: { confirm: "アカウントを解約されますか？" }, method: :delete, class:"" %>
+      <%= link_to "アカウントを解約する", registration_path(resource_name), data: { confirm: "アカウントを解約されますか？" }, method: :delete, class:"" %>
 
     </div>
   </div>
