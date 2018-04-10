@@ -1,105 +1,32 @@
 <section id="carrier__registration" class="container-fluid section__carrier well--xs">
   <div class="row">
-    <!-- BS offset is not included since "section.section__carrier > div.row" has flex center assigned. / Shun-->
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
 
       <h2>運送アカウント登録</h2>
-
       <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
-          <div class="input--group">
-            <h3>会社情報</h3>
-            <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
-            <div class="container-fluid input--container">
-              <div class="row row--block">
-                <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
-              </div>
-            </div>
-            <div class="container-fluid input--container">
-              <div class="row row--block">
-                <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
-                <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
-              </div>
-            </div>
-            <%= f.input :street, label: "住所", required: true %>
-          </div>
-
-          <div class="input--group">
-            <h3>運送 ＆ 保有車両情報</h3>
-            <!-- DELETE LATER 888 -->
-            <%#= render 'delivery_area' %>
-            <% prefectures = ["北海道・東北",["北海道","青森県","秋田県","岩手県","山形県","宮城県","福島県"]],["甲信越・北陸",["山梨県","長野県","新潟県","富山県","石川県","福井県"]],["関東",["茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県"]],["東海",["愛知県","静岡県","岐阜県","三重県"]],["関西",["大阪府","兵庫県","京都府","滋賀県","奈良県","和歌山県"]],["中国",["岡山県","広島県","鳥取県","島根県","山口県"]],["四国",["徳島県","香川県","愛媛県","高知県"]],["九州・沖縄",["福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"]] %>
-            <%= f.input :areas_covered, label: "運送をしている地域（複数選択できます）", collection: prefectures, as: :grouped_select, group_method: :last, required: true, selected: false, wrapper_html: {id: "carrier_areas_covered--container"}, input_html: { multiple: true, min: '1' }, include_hidden: false %>
-            <%= f.input :favorite_products, label: "運送が得意な品目（3種類まで）", collection: Carrier::FAVORITE_PRODUCTS, as: :check_boxes, required: true, collection_wrapper_tag: "div class='checkbox--container form-control'", wrapper_html: {id: "carrier_favorite_products--container"}, input_html: { class: "product__checkbox", multiple: true }, label_html: { class: "label--null" }, include_hidden: false %>
-            <div id="carrier__vehicles__container" class="debug">
-              <%= f.simple_fields_for :vehicles do |v| %>
-                <%= render 'vehicle_fields', f: v %>
-              <% end %>
-            </div>
-            <%= link_to_add_association '保有車両を追加する', f, :vehicles, class: 'btn btn-primary btn__null btn__form--add-nested', data: { association_insertion_node: '#carrier__vehicles__container', association_insertion_method: :append } %>
-          </div>
-
-          <div class="input--group">
-            <h3>連絡先 ＆ ログイン情報</h3>
-            <div class="container-fluid input--container">
-              <div class="row row--block">
-                <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
-                <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
-              </div>
-            </div>
-            <%= f.input :phone, label: "電話番号", required: true %>
-            <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
-            <%# REF ONLY FOR COLLECTION / Delete later 888 / Shun = f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", collection: %w[Mike Nick Jason Tim], required: true %>
-            <%= f.input :password, label: "パスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
-            <%= f.input :password_confirmation, label: "パスワード確認", required: true %>
-          </div>
+          <%= render "inputCompany.html.erb", f: f %>
+          <%= render "inputAreaAndVehicles.html.erb", f: f %>
+          <%= render "inputContact.html.erb", f: f %>
         </div>
-
         <div class="form-actions">
           <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
         </div>
       <% end %>
+
     </div>
   </div>
 </section>
 
+
+
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-
-<!-- START / JS for automated address input upon postal code input -->
+<!-- JS for automated address input upon postal code input -->
 <%= javascript_include_tag('jquery.jpostal') %>
-<script>
-  $(function (){
-    $('#carrier_post_code').jpostal({
-      postcode : [ '#carrier_post_code' ],
-      address  : {
-        '#carrier_prefecture' : '%3',
-        '#carrier_ward'       : '%4',
-        '#carrier_street'     : '%5'
-      }
-    });
-  });
-</script>
-<!-- END / JS for automated address input upon postal code input -->
-
-<!-- START / JS for making <select> with <optgroup> into a dropdown with grouped checkboxes -->
+<%= javascript_include_tag('jpostal.carrierActivator') %>
+<!-- JS for making <select> with <optgroup> into a dropdown with grouped checkboxes -->
 <%= javascript_include_tag('multiple-select') %>
-<script>
-  $("#carrier_areas_covered").multipleSelect({
-      allSelected: '全国',
-      countSelected: '#都道府県',
-      maxHeight: 600,
-      minimumCountSelected: 7,
-      multiple: true,
-      multipleWidth: 90,
-      noMatchesFound: '都道府県を選択してください',
-      placeholder: '都道府県を選択してください',
-      selectAllDelimiter: ['', ''],
-      selectAllText: '全国',
-  });
-</script>
-<!-- END / JS for making <select> with <optgroup> into a dropdown with grouped checkboxes -->
-
-<!-- START / JS to ensure no more than 3 products can be checked -->
+<%#= javascript_include_tag('multiple-selectActivator') %> <!-- conflicts with asset.rb?-->
+<!-- JS to ensure no more than 3 products can be checked -->
 <%= javascript_include_tag('carrier_favorite_products') %>
-<!-- END / JS to ensure no more than 3 products can be checked -->
