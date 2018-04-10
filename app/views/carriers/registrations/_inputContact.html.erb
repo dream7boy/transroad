@@ -1,0 +1,13 @@
+<div class="input--group">
+  <h3>連絡先 ＆ ログイン情報</h3>
+  <div class="container-fluid input--container">
+    <div class="row row--block">
+      <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
+      <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
+    </div>
+  </div>
+  <%= f.input :phone, label: "電話番号", required: true %>
+  <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
+  <%= f.input :password, label: "パスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）", required: true, error: "パスワードを入力してください" %>
+  <%= f.input :password_confirmation, label: "パスワードの確認", required: true %>
+</div>

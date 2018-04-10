@@ -1,48 +1,37 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section id="carrier__edit" class="container-fluid section__carrier well--xs">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :company_name, label: "会社名", required: true, autofocus: true %>
-    <%= f.input :post_code, label: "郵便番号", required: true %>
-    <%= f.input :prefecture, label: "都道府県", required: true %>
-    <%= f.input :ward, label: "市区町村", required: true %>
-    <%= f.input :street, label: "住所", required: true %>
-
-    <%= f.input :areas_covered, label: "運送をしている地域（複数選択できます）", collection: %w(東京都 神奈川県 大阪府 北海道), prompt: "選択してください", required: true %>
-    <%= f.input :favorite_products, label: "運送が得意な品目（3種類まで）", collection: Carrier::FAVORITE_PRODUCTS, prompt: "選択してください", required: true %>
-    <%= f.simple_fields_for :vehicles do |v| %>
-      <%= v.input :size, label: "車両サイズ", collection: Vehicle::SIZES, prompt: "大きさをお選び下さい", required: true %>
-      <%= v.input :vehicle_type, label: "車両形状", collection: Vehicle::VEHICLE_TYPES, prompt: "形状をお選び下さい", required: true %>
-      <%= v.input :quantity, label: "車両数", required: true %>
+    <h2>運送アカウント情報</h2>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= render "inputCompany.html.erb", f: f %>
+        <%= render "inputAreaAndVehicles.html.erb", f: f %>
+        <%= render "editContact.html.erb", f: f %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>メールアドレスの確認中です、認証メールを送信したのでご確認ください。<%= resource.unconfirmed_email %></p>
+        <% end %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "更新", class:"btn-primary btn__null btn__width--100" %>
+      </div>
     <% end %>
 
-    <%= f.input :name_kanji, label: "お名前", required: true %>
-    <%= f.input :name_furigana, label: "お名前（フリガナ）", required: true %>
-    <%= f.input :phone, label: "電話番号", required: true %>
-    <%= f.input :email, label: "メールアドレス", required: true %>
+    <%= link_to "アカウントを解約する", registration_path(resource_name), data: { confirm: "アカウントを解約されますか？" }, method: :delete, class:"" %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <p>変更後の暗証番号</p>
-    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-    <p>変更後の暗証番号（再確認）</p>
-    <%= f.input :password_confirmation, required: false %>
-
-    <p>今の暗証番号</p>
-    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+    </div>
   </div>
+</section>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Go Back to My Shipment", carrier_shipments_path %>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<!-- JS for automated address input upon postal code input -->
+<%= javascript_include_tag('jquery.jpostal') %>
+<%= javascript_include_tag('jpostal.carrierActivator') %>
+<!-- JS for making <select> with <optgroup> into a dropdown with grouped checkboxes -->
+<%= javascript_include_tag('multiple-select') %>
+<%#= javascript_include_tag('multiple-selectActivator') %> <!-- conflicts with asset.rb?-->
+<!-- JS to ensure no more than 3 products can be checked -->
+<%= javascript_include_tag('carrier_favorite_products') %>

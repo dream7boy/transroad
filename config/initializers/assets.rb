@@ -13,5 +13,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w( jquery.jpostal.js )
+Rails.application.config.assets.precompile += %w( jpostal.carrierActivator.js )
 Rails.application.config.assets.precompile += %w( multiple-select.js )
+Rails.application.config.assets.precompile += %w( multiple-selectActivator.js )
 Rails.application.config.assets.precompile += %w( carrier_favorite_products.js )
