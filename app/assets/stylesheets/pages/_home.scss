@@ -1,3 +1,18 @@
+.fullscreen {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: space-between;
+  padding: $spacer--sm $spacer--xs $spacer--md $spacer--xs;
+  width: 100vw;
+  flex-direction: column;
+  &:first-child {
+    margin-top: -$navbar__height;
+  }
+  &:last-child {
+    margin-bottom: -$footer__height;
+  }
+}
 #landing--initial {
   position: relative;
   &.fullscreen {
@@ -50,7 +65,7 @@
       a {
         color: $color--gray;
         &:hover {
-          color: $color--gray-dark;
+          color: $color--darkgray;
           text-decoration: none;
         }
       }
@@ -75,10 +90,10 @@
         background-color: transparent;
       }
       &:hover .icon-bar {
-        background-color: darken($color__theme--main, 10%);
+        background-color: darken($color--main, 10%);
       }
       & .icon-bar {
-        background-color: $color__theme--main;
+        background-color: $color--main;
       }
     }
   }
@@ -98,22 +113,22 @@
       min-width: 54px;
       max-width: 80px;
       & path {
-        fill: $color__theme--main;
+        fill: $color--main;
         &.c {
           fill: $color--white;
         }
       }
     }
     @keyframes flicker-one {
-      0.00% { fill: $color__theme--main } // OFF-END
-      0.60% { fill: $color__theme--sub } // FLICKER-ON
-      1.20% { fill: $color__theme--main } // FLICKER-OFF
-      1.80% { fill: $color__theme--sub } // FLICKER-ON
-      2.40% { fill: $color__theme--main } // FLICKER-OFF
-      3.00% { fill: $color__theme--sub } // ON-START
-      25.0% { fill: $color__theme--sub } // ON-END
-      26.0% { fill: $color__theme--main } // OFF-START
-      100% { fill: $color__theme--main } // OFF
+      0.00% { fill: $color--main } // OFF-END
+      0.60% { fill: $color--sub } // FLICKER-ON
+      1.20% { fill: $color--main } // FLICKER-OFF
+      1.80% { fill: $color--sub } // FLICKER-ON
+      2.40% { fill: $color--main } // FLICKER-OFF
+      3.00% { fill: $color--sub } // ON-START
+      25.0% { fill: $color--sub } // ON-END
+      26.0% { fill: $color--main } // OFF-START
+      100% { fill: $color--main } // OFF
     }
     $flicker-time: 16s;
     & .carrier_ {
@@ -194,6 +209,8 @@
 
 
 
+
+
 /*------------  md >= 992px (.container @ 970px)  ------------*/
 @media (min-width: 992px) {
   #landing--initial {
@@ -245,7 +262,7 @@
     .description__image-box {
       & .carrier_ {
         &01 { left: 40%; top: 30%;
-          & path { fill: $color__theme--sub; }
+          & path { fill: $color--sub; }
         }
         &02 { display: block; left: 42%; top: 80%; }
         &03 { display: block; left: 15%; top: 72%; }
@@ -259,7 +276,7 @@
       }
       & .shipper_ {
         &01 { left: 74%; top: 70%;
-          & path { fill: $color__theme--sub; }
+          & path { fill: $color--sub; }
         }
         &02 { left: 62%; top: 41%; }
         &03 { display: block; left: 49%; top: 52%; }
@@ -272,6 +289,9 @@
         &10 { display: block; left: 13%; top: 18%; }
       }
     }
+  }
+  .fullscreen {
+    padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
   }
 }
 /*------------ } @media (min-width: 992px) ------------*/

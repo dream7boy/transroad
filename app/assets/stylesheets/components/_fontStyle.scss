@@ -1,0 +1,19 @@
+p, ul.points li {
+  font-size: $font__p;
+  font-weight: normal;
+  line-height: 1.65;
+  text-align: left;
+}
+ul.points {
+  padding-left: 2.8rem;
+  li {
+    font-weight: bold;
+    line-height: 1.65;
+    text-indent: -2.8rem;
+    .checkmark {
+      font-family: unset;
+      font-size: calc(#{$font__p * 1.2});
+      line-height: 0;
+    }
+  }
+}

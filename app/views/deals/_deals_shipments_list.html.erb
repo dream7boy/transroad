@@ -10,53 +10,58 @@
     <div class="deals--header"><p>往復距離&ensp;<i class="fa fa-question-circle" aria-hidden="true"></i></p></div>
   </div>
 
-  <% @deals.each do |deal| %>
+  <% @deals.each do |d| %>
+    <%
+    shipment = d[:deal].shipment
+    pickup = d[:pickup]
+    delivery = d[:delivery]
+    %>
 
-    <div class="deals--row" data-toggle="modal" data-target='#modalDeal<%= deal[:deal].id %>'>
+    <div class="deals--row" data-toggle="modal" data-target='#modalDeal<%= d[:deal].id %>'>
       <div class="deals--cell new">
         <p>新規</p>
       </div>
       <div class="deals--cell">
-        <p><%= deal[:deal].shipment.duration_start.strftime("%Y年%m月%d日") %>〜<%= deal[:deal].shipment.duration_end.strftime("%Y年%m月%d日") %></p>
+        <p><%= shipment.duration_start.strftime("%Y年%m月%d日") %>〜<%= shipment.duration_end.strftime("%Y年%m月%d日") %></p>
       </div>
       <div class="deals--cell">
-        <p><%= deal[:deal].shipment.frequency %></p>
+        <p><%= shipment.frequency %></p>
       </div>
       <div class="deals--cell">
-        <p><%= deal[:pickup].category %></p>
+        <p><%= pickup.category %></p>
       </div>
       <div class="deals--cell">
-        <p><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %></p>
-        <p><%= deal[:pickup].time %></p>
+        <p><%= pickup.prefecture %>&emsp;<%= pickup.ward %></p>
+        <p><%= pickup.time %></p>
       </div>
       <div class="deals--cell">
-        <p><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %></p>
-        <p><%= deal[:delivery].time %></p>
+        <p><%= delivery.prefecture %>&emsp;<%= delivery.ward %></p>
+        <p><%= delivery.time %></p>
       </div>
       <div class="deals--cell">
-        <p class="hidden"><%= deal[:deal].shipment.distance %></p>
+        <p class="hidden"><%= shipment.distance %></p>
         <p>約250km</p>
       </div>
     </div>
 
-    <div id='modalDeal<%= deal[:deal].id %>' class="modal fade" role="dialog">
+    <div id='modalDeal<%= d[:deal].id %>' class="modal fade" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
 
           <div class="sidebar">
             <div class="modal--summary">
               <h4>運送案件概要</h4>
-              <p><span class="bold">予定期間：</span><%= deal[:deal].shipment.duration_start.strftime("%Y年%m月%d日") %>〜<br>&emsp;&emsp;&emsp;&emsp;&emsp;<%= deal[:deal].shipment.duration_end.strftime("%Y年%m月%d日") %></p>
-              <p><span class="bold">運送頻度：</span><%= deal[:deal].shipment.frequency %></p>
-              <p><span class="bold">荷物：</span><%= deal[:pickup].category %></p>
+              <p><span>予定期間：</span><%= shipment.duration_start.strftime("%Y年%m月%d日") %>〜<br>&emsp;&emsp;&emsp;&emsp;&emsp;<%= shipment.duration_end.strftime("%Y年%m月%d日") %></p>
+              <p><span>運送頻度：</span><%= shipment.frequency %></p>
+              <p><span>荷物：</span><%= pickup.category %></p>
               <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
-              <%#= deal[:pickup].each do | pickup | %>
+              <%#= pickup.each do | pickup | %>
                 <!-- <p><%#= pickup.category %></p> -->
               <%# end %>
-              <p><span class="bold">依頼主：</span><%= deal[:deal].shipment.shipper.name_kanji %></p>
-              <p><span class="bold">集荷先：</span><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %></p>
-              <p><span class="bold">配達先：</span><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %></p>
-              <p><span class="bold">往復距離：</span><%= deal[:deal].shipment.distance %>215km</p>
+              <p><span>依頼主：</span><%= shipment.shipper.name_kanji %></p>
+              <p><span>集荷先：</span><%= pickup.prefecture %>&emsp;<%= pickup.ward %></p>
+              <p><span>配達先：</span><%= delivery.prefecture %>&emsp;<%= delivery.ward %></p>
+              <p><span>往復距離：</span><%= shipment.distance %>215km</p>
             </div>
             <div class="modal--map"></div>
           </div>
@@ -68,35 +73,35 @@
                 <h4>集荷先</h4>
                 <div class="details--pickup--case">
                   <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
-                  <%#= deal[:pickup].each do | pickup | %>
+                  <%#= pickup.each do | pickup | %>
                   <div class="details--pickup--card">
-                    <p class="bold"><i class="fa fa-map-marker color__sub" aria-hidden="true"></i>&emsp;集荷先(1/1)</p>
-                    <p><span class="bold">住所：</span><%= deal[:pickup].prefecture %>&emsp;<%= deal[:pickup].ward %><br>&emsp;&emsp;&emsp;<%= deal[:pickup].street %></p>
-                    <p><span class="bold">集荷時間：</span><%= deal[:pickup].time %></p>
-                    <p><span class="bold">車庫からの距離：</span>約<%= deal[:deal].shipment.distance %>215km*</p>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>&emsp;集荷先(1/1)</p>
+                    <p><span>住所：</span><%= pickup.prefecture %>&emsp;<%= pickup.ward %><br>&emsp;&emsp;&emsp;<%= pickup.street %></p>
+                    <p><span>集荷時間：</span><%= pickup.time %></p>
+                    <p><span>車庫からの距離：</span>約<%= shipment.distance %>215km*</p>
                     <br>
-                    <p><span class="bold">荷物：</span><%= deal[:pickup].category %></p>
-                    <p><span class="bold">寸法：</span>横<%= deal[:pickup].size_width %> x 奥<%= deal[:pickup].size_depth %> x 縦<%= deal[:pickup].size_height %></p>
-                    <p><span class="bold">個数：</span><%= deal[:pickup].quantity %>個</p>
-                    <p><span class="bold">単体重量：</span><%= deal[:pickup].weight %>kg</p>
-                    <p><span class="bold">単体容積重量：</span>777kg*</p>
-                    <p><span class="bold">温度管理：</span><%= deal[:pickup].temperature %></p>
-                    <p><span class="bold">備考欄：</span><%= deal[:pickup].additional_info %></p>
+                    <p><span>荷物：</span><%= pickup.category %></p>
+                    <p><span>寸法：</span>横<%= pickup.size_width %> x 奥<%= pickup.size_depth %> x 縦<%= pickup.size_height %></p>
+                    <p><span>個数：</span><%= pickup.quantity %>個</p>
+                    <p><span>単体重量：</span><%= pickup.weight %>kg</p>
+                    <p><span>単体容積重量：</span>777kg*</p>
+                    <p><span>温度管理：</span><%= pickup.temperature %></p>
+                    <p><span>備考欄：</span><%= pickup.additional_info %></p>
                   </div>
                   <%# end %>
                 </div>
               </div>
               <hr class="simple">
               <div class="modal--details--delivery">
-                <h4><i class="fa fa-map-marker color__main" aria-hidden="true"></i>&emsp;配送先</h4>
+                <h4><i class="fa fa-map-marker" aria-hidden="true"></i>&emsp;配送先</h4>
                 <div class="details--delivery--case">
                   <div>
-                    <p><span class="bold">住所：</span><%= deal[:delivery].prefecture %>&emsp;<%= deal[:delivery].ward %>&emsp;<%= deal[:delivery].street %></p>
-                    <p><span class="bold">配達時間：</span><%= deal[:delivery].time %></p>
+                    <p><span>住所：</span><%= delivery.prefecture %>&emsp;<%= delivery.ward %>&emsp;<%= delivery.street %></p>
+                    <p><span>配達時間：</span><%= delivery.time %></p>
                   </div>
                   <div>
-                    <p><span class="bold">最終集荷地からの距離：</span>約<%= deal[:deal].shipment.distance %>35km*</p>
-                    <p><span class="bold">車庫までの距離：</span>約<%= deal[:deal].shipment.distance %>85km*</p>
+                    <p><span>最終集荷地からの距離：</span>約<%= shipment.distance %>35km*</p>
+                    <p><span>車庫までの距離：</span>約<%= shipment.distance %>85km*</p>
                   </div>
                 </div>
               </div>
@@ -104,7 +109,7 @@
               <div class="modal--details--btnCase">
                 <%#= link_to '依頼主に質問', '#', class: 'btn btn-primary btn__null btn__size--sm col-xs-3' %>
                 <!-- path to new new quotation? -->
-                <%= link_to '見積書を作成', new_quote_path(deal[:deal].id), class: 'btn btn-primary btn__null btn__size--sm col-xs-12' %>
+                <%= link_to '見積書を作成', new_quote_path(d[:deal].id), class: 'btn btn-primary btn__null btn__size--sm col-xs-12' %>
               </div>
 
           </div>

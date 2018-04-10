@@ -7,16 +7,16 @@
 $font-family-sans-serif:  $font__body;
 $headings-font-family:    $font__header;
 $body-bg:                 $color--white;
-$font-size-base: 18px;
+$font-size-base:          $font__p;
 
 // Colors
-$brand-primary:   $color__theme--main;
-$brand-success:   $color__theme--main;
-$brand-info:      $color__theme--sub;
+$brand-primary:   $color--main;
+$brand-success:   $color--main;
+$brand-info:      $color--sub;
 $brand-danger:    $red;
-$brand-warning:   $color__theme--sub;
+$brand-warning:   $color--sub;
 $gray-light: $color--gray;
-$gray-dark: $color--gray-dark;
+$gray-dark: $color--darkgray;
 
 // Buttons & inputs' radius
 $border-radius-base:  2px;

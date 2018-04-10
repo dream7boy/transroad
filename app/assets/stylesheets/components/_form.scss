@@ -20,7 +20,7 @@
       margin-bottom: 20px;
     }
     &--required {
-      background-color: $color__theme--sub;
+      background-color: $color--sub;
       border-radius: 2px;
       border: 0 !important;
       color: $color--white;
@@ -83,7 +83,7 @@
         min-height: unset;
         padding: 0;
         &.disabled {
-          color: $color--gray-light;
+          color: $color--lightgray;
         }
       }
     }
@@ -105,7 +105,7 @@
       margin: $spacer--sm $spacer--sm $spacer--sm 0;
     }
     .quotation__block {
-      border-bottom: 1px solid $color--gray-light;
+      border-bottom: 1px solid $color--lightgray;
       padding: 0 0 15px 0;
       margin: 0 0 15px 0;
       &:last-child {
@@ -138,5 +138,5 @@
 }
 .form-control {
   box-shadow: none;
-  color: $color--gray-dark;
+  color: $color--darkgray;
 }

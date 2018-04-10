@@ -1,45 +1,4 @@
-// Import your layouts CSS files here.
-// Examples:
-// @import "dashboard";
-// @import "profile";
-// @import "map";
 @import "section";
-
-
-.float-- {
-  &right {
-    float: right;
-  }
-  &left {
-    float: left;
-  }
+body {
+  padding-top: $navbar__height;
 }
-.fullscreen {
-  align-items: center;
-  display: flex;
-  height: 100vh;
-  justify-content: space-between;
-  padding: $spacer--sm $spacer--xs $spacer--md $spacer--xs;
-  width: 100vw;
-  flex-direction: column;
-  &:first-child {
-    margin-top: -$navbar__height;
-  }
-  &:last-child {
-    margin-bottom: -$footer__height;
-  }
-}
-.img__flip-y {
-  transform: rotateY(180deg);
-}
-.inline__block {
-  display: inline-block;
-}
-
-/* md >= 992px (.container @ 970px) / START */
-@media (min-width: 992px) {
-  .fullscreen {
-    padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
-  }
-}
-/* md >= 992px (.container @ 970px) / END */

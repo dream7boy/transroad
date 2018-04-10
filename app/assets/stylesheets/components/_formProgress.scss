@@ -1,0 +1,54 @@
+$form__progress--unit: 24px;
+
+.form__progress--container {
+  background-color: $color--lightgray;
+  display: flex;
+  height: $form__progress--unit;
+  margin: 0 0 $spacer--sm 0;
+  padding: 0;
+  width: 100%;
+}
+
+.form__progress--step {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  position: relative;
+  p {
+    color: $color--white;
+    font-size: 1.4rem;
+    letter-spacing: 0.05rem;
+    font-weight: bold;
+    position: absolute;
+    line-height: 1;
+    a {
+      color: inherit;
+      position: unset;
+    }
+  }
+}
+
+.form__progress--step {
+  &.active {
+    background-color: $color--sub;
+    &:after {
+      background-color: $color--sub;
+    }
+  }
+  &:after {
+    background-color: $color--lightgray;
+    border-right: 2px solid $color--white;
+    border-top: 2px solid $color--white;
+    content: "";
+    height: calc(#{$form__progress--unit} - 4px);
+    position: absolute;
+    right: -12px;
+    transform: rotate(45deg) translateZ(1px);
+    width: calc(#{$form__progress--unit} - 4px);
+    z-index: 10;
+  }
+  &:last-child:after {
+    display: none;
+  }
+}

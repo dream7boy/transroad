@@ -26,7 +26,7 @@ $color__card-selected: #FFFCE2;
         background-color: $color__card-selected;
         position: relative;
         &::after {
-          background-color: $color__theme--sub;
+          background-color: $color--sub;
           border-radius: 500px;
           box-shadow: $box-shadow--default;
           color: $color--white;
@@ -44,11 +44,11 @@ $color__card-selected: #FFFCE2;
           animation: scale $transition--sm ease;
         }
         .card__btn {
-          background-color: $color__theme--sub;
+          background-color: $color--sub;
         }
       }
       &--img {
-        background-color: $color--gray-light;
+        background-color: $color--lightgray;
         border-radius: calc(#{$border-radius} / 2);
         max-height: 160px;
         padding-top: 61.8%;
@@ -70,7 +70,7 @@ $color__card-selected: #FFFCE2;
         }
       }
       .card__carrier--info {
-        border-top: 1px solid $color--gray-light;
+        border-top: 1px solid $color--lightgray;
         padding-top: 12px;
         p {
           font-size: 14px;
@@ -108,11 +108,11 @@ $color__card-selected: #FFFCE2;
         h4{
         }
         .card__link--container {
-          border-top: 1px solid $color--gray-light;
+          border-top: 1px solid $color--lightgray;
           padding-top: 12px;
           margin-top: 12px;
           .card--link .fa {
-            color: $color--gray-light;
+            color: $color--lightgray;
             font-size: 2.6rem;
             transform: scaleX(-1);
           }
@@ -136,7 +136,7 @@ $color__card-selected: #FFFCE2;
             &.mail--new {
               font-weight: bolder;
               &:before {
-                color: $color__theme--sub;
+                color: $color--sub;
                 content: "\f0e0";
                 font-weight: normal;
               }
@@ -146,13 +146,13 @@ $color__card-selected: #FFFCE2;
               content: "\f2b6";
             }
             &.mail--waiting:before {
-              color: $color--gray-light;
+              color: $color--lightgray;
               content: "\f0e0";
             }
           }
         }
         .card__carrier--info {
-          border-bottom: 1px solid $color--gray-light;
+          border-bottom: 1px solid $color--lightgray;
           padding-bottom: 12px;
           margin-bottom: 12px;
           border-top: 0;
