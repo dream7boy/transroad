@@ -1,0 +1,8 @@
+<div class="nested-fields">
+  <div class="form-inline">
+    <%= f.input :size, label: false, required: true %>
+    <%= f.input :vehicle_type, label: false, required: true %>
+    <%= f.input :quantity, label: false, required: true %>
+    <%= link_to_remove_association '車両を削除する', f, class: 'btn btn-primary' %>
+  </div>
+</div>
