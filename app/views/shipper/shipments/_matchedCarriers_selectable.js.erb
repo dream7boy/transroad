@@ -1,27 +1,26 @@
 <% content_for(:after_js) do %>
-<%= javascript_tag do %>
-$(document).ready(function() {
+  <%= javascript_tag do %>
+    $(document).ready(function() {
 
-  // START / CARD SELECTION
-  var clickTargets = document.querySelectorAll(".card__btn");
-  var selectedCarriersInput = document.querySelector("#carriers_ids");
-  var carrierIdArray = [];
-  clickTargets.forEach(function(btn, i) {
-    btn.addEventListener("click", function(e) {
-      var clickedCard = $(e.target).closest("div.card__carrier");
-      var selectedCarrierId = clickedCard.find(".carrier__id")[0].id;
-      clickedCard.toggleClass("selected");
-      if(clickedCard.hasClass("selected")) {
-        carrierIdArray.push(selectedCarrierId);
-        selectedCarriersInput.value = carrierIdArray;
-      } else if(!clickedCard.hasClass("selected")) {
-        carrierIdArray.splice(carrierIdArray.indexOf(selectedCarrierId), 1);
-        selectedCarriersInput.value = carrierIdArray;
-      }
+      // START / CARD SELECTION
+      var clickTargets = document.querySelectorAll(".card__btn");
+      var selectedCarriersInput = document.querySelector("#carriers_ids");
+      var carrierIdArray = [];
+      clickTargets.forEach(function(btn, i) {
+        btn.addEventListener("click", function(e) {
+          var clickedCard = $(e.target).closest("div.card__carrier");
+          var selectedCarrierId = clickedCard.find(".carrier__id")[0].id;
+          clickedCard.toggleClass("selected");
+          if(clickedCard.hasClass("selected")) {
+            carrierIdArray.push(selectedCarrierId);
+            selectedCarriersInput.value = carrierIdArray;
+          } else if(!clickedCard.hasClass("selected")) {
+            carrierIdArray.splice(carrierIdArray.indexOf(selectedCarrierId), 1);
+            selectedCarriersInput.value = carrierIdArray;
+          }
+        });
+      })
+
     });
-  })
-  // END / CARD SELECTION
-
-});
-<% end %>
+  <% end %>
 <% end %>

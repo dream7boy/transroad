@@ -1,0 +1,7 @@
+<div id="shipment__pickup__container" class="pickup__container">
+  <h3>集荷先</h3>
+  <%= f.simple_fields_for :pickups do |pickup| %>
+    <%= render 'pickup_fields', f: pickup %>
+  <% end %>
+</div>
+<%= link_to_add_association '集荷先を追加する',f,:pickups,class: 'btn btn-primary btn__null btn__form--add-nested',data: { association_insertion_node: '#shipment__pickup__container',association_insertion_method: :append } %>
