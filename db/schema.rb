@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130035520) do
+ActiveRecord::Schema.define(version: 20180410094849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 20180130035520) do
     t.string "street"
     t.string "time"
     t.index ["shipment_id"], name: "index_deliveries_on_shipment_id"
+  end
+
+  create_table "delivery_vehicles", force: :cascade do |t|
+    t.string "size"
+    t.string "vehicle_type"
+    t.integer "quantity"
+    t.bigint "deal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deal_id"], name: "index_delivery_vehicles_on_deal_id"
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -166,6 +176,7 @@ ActiveRecord::Schema.define(version: 20180130035520) do
   add_foreign_key "deals", "carriers"
   add_foreign_key "deals", "shipments"
   add_foreign_key "deliveries", "shipments"
+  add_foreign_key "delivery_vehicles", "deals"
   add_foreign_key "facilities", "shippers"
   add_foreign_key "items", "deals"
   add_foreign_key "pickups", "shipments"

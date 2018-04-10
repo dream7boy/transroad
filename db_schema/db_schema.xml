@@ -463,7 +463,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="930" y="217.79999923706055" name="vehicles">
+<table x="911" y="213.79999923706055" name="delivery_vehicles">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
