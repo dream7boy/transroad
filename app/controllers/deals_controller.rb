@@ -45,10 +45,12 @@ class DealsController < ApplicationController
   def confirm
     set_deal
 
-    permitted = params.require(:deal).permit(items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy))
-    attributes = permitted[:items_attributes].to_h || {}
+    permitted_items = params.require(:deal).permit(items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy))
+    permitted_delivery_vehicles = params.require(:deal).permit(delivery_vehicles_attributes: DeliveryVehicle.attribute_names.map(&:to_sym).push(:_destroy))
+    items_attributes = permitted_items[:items_attributes].to_h || {}
+    delivery_vehicles_attributes = permitted_delivery_vehicles[:delivery_vehicles_attributes].to_h || {}
 
-    @deal_items = attributes.map do |attribute|
+    @deal_items = items_attributes.map do |attribute|
       unless attribute[1][:_destroy] == "1" || attribute[1][:_destroy] == "true"
         {
           id: attribute[1][:id],
@@ -59,9 +61,24 @@ class DealsController < ApplicationController
         }
       end
     end
+
+    @deal_delivery_vehicles = delivery_vehicles_attributes.map do |attribute|
+      unless attribute[1][:_destroy] == "1" || attribute[1][:_destroy] == "true"
+        {
+          id: attribute[1][:id],
+          size: attribute[1][:size],
+          vehicle_type: attribute[1][:vehicle_type],
+          quantity: attribute[1][:quantity],
+          _destroy: attribute[1][:_destroy]
+        }
+      end
+    end
+
     @deal_items.compact!
+    @deal_delivery_vehicles.compact!
 
     @deal.attributes = quote_params
+
     render :new if @deal.invalid?
   end
 
@@ -153,7 +170,8 @@ class DealsController < ApplicationController
 
   def quote_params
     params.require(:deal).permit(:total_price,
-      items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy))
+      items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy),
+      delivery_vehicles_attributes: DeliveryVehicle.attribute_names.map(&:to_sym).push(:_destroy))
   end
 
   def set_deals(transit_status)

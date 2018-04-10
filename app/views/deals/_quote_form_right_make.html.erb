@@ -19,7 +19,19 @@
 
     <div class="UNSOUVEHICLE">
       <h3>運送に使用する車両</h3>
-      <%= f.input :delivery_vehicles, as: :fake_select, input_html: { class: '' } %>
+        <div class="label--container">
+          <p>大きさ</p>
+          <p>形状</p>
+          <p>台数</p>
+        </div>
+        <div id="deal__delivery_vehicles__container">
+          <%= f.simple_fields_for :delivery_vehicles do |d| %>
+            <%= render 'delivery_vehicle_fields', f: d %>
+          <% end %>
+        </div>
+        <%= link_to_add_association '車両を追加する', f, :delivery_vehicles, class: 'btn btn-primary', data: { association_insertion_node: '#deal__delivery_vehicles__container', association_insertion_method: :append } %>
+      <%#= f.input :delivery_vehicles, as: :fake_select, input_html: { class: '' } %>
+
       <% if false %>
         <%= f.simple_fields_for :vehicles do |v| %>
           <%= render 'vehicle_fields', f: v %>
