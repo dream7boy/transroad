@@ -1,6 +1,5 @@
-<section id="carrier__registration" class="container-fluid carrier ">
+<section id="carrier__registration" class="container-fluid carrier slimSmall">
   <div>
-
     <h2>運送アカウント登録</h2>
     <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
       <%= f.error_notification %>
@@ -13,7 +12,6 @@
         <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
       </div>
     <% end %>
-
   </div>
 </section>
 

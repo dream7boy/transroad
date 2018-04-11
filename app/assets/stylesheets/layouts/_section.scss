@@ -1,70 +1,58 @@
 $border: 14px;
 $borderFull: $border * 2;
+
 section {
-    &.carrier, &.shipper, &.user {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding: calc(#{$borderFull} * 1.25);
-      min-height: calc(100vh - #{$navbar__height});
-      // .row {
-      //   display: flex;
-      //   justify-content: center;
-      //   margin-left: unset;
-      //   margin-right: unset;
-      //   width: 100%;
-      //   &.row--block {
-      //     display: block;
-      //   }
-      // }
+  &.carrier, &.shipper, &.user {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    min-height: calc(100vh - #{$navbar__height});
+    padding: calc(#{$borderFull} * 1.25);
+    &.slimSmall {
+      padding: calc(#{$borderFull} * 1.25) 36rem;
     }
-    &.carrier {
-      border: $border solid $color--main;
-      // padding-bottom: $spacer--sm;
-      // padding-top: $spacer--sm;
-      &.container-fluid {
-        &.well--xs {
-          padding: $spacer--md;
-        }
+    &.slimLarge {
+      padding: calc(#{$borderFull} * 1.25) 46rem;
+    }
+    hr {
+      border-top: 3px solid $color--sub;
+      margin: calc(#{$borderFull} * 1.25) auto;
+      width: 100%;
+      &.simple {
+        border-top: 1px solid $color--gray;
+        margin: 0;
       }
     }
-    &.shipper {
-      background: repeating-linear-gradient(
-        -45deg,
-        $color--white,
-        $color--white $border,
-        $color--main $border,
-        $color--main $borderFull
-        );
-      position: relative;
-      z-index: 0;
-      &:before {
-        background-color: $color--white;
-        content: "";
-        display: block;
-        height: calc(100% - #{$borderFull});
-        left: $border;
-        position: absolute;
-        top: $border;
-        width: calc(100% - #{$borderFull});
-        z-index: -10;
-      }
-      &.container-fluid {
-        padding: calc(#{$borderFull} * 1.5);
-      }
+  }
+}
+
+section.carrier {
+  border: $border solid $color--main;
+}
+
+section.shipper {
+  background: repeating-linear-gradient( -45deg, $color--white, $color--white $border, $color--main $border, $color--main $borderFull);
+  position: relative;
+  z-index: 0;
+  &:before {
+    background-color: $color--white;
+    content: "";
+    display: block;
+    height: calc(100% - #{$borderFull});
+    left: $border;
+    position: absolute;
+    top: $border;
+    width: calc(100% - #{$borderFull});
+    z-index: -10;
+  }
+  &.container-fluid {  // Different padding from default due to bg method.
+    padding: calc(#{$borderFull} * 1.75);
+    &.slimSmall {
+      padding: calc(#{$borderFull} * 1.75) calc(#{$borderFull} * 13.358);
     }
-    &.user {
-      // padding-top: $spacer--sm;
-      // padding-bottom: $spacer--sm;
-    }
-  & hr {
-    border: 0;
-    border-top: 3px solid $color--sub;
-    margin: calc(#{$borderFull} * 1.25) auto;
-    width: 100%;
-    &.simple {
-      border-top: 1px solid $color--gray;
-      margin: 0;
+    &.slimLarge {
+      padding: calc(#{$borderFull} * 1.75) calc(#{$borderFull} * 16.92857);
     }
   }
 }

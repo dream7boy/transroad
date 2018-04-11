@@ -1,20 +1,16 @@
-<section id="shipper__registration" class="container-fluid shipper ">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-
-      <h2>荷主アカウント登録</h2>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= render "inputCompany.html.erb", f: f %>
-          <%= render "inputContact.html.erb", f: f %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
-        </div>
-      <% end %>
-
-    </div>
+<section id="shipper__registration" class="container-fluid shipper slimSmall">
+  <div>
+    <h2>荷主アカウント登録</h2>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= render "inputCompany.html.erb", f: f %>
+        <%= render "inputContact.html.erb", f: f %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
+      </div>
+    <% end %>
   </div>
 </section>
 
