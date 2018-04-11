@@ -1,9 +1,9 @@
-<div class="modal--details--pickup">
+<div class="modalMainPickup">
   <h4>集荷先</h4>
-  <div class="details--pickup--case">
+  <div class="modalMainPickupContainer">
     <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
     <%#= pickup.each do | pickup | %>
-    <div class="details--pickup--card">
+    <div class="modalMainPickupBlock">
       <p><i class="fa fa-map-marker" aria-hidden="true"></i>&emsp;集荷先(1/1)</p>
       <p><span>住所：</span><%= pickup.prefecture %>&emsp;<%= pickup.ward %><br>&emsp;&emsp;&emsp;<%= pickup.street %></p>
       <p><span>集荷時間：</span><%= pickup.time %></p>

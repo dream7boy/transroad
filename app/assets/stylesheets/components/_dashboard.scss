@@ -1,6 +1,7 @@
-.header--container {
+.dashboardHeader {
   align-items: flex-end;
   display: flex;
+  flex: 0 0 100%;
   justify-content: space-between;
   padding: 0 0 $spacer--sm 0;
   h3 {

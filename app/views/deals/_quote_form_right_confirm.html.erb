@@ -1,15 +1,13 @@
-<div>
+<div class="debug">
   <% @deal_items.each do |item| %>
     <div>
-      <p>項目：<%= item[:name] %> 内訳：<%= item[:description] %> 金額：<%= item[:price] %>
-      </p>
+      <p>項目：<%= item[:name] %> 内訳：<%= item[:description] %> 金額：<%= item[:price] %></p>
     </div>
   <% end %>
 
   <% @deal_delivery_vehicles.each do |delivery_vehicle| %>
     <div>
-      <p>大きさ：<%= delivery_vehicle[:size] %> 形状：<%= delivery_vehicle[:vehicle_type] %> 台数：<%= delivery_vehicle[:quantity] %>
-      </p>
+      <p>大きさ：<%= delivery_vehicle[:size] %> 形状：<%= delivery_vehicle[:vehicle_type] %> 台数：<%= delivery_vehicle[:quantity] %></p>
     </div>
   <% end %>
 

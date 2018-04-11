@@ -1,19 +1,21 @@
-<section id="carrier__quote" class="container-fluid section__carrier well--xs">
-  <div class="row">
+<section id="carrier__quote" class="container-fluid carrier flexTop">
+  <div class="quoteWrapper">
 
-    <div class="col-md-4 col-lg4 debug">
-      <%= render "quote_form_left" %>
-    </div>
-
-    <div class="col-md-8 col-lg-8 debug">
-      <!-- IF quotation exists -->
+    <div class="dashboardHeader">
       <% if params[:action] == 'confirm' %>
-        <%= render "quote_form_right_confirm" %>
+        <h2>見積書の内容確認</h2>
       <% else %>
-      <!-- IF quotation DOES NOT exist -->
-        <%= render "quote_form_right_make" %>
+        <h2>見積書を作成</h2>
       <% end %>
     </div>
+
+    <%= render "quote_form_left" %>
+
+    <% if params[:action] == 'confirm' %>
+      <%= render "quote_form_right_confirm" %> <!-- IF quotation exists -->
+    <% else %>
+      <%= render "quote_form_right_make" %> <!-- IF quotation DOES NOT exist -->
+    <% end %>
 
   </div>
 </section>
