@@ -10,7 +10,6 @@ $font__h2: 2.1rem; // PAGE HEADER
 $font__h3: 1.6rem; // PAGE SUB HEADER & FORM HEADER
 $font__h4: 1.6rem; // CONTENT HEADER
 $font__p: 1.6rem;
-$font__btn--lg: 2.0rem;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
@@ -44,11 +43,11 @@ h3 {
 h4 {
   color: $color--black;
   font-size: $font__h4;
-  font-weight: bold;
+  // font-weight: bold;
 }
 h5, h6 {
   font-size: $font__p;
-  font-weight: bold;
+  // font-weight: bold;
 }
 p, a {
   color: inherit;

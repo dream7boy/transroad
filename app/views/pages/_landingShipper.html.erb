@@ -1,10 +1,9 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-    <div class="text__block">
+<section id="landing--shipper" class="shipper">
+
+  <div class="landingWrapper">
+    <div class="landingContainer">
       <h2>荷物を送りたい</h2>
       <p>物流の主な機能として、輸送・配送の他、保管・荷役(にやく)・包装・流通加工・物流情報処理がある。その中でも、輸送・保管・荷役・包装・流通加工は「物流5大機能」と言われる。</p>
-    </div>
-    <div class="text__block">
       <h5>登録するメリット</h5>
       <ul class="points">
         <li><span class="checkmark">&check;</span>︎&emsp;貴社の商材にマッチする運送会社が見つかります。</li>
@@ -12,29 +11,28 @@
         <li><span class="checkmark">&check;</span>︎&emsp;登録料、その他諸経費は一切かかりません。</li>
       </ul>
     </div>
+    <div class="landingContainer img__box--horizontal hidden-xs">
+      <%= inline_svg "00_shipper_set.svg", class: "img__flip-y" %>
+    </div>
   </div>
-  <div class="img__box--horizontal col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
-    <%= inline_svg "00_shipper_set.svg", class: "img__flip-y" %>
-  </div>
-</div>
 
-<hr>
+  <hr>
 
-<div class="row text__block">
-  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-    <h5>登録・ご利用の流れ</h5>
-    <ul class="points">
-      <li><span>①</span>&emsp;無料で登録する。</li>
-      <li><span>②</span>&emsp;貴社の商材にマッチする運送会社を見つける。</li>
-      <li><span>③</span>&emsp;お見積もりを比較、検討、選択する。</li>
-      <li><span>④</span>&emsp;配送手配の確定。</li>
-    </ul>
-    <%= link_to "無料で登録する", new_shipper_registration_path, class: "btn btn-primary btn__null" %>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
-    <div class="img__box--horizontal img__flip-y">
+  <div class="landingWrapper">
+    <div class="landingContainer">
+      <h5>登録・ご利用の流れ</h5>
+      <ul class="points">
+        <li><span>①</span>&emsp;無料で登録する。</li>
+        <li><span>②</span>&emsp;貴社の商材にマッチする運送会社を見つける。</li>
+        <li><span>③</span>&emsp;お見積もりを比較、検討、選択する。</li>
+        <li><span>④</span>&emsp;配送手配の確定。</li>
+      </ul>
+      <%= link_to "無料で登録する", new_shipper_registration_path, class: "btn btn-primary btn__null" %>
+    </div>
+    <div class="landingContainer img__box--horizontal img__flip-y hidden-xs">
       <%= inline_svg "00_carrier_set.svg" %>
       <%= inline_svg "00_shipper_set.svg" %>
     </div>
   </div>
-</div>
+
+</section>

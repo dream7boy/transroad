@@ -1,12 +1,13 @@
 %extBtnNull {
   background-color: $color--main;
-  border-radius: 1px;
+  border-radius: 0.25rem;
   border: 0;
   box-shadow: $box-shadow--default;
   font-family: $font__body;
   font-size: $font__p;
   font-weight: bold;
-  padding: 8px 16px;
+  letter-spacing: 0.1rem;
+  padding: 10px 16px;
   &:active {
     transform: translateY(2px);
     background-color: $color--main;
@@ -120,9 +121,6 @@
   .btn__case {
     max-width: 650px;
     width: 50%;
-  }
-  .btn__null {
-    font-size: $font__btn--lg;
   }
 }
 /*------------ } @media (min-width: 992px) ------------*/

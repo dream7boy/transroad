@@ -3,7 +3,7 @@
   display: flex;
   height: 100vh;
   justify-content: space-between;
-  padding: $spacer--sm $spacer--xs $spacer--md $spacer--xs;
+  padding: $spacer--xs $spacer--xs $spacer--md $spacer--xs;
   width: 100vw;
   flex-direction: column;
   &:first-child {
@@ -15,9 +15,6 @@
 }
 #landing--initial {
   position: relative;
-  &.fullscreen {
-    padding: $spacer--xs $spacer--xs $spacer--md $spacer--xs;
-  }
   #landing--navbar--collapse {
     box-shadow: $box-shadow--default;
   }
@@ -213,10 +210,8 @@
 
 /*------------  md >= 992px (.container @ 970px)  ------------*/
 @media (min-width: 992px) {
+
   #landing--initial {
-    &.fullscreen {
-      padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
-    }
     #landing--navbar--collapse {
       box-shadow: none;
     }
@@ -258,6 +253,7 @@
       }
     }
   }
+
   #landing--description {
     .description__image-box {
       & .carrier_ {
@@ -290,8 +286,62 @@
       }
     }
   }
+
+  #landing--carrier, #landing--shipper {
+    .landingWrapper {
+      display: flex;
+      padding: $spacer--xl calc(#{$spacer--xl} * 1.25);
+    }
+    .landingContainer {
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      flex: 1 50%;
+      + .landingContainer {
+        margin-left: $spacer--lg;
+      }
+      &.img__box--horizontal {
+        flex-direction: unset;
+        align-items: center;
+        & svg {
+          padding: 10px;
+          width: 50%;
+          min-width: 200px;
+          max-width: 250px;
+        }
+      }
+    }
+    h2 {
+      padding-bottom: calc(#{$font__h2} * 0.25);
+    }
+    p, ul {
+      margin-bottom: $spacer--sm;
+      &:last-child {
+        margin-bottom: unset;
+      }
+    }
+    p {
+      width: calc(#{$font__p} * 25);
+    }
+    ul.points {
+      padding-left: 2.8rem;
+      li {
+        font-weight: normal;
+        line-height: 1.65;
+        text-align: left;
+        text-indent: -2.8rem;
+        .checkmark {
+          font-family: unset;
+          font-size: calc(#{$font__p * 1.2});
+          line-height: 0;
+        }
+      }
+    }
+  }
+
   .fullscreen {
     padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
   }
+
 }
 /*------------ } @media (min-width: 992px) ------------*/

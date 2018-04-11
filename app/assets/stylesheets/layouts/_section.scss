@@ -1,24 +1,12 @@
 $border: 14px;
 $borderFull: $border * 2;
-.fullscreen {
-  padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
-}
 section {
     &.carrier, &.shipper, &.user {
       display: flex;
       flex-direction: column;
       height: 100%;
+      padding: calc(#{$borderFull} * 1.25);
       min-height: calc(100vh - #{$navbar__height});
-      .row {
-        display: flex;
-        justify-content: center;
-        margin-left: unset;
-        margin-right: unset;
-        width: 100%;
-        &.row--block {
-          display: block;
-        }
-      }
       // .row {
       //   display: flex;
       //   justify-content: center;
@@ -32,13 +20,9 @@ section {
     }
     &.carrier {
       border: $border solid $color--main;
-      padding-bottom: $spacer--sm;
-      padding-top: $spacer--sm;
+      // padding-bottom: $spacer--sm;
+      // padding-top: $spacer--sm;
       &.container-fluid {
-        padding-bottom: $spacer--xl;
-        padding-top: $spacer--xl;
-        padding-left: $spacer--xl;
-        padding-right: $spacer--xl;
         &.well--xs {
           padding: $spacer--md;
         }
@@ -70,50 +54,17 @@ section {
       }
     }
     &.user {
-      padding-top: $spacer--sm;
-      padding-bottom: $spacer--sm;
+      // padding-top: $spacer--sm;
+      // padding-bottom: $spacer--sm;
     }
   & hr {
     border: 0;
     border-top: 3px solid $color--sub;
-    margin: $spacer--md 0 calc(#{$spacer--md} + 4px) 0;
+    margin: calc(#{$borderFull} * 1.25) auto;
     width: 100%;
     &.simple {
       border-top: 1px solid $color--gray;
       margin: 0;
-    }
-  }
-  .img__box--horizontal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & svg {
-      padding: 10px;
-      width: 50%;
-      min-width: 200px;
-      max-width: 250px;
-    }
-  }
-  .text__block {
-    padding-bottom: calc(#{$font__p} * 3.0);
-    text-align: unset;
-    &:last-child {
-      padding-bottom: 0;
-    }
-    h2 {
-      padding-bottom: calc(#{$font__h2} * 0.25);
-    }
-    h5, h6 {
-      padding-bottom: calc(#{$font__p} * 0.5);
-      padding-top: calc(#{$font__p} * 2.0);
-      &:first-child {
-        padding-top: 0;
-      }
-    }
-    a.btn {
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: calc(#{$font__p} * 3.0);
     }
   }
 }

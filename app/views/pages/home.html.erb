@@ -1,20 +1,9 @@
 <div id="home">
-
   <div id="landing--initial" class="fullscreen ignore__navbar">
     <%= render "landingNavBar.html.erb" %>
     <%= render "landingView.html.erb" %>
   </div>
-
-  <div id="landing--description" class="fullscreen">
-    <%= render "landingDescription.html.erb" %>
-  </div>
-
-  <section id="landing--carrier" class="container-fluid carrier">
-    <%= render "landingCarrier.html.erb" %>
-  </section>
-
-  <section id="landing--shipper" class="container-fluid shipper">
-    <%= render "landingShipper.html.erb" %>
-  </section>
-
+  <%= render "landingDescription.html.erb" %>
+  <%= render "landingCarrier.html.erb" %>
+  <%= render "landingShipper.html.erb" %>
 </div>
