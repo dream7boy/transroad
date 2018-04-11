@@ -1,0 +1,22 @@
+<div class="modal--details--pickup">
+  <h4>集荷先</h4>
+  <div class="details--pickup--case">
+    <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
+    <%#= pickup.each do | pickup | %>
+    <div class="details--pickup--card">
+      <p><i class="fa fa-map-marker" aria-hidden="true"></i>&emsp;集荷先(1/1)</p>
+      <p><span>住所：</span><%= pickup.prefecture %>&emsp;<%= pickup.ward %><br>&emsp;&emsp;&emsp;<%= pickup.street %></p>
+      <p><span>集荷時間：</span><%= pickup.time %></p>
+      <p><span>車庫からの距離：</span>約<%= shipment.distance %>215km*</p>
+      <br>
+      <p><span>荷物：</span><%= pickup.category %></p>
+      <p><span>寸法：</span>横<%= pickup.size_width %> x 奥<%= pickup.size_depth %> x 縦<%= pickup.size_height %></p>
+      <p><span>個数：</span><%= pickup.quantity %>個</p>
+      <p><span>単体重量：</span><%= pickup.weight %>kg</p>
+      <p><span>単体容積重量：</span>777kg*</p>
+      <p><span>温度管理：</span><%= pickup.temperature %></p>
+      <p><span>備考欄：</span><%= pickup.additional_info %></p>
+    </div>
+    <%# end %>
+  </div>
+</div>

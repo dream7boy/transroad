@@ -1,0 +1,13 @@
+<div class="modal--details--delivery">
+  <h4><i class="fa fa-map-marker" aria-hidden="true"></i>&emsp;配送先</h4>
+  <div class="details--delivery--case">
+    <div>
+      <p><span>住所：</span><%= delivery.prefecture %>&emsp;<%= delivery.ward %>&emsp;<%= delivery.street %></p>
+      <p><span>配達時間：</span><%= delivery.time %></p>
+    </div>
+    <div>
+      <p><span>最終集荷地からの距離：</span>約<%= shipment.distance %>35km*</p>
+      <p><span>車庫までの距離：</span>約<%= shipment.distance %>85km*</p>
+    </div>
+  </div>
+</div>

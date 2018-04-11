@@ -1,0 +1,17 @@
+<div class="sidebar">
+  <div class="modal--summary">
+    <h4>運送案件概要</h4>
+    <p><span>予定期間：</span><%= shipment.duration_start.strftime("%Y年%m月%d日") %>〜<br>&emsp;&emsp;&emsp;&emsp;&emsp;<%= shipment.duration_end.strftime("%Y年%m月%d日") %></p>
+    <p><span>運送頻度：</span><%= shipment.frequency %></p>
+    <p><span>荷物：</span><%= pickup.category %></p>
+    <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
+    <%#= pickup.each do | pickup | %>
+      <!-- <p><%#= pickup.category %></p> -->
+    <%# end %>
+    <p><span>依頼主：</span><%= shipment.shipper.name_kanji %></p>
+    <p><span>集荷先：</span><%= pickup.prefecture %>&emsp;<%= pickup.ward %></p>
+    <p><span>配達先：</span><%= delivery.prefecture %>&emsp;<%= delivery.ward %></p>
+    <p><span>往復距離：</span><%= shipment.distance %>215km</p>
+  </div>
+  <div class="modal--map"></div>
+</div>

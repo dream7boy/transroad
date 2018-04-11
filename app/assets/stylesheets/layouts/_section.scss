@@ -9,6 +9,9 @@ section {
     justify-content: center;
     min-height: calc(100vh - #{$navbar__height});
     padding: calc(#{$borderFull} * 1.25);
+    &.flexTop {
+      justify-content: unset;
+    }
     &.slimSmall {
       padding: calc(#{$borderFull} * 1.25) 36rem;
     }

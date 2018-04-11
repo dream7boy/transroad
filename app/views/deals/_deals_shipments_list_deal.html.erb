@@ -1,0 +1,34 @@
+<%
+  shipment = d[:deal].shipment
+  pickup = d[:pickup]
+  delivery = d[:delivery]
+%>
+
+<div class="deals--row" data-toggle="modal" data-target='#modalDeal<%= d[:deal].id %>'>
+  <div class="deals--cell new">
+    <p>新規</p>
+  </div>
+  <div class="deals--cell">
+    <p><%= shipment.duration_start.strftime("%Y年%m月%d日") %>〜<%= shipment.duration_end.strftime("%Y年%m月%d日") %></p>
+  </div>
+  <div class="deals--cell">
+    <p><%= shipment.frequency %></p>
+  </div>
+  <div class="deals--cell">
+    <p><%= pickup.category %></p>
+  </div>
+  <div class="deals--cell">
+    <p><%= pickup.prefecture %>&emsp;<%= pickup.ward %></p>
+    <p><%= pickup.time %></p>
+  </div>
+  <div class="deals--cell">
+    <p><%= delivery.prefecture %>&emsp;<%= delivery.ward %></p>
+    <p><%= delivery.time %></p>
+  </div>
+  <div class="deals--cell">
+    <p class="hidden"><%= shipment.distance %></p>
+    <p>約250km</p> <!-- Temporary Dummy -->
+  </div>
+</div>
+
+<%= render "deals_shipments_list_modal", d: d, shipment: shipment, pickup: pickup, delivery: delivery %>

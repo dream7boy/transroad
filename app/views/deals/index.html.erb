@@ -1,27 +1,20 @@
 <% if @deals.present? %>
 
-  <section id="carrier__dashboard" class="container-fluid carrier ">
-    <div class="row row--block">
-      <div class="header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h3>御見積もり依頼</h3>
-        <%#= render 'deals_nav_menu' %>
-      </div>
-      <div class="body--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render 'deals_shipments_list' %>
-      </div>
+  <section id="carrier__dashboard" class="container-fluid carrier flexTop">
+    <div class="header--container">
+      <h3>御見積もり依頼</h3><%#= render 'deals_nav_menu' %>
+    </div>
+    <div class="body--container">
+      <%= render 'deals_shipments_list' %>
     </div>
   </section>
 
 <% else %>
 
-  <section id="carrier__dashboard" class="container-fluid carrier  ">
-    <div class="row row--block">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-          <h2>御見積もり依頼・運送案件はまだありません</h2>
-          <p class="text-center">Btn below is kept for access to Shipments index, remove or comment out if unnecessary.</p>
-          <%= link_to "案件を探す", shipments_path, class: "btn btn-primary btn__null btn__margin--md" %>
-      </div>
-    </div>
+  <section id="carrier__dashboard" class="container-fluid carrier">
+    <h1 class="text-center">御見積もり依頼・運送案件はまだありません</h1>
+    <p>Btn below is kept for access to Shipments index, remove or comment out if unnecessary.</p>
+    <%= link_to "案件を探す", shipments_path %>
   </section>
 
 <% end %>
