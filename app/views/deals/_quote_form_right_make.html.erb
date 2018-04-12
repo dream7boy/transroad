@@ -1,10 +1,15 @@
-<div>
+<div class="quoteFormRight">
   <%= simple_form_for @deal, html: {class: ''}, method: :post, url: confirm_quote_path do |f| %>
 
-    <div class="UNCHINANDFUTAISAGYOU debug">
+    <div class="quoteSectionContainer debug">
       <h3>運賃＆附帯業務料金</h3>
         <%= f.error_notification %>
-        <div class="label--container">
+        <!--
+          CONTINUE HERE AFTER GETTING RID OF ROW--BLOCK
+          Stopped at adjusting the category.
+          Line them up with the input.
+        -->
+        <div class="quoteCategoryContainer">
           <p>項目</p>
           <p>内訳</p>
           <p>金額</p>
@@ -17,9 +22,9 @@
         <%= link_to_add_association '項目を追加する', f, :items, class: 'btn btn-primary', data: { association_insertion_node: '#deal__items__container', association_insertion_method: :append } %>
     </div>
 
-    <div class="UNSOUVEHICLE">
+    <div class="UNSOUVEHICLE hidden">
       <h3>運送に使用する車両</h3>
-        <div class="label--container">
+        <div class="">
           <p>大きさ</p>
           <p>形状</p>
           <p>台数</p>
@@ -39,7 +44,7 @@
       <% end %>
     </div>
 
-    <div class="GOUKEIKINGAKU">
+    <div class="GOUKEIKINGAKU hidden">
       <%= f.input :total_price, label: "合計金額", required: true %>
       <div class="form-actions">
         <%= f.button :submit, "見積り内容を確認する" %>

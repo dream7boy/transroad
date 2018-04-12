@@ -1,6 +1,3 @@
-body {
-  padding-top: $navbar__height;
-}
 #navigation__bar {
   background: $color--white--transparent;
   box-shadow: $box-shadow--default;
@@ -32,7 +29,7 @@ body {
       }
       .fa-bars {
         font-size: 2.4rem;
-        color: $color__theme--main;
+        color: $color--main;
       }
     }
   }
@@ -66,7 +63,7 @@ body {
     padding: 0 $spacer--sm;
     // START / AVATAR MENU
     #avatar__navbar {
-      background-color: $color__theme--sub;
+      background-color: $color--sub;
       border-radius: $border-radius;
       border: 0;
       box-shadow: $box-shadow--default;
@@ -75,10 +72,10 @@ body {
       right: -15px;
       top: 64px;
       &:before {
-        background-color: $color__theme--sub;
-        border-left: 1px solid $color__theme--sub;
+        background-color: $color--sub;
+        border-left: 1px solid $color--sub;
         border-radius: $border-radius;
-        border-top: 1px solid $color__theme--sub;
+        border-top: 1px solid $color--sub;
         content: " ";
         height: 40px;
         position: absolute;
@@ -109,7 +106,7 @@ body {
     // END / AVATAR MENU
     #desktop--dropdown {
       .avatar {
-        color: $color__theme--sub;
+        color: $color--sub;
         font-size: 30px;
         padding: 8px 0 8px 16px;
       }
@@ -132,10 +129,10 @@ body {
           display: none;
         }
         &.sub-list {
-          background-color: $color__theme--main;
+          background-color: $color--main;
           box-shadow: $box-shadow--default;
           display: none;
-          margin-top: 14px;
+          margin-top: 8px;
           padding: 0;
           a {
             padding: 0;
@@ -148,7 +145,7 @@ body {
         li {
           padding: 14px 0;
           &:hover {
-            background-color: $color__theme--main;
+            background-color: $color--main;
             max-height: $navbar__height;
             a {
               color: $color--white;

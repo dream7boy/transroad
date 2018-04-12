@@ -1,28 +1,29 @@
 %extBtnNull {
-  background-color: $color__theme--main;
-  border-radius: 1px;
+  background-color: $color--main;
+  border-radius: 0.25rem;
   border: 0;
   box-shadow: $box-shadow--default;
   font-family: $font__body;
   font-size: $font__p;
   font-weight: bold;
-  padding: 8px 16px;
+  letter-spacing: 0.1rem;
+  padding: 10px 16px;
   &:active {
     transform: translateY(2px);
-    background-color: $color__theme--main;
+    background-color: $color--main;
     &:focus {
-      background-color: darken($color__theme--main, 10%);
+      background-color: darken($color--main, 10%);
     }
   }
   &:focus {
-    background-color: $color__theme--main;
+    background-color: $color--main;
   }
   &:hover {
-    background-color: darken($color__theme--main, 10%);
+    background-color: darken($color--main, 10%);
   }
 }
 %extBtnTriangle {
-  border-color: $color__theme--main transparent transparent transparent;
+  border-color: $color--main transparent transparent transparent;
   border-style: solid;
   border-width: 10px 8px 0 8px;
   content: "";
@@ -41,22 +42,22 @@
 }
 .btn__invert {
   background-color: $color--white;
-  color: $color__theme--main;
+  color: $color--main;
   font-weight: bolder;
   &:active {
     background-color: $color--white;
     &:focus {
       background-color: $color--white;
-      color: darken($color__theme--main, 15%);
+      color: darken($color--main, 15%);
     }
   }
   &:focus {
     background-color: $color--white;
-    color: $color__theme--main;
+    color: $color--main;
   }
   &:hover {
     background-color: $color--white;
-    color: darken($color__theme--main, 15%);
+    color: darken($color--main, 15%);
   }
 }
 .btn__null {
@@ -73,19 +74,19 @@
     }
   }
   &.btn__sub-color {
-    background-color: $color__theme--sub;
+    background-color: $color--sub;
     &:active {
       transform: translateY(2px);
-      background-color: $color__theme--sub;
+      background-color: $color--sub;
       &:focus {
-        background-color: darken($color__theme--sub, 10%);
+        background-color: darken($color--sub, 10%);
       }
     }
     &:focus {
-      background-color: $color__theme--sub;
+      background-color: $color--sub;
     }
     &:hover {
-      background-color: darken($color__theme--sub, 10%);
+      background-color: darken($color--sub, 10%);
     }
   }
 }
@@ -120,9 +121,6 @@
   .btn__case {
     max-width: 650px;
     width: 50%;
-  }
-  .btn__null {
-    font-size: $font__btn--lg;
   }
 }
 /*------------ } @media (min-width: 992px) ------------*/

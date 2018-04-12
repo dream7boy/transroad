@@ -1,0 +1,37 @@
+.quoteWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  [class^=deal_details--] {
+    padding: 1.5rem 0;
+    border-bottom: 2px solid $color--lightgray;
+    &:first-child {
+      padding-top: unset;
+    }
+    &:last-child {
+      padding-bottom: unset;
+      border-bottom: unset;
+    }
+  }
+  .quoteFormLeft {
+    flex: 1;
+    margin-right: 6rem;
+    p + p {
+      margin-top: 0.25rem;
+    }
+  }
+  .quoteFormRight {
+    flex: 3;
+  }
+}
+
+.quoteSectionContainer {
+  h3 {
+    flex: 0 0 100%;
+  }
+}
+// CONTINUE HERE AFTER GETTING RID OF ROW--BLOCK
+// Stopped at adjusting the category.
+// Line them up with the input.
+.quoteCategoryContainer {
+  display: flex;
+}

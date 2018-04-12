@@ -1,40 +1,38 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-    <div class="text__block">
+<section id="landing--carrier" class="carrier">
+
+  <div class="landingWrapper">
+    <div class="landingContainer">
       <h2>荷物を運びたい</h2>
-      <p>物流の主な機能として、輸送・配送の他、保管・荷役(にやく)・包装・流通加工・物流情報処理がある。その中でも、輸送・保管・荷役・包装・流通加工は「物流5大機能」と言われる。</p>
-    </div>
-    <div class="text__block">
-      <h5>登録するメリット</h5>
+      <p>物流の主な機能として、輸送・配送の他、保管・荷役（にやく）・包装・流通加工・物流情報処理がある。その中でも、輸送・保管・荷役・包装・流通加工は「物流５大機能」と言われる。</p>
+      <h2>登録するメリット</h2>
       <ul class="points">
-        <li><span class="color__sub checkmark">&check;</span>︎&emsp;貴社の強みにマッチする新規案件を見つけられます。</li>
-        <li><span class="color__sub checkmark">&check;</span>︎&emsp;見積もり依頼をいつでも受けられます。</li>
-        <li><span class="color__sub checkmark">&check;</span>︎&emsp;登録料、その他諸経費は一切かかりません。</li>
+        <li><span class="checkmark">&check;</span>︎&emsp;貴社の強みにマッチする新規案件を見つけられます。</li>
+        <li><span class="checkmark">&check;</span>︎&emsp;見積もり依頼をいつでも受けられます。</li>
+        <li><span class="checkmark">&check;</span>︎&emsp;登録料、その他諸経費は一切かかりません。</li>
       </ul>
     </div>
-  </div>
-  <div class="img__box--horizontal col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
-    <%= inline_svg "00_carrier_set.svg", class: "" %>
-  </div>
-</div>
-
-<hr>
-
-<div class="row text__block">
-  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-    <h5>登録・ご利用の流れ</h5>
-    <ul class="points">
-      <li><span class="color__sub">①</span>&emsp;無料で登録する。</li>
-      <li><span class="color__sub">②</span>&emsp;貴社の強みにマッチする案件を見つける。</li>
-      <li><span class="color__sub">③</span>&emsp;お見積もりを提案する。</li>
-      <li><span class="color__sub">④</span>&emsp;配送手配の確定。</li>
-    </ul>
-    <%= link_to "無料で登録する", new_carrier_registration_path, class: "btn btn-primary btn__null" %>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 hidden-xs">
-    <div class="img__box--horizontal">
-      <%= inline_svg "00_carrier_set.svg", class: "" %>
-      <%= inline_svg "00_shipper_set.svg", class: "" %>
+    <div class="landingContainer img__box--horizontal hidden-xs">
+      <%= inline_svg "00_carrier_set.svg" %>
     </div>
   </div>
-</div>
+
+  <hr>
+
+  <div class="landingWrapper">
+    <div class="landingContainer">
+      <h2>登録・ご利用の流れ</h2>
+      <ul class="points">
+        <li><span>①</span>&emsp;無料で登録する。</li>
+        <li><span>②</span>&emsp;貴社の強みにマッチする案件を見つける。</li>
+        <li><span>③</span>&emsp;お見積もりを提案する。</li>
+        <li><span>④</span>&emsp;配送手配の確定。</li>
+      </ul>
+      <%= link_to "無料で登録する", new_carrier_registration_path, class: "btn btn-primary btn__null" %>
+    </div>
+    <div class="landingContainer img__box--horizontal hidden-xs">
+      <%= inline_svg "00_carrier_set.svg" %>
+      <%= inline_svg "00_shipper_set.svg" %>
+    </div>
+  </div>
+
+</section>

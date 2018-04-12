@@ -1,180 +1,61 @@
-%extSectWellXS {
-  padding: $spacer--xs;
-}
+$border: 14px;
+$borderFull: $border * 2;
+
 section {
-  // Use this if the section is likely to be less than 100vh.
-  &.section__ {
-    &carrier, &shipper, &user {
-      min-height: calc(100vh - #{$navbar__height});
-      &.flex--center--center {
-        align-items: center;
-        display: flex;
-        height: 100%;
-        .row {
-          width: 100%;
-        }
-      }
-      .row {
-        display: flex;
-        justify-content: center;
-        &.row--block {
-          display: block;
-        }
-      }
-    }
-    &carrier {
-      border: 10px solid $color__theme--main;
-      padding-bottom: $spacer--sm;
-      padding-top: $spacer--sm;
-      &.container-fluid.well--xs {
-        @extend %extSectWellXS;
-      }
-    }
-    &shipper {
-      background: repeating-linear-gradient(
-        -45deg,
-        $color--white,
-        $color--white 10px,
-        $color__theme--main 10px,
-        $color__theme--main 20px
-        );
-      position: relative;
-      z-index: 0;
-      &:before {
-        background-color: $color--white;
-        content: "";
-        display: block;
-        height: calc(100% - 20px);
-        left: 10px;
-        position: absolute;
-        top: 10px;
-        width: calc(100% - 20px);
-        z-index: -10;
-      }
-      &.container-fluid {
-        padding-top: calc(#{$spacer--sm} + 10px);
-        padding-bottom: calc(#{$spacer--sm} + 10px);
-        padding-left: 25px;
-        padding-right: 25px;
-        &.well--xs {
-          @extend %extSectWellXS;
-        }
-      }
-    }
-    &user {
-      padding-top: $spacer--sm;
-      padding-bottom: $spacer--sm;
-    }
-  }
-  & hr {
-    border: 0;
-    border-top: 3px solid $color__theme--sub;
-    margin: $spacer--sm 0 calc(#{$spacer--sm} + 4px) 0;
-    width: 100%;
-    &.simple {
-      border-top: 1px solid $color--gray;
-      margin: 0;
-    }
-  }
-  .img__box--horizontal {
+  &.carrier, &.shipper, &.user {
     display: flex;
+    flex-direction: column;
+    height: 100%;
     justify-content: center;
-    align-items: center;
-    & svg {
-      padding: 10px;
-      width: 50%;
-      min-width: 200px;
-      max-width: 250px;
+    min-height: calc(100vh - #{$navbar__height});
+    padding: calc(#{$borderFull} * 1.25);
+    &.flexTop {
+      justify-content: unset;
     }
-  }
-  .text__block {
-    padding-bottom: calc(#{$font__p} * 2.0);
-    text-align: center;
-    &:last-child {
-      padding-bottom: 0;
+    &.slimSmall {
+      padding: calc(#{$borderFull} * 1.25) 36rem;
     }
-    h2 {
-      padding-bottom: calc(#{$font__h2} * 0.25);
+    &.slimLarge {
+      padding: calc(#{$borderFull} * 1.25) 46rem;
     }
-    h5, h6 {
-      padding-bottom: calc(#{$font__p} * 0.5);
-      padding-top: calc(#{$font__p} * 2.0);
-      &:first-child {
-        padding-top: 0;
+    hr {
+      border-top: 3px solid $color--sub;
+      margin: calc(#{$borderFull} * 1.25) auto;
+      width: 100%;
+      &.simple {
+        border-top: 1px solid $color--gray;
+        margin: 0;
       }
-    }
-    a.btn {
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: calc(#{$font__p} * 2.0);
     }
   }
 }
 
-/* md >= 992px (.container @ 970px) / START */
-@media (min-width: 992px) {
-  .fullscreen {
-    padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
+section.carrier {
+  border: $border solid $color--main;
+}
+
+section.shipper {
+  background: repeating-linear-gradient( -45deg, $color--white, $color--white $border, $color--main $border, $color--main $borderFull);
+  position: relative;
+  z-index: 0;
+  &:before {
+    background-color: $color--white;
+    content: "";
+    display: block;
+    height: calc(100% - #{$borderFull});
+    left: $border;
+    position: absolute;
+    top: $border;
+    width: calc(100% - #{$borderFull});
+    z-index: -10;
   }
-  section {
-    & hr {
-      margin: $spacer--md 0 calc(#{$spacer--md} + 4px) 0;
+  &.container-fluid {  // Different padding from default due to bg method.
+    padding: calc(#{$borderFull} * 1.75);
+    &.slimSmall {
+      padding: calc(#{$borderFull} * 1.75) calc(#{$borderFull} * 13.358);
     }
-    &.section__ {
-      &carrier {
-        border: 18px solid $color__theme--main;
-        &.container-fluid {
-          padding-bottom: $spacer--xl;
-          padding-top: $spacer--xl;
-          padding-left: $spacer--xl;
-          padding-right: $spacer--xl;
-          &.well--xs {
-            padding: $spacer--md;
-          }
-        }
-      }
-      &shipper {
-        background: repeating-linear-gradient(
-          -45deg,
-          $color--white,
-          $color--white 18px,
-          $color__theme--main 18px,
-          $color__theme--main 36px
-          );
-        &:before {
-          height: calc(100% - 36px);
-          left: 18px;
-          top: 18px;
-          width: calc(100% - 36px);
-        }
-        &.container-fluid {
-          padding-bottom: $spacer--xl;
-          padding-top: $spacer--xl;
-          // Different padding from carrier due to striped background.
-          padding-left: calc(#{$spacer--xl} + 18px);
-          padding-right: calc(#{$spacer--xl} + 18px);
-          &.well--sm {
-            padding-top: calc(#{$spacer--md} + 18px);
-            padding-bottom: calc(#{$spacer--md} + 18px);
-            padding-left: calc(#{$spacer--xl} + 18px);
-            padding-right: calc(#{$spacer--xl} + 18px);
-          }
-          &.well--xs {
-            padding-top: calc(#{$spacer--md} + 18px);
-            padding-bottom: calc(#{$spacer--md} + 18px);
-            padding-left: calc(#{$spacer--md} + 18px);
-            padding-right: calc(#{$spacer--md} + 18px);
-          }
-        }
-      }
-    }
-    .text__block {
-      padding-bottom: calc(#{$font__p} * 3.0);
-      text-align: unset;
-      a.btn {
-        margin-top: calc(#{$font__p} * 3.0);
-      }
+    &.slimLarge {
+      padding: calc(#{$borderFull} * 1.75) calc(#{$borderFull} * 16.92857);
     }
   }
 }
-/* md >= 992px (.container @ 970px) / END */

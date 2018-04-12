@@ -1,4 +1,6 @@
 // Import your components CSS files here.
+@import "fontStyle";
+@import "image";
 @import "alert";
 @import "navbar";
 @import "banner";
@@ -7,7 +9,8 @@
 @import "button";
 @import "form";
 @import "multiple-select_override";
-@import "form__progress";
+@import "formProgress";
 @import "card";
 @import "dashboard";
 @import "modal";
+@import "quote";

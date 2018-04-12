@@ -1,21 +1,17 @@
-<section id="carrier__registration" class="container-fluid section__carrier well--xs">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-
-      <h2>運送アカウント登録</h2>
-      <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= render "inputCompany.html.erb", f: f %>
-          <%= render "inputAreaAndVehicles.html.erb", f: f %>
-          <%= render "inputContact.html.erb", f: f %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
-        </div>
-      <% end %>
-
-    </div>
+<section id="carrier__registration" class="container-fluid carrier slimSmall">
+  <div>
+    <h2>運送アカウント登録</h2>
+    <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= render "inputCompany.html.erb", f: f %>
+        <%= render "inputAreaAndVehicles.html.erb", f: f %>
+        <%= render "inputContact.html.erb", f: f %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "無料で登録する", class:"btn-primary btn__null btn__width--100" %>
+      </div>
+    <% end %>
   </div>
 </section>
 

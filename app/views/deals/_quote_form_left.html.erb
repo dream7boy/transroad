@@ -4,34 +4,30 @@ shipment = @deal_details[:shipment]
 pickup = @deal_details[:pickup]
 deli = @deal_details[:delivery]
 %>
-
-<% if params[:action] == 'confirm' %>
-  <h2>見積書の内容確認</h2>
-<% else %>
-  <h2>見積書を作成</h2>
-<% end %>
-<div class="deal_details--shipment">
-  <p>依頼主：<%= s.name_kanji %></p>
-  <p>予定期間：<%= shipment.duration_start.strftime("%Y年%m月") %>〜<%= shipment.duration_end.strftime("%Y年%m月") %></p>
-  <p>運送頻度：<%= shipment.frequency %></p>
-  <p>往復距離：{Fetch From Api}</p>
-  <p>移動時間：{Fetch From Api}</p>
-</div>
-<div class="deal_details--pickup">
-  <p>集荷時間：<%= pickup.time %></p>
-  <p>集荷住所：<%= pickup.prefecture %>&emsp;<%= pickup.ward %>&emsp;<%= pickup.street %></p>
-  <p>車庫からの距離：{Fetch From Api}</p>
-  <p>貨物：<%= pickup.category %></p>
-  <p>単体重量：<%= pickup.weight %>kg</p>
-  <p>単体容積重量：<%= (pickup.size_width/100) * (pickup.size_depth/100) * (pickup.size_height/100) * 280 %>kg</p>
-  <p>総重量：<%= pickup.weight * pickup.quantity %>kg</p>
-  <p>温度管理：<%= pickup.temperature %></p>
-  <p>附帯作業：{fetch from model}</p>
-</div>
-<div class="deal_details--delivery">
-  <p>配送時間：<%= deli.time %></p>
-  <p>配送住所：<%= deli.prefecture %>&emsp;<%= deli.ward %>&emsp;<%= deli.street %></p>
-  <p>集荷地からの距離：{Fetch From Api}</p>
-  <p>車庫までの距離：{Fetch From Api}</p>
-  <p>附帯作業：{fetch from model}</p>
+<div class="quoteFormLeft">
+  <div class="deal_details--shipment">
+    <p>依頼主：<%= s.name_kanji %></p>
+    <p>予定期間：<%= shipment.duration_start.strftime("%Y年%m月") %>〜<%= shipment.duration_end.strftime("%Y年%m月") %></p>
+    <p>運送頻度：<%= shipment.frequency %></p>
+    <p>往復距離：{Fetch From Api}</p>
+    <p>移動時間：{Fetch From Api}</p>
+  </div>
+  <div class="deal_details--pickup">
+    <p>集荷時間：<%= pickup.time %></p>
+    <p>集荷住所：<%= pickup.prefecture %>&emsp;<%= pickup.ward %>&emsp;<%= pickup.street %></p>
+    <p>車庫からの距離：{Fetch From Api}</p>
+    <p>貨物：<%= pickup.category %></p>
+    <p>単体重量：<%= pickup.weight %>kg</p>
+    <p>単体容積重量：<%= (pickup.size_width/100) * (pickup.size_depth/100) * (pickup.size_height/100) * 280 %>kg</p>
+    <p>総重量：<%= pickup.weight * pickup.quantity %>kg</p>
+    <p>温度管理：<%= pickup.temperature %></p>
+    <p>附帯作業：{fetch from model}</p>
+  </div>
+  <div class="deal_details--delivery">
+    <p>配送時間：<%= deli.time %></p>
+    <p>配送住所：<%= deli.prefecture %>&emsp;<%= deli.ward %>&emsp;<%= deli.street %></p>
+    <p>集荷地からの距離：{Fetch From Api}</p>
+    <p>車庫までの距離：{Fetch From Api}</p>
+    <p>附帯作業：{fetch from model}</p>
+  </div>
 </div>
