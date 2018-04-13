@@ -1,170 +1,150 @@
 $color__card-selected: #FFFCE2;
+
 @keyframes scale {
   0% {transform: scale(1, 1);}
   33% {transform: scale(1.2, 1.2);}
   66% {transform: scale(0.8, 0.8);}
   100% {transform: scale(1, 1);}
 }
-#cards__container {
+
+#shipperQuoteRequest .cardContainer {
+  width: 23.5%;
+  &:nth-child(3n) {
+    margin: 0 2% 2% 0;
+  }
+  &:nth-child(4n) {
+    margin: 0 0 2% 0;
+  }
+}
+
+.cardsContainer { // Plural
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  margin: 0 -30px 0 -30px;
-  .card__wrapper {
-    padding: 0 15px 30px 15px;
-    width: 25%;
-    .card__carrier {
-      background-color: $color--white;
-      border-radius: $border-radius;
-      box-shadow: $card-shadow--default;
-      padding: 15px;
-      &:hover {
-        box-shadow: $card-shadow--hover;
-        transform: scale(1.02);
-      }
-      &.selected {
-        background-color: $color__card-selected;
-        position: relative;
-        &::after {
-          background-color: $color--sub;
-          border-radius: 500px;
-          box-shadow: $box-shadow--default;
-          color: $color--white;
-          content: "\f00c";
-          display: inline-block;
-          font-family: FontAwesome;
-          font-size: 20px;
-          height: 30px;
-          line-height: 30px;
-          position: absolute;
-          right: -15px;
-          text-align: center;
-          top: -15px;
-          width: 30px;
-          animation: scale $transition--sm ease;
-        }
-        .card__btn {
-          background-color: $color--sub;
-        }
-      }
-      &--img {
-        background-color: $color--lightgray;
-        border-radius: calc(#{$border-radius} / 2);
-        max-height: 160px;
-        padding-top: 61.8%;
-        margin-bottom: 18px;
-      }
-      h4{
-        margin-bottom: 6px;
-      }
-      .card__list--container {
-        list-style-type: disc;
-        margin-bottom: 12px;
-        padding-left: 18px;
-        .card__list--item {
-          font-size: $font__p;
-          margin-bottom: 4px;
-          &:last-child {
-            margin-bottom: 0;
-          }
-        }
-      }
-      .card__carrier--info {
-        border-top: 1px solid $color--lightgray;
-        padding-top: 12px;
-        p {
-          font-size: 14px;
-          line-height: 1.35;
-        }
-      }
-      .card__btn {
-        box-shadow: none;
-        font-size: 1.4rem;
-        margin: 10px 0 0 0;
-        padding: 4px;
-        width: 100%;
-      }
+}
+
+.cardContainer {  // Singular
+  background-color: $color--white;
+  border-radius: $border-radius;
+  box-shadow: $card-shadow--default;
+  padding: 0 15px 30px 15px;
+  padding: 15px;
+  width: 32%;
+  margin: 0 2% 2% 0;
+  &:nth-child(3n) {
+    margin: 0 0 2% 0;
+  }
+  &:hover {
+    box-shadow: $card-shadow--hover;
+    transform: scale(1.02);
+  }
+  h4{
+    margin-bottom: 0.5rem;
+  }
+}
+
+.cardLinkContainer {
+  border-top: 1px solid $color--lightgray;
+  padding-top: 12px;
+  margin-top: 12px;
+  font-size: $font__p;
+  .cardLink {
+    color: $color--lightgray;
+  }
+}
+
+.cardListContainer {
+  list-style-type: disc;
+  margin-bottom: 1rem;
+  padding-left: 18px;
+  .cardListItem {
+    font-size: $font__p;
+    margin-bottom: 4px;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
-#shipper__dashboard {
-  #cards__container {
-    .card__wrapper {
-      width: 33.333333%;
-      .card__carrier {
-        padding: 20px 24px 16px 24px;
-        &:hover {
-          box-shadow: $box-shadow--default;
-          transform: unset;
-        }
-        &.selected {
-          &::after {
-          }
-          .card__btn {
-          }
-        }
-        &--img {
-        }
-        h4{
-        }
-        .card__link--container {
-          border-top: 1px solid $color--lightgray;
-          padding-top: 12px;
-          margin-top: 12px;
-          .card--link .fa {
-            color: $color--lightgray;
-            font-size: 2.6rem;
-            transform: scaleX(-1);
-          }
-        }
-        .card__list--container {
-          list-style-type: none;
-          margin-bottom: 0;
-          padding-left: 22px;
-          .card__list--item {
-            line-height: 1.5;
-            &.mail--new, &.mail--opened, &.mail--waiting {
-              position: relative;
-              &:before {
-                font-family: FontAwesome;
-                font-size: 1.8rem;
-                position: absolute;
-                left: -24px;
-                top: -2px;
-              }
-            }
-            &.mail--new {
-              font-weight: bolder;
-              &:before {
-                color: $color--sub;
-                content: "\f0e0";
-                font-weight: normal;
-              }
-            }
-            &.mail--opened:before {
-              color: $color--gray;
-              content: "\f2b6";
-            }
-            &.mail--waiting:before {
-              color: $color--lightgray;
-              content: "\f0e0";
-            }
-          }
-        }
-        .card__carrier--info {
-          border-bottom: 1px solid $color--lightgray;
-          padding-bottom: 12px;
-          margin-bottom: 12px;
-          border-top: 0;
-          padding-top: 0;
-          p {
-            font-size: initial;
-            line-height: 1.5;
-          }
-        }
-        .card__btn {
-        }
-      }
-    }
+
+.cardCarrierInfo {
+  border-top: 1px solid $color--lightgray;
+  padding-top: 12px;
+  p {
+    font-size: 14px;
+    line-height: 1.35;
   }
 }
+
+.cardBtn {
+  box-shadow: none;
+  font-size: 1.4rem;
+  margin: 10px 0 0 0;
+  padding: 4px;
+  width: 100%;
+}
+
+.cardContainer.selected {
+  background-color: $color__card-selected;
+  position: relative;
+  &::after {
+    animation: scale $transition--sm ease;
+    background-color: $color--sub;
+    border-radius: 500px;
+    box-shadow: $box-shadow--default;
+    color: $color--white;
+    content: "\f00c";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: -15px;
+    text-align: center;
+    top: -15px;
+    width: 30px;
+  }
+}
+
+.cardBtn {
+  background-color: $color--sub;
+}
+
+.carrierImg {
+  background-color: $color--lightgray;
+  border-radius: calc(#{$border-radius} / 2);
+  max-height: 160px;
+  padding-top: 61.8%;
+  margin-bottom: 18px;
+}
+
+// #shipperDashboard {
+//   .cardListItem {
+//     &.mailNew, &.mail--opened, &.mail--waiting {
+//       position: relative;
+//       &:before {
+//         font-family: FontAwesome;
+//         font-size: 1.8rem;
+//         position: absolute;
+//         left: -24px;
+//         top: -2px;
+//       }
+//     }
+//     &.mailNew {
+//       font-weight: bolder;
+//       &:before {
+//         color: $color--sub;
+//         content: "\f0e0";
+//         font-weight: normal;
+//       }
+//     }
+//     &.mail--opened:before {
+//       color: $color--gray;
+//       content: "\f2b6";
+//     }
+//     &.mail--waiting:before {
+//       color: $color--lightgray;
+//       content: "\f0e0";
+//     }
+//   }
+// }

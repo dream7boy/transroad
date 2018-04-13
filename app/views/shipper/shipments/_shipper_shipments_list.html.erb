@@ -1,170 +1,50 @@
-<div id="cards__container" class="row row--block">
-  <% @shipments.each do |shipment| %>
-    <div class="card__wrapper">
-      <div class="card__carrier">
+<div class="dashboardBody">
+  <div class="cardsContainer">
+    <% @shipments.each do |s| %>
+      <div class="cardContainer">
 
-        <div class="card__carrier--info">
-          <% if shipment[:shipment].deals.present? %>
-            <% weekday_index = shipment[:shipment].deals.first.created_at.wday %>
-            <p><span>依頼日：</span><%= shipment[:shipment].deals.first.created_at.strftime("%Y年%m月%d日") %>(<%= @weekday[weekday_index] %>)</p>
+        <%
+          shipmentDeals = s[:shipment].deals
+          shipment = s[:shipment]
+          pickup = s[:pickup]
+        %>
+
+        <div class="cardCarrierInfo">
+          <% if shipmentDeals.present? %>
+            <% weekday_index = shipmentDeals.first.created_at.wday %>
+            <p><span>依頼日：</span><%= shipmentDeals.first.created_at.strftime("%Y年%m月%d日") %>(<%= @weekday[weekday_index] %>)</p>
           <% end %>
-          <p><span>荷物：</span><%= shipment[:pickup].category %></p>
+          <p><span>荷物：</span><%= pickup.category %></p>
             <!-- ACTIVATE THIS AFTER MULTIPLE PICKUPS ARE POSSIBLE -->
-            <%#= shipment[:pickup].each do | pickup | %>
+            <%#= pickup.each do | pickup | %>
               <!-- <p><%#= pickup.category %></p> -->
             <%# end %>
-          <p><span>予定期間：</span><%= shipment[:shipment].duration_start.strftime("%Y年%m月") %>〜<%= shipment[:shipment].duration_end.strftime("%Y年%m月") %></p>
+          <p><span>予定期間：</span><%= shipment.duration_start.strftime("%Y年%m月") %>〜<%= shipment.duration_end.strftime("%Y年%m月") %></p>
         </div>
 
-        <ul class="card__list--container">
-        <% if shipment[:carriers].present? %>
-          <% shipment[:carriers].each do |carrier| %>
-            <li class="card__list--item mail--new"><a href="#"><%= carrier.company_name %></a></li>
+        <ul class="cardListContainer">
+        <% if s[:carriers].present? %>
+          <% s[:carriers].each do |carrier| %>
+            <li class="cardListItem mailNew"><a href="#"><%= carrier.company_name %></a></li>
           <% end %>
         <% end %>
         </ul>
 
-        <div class="card__link--container">
-          <% if shipment[:shipment].deals.blank? %>
-            <%= link_to edit_shipment_path(shipment[:shipment]), class: "card--link" do %>
+        <div class="cardLinkContainer">
+          <% if shipmentDeals.blank? %>
+            <%= link_to edit_shipment_path(shipment), class: "cardLink" do %>
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             <% end %>
-            <%= link_to shipment_path(shipment[:shipment]), method: :delete, data: { confirm: "こちらの案件を削除してよろしいのですか？" }, class: "card--link" do %>
+            <%= link_to shipment_path(shipment), method: :delete, data: { confirm: "こちらの案件を削除してよろしいのですか？" }, class: "cardLink" do %>
               <i class="fa fa-trash" aria-hidden="true"></i>
             <% end %>
           <% end %>
-          <p>
-            <%= link_to shipper_shipment_path(shipment[:shipment]), class: "card--link" do %>
+            <%= link_to shipper_shipment_path(shipment), class: "cardLink" do %>
               <i class="fa fa-truck" aria-hidden="true"></i>
             <% end %>
-          </p>
         </div>
 
       </div>
-    </div>
-  <% end %>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- BACKUP DEL LATER 888 -->
-<% if false %>
-<div class="shipper-shipments-row">
-  <div class="shipper-shipments-row-nColumn column-header shipper-shipments-id">
-    <p>
-      Ship-ID
-    </p>
-  </div>
-  <div class="shipper-shipments-row-nColumn column-header shipper-shipments-pickup">
-    <p>
-      発地
-    </p>
-  </div>
-  <div class="shipper-shipments-row-nColumn column-header shipper-shipments-delivery">
-    <p>
-      着地
-    </p>
-  </div>
-  <div class="shipper-shipments-row-nColumn column-header shipper-shipments-terms">
-    <p>
-      Terms
-    </p>
-  </div>
-  <div class="shipper-shipments-row-nColumn column-header shipper-shipments-rate">
-    <p>
-      Rate
-    </p>
-  </div>
-  <div class="shipper-shipments-row-nColumn column-header shipper-shipments-carrier">
-    <p>
-      運送会社
-    </p>
-  </div>
-  <div class="shipper-shipments-row-nColumn column-header shipper-shipments-status">
-    <p>
-      Shipping-Status
-    </p>
+    <% end %>
   </div>
 </div>
-<% @shipments.each do |shipment| %>
-  <div class="shipper-shipments-row">
-    <div class="shipper-shipments-row-nColumn shipper-shipments-id">
-      <p>
-        <%= shipment[:shipment].id %>
-      </p>
-      <p>
-        <%= link_to "Carriers Matched", shipper_shipment_path(shipment[:shipment]), class: "btn btn-primary" %>
-      </p>
-      <% if shipment[:shipment].deals.blank? %>
-        <%= link_to "Edit", edit_shipment_path(shipment[:shipment]), class: "btn btn-primary" %>
-        <%= link_to "Delete", shipment_path(shipment[:shipment]),
-      method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-      <% end %>
-    </div>
-
-    <div class="shipper-shipments-row-nColumn shipper-shipments-pickup">
-      <p>
-        P-ID:<%= shipment[:pickup].id %> <%= shipment[:pickup].company_name %>
-      </p>
-      <p>
-        <%= shipment[:pickup].prefecture %><%= shipment[:pickup].ward %>
-      </p>
-    </div>
-
-    <div class="shipper-shipments-row-nColumn shipper-shipments-delivery">
-      <p>
-        D-ID:<%= shipment[:delivery].id %> <%= shipment[:delivery].company_name %>
-      </p>
-      <p>
-        <%= shipment[:delivery].prefecture %><%= shipment[:delivery].ward %>
-      </p>
-    </div>
-
-    <div class="shipper-shipments-row-nColumn shipper-shipments-terms">
-      <p>
-        <%= shipment[:shipment].car_type %>
-      </p>
-      <p>
-        <%= shipment[:pickup].weight %>KG
-      </p>
-      <p>
-        <%= shipment[:pickup].category %>
-      </p>
-    </div>
-
-    <div class="shipper-shipments-row-nColumn shipper-shipments-rate">
-      <p>
-        <%= shipment[:shipment].distance %>KM
-      </p>
-      <p>
-        <%= shipment[:shipment].offer_rate %>円
-      </p>
-    </div>
-
-    <div class="shipper-shipments-row-nColumn shipper-shipments-carrier">
-      <% if shipment[:carriers].present? %>
-        <% shipment[:carriers].each do |carrier| %>
-          <p><%= carrier.id %>:<%= carrier.company_name %></p>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="shipper-shipments-row-nColumn shipper-shipments-status">
-    </div>
-  </div>
-<% end %>
-<% end %>

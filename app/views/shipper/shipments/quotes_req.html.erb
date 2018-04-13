@@ -6,21 +6,21 @@
 <section id="shipper__quotation" class="container-fluid shipper ">
   <div class="row row--block">
 
-    <div class="form__progress--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="form__progress--step">
+    <div class="progressBarContainer col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="progressBarStep">
         <% if s.available == true %>
           <p><%= link_to "運送案件を作成", edit_shipment_path(s) %></p>
         <% end %>
       </div>
-      <div class="form__progress--step">
+      <div class="progressBarStep">
         <% if s.available == true %>
           <p><%= link_to "運送会社を選択", shipper_shipment_path(s) %></p>
         <% end %>
       </div>
-      <div class="form__progress--step active">
+      <div class="progressBarStep active">
         <p>内容を確認</p>
       </div>
-      <div class="form__progress--step">
+      <div class="progressBarStep">
         <p>完了</p>
       </div>
     </div>

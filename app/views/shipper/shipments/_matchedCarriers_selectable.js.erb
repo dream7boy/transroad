@@ -3,13 +3,14 @@
     $(document).ready(function() {
 
       // START / CARD SELECTION
-      var clickTargets = document.querySelectorAll(".card__btn");
-      var selectedCarriersInput = document.querySelector("#carriers_ids");
-      var carrierIdArray = [];
+      const clickTargets = document.querySelectorAll(".cardBtn");
+      const selectedCarriersInput = document.querySelector("#carriers_ids");
+      const carrierIdArray = [];
+
       clickTargets.forEach(function(btn, i) {
         btn.addEventListener("click", function(e) {
-          var clickedCard = $(e.target).closest("div.card__carrier");
-          var selectedCarrierId = clickedCard.find(".carrier__id")[0].id;
+          const clickedCard = $(e.target).closest("div.cardCarrier");
+          const selectedCarrierId = clickedCard.find(".carrier__id")[0].id;
           clickedCard.toggleClass("selected");
           if(clickedCard.hasClass("selected")) {
             carrierIdArray.push(selectedCarrierId);

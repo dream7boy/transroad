@@ -1,18 +1,14 @@
-<div class="input--group">
+<div class="inputContainer">
   <h3>荷物の配達先</h3>
   <%= f.simple_fields_for :deliveries do |d| %>
 
-    <div class="container-fluid input--container">
-      <div class="row row--block">
-        <%= d.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
-      </div>
+    <div class="inputGroup row">
+      <%= d.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-4"}, required: true %>
     </div>
 
-    <div class="container-fluid input--container">
-      <div class="row row--block">
-        <%= d.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-12 col-sm-4"}, required: true %>
-        <%= d.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-12 col-sm-8"}, required: true %>
-      </div>
+    <div class="inputGroup row">
+      <%= d.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-4"}, required: true %>
+      <%= d.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-8"}, required: true %>
     </div>
 
     <%= d.input :street, label: "住所", required: true %>

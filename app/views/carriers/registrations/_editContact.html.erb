@@ -1,14 +1,8 @@
-<!-- WAS ON http://localhost:3000/carriers/edit -->
-<!-- CONTINUE HERE, REFACTOR ALL FORM NAMES -->
-<!-- GET RID OF ALL ROW AND ROW BLOCKS -->
-<!-- ALSO GET RID OF COL-XX-XX -->
-<div class="input--group">
+<div class="inputContainer">
   <h3>連絡先 ＆ ログイン情報</h3>
-  <div class="container-fluid input--container">
-    <div class="row row--block">
-      <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
-      <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-12 col-sm-6"}, required: true %>
-    </div>
+  <div class="inputGroup row">
+    <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-6"}, required: true %>
+    <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-6"}, required: true %>
   </div>
   <%= f.input :phone, label: "電話番号", required: true %>
   <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>

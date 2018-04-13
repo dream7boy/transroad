@@ -9,16 +9,20 @@
   letter-spacing: 0.1rem;
   padding: 10px 16px;
   &:active {
+    outline: none;
     transform: translateY(2px);
     background-color: $color--main;
     &:focus {
+      outline: none;
       background-color: darken($color--main, 10%);
     }
   }
   &:focus {
-    background-color: $color--main;
+    outline: none;
+    background-color: $color--sub;
   }
   &:hover {
+    outline: none;
     background-color: darken($color--main, 10%);
   }
 }

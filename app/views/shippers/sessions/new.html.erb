@@ -2,7 +2,7 @@
   <div>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
-        <div class="input--group">
+        <div class="inputContainer">
           <h3>荷主アカウントにログインする</h3>
           <%= f.input :email, label: 'メールアドレス', required: false, autofocus: true %>
           <%= f.input :password, label: 'パスワード', label_html: { class: 'label__append--container' } do %>

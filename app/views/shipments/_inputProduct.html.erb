@@ -1,10 +1,24 @@
-<div class="input--group">
+<div class="inputContainer">
   <h3>荷物情報</h3>
-  <div class="container-fluid input--container">
-    <div class="row row--block">
-      <%= f.input :duration_start, label: "案件の開始予定日", required: true, wrapper_html: { class: "col-xs-6" }, start_year: Date.today.year, end_year: Date.today.year + 2 %>
-      <%= f.input :duration_end, label: "案件の終了予定日", required: true, wrapper_html: { class: "col-xs-6" }, start_year: Date.today.year, end_year: Date.today.year + 2 %>
-    </div>
+  <div class="inputGroup row">
+    <%= f.input :duration_start,
+      label: "案件の開始予定日",
+      required: true,
+      wrapper_html: { class: "col-xs-6" },
+      default: Date.new(Date.today.year, Date.today.month, Date.today.day),
+      use_month_numbers: true,
+      use_two_digit_numbers: true,
+      start_year: Date.today.year,
+      end_year: Date.today.year + 2 %>
+    <%= f.input :duration_end,
+      label: "案件の終了予定日",
+      required: true,
+      wrapper_html: { class: "col-xs-6" },
+      use_month_numbers: true,
+      use_two_digit_numbers: true,
+      default: Date.new(Date.today.year, Date.today.month, Date.today.day + 1),
+      start_year: Date.today.year,
+      end_year: Date.today.year + 2 %>
   </div>
   <%= f.input :frequency, label: "運送頻度", collection: %w(週に1回 2週間に1回 月に1回 その他), prompt: "選択してください", required: true %>
 </div>

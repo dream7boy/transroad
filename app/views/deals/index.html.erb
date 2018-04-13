@@ -1,6 +1,6 @@
 <% if @deals.present? %>
 
-  <section id="carrier__dashboard" class="container-fluid carrier flexTop">
+  <section id="carrierDashboard" class="container-fluid carrier flexTop">
     <div class="dashboardHeader">
       <h2>御見積もり依頼</h2><%#= render 'deals_nav_menu' %>
     </div>
@@ -9,7 +9,7 @@
 
 <% else %>
 
-  <section id="carrier__dashboard" class="container-fluid carrier">
+  <section id="carrierDashboard" class="container-fluid carrier">
     <h1 class="text-center">御見積もり依頼・運送案件はまだありません</h1>
     <p>Btn below is kept for access to Shipments index, remove or comment out if unnecessary.</p>
     <%= link_to "案件を探す", shipments_path %>

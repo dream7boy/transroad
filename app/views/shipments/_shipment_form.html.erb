@@ -1,28 +1,24 @@
-<section id="new__shipment" class="container-fluid shipper ">
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+<section id="new__shipment" class="container-fluid shipper slimSmall">
 
-      <% if params[:action] == 'new' %>
-        <h2>運送案件を作成する</h2>
-      <% else %>
-        <h2>運送案件を変更する</h2>
-      <% end %>
+  <% if params[:action] == 'new' %>
+    <h2>運送案件を作成する</h2>
+  <% else %>
+    <h2>運送案件を変更する</h2>
+  <% end %>
 
-      <%= simple_form_for @shipment do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= render 'inputProduct', f: f %>
-          <%#= render 'inputNestedPickupLocation', f: f %> <!-- For future use -->
-          <%= render 'inputPickupLocation', f: f %>
-          <%= render 'inputDeliveryLocation', f: f %>
-          <div class="form-actions">
-            <%= f.button :submit, "マッチする運送業者を表示", class:"btn-primary btn__null btn__width--100" %>
-          </div>
-        </div>
-      <% end %>
-
+  <%= simple_form_for @shipment do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= render 'inputProduct', f: f %>
+      <%#= render 'inputNestedPickupLocation', f: f %> <!-- For future use -->
+      <%= render 'inputPickupLocation', f: f %>
+      <%= render 'inputDeliveryLocation', f: f %>
+      <div class="form-actions">
+        <%= f.button :submit, "マッチする運送業者を表示", class:"btn-primary btn__null btn__width--100" %>
+      </div>
     </div>
-  </div>
+  <% end %>
+
 </section>
 
 

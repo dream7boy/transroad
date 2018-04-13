@@ -1,43 +1,41 @@
-<section id="shipper__quotation" class="container-fluid shipper ">
-  <div class="row row--block">
+<section id="shipperQuoteRequest" class="container-fluid shipper flexTop">
 
-    <div class="form__progress--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="form__progress--step">
-        <% if @shipment.available == true %>
-          <p><%= link_to "運送案件を作成", edit_shipment_path(@shipment) %></p>
-        <% end %>
-      </div>
-      <div class="form__progress--step active">
-        <p>運送会社を選択</p>
-      </div>
-      <div class="form__progress--step">
-        <p>内容を確認</p>
-      </div>
-      <div class="form__progress--step">
-        <p>完了</p>
-      </div>
-    </div>
-
-    <div class="quotation__header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div>
-        <h2>運送会社を選択&ensp;</h2>
-        <h3><%= @carriers_two_conditions.count %>社とマッチしました！</h3>
-      </div>
-      <%= simple_form_for :carriers, method: :get, url: quotes_req_shipper_shipment_path, html: {id:'shipper_quotation_form', class:'col-xs-5'} do |f| %>
-        <%= f.hidden_field :ids, value: '' %>
-        <%= f.button :submit, '依頼内容を確認する', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color col-xs-12' %>
+  <div class="progressBarContainer">
+    <div class="progressBarStep">
+      <% if @shipment.available == true %>
+        <p><%= link_to "運送案件を作成", edit_shipment_path(@shipment) %></p>
       <% end %>
     </div>
-
-    <div class="quotation__body--container container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="cards__container" class="row row--block">
-        <% @carriers_two_conditions.each do |carrier| %>
-          <%= render 'carrierCard', carrier: carrier %>
-        <% end %>
-      </div>
+    <div class="progressBarStep active">
+      <p>運送会社を選択</p>
     </div>
-
+    <div class="progressBarStep">
+      <p>内容を確認</p>
+    </div>
+    <div class="progressBarStep">
+      <p>完了</p>
+    </div>
   </div>
+
+  <div class="dashboardHeader">
+    <div>
+      <h2>運送会社を選択</h2>
+      <p>マッチする運送会社が<%= @carriers_two_conditions.count %>社見つかりました！</p>
+    </div>
+    <%= simple_form_for :carriers, method: :get, url: quotes_req_shipper_shipment_path, html: {id:'shipper_quotation_form', class:'col-xs-3'} do |f| %>
+      <%= f.hidden_field :ids, value: '' %>
+      <%= f.button :submit, '依頼内容を確認する', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color btn__size--sm col-xs-12' %>
+    <% end %>
+  </div>
+
+  <div class="dashboardBody">
+    <div class="cardsContainer">
+      <% @carriers_two_conditions.each do |carrier| %>
+        <%= render 'carrierCard', carrier: carrier %>
+      <% end %>
+    </div>
+  </div>
+
 </section>
 
 
