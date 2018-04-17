@@ -1,7 +1,7 @@
-.quoteWrapper {
+.quoteContainer {
   display: flex;
   flex-wrap: wrap;
-  [class^=deal_details--] {
+  .shipmentDetails {
     padding: 1.5rem 0;
     border-bottom: 2px solid $color--lightgray;
     &:first-child {
@@ -18,9 +18,15 @@
     p + p {
       margin-top: 0.25rem;
     }
+    &.flex3 {
+      flex: 3;
+    }
   }
   .quoteFormRight {
     flex: 3;
+    &.flex1 {
+      flex: 1;
+    }
   }
 }
 

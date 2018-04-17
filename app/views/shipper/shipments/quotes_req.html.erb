@@ -3,70 +3,74 @@
   sdpick = @shipment_details[:pickup]
   sddeli = @shipment_details[:delivery]
 %>
-<section id="shipper__quotation" class="container-fluid shipper ">
-  <div class="row row--block">
+<section id="shipperQuoteConfirm" class="container-fluid shipper flexTop">
 
-    <div class="form__progress--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="form__progress--step">
+    <!-- PROGRESS BAR -->
+    <div class="progressBarContainer">
+      <div class="progressBarStep">
         <% if s.available == true %>
           <p><%= link_to "運送案件を作成", edit_shipment_path(s) %></p>
         <% end %>
       </div>
-      <div class="form__progress--step">
+      <div class="progressBarStep">
         <% if s.available == true %>
           <p><%= link_to "運送会社を選択", shipper_shipment_path(s) %></p>
         <% end %>
       </div>
-      <div class="form__progress--step active">
+      <div class="progressBarStep active">
         <p>内容を確認</p>
       </div>
-      <div class="form__progress--step">
+      <div class="progressBarStep">
         <p>完了</p>
       </div>
     </div>
 
-    <div class="quotation__header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <!-- DASHBOARD HEADER -->
+    <div class="dashboardHeader">
       <div>
         <h2>入力内容の確認&ensp;</h2>
       </div>
-      <%= simple_form_for :carriers, url: shipment_deals_path(s), html: {id:'shipper_quotation_form', class:'col-xs-5'} do |f| %>
+      <%= simple_form_for :carriers, url: shipment_deals_path(s), html: {id:'shipper_quotation_form', class:'col-xs-3'} do |f| %>
         <%= f.hidden_field :ids, value: @carriers_ids %>
-        <%= f.button :submit, '見積もりを依頼', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color col-xs-12' %>
+        <%= f.button :submit, '見積もりを依頼', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color btn__size--sm col-xs-12' %>
       <% end %>
     </div>
 
-    <div class="quotation__body--container">
-      <div class="row row--block">
+    <!-- DASHBOARD BODY -->
+    <div class="dashboardBody">
+      <div class="quoteContainer">
 
-        <div class="col-xs-8">
-          <h4>運送案件の内容</h4>
-          <div class="quotation__overview quotation__block">
+        <!-- DASHBOARD BODY-LEFT -->
+        <div class="quoteFormLeft flex3">
+          <div class="shipmentDetails">
             <p>予定期間：<%= s.duration_start.strftime("%Y年%m月%d日") %>〜<%= s.duration_end.strftime("%Y年%m月%d日") %></p>
             <p>運送頻度：<%= s.frequency %></p>
           </div>
-          <div class="quotation__product quotation__block">
-            <div class="quotation__product--detail">
-              <p>荷物の種類：<%= sdpick.category %></p>
-              <p>寸法(cm)：横幅 <%= sdpick.size_width %> x 奥行 <%= sdpick.size_depth %> x 縦幅 <%= sdpick.size_height %></p>
-              <p>単体重量：<%= sdpick.weight %> kg</p>
-              <p>個数：<%= sdpick.quantity %> 個</p>
-              <p>温度管理：<%= sdpick.temperature %></p>
-              <p>備考欄：<%= sdpick.additional_info %></p>
-            </div>
-            <div class="quotation__product--pickup">
-              <p>集荷先</p>
-              <p>住所：<%= sdpick.post_code %> <%= sdpick.prefecture %><%= sdpick.ward %><%= sdpick.street %></p>
-              <p>集荷時間：<%= sdpick.time %></p>
-            </div>
-            <div class="quotation__product--delivery">
-              <p>配達先</p>
-              <p>住所：<%= sddeli.post_code %> <%= sddeli.prefecture %><%= sddeli.ward %><%= sddeli.street %></p>
-              <p>配達時間：<%= sddeli.time %></p>
-            </div>
+
+          <div class="shipmentDetails">
+            <p>荷物の種類：<%= sdpick.category %></p>
+            <p>寸法(cm)：横幅 <%= sdpick.size_width %> x 奥行 <%= sdpick.size_depth %> x 縦幅 <%= sdpick.size_height %></p>
+            <p>単体重量：<%= sdpick.weight %> kg</p>
+            <p>個数：<%= sdpick.quantity %> 個</p>
+            <p>温度管理：<%= sdpick.temperature %></p>
+            <p>備考欄：<%= sdpick.additional_info %></p>
+          </div>
+
+          <div class="shipmentDetails">
+            <p>集荷先</p>
+            <p>住所：<%= sdpick.post_code %> <%= sdpick.prefecture %><%= sdpick.ward %><%= sdpick.street %></p>
+            <p>集荷時間：<%= sdpick.time %></p>
+          </div>
+
+          <div class="shipmentDetails">
+            <p>配達先</p>
+            <p>住所：<%= sddeli.post_code %> <%= sddeli.prefecture %><%= sddeli.ward %><%= sddeli.street %></p>
+            <p>配達時間：<%= sddeli.time %></p>
           </div>
         </div>
 
-        <div class="col-xs-4">
+        <!-- DASHBOARD BODY-RIGHT -->
+        <div class="quoteFormRight flex1">
             <h4>選択した運送会社</h4>
             <% @carriers.each do |carrier| %>
               <p><%= carrier.company_name %></p>
@@ -75,5 +79,5 @@
 
       </div>
     </div>
-  </div>
+
 </section>

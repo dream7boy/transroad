@@ -6,7 +6,7 @@ input:-webkit-autofill {
   color: $color--darkgray;
 }
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 1.6rem;
 }
 .form--required {
   border: 0 !important;
@@ -14,13 +14,13 @@ input:-webkit-autofill {
   font-size: 1.2rem;
   text-decoration: none;
 }
-.input--container {
+.inputGroup {
   padding: 0;
   .row--block {
     justify-content: left;
   }
 }
-.input--group {
+.inputContainer {
   margin: 0 0 80px 0;
   &:first-child {
     margin-top: 40px;
@@ -40,12 +40,14 @@ input:-webkit-autofill {
   }
 }
 .label--null {
-  color: $color--gray;
-  font-weight: normal;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
   align-items: flex-end;
+  color: $color--gray;
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: normal;
+  letter-spacing: 0.05rem;
+  justify-content: space-between;
+  width: 100%;
   &.label__append--container {
     width: unset;
   }
@@ -76,42 +78,42 @@ input:-webkit-autofill {
   }
 }
 
-#shipper__quotation {
-  #shipper_quotation_form {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .quotation__body--container {
-    h4 {
-      margin: 0 0 $spacer--xs 0;
-    }
-    .btn__null {
-      margin: $spacer--sm $spacer--sm $spacer--sm 0;
-    }
-    .quotation__block {
-      border-bottom: 1px solid $color--lightgray;
-      padding: 0 0 15px 0;
-      margin: 0 0 15px 0;
-      &:last-child {
-        border-bottom: 0;
-      }
-    }
-    .quotation__product {
-      div {
-        margin: 0 0 15px 0;
-      }
-    }
-  }
-  .quotation__header--container {
-    align-items: flex-end;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 0 $spacer--sm 0;
-    h2 {
-      line-height: unset;
-    }
-  }
-}
+// #shipper__quotation {
+  // #shipper_quotation_form {
+    // padding-left: 0;
+    // padding-right: 0;
+  // }
+  // .quotation__body--container {
+    // h4 {
+    //   margin: 0 0 $spacer--xs 0;
+    // }
+    // .btn__null {
+    //   margin: $spacer--sm $spacer--sm $spacer--sm 0;
+    // }
+    // .quotation__block {
+    //   border-bottom: 1px solid $color--lightgray;
+    //   padding: 0 0 15px 0;
+    //   margin: 0 0 15px 0;
+    //   &:last-child {
+    //     border-bottom: 0;
+    //   }
+    // }
+    // .quotation__product {
+    //   div {
+    //     margin: 0 0 15px 0;
+    //   }
+    // }
+  // }
+  // .quotation__header--container {
+  //   align-items: flex-end;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   padding: 0 0 $spacer--sm 0;
+  //   h2 {
+  //     line-height: unset;
+  //   }
+  // }
+// }
 
 #sign_in {
   .checkbox label {

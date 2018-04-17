@@ -1,25 +1,19 @@
 <% if @shipments.present? %>
 
-  <section id="shipper__dashboard" class="container-fluid shipper ">
-    <div class="row row--block">
-      <div class="header--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h3>管理画面</h3>
-        <%= render 'shipper_shipments_nav_menu' %>
-      </div>
-      <div class="body--container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render 'shipper_shipments_list' %>
-      </div>
+  <section id="shipperDashboard" class="container-fluid shipper flexTop">
+    <div class="dashboardHeader">
+      <h2>管理画面</h2>
+      <%= render 'shipper_shipments_nav_menu' %>
     </div>
+    <%= render 'shipper_shipments_list' %>
   </section>
 
 <% else %>
 
-  <section id="shipper__dashboard" class="container-fluid shipper  ">
-    <div class="row row--block">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-          <h2>御見積もり依頼がありません</h2>
-          <%= link_to "新しい運送案件を作成して見積もりを依頼しましょう！", new_shipment_path, class: "btn btn-primary btn__null btn__margin--md" %>
-      </div>
+  <section id="shipperDashboard" class="container-fluid shipper">
+    <div class="text-center">
+        <h2>御見積もり依頼がありません</h2>
+        <%= link_to "新しい運送案件を作成して見積もりを依頼しましょう！", new_shipment_path, class: "btn btn-primary btn__null btn__margin--md" %>
     </div>
   </section>
 

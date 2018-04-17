@@ -1,6 +1,6 @@
 $form__progress--unit: 24px;
 
-.form__progress--container {
+.progressBarContainer {
   background-color: $color--lightgray;
   display: flex;
   height: $form__progress--unit;
@@ -9,7 +9,7 @@ $form__progress--unit: 24px;
   width: 100%;
 }
 
-.form__progress--step {
+.progressBarStep {
   align-items: center;
   display: flex;
   flex-grow: 1;
@@ -29,7 +29,7 @@ $form__progress--unit: 24px;
   }
 }
 
-.form__progress--step {
+.progressBarStep {
   &.active {
     background-color: $color--sub;
     &:after {

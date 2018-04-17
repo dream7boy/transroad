@@ -1,7 +1,7 @@
 <section id="forgot_password" class="container-fluid shipper slimLarge">
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <div class="form-inputs">
-      <div class="input--group">
+      <div class="inputContainer">
         <h3>パスワードを再発行します</h3>
         <%= f.error_notification %>
         <div class="form-inputs">
