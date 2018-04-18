@@ -8,5 +8,28 @@
     <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-4"}, required: true %>
     <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-8"}, required: true %>
   </div>
-  <%= f.input :street, label: "住所", required: true %>
+  <%= f.input :street, label: "住所（例：渋谷区 1-23-45）", required: true %>
+  <!-- DUMMY INPUT -->
+  <%= f.input :website, as: :fake, label: "ホームページ", required: true %>
+  <!-- DUMMY INPUT -->
+  <%= f.input :representative, as: :fake, label: "代表者名", required: true %>
+  <div class="inputGroup row">
+    <!-- REFERENCE -->
+    <% if false %>
+    <p><%= temporaryVar.established.strftime("%Y年%m月%d日") %></p>
+    <% end %>
+    <!-- DUMMY INPUT -->
+    <%= f.input :established_y, as: :fake, label: "設立日(y)", wrapper_html: {class: "col-xs-4"}, required: true %>
+    <!-- DUMMY INPUT -->
+    <%= f.input :established_m, as: :fake, label: "(m)", wrapper_html: {class: "col-xs-4"}, required: true %>
+    <!-- DUMMY INPUT -->
+    <%= f.input :established_d, as: :fake, label: "(d)", wrapper_html: {class: "col-xs-4"}, required: true %>
+  </div>
+  <!-- DUMMY INPUT -->
+  <%= f.input :shihonkin, as: :fake, label: "資本金", required: true %>
+  <!-- DUMMY INPUT -->
+  <div class="inputGroup row">
+    <% employeesArray = ["1~20","21~40","41~60","61~80","81~100","101+"] %>
+    <%= f.input :employees, as: :fake_select, collection: employeesArray, label: "社員数", wrapper_html: {class: "col-xs-4"}, required: true %>
+  </div>
 </div>
