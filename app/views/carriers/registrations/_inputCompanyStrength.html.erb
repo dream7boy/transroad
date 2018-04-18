@@ -1,0 +1,59 @@
+<div class="inputContainer">
+  <h3>会社の特徴</h3>
+
+  <!-- ORIGINAL SIMPLE FORM SYNTAX -->
+    <%#= f.input :company_detail,
+      as: :fake,
+      label: "すごく自信のある項目を1つ、自信のある項目を3つ、 平均的だと思う項目を1つ選択してください。" %>
+
+
+  <!-- EXTRACTED VERSION TO CATER FOR CUSTOIMISATION -->
+  <div class="inputGroup">
+    <div class="form-group fake optional carrier_company_detail">
+      <label class="control-label label--null fake optional required" for="carrier_company_detail">
+        すごく自信のある項目を1つ、自信のある項目を3つ、 平均的だと思う項目を1つ選択してください。
+        <abbr title="required" class="form--required">必須</abbr>
+      </label>
+      <% strengthsArray = ["価格","運送地域","緊急対応","車両種類","会社規模"] %>
+      <div class="companyStrengthsContainer">
+        <div class="col-fifth">
+          <%= inline_svg "gDblCircle.svg" %>
+          <%= f.input :employees,
+            as: :fake_select,selected: strengthsArray[0],
+            collection: strengthsArray,
+            label: false %>
+        </div>
+        <div class="col-fifth">
+          <%= inline_svg "gCircle.svg" %>
+          <%= f.input :employees,
+            as: :fake_select,selected: strengthsArray[1],
+            collection: strengthsArray,
+            label: false %>
+        </div>
+        <div class="col-fifth">
+          <%= inline_svg "gCircle.svg" %>
+          <%= f.input :employees,
+            as: :fake_select,selected: strengthsArray[2],
+            collection: strengthsArray,
+            label: false %>
+        </div>
+        <div class="col-fifth">
+          <%= inline_svg "gCircle.svg" %>
+          <%= f.input :employees,
+            as: :fake_select,selected: strengthsArray[3],
+            collection: strengthsArray,
+            label: false %>
+        </div>
+        <div class="col-fifth">
+          <%= inline_svg "gTriangle.svg" %>
+          <%= f.input :employees,
+            as: :fake_select,selected: strengthsArray[4],
+            collection: strengthsArray,
+            label: false %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,25 +1,54 @@
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
 }
+
+.companyStrengthsContainer {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+  .col-fifth {
+    align-items: center;
+    display: inline-flex;
+    flex-direction: column;
+    width: 16%;
+    &:last-child {
+      margin-right: unset;
+    }
+    div {
+      width: 100%;
+    }
+    svg {
+      margin-bottom: 1.25rem;
+    }
+    label {
+      justify-content: center;
+    }
+  }
+}
+
 .form-control {
   box-shadow: none;
   color: $color--darkgray;
 }
+
 .form-group {
   margin-bottom: 1.6rem;
 }
+
 .form--required {
   border: 0 !important;
   color: $color--main;
   font-size: 1.2rem;
   text-decoration: none;
 }
+
 .inputGroup {
   padding: 0;
   .row--block {
     justify-content: left;
   }
 }
+
 .inputContainer {
   margin: 0 0 80px 0;
   &:first-child {
@@ -32,13 +61,21 @@ input:-webkit-autofill {
     font-weight: bold;
     margin: 0 0 12px 0;
   }
+  img {
+    border-radius: 0.25rem;
+    box-shadow: $box-shadow--image;
+    margin: 3%;
+    width: 94%;
+  }
 }
+
 .label__append--text {
   float: right;
   a {
     font-size: 1.2rem;
   }
 }
+
 .label--null {
   align-items: flex-end;
   color: $color--gray;

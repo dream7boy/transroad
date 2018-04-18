@@ -13,6 +13,9 @@ section {
       justify-content: unset;
     }
     &.slimSmall {
+      padding: calc(#{$borderFull} * 1.25) 26rem;
+    }
+    &.slimMedium {
       padding: calc(#{$borderFull} * 1.25) 36rem;
     }
     &.slimLarge {
@@ -51,7 +54,7 @@ section.shipper {
   }
   &.container-fluid {  // Different padding from default due to bg method.
     padding: calc(#{$borderFull} * 1.75);
-    &.slimSmall {
+    &.slimMedium {
       padding: calc(#{$borderFull} * 1.75) calc(#{$borderFull} * 13.358);
     }
     &.slimLarge {
