@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410094849) do
+ActiveRecord::Schema.define(version: 20180418094905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20180410094849) do
     t.string "street"
     t.string "areas_covered", default: [], array: true
     t.string "favorite_products", default: [], array: true
+    t.string "site_url"
+    t.string "ceo_name"
+    t.date "founded_date"
+    t.string "capital"
+    t.string "employee_numbers"
+    t.text "company_description"
+    t.string "strengths", default: [], array: true
+    t.string "specialties", default: [], array: true
     t.index ["email"], name: "index_carriers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_carriers_on_reset_password_token", unique: true
   end
@@ -164,12 +172,14 @@ ActiveRecord::Schema.define(version: 20180410094849) do
   end
 
   create_table "vehicles", force: :cascade do |t|
-    t.string "size"
+    t.string "load_capacity"
     t.string "vehicle_type"
     t.integer "quantity"
     t.bigint "carrier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type_specifications"
+    t.string "feature"
     t.index ["carrier_id"], name: "index_vehicles_on_carrier_id"
   end
 
