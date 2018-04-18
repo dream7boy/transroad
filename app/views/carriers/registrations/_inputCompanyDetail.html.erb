@@ -1,9 +1,8 @@
 <div class="inputContainer">
   <h3>会社の説明</h3>
 
-  <!-- This needs to be updated as a textarea since there was no 'fake_textarea' -->
-  <%= f.input :company_detail,
-    as: :fake,
+  <!-- 888 Make necessary settings for text area, min, max etc. -->
+  <%= f.input :company_description,
     label: "会社の特徴などを詳しく荷主企業に伝えてみませんか？アカウント開設後に記入することも可能です。",
     input_html: {class: "fakeTextArea"} %>
 
