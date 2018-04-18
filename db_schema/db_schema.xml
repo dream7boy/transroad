@@ -232,6 +232,30 @@
 <row name="password" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="site_url" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="ceo_name" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="founded_date" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="capital" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="employee_numbers" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="strengths" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="company_description" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="specialties" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -282,7 +306,7 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="bid_rate" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="prefecture" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
@@ -421,7 +445,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1120" y="254" name="vehicles">
+<table x="1134" y="216" name="vehicles">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -429,11 +453,20 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="carriers" row="id" />
 </row>
+<row name="load_capacity" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
 <row name="size" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="vehicle_type" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="type_specifications" null="1" autoincrement="0">
+<datatype>DATE</datatype>
+<default>NULL</default></row>
+<row name="feature" null="1" autoincrement="0">
+<datatype>DATE</datatype>
 <default>NULL</default></row>
 <row name="quantity" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -463,7 +496,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="911" y="213.79999923706055" name="delivery_vehicles">
+<table x="911" y="213" name="delivery_vehicles">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
