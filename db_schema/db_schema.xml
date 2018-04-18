@@ -233,10 +233,10 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="site_url" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="ceo_name" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="founded_date" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -247,10 +247,10 @@
 <row name="employee_numbers" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="strengths" null="1" autoincrement="0">
+<row name="company_description" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="company_description" null="1" autoincrement="0">
+<row name="strengths" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="specialties" null="1" autoincrement="0">
@@ -361,7 +361,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1123" y="594" name="drivers">
+<table x="1171" y="814" name="drivers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -382,7 +382,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1135" y="411" name="dispatchers">
+<table x="1164" y="662" name="dispatchers">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -445,7 +445,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1134" y="216" name="vehicles">
+<table x="1160" y="462" name="vehicles">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -454,19 +454,16 @@
 <default>NULL</default><relation table="carriers" row="id" />
 </row>
 <row name="load_capacity" null="1" autoincrement="0">
-<datatype>DATE</datatype>
-<default>NULL</default></row>
-<row name="size" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="vehicle_type" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="type_specifications" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="feature" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="quantity" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
