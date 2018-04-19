@@ -1,8 +1,30 @@
-<div class="pickup__form nested-fields fields-row debug">
-  <div class="form-inline">
-    <%= f.input :size, label: "車両サイズ", collection: Vehicle::SIZES, selected: Vehicle::SIZES[2], required: true %>
-    <%= f.input :vehicle_type, label: "車両形状", collection: Vehicle::VEHICLE_TYPES, selected: Vehicle::VEHICLE_TYPES[0], required: true %>
-    <%= f.input :quantity, label: "車両数", required: true %>
+<div class="pickup__form nested-fields fields-row">
+  <div class="multiInputContainer">
+    <%= f.input :load_capacity,
+      input_html: { placeholder: "例：2" },
+      label: "積載量（トン）",
+      wrapper_html: { class: "col-fifth-vehic" } %>
+    <%= f.input :vehicle_type,
+      collection: Vehicle::TYPES,
+      label: "形状",
+      selected: Vehicle::TYPES[0],
+      wrapper_html: { class: "col-fifth-vehic" } %>
+    <%= f.input :type_specifications,
+      collection: Vehicle::SPECIFICATIONS,
+      label: "仕様",
+      selected: Vehicle::TYPES[0],
+      wrapper_html: { class: "col-fifth-vehic" } %>
+    <%= f.input :feature,
+      collection: Vehicle::FEATURES,
+      label: "機能",
+      selected: Vehicle::TYPES[0],
+      wrapper_html: { class: "col-fifth-vehic" } %>
+    <%= f.input :quantity,
+      input_html: { min: 1, value: 1 },
+      label: "車両数",
+      wrapper_html: { class: "col-fifth-vehic" } %>
+    <%= link_to_remove_association "⤫",
+      f,
+      class: "btn btn-primary btn--sm btn__null btn__form--remove-nested" %>
   </div>
-  <%= link_to_remove_association '保有車両を削除する', f, class: 'btn btn-primary btn__null btn__form--remove-nested' %>
 </div>
