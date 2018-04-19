@@ -23,7 +23,8 @@
         <div class="col-fifth">
           <%= inline_svg "gDblCircle.svg" %>
           <%= f.input :specialties,
-            input_html: { id:"specialties1" },
+            include_hidden:false,
+            input_html: { id:"specialties1", multiple: true },
             selected: specialtiesArray[0],
             collection: specialtiesArray,
             required: true,
@@ -33,7 +34,8 @@
         <div class="col-fifth">
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
-            input_html: { id:"specialties2" },
+            include_hidden:false,
+            input_html: { id:"specialties2", multiple: true },
             selected: specialtiesArray[1],
             collection: specialtiesArray,
             required: true,
@@ -43,7 +45,8 @@
         <div class="col-fifth">
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
-            input_html: { id:"specialties3" },
+            include_hidden:false,
+            input_html: { id:"specialties3", multiple: true },
             selected: specialtiesArray[2],
             collection: specialtiesArray,
             required: true,
@@ -53,7 +56,8 @@
         <div class="col-fifth">
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
-            input_html: { id:"specialties4" },
+            include_hidden:false,
+            input_html: { id:"specialties4", multiple: true },
             selected: specialtiesArray[3],
             collection: specialtiesArray,
             required: true,
@@ -63,7 +67,8 @@
         <div class="col-fifth">
           <%= inline_svg "gTriangle.svg" %>
           <%= f.input :specialties,
-            input_html: { id:"specialties5" },
+            include_hidden:false,
+            input_html: { id:"specialties5", multiple: true },
             selected: specialtiesArray[4],
             collection: specialtiesArray,
             required: true,
