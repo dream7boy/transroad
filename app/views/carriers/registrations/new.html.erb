@@ -69,6 +69,7 @@
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<%= render partial: 'scrollTo', formats: :js %>
 <!-- JS for automated address input upon postal code input -->
 <%= javascript_include_tag('jquery.jpostal') %>
 <%= javascript_include_tag('jpostal.carrierActivator') %>
@@ -78,4 +79,4 @@
 <!-- JS to ensure no more than 3 products can be checked -->
 <%= javascript_include_tag('carrier_favorite_products') %>
 <!-- JS to ensure company strengths don't have duplicates -->
-<%#= javascript_include_tag('carrier_strengths') %>
+<%= javascript_include_tag('carrier_strengths') %>
