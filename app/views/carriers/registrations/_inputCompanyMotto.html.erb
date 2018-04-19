@@ -1,5 +1,5 @@
 <div class="inputContainer">
   <h3>会社の強み</h3>
-  <%= f.input :strengths, label: "会社の強み・1（例：丁寧な梱包と時間通りの運送！）", required: true %>
-  <%= f.input :strengths, label: "会社の強み・2（例：急な納品や引き取りにも対応いたします！）", required: true %>
+  <%= f.input :strengths, label: "会社の強み・1（例：丁寧な梱包と時間通りの運送！）", input_html:{ id:"strength1" }, required: true %>
+  <%= f.input :strengths, label: "会社の強み・2（例：急な納品や引き取りにも対応いたします！）", input_html:{ id:"strength2" }, required: true %>
 </div>

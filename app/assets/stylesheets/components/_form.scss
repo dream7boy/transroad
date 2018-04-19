@@ -114,6 +114,15 @@ input:-webkit-autofill {
   }
 }
 
+.strengthsAlert {
+  opacity: 0;
+  font-size: 1.4rem;
+  color: $red;
+  padding: 0.5rem 0;
+  text-align: center;
+  width: 100%;
+}
+
 #carrier_favorite_products--container {
   div.checkbox--container {
     height: unset;
