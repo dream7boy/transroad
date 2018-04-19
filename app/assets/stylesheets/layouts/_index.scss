@@ -4,6 +4,11 @@ body {
   padding-top: $navbar__height;
 }
 
-.fakeTextArea {
+.textArea {
   height: 12rem;
+  max-height: 200px;
+  min-height: 160px;
+  padding: 14px;
+  resize: none;
+  width: 65%;
 }
