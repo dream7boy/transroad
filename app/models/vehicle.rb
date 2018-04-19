@@ -1,7 +1,9 @@
 class Vehicle < ApplicationRecord
+
   belongs_to :carrier, optional: true
 
-  SIZES = %w(軽貨物 小型 中型 大型 その他)
-  VEHICLE_TYPES = %w(平ボディ 平ボディ（幌付き） バン バン（保冷） バン（冷凍・冷蔵）
-                     ウィング ウィング（保冷） ウィング（冷凍・冷蔵） 幌ウィング)
+  TYPES = %w(バン 平ボディ 平ボディ・幌 ウィング・アルミ ウィング・幌 クレーン車 ダンプ 重機運搬)
+  SPECIFICATIONS = %w(特になし ワイド ロング ワイド＆ロング)
+  FEATURES = %w(特になし パワーゲート エアサス パワーゲート＆エアサス 冷蔵・冷凍 保冷)
+
 end
