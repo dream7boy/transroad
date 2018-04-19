@@ -19,8 +19,8 @@
     <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
       <%= f.error_notification %>
       <div class="form-inputs">
-        <%= render "inputCompany.html.erb", f: f %>
-        <%= render "inputContact.html.erb", f: f %>
+        <%= render "inputCompany", f: f %>
+        <%= render "inputContact", f: f %>
       </div>
       <!-- <div class="form-actions"> -->
         <%#= f.button :submit, "次へ進む", class:"btn-primary btn__null btn__width--100" %>
@@ -77,3 +77,5 @@
 <%#= javascript_include_tag('multiple-selectActivator') %> <!-- conflicts with asset.rb?-->
 <!-- JS to ensure no more than 3 products can be checked -->
 <%= javascript_include_tag('carrier_favorite_products') %>
+<!-- JS to ensure company strengths don't have duplicates -->
+<%#= javascript_include_tag('carrier_strengths') %>
