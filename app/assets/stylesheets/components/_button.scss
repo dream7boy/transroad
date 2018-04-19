@@ -44,6 +44,17 @@
   max-width: 260px;
   width:85%;
 }
+.btn__form--remove-nested {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $red;
+  border-radius: 50px;
+  height: 30px;
+  margin-left: auto;
+  padding: 12px;
+  width: 30px
+}
 .btn__invert {
   background-color: $color--white;
   color: $color--main;
