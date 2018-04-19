@@ -1,0 +1,12 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    document.addEventListener("DOMContentLoaded", () => {
+      const target = '#carrier_areas_covered--container div.ms-parent.form-control.grouped_select.required';
+      document.querySelector(target).addEventListener('click', function(e) {
+        $('html, body').animate({
+          scrollTop: $(target).offset().top
+        }, 400);
+      });
+    });
+  <% end %>
+<% end %>
