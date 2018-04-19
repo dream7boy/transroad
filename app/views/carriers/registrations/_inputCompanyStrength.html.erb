@@ -12,49 +12,68 @@
 
   <!-- EXTRACTED VERSION TO CATER FOR CUSTOIMISATION -->
   <div class="inputGroup">
-    <div class="form-group optional carrier_company_detail">
-      <label class="control-label label--null optional required" for="carrier_company_detail">
+    <div class="form-group optional carrier_company_strength">
+      <label class="control-label label--null optional required" for="carrier_company_strength">
         すごく自信のある項目を1つ、自信のある項目を3つ、 平均的だと思う項目を1つ選択してください。
         <abbr title="required" class="form--required">必須</abbr>
       </label>
       <% specialtiesArray = ["価格","運送地域","緊急対応","車両種類","会社規模"] %>
       <div class="multiInputContainer">
+
         <div class="col-fifth">
           <%= inline_svg "gDblCircle.svg" %>
           <%= f.input :specialties,
+            input_html: { id:"specialties1" },
             selected: specialtiesArray[0],
             collection: specialtiesArray,
+            required: true,
             label: false %>
         </div>
+
         <div class="col-fifth">
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
+            input_html: { id:"specialties2" },
             selected: specialtiesArray[1],
             collection: specialtiesArray,
+            required: true,
             label: false %>
         </div>
+
         <div class="col-fifth">
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
+            input_html: { id:"specialties3" },
             selected: specialtiesArray[2],
             collection: specialtiesArray,
+            required: true,
             label: false %>
         </div>
+
         <div class="col-fifth">
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
+            input_html: { id:"specialties4" },
             selected: specialtiesArray[3],
             collection: specialtiesArray,
+            required: true,
             label: false %>
         </div>
+
         <div class="col-fifth">
           <%= inline_svg "gTriangle.svg" %>
           <%= f.input :specialties,
+            input_html: { id:"specialties5" },
             selected: specialtiesArray[4],
             collection: specialtiesArray,
+            required: true,
             label: false %>
         </div>
+
       </div>
+
+      <span class="strengthsAlert">&emsp;</span> <!-- Intentional space to secure height and prevent glitch.-->
+
     </div>
   </div>
 
