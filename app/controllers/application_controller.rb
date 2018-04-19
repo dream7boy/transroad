@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       [ :company_name, :post_code, :prefecture, :ward, :street, :name_kanji,
         :name_furigana, :phone, { areas_covered: [] }, { favorite_products: [] },
         :industry, :site_url, :ceo_name, :founded_date, :capital, :employee_numbers,
-        :strengths, { strengths: [] }, { specialties: [] }, :company_description,
+         { strengths: [] }, { specialties: [] }, :company_description,
         vehicles_attributes: [:id, :load_capacity, :vehicle_type, :type_specifications, :feature, :quantity, :_destroy]]
 
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
