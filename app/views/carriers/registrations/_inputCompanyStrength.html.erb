@@ -24,7 +24,7 @@
           <%= inline_svg "gDblCircle.svg" %>
           <%= f.input :specialties,
             include_hidden:false,
-            input_html: { id:"specialties1", multiple: true },
+            input_html: { id:"specialties1", name:"carrier[specialties][]", name:"carrier[specialties][]" },
             selected: specialtiesArray[0],
             collection: specialtiesArray,
             required: true,
@@ -35,7 +35,7 @@
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
             include_hidden:false,
-            input_html: { id:"specialties2", multiple: true },
+            input_html: { id:"specialties2", name:"carrier[specialties][]" },
             selected: specialtiesArray[1],
             collection: specialtiesArray,
             required: true,
@@ -46,7 +46,7 @@
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
             include_hidden:false,
-            input_html: { id:"specialties3", multiple: true },
+            input_html: { id:"specialties3", name:"carrier[specialties][]" },
             selected: specialtiesArray[2],
             collection: specialtiesArray,
             required: true,
@@ -57,7 +57,7 @@
           <%= inline_svg "gCircle.svg" %>
           <%= f.input :specialties,
             include_hidden:false,
-            input_html: { id:"specialties4", multiple: true },
+            input_html: { id:"specialties4", name:"carrier[specialties][]" },
             selected: specialtiesArray[3],
             collection: specialtiesArray,
             required: true,
@@ -68,7 +68,7 @@
           <%= inline_svg "gTriangle.svg" %>
           <%= f.input :specialties,
             include_hidden:false,
-            input_html: { id:"specialties5", multiple: true },
+            input_html: { id:"specialties5", name:"carrier[specialties][]" },
             selected: specialtiesArray[4],
             collection: specialtiesArray,
             required: true,

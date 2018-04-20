@@ -17,6 +17,7 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    byebug
     super
   end
 
