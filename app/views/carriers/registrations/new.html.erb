@@ -22,10 +22,10 @@
         <%= render "inputCompany", f: f %>
         <%= render "inputContact", f: f %>
       </div>
-      <!-- <div class="form-actions"> -->
-        <%#= f.button :submit, "次へ進む", class:"btn-primary btn__null btn__width--100" %>
-      <!-- </div> -->
-    <%# end %>
+      <div class="form-actions">
+        <%= f.button :submit, "次へ進む", class:"btn-primary btn__null btn__width--100" %>
+      </div>
+    <% end %>
   </div>
 
 </section>
@@ -48,8 +48,8 @@
   </div>
 
   <div>
-    <%#= simple_form_for @carrier, url: carrier_registration_path do |f| %>
-      <%#= f.error_notification %>
+    <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
+      <%= f.error_notification %>
       <div class="form-inputs">
         <%= render "inputCompanyStrengthIntro", f: f %>
         <hr>
