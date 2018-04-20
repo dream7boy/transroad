@@ -32,7 +32,7 @@
       </div>
       <%= simple_form_for :carriers, url: shipment_deals_path(s), html: {id:'shipper_quotation_form', class:'col-xs-3'} do |f| %>
         <%= f.hidden_field :ids, value: @carriers_ids %>
-        <%= f.button :submit, '見積もりを依頼', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color btn__size--sm col-xs-12' %>
+        <%= f.button :submit, '見積もりを依頼', id:'btn__submit__ids', class:'btn btnNull btnSubColor btnSmall col-xs-12' %>
       <% end %>
     </div>
 

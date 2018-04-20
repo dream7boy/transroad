@@ -24,7 +24,7 @@
     </div>
     <%= simple_form_for :carriers, method: :get, url: quotes_req_shipper_shipment_path, html: {id:'shipper_quotation_form', class:'col-xs-3'} do |f| %>
       <%= f.hidden_field :ids, value: '' %>
-      <%= f.button :submit, '依頼内容を確認する', id:'btn__submit__ids', class:'btn btn-primary btn__null btn__sub-color btn__size--sm col-xs-12' %>
+      <%= f.button :submit, '依頼内容を確認する', id:'btn__submit__ids', class:'btn btnNull btnSubColor btnSmall col-xs-12' %>
     <% end %>
   </div>
 

@@ -29,11 +29,11 @@
           <p>またご登録されたメールアドレスに、確認メールを送信いたしました。</p>
           <br>
           <p>見積もり依頼番号： <%= @shipment.id %></p>
-          <div class="btn btn-primary btn__null col-xs-3">依頼内容を印刷する</div>
+          <div class="btn btnNull col-xs-3">依頼内容を印刷する</div>
         </div>
         <div class="col-xs-12 quotation__block">
-          <%= link_to '管理画面に戻る', shipper_shipments_path, class: "btn btn-primary btn__null col-xs-3" %>
-          <%= link_to '別の案件を作成する', new_shipment_path, class: "btn btn-primary btn__null col-xs-3" %>
+          <%= link_to '管理画面に戻る', shipper_shipments_path, class: "btn btnNull col-xs-3" %>
+          <%= link_to '別の案件を作成する', new_shipment_path, class: "btn btnNull col-xs-3" %>
         </div>
       </div>
     </div>
