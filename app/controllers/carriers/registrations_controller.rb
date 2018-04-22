@@ -15,6 +15,11 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
     @carrier.vehicles.build
   end
 
+  def sign_up_step2
+    @carrier = Carrier.new
+    @carrier.attributes = carrier_params
+  end
+
   # POST /resource
   def create
     super
@@ -57,6 +62,13 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+
+  def carrier_params
+    params.require(:carrier)
+      .permit(Carrier.attribute_names.map(&:to_sym),
+        { areas_covered: [] }, { favorite_products: [] },
+        vehicles_attributes: Vehicle.attribute_names.map(&:to_sym).push(:_destroy))
+  end
 
   def after_update_path_for(resource)
     edit_carrier_registration_path(resource)

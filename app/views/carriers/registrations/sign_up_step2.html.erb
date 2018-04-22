@@ -1,12 +1,11 @@
-<!-- DIVIDE THIS PAGE ACCORDINGLY ONCE THE PATHS FOR THE SIGNUP PAGE HAVE BEEN UPDATED -->
-<!-- THIS SECTION IS THE FIRST PAGE FOR THE CARRIER SIGNUP -->
+<!-- THIS SECTION IS THE SECOND PAGE FOR THE CARRIER SIGNUP -->
 <section id="carrier__registration" class="container-fluid carrier slimSmall">
 
   <div class="progressBarContainer">
-    <div class="progressBarStep active">
+    <div class="progressBarStep">
       <p>基本情報</p>
     </div>
-    <div class="progressBarStep">
+    <div class="progressBarStep active">
       <p>会社の特徴</p>
     </div>
     <div class="progressBarStep">
@@ -15,12 +14,18 @@
   </div>
 
   <div>
-    <h2>運送アカウントの新規登録</h2>
-    <%= simple_form_for @carrier, url: carriers_sign_up_step2_path do |f| %>
+    <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
       <%= f.error_notification %>
       <div class="form-inputs">
         <%= render "inputCompany", f: f %>
         <%= render "inputAreaAndVehicles", f: f %>
+
+        <%= render "inputCompanyStrengthIntro", f: f %>
+        <hr>
+        <%= render "inputCompanyMotto", f: f %>
+        <%= render "inputCompanyDetail", f: f %>
+        <%= render "inputCompanyStrength", f: f %>
+        <%= render "inputContact", f: f %>
       </div>
       <div class="form-actions">
         <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
@@ -30,42 +35,6 @@
 
 </section>
 
-
-<% if false %>
-  <!-- THIS SECTION IS THE SECOND PAGE FOR THE CARRIER SIGNUP -->
-  <section id="carrier__registration" class="container-fluid carrier slimSmall">
-
-    <div class="progressBarContainer">
-      <div class="progressBarStep">
-        <p>基本情報</p>
-      </div>
-      <div class="progressBarStep active">
-        <p>会社の特徴</p>
-      </div>
-      <div class="progressBarStep">
-        <p>確認</p>
-      </div>
-    </div>
-
-    <div>
-      <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= render "inputCompanyStrengthIntro", f: f %>
-          <hr>
-          <%= render "inputCompanyMotto", f: f %>
-          <%= render "inputCompanyDetail", f: f %>
-          <%= render "inputCompanyStrength", f: f %>
-          <%= render "inputContact", f: f %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
-        </div>
-      <% end %>
-    </div>
-
-  </section>
-<% end %>
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
