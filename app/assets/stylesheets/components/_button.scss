@@ -1,31 +1,27 @@
 %extBtnNull {
   background-color: $color--main;
-  border-radius: 0.25rem;
+  border-radius: .3rem;
   border: 0;
-  box-shadow: $box-shadow--default;
+  color: $color--white;
   font-family: $font__body;
   font-size: $font__p;
   font-weight: bold;
-  letter-spacing: 0.1rem;
-  padding: 10px 16px;
-  &:active {
+  padding: 0.6rem 3.5rem;
+  &:active:focus, &:active, &:focus, &:hover {
+    color: $color--white;
     outline: none;
-    transform: translateY(2px);
-    background-color: $color--main;
-    &:focus {
-      outline: none;
-      background-color: darken($color--main, 10%);
-    }
   }
-  &:focus {
-    outline: none;
-    background-color: $color--sub;
-  }
-  &:hover {
-    outline: none;
+  &:active:focus, &:hover {
     background-color: darken($color--main, 10%);
   }
+  &:active, &:focus {
+    background-color: $color--main;
+  }
+  &:active {
+    transform: translateY(2px);
+  }
 }
+
 %extBtnTriangle {
   border-color: $color--main transparent transparent transparent;
   border-style: solid;
@@ -37,58 +33,26 @@
   transform: translate(-50%, 50%);
   width: 0;
 }
-.btn__case {
+
+.btnCase {
   align-items: center;
   display: flex;
   justify-content: space-between;
   max-width: 260px;
   width:85%;
 }
-.btn__form--remove-nested {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $red;
-  border-radius: 50px;
-  height: 30px;
-  margin-left: auto;
-  padding: 12px;
-  width: 30px
-}
-.btn__invert {
-  background-color: $color--white;
-  color: $color--main;
-  font-weight: bolder;
-  &:active {
-    background-color: $color--white;
-    &:focus {
-      background-color: $color--white;
-      color: darken($color--main, 15%);
-    }
-  }
-  &:focus {
-    background-color: $color--white;
-    color: $color--main;
-  }
-  &:hover {
-    background-color: $color--white;
-    color: darken($color--main, 15%);
-  }
-}
-.btn__null {
+
+.btnNull {
   @extend %extBtnNull;
-  &.btn__size {
-    &--xs {
-      font-size: 1.2rem;
-      padding: 4px 12px;
-      font-weight: normal;
-    }
-    &--sm {
-      font-size: 1.6rem;
-      padding: 4px 12px;
-    }
+  &.btnSmall {
+    font-size: 1.6rem;
+    padding: 4px 12px;
   }
-  &.btn__sub-color {
+}
+
+.btnNull {
+  @extend %extBtnNull;
+  &.btnSubColor {
     background-color: $color--sub;
     &:active {
       transform: translateY(2px);
@@ -105,18 +69,20 @@
     }
   }
 }
-.btn__margin {
-  &--sm {
-    margin: $spacer--xs;
-  }
-  &--md {
-    margin: $spacer--sm;
-  }
-  &--lg {
-    margin: $spacer--md;
-  }
+
+.btnRemoveNestForm {
+  align-items: center;
+  background-color: $red;
+  border-radius: 50px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  margin-left: auto;
+  padding: 12px;
+  width: 30px
 }
-.btn__triangle {
+
+.btnTriangle {
   position: relative;
   &:before {
     @extend %extBtnTriangle;
@@ -127,13 +93,16 @@
     bottom: -30px;
   }
 }
-.btn__width--100 {
+
+.btnWidth100 {
   width: 100%;
 }
 
+
+
 /*------------  md >= 992px (.container @ 970px)  ------------*/
 @media (min-width: 992px) {
-  .btn__case {
+  .btnCase {
     max-width: 650px;
     width: 50%;
   }
