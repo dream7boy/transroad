@@ -10,21 +10,18 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # def new
-  #   @carrier = Carrier.new
-  #   @carrier.vehicles.build
-  # end
+  def new
+    @carrier = Carrier.new
+    @carrier.vehicles.build
+  end
 
   def sign_up_step2
     @carrier = Carrier.new
-    @carrier.vehicles.build
     @carrier.attributes = carrier_params
-    byebug
   end
 
   # POST /resource
   def create
-    byebug
     super
   end
 
@@ -68,7 +65,9 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
 
   def carrier_params
     params.require(:carrier)
-      .permit(:password, :password_confirmation, Carrier.attribute_names.map(&:to_sym))
+      .permit(Carrier.attribute_names.map(&:to_sym),
+        { areas_covered: [] }, { favorite_products: [] },
+        vehicles_attributes: Vehicle.attribute_names.map(&:to_sym).push(:_destroy))
   end
 
   def after_update_path_for(resource)

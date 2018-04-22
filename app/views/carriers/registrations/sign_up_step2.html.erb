@@ -18,13 +18,14 @@
       <%= f.error_notification %>
       <div class="form-inputs">
         <%= render "inputCompany", f: f %>
-        <%= render "inputContact", f: f %>
+        <%= render "inputAreaAndVehicles", f: f %>
+
         <%= render "inputCompanyStrengthIntro", f: f %>
         <hr>
         <%= render "inputCompanyMotto", f: f %>
         <%= render "inputCompanyDetail", f: f %>
         <%= render "inputCompanyStrength", f: f %>
-        <%= render "inputAreaAndVehicles", f: f %>
+        <%= render "inputContact", f: f %>
       </div>
       <div class="form-actions">
         <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>

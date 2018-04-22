@@ -1,6 +1,6 @@
 <!-- DIVIDE THIS PAGE ACCORDINGLY ONCE THE PATHS FOR THE SIGNUP PAGE HAVE BEEN UPDATED -->
 <!-- THIS SECTION IS THE FIRST PAGE FOR THE CARRIER SIGNUP -->
-<section id="carrier__registration" class="container-fluid carrier slimMedium">
+<section id="carrier__registration" class="container-fluid carrier slimSmall">
 
   <div class="progressBarContainer">
     <div class="progressBarStep active">
@@ -20,7 +20,7 @@
       <%= f.error_notification %>
       <div class="form-inputs">
         <%= render "inputCompany", f: f %>
-        <%= render "inputContact", f: f %>
+        <%= render "inputAreaAndVehicles", f: f %>
       </div>
       <div class="form-actions">
         <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
@@ -56,7 +56,7 @@
           <%= render "inputCompanyMotto", f: f %>
           <%= render "inputCompanyDetail", f: f %>
           <%= render "inputCompanyStrength", f: f %>
-          <%= render "inputAreaAndVehicles", f: f %>
+          <%= render "inputContact", f: f %>
         </div>
         <div class="form-actions">
           <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
