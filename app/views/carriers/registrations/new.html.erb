@@ -48,8 +48,8 @@
   </div>
 
   <div>
-    <%#= simple_form_for @carrier, url: carrier_registration_path do |f| %>
-      <%#= f.error_notification %>
+    <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
+      <%= f.error_notification %>
       <div class="form-inputs">
         <%= render "inputCompanyStrengthIntro", f: f %>
         <hr>

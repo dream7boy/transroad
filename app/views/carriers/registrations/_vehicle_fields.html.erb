@@ -1,28 +1,34 @@
-<div class="pickup__form nested-fields fields-row">
+<div class="nested-fields fields-row">
   <div class="multiInputContainer">
+
     <%= f.input :load_capacity,
-      input_html: { placeholder: "例：2" },
       label: "積載量（トン）",
+      input_html: { placeholder: "例：2" },
       wrapper_html: { class: "col-fifth-vehic" } %>
+
     <%= f.input :vehicle_type,
-      collection: Vehicle::TYPES,
       label: "形状",
+      collection: Vehicle::TYPES,
       selected: Vehicle::TYPES[0],
       wrapper_html: { class: "col-fifth-vehic" } %>
+
     <%= f.input :type_specifications,
-      collection: Vehicle::SPECIFICATIONS,
       label: "仕様",
+      collection: Vehicle::SPECIFICATIONS,
       selected: Vehicle::TYPES[0],
       wrapper_html: { class: "col-fifth-vehic" } %>
+
     <%= f.input :feature,
-      collection: Vehicle::FEATURES,
       label: "機能",
+      collection: Vehicle::FEATURES,
       selected: Vehicle::TYPES[0],
       wrapper_html: { class: "col-fifth-vehic" } %>
+
     <%= f.input :quantity,
-      input_html: { min: 1, value: 1 },
       label: "車両数",
+      input_html: { min: 1, value: 1 },
       wrapper_html: { class: "col-fifth-vehic" } %>
+
     <%= link_to_remove_association "⤫",
       f,
       class: "btn btnSmall btnNull btnRemoveNestForm" %>
