@@ -1,0 +1,25 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const btn =  document.querySelector('#showNextInputs');
+      const progressBar = document.querySelector("p[data-action='previous']");
+      btn.addEventListener('click', handleClick);
+      progressBar.addEventListener('click', handleClick);
+
+      function handleClick() {
+        const secondInputs =  document.querySelector('section.carrier:nth-child(2)');
+        const isInView =  secondInputs.classList.value.includes('inView');
+        if(isInView) {
+          secondInputs.classList.remove('inView');
+        } else {
+          secondInputs.classList.add('inView');
+        }
+        $('html, body').animate({
+          scrollTop: $('html, body').offset().top
+        }, 400);
+      }
+
+    });
+  <% end %>
+<% end %>

@@ -1,76 +1,86 @@
-<!-- DIVIDE THIS PAGE ACCORDINGLY ONCE THE PATHS FOR THE SIGNUP PAGE HAVE BEEN UPDATED -->
-<!-- THIS SECTION IS THE FIRST PAGE FOR THE CARRIER SIGNUP -->
-<section id="carrier__registration" class="container-fluid carrier slimSmall">
+<div class="cRegistWrapper">
 
-  <div class="progressBarContainer">
-    <div class="progressBarStep active">
-      <p>基本情報</p>
-    </div>
-    <div class="progressBarStep">
-      <p>会社の特徴</p>
-    </div>
-    <div class="progressBarStep">
-      <p>確認</p>
-    </div>
-  </div>
-
-  <div>
-    <h2>運送アカウントの新規登録</h2>
-    <%= simple_form_for @carrier, url: carriers_sign_up_step2_path do |f| %>
-      <%= f.error_notification %>
-      <div class="form-inputs">
-        <%= render "inputCompany", f: f %>
-        <%= render "inputAreaAndVehicles", f: f %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
-      </div>
-    <% end %>
-  </div>
-
-</section>
-
-
-<% if false %>
-  <!-- THIS SECTION IS THE SECOND PAGE FOR THE CARRIER SIGNUP -->
-  <section id="carrier__registration" class="container-fluid carrier slimSmall">
-
-    <div class="progressBarContainer">
-      <div class="progressBarStep">
-        <p>基本情報</p>
-      </div>
-      <div class="progressBarStep active">
-        <p>会社の特徴</p>
-      </div>
-      <div class="progressBarStep">
-        <p>確認</p>
-      </div>
-    </div>
-
-    <div>
-      <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= render "inputCompanyStrengthIntro", f: f %>
-          <hr>
-          <%= render "inputCompanyMotto", f: f %>
-          <%= render "inputCompanyDetail", f: f %>
-          <%= render "inputCompanyStrength", f: f %>
-          <%= render "inputContact", f: f %>
+  <!-- BLOCK 1 -->
+  <section class="container-fluid carrier slimSmall">
+    <div class="carrierInputBlock1">
+      <div class="progressBarContainer">
+        <div class="progressBarStep active">
+          <p>基本情報</p>
         </div>
-        <div class="form-actions">
-          <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
+        <div class="progressBarStep">
+          <p>会社の特徴</p>
         </div>
-      <% end %>
-    </div>
+        <div class="progressBarStep">
+          <p>確認</p>
+        </div>
+      </div>
 
+      <div>
+        <h2>運送アカウントの新規登録</h2>
+        <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
+        <%#= simple_form_for @carrier, url: carriers_sign_up_step2_path do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= render "inputCompany", f: f %>
+            <%= render "inputAreaAndVehicles", f: f %>
+          </div>
+
+          <!-- 888 EXPERIMENT! -->
+          <div id="showNextInputs" class="btnNull btnWidth100 text-center">次へ進む</div>
+          <% if false %>
+          <div class="form-actions">
+            <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
+          </div>
+          <% end %>
+          <!-- 888 EXPERIMENT! -->
+
+        <%# end %>
+      </div>
+    </div>
   </section>
-<% end %>
+
+  <!-- BLOCK 2 -->
+  <section class="container-fluid carrier slimSmall">
+    <div class="carrierInputBlock2">
+
+      <div class="progressBarContainer">
+        <div class="progressBarStep">
+          <p data-action="previous">基本情報</p>
+        </div>
+        <div class="progressBarStep active">
+          <p>会社の特徴</p>
+        </div>
+        <div class="progressBarStep">
+          <p>確認</p>
+        </div>
+      </div>
+
+        <%#= simple_form_for @carrier, url: carrier_registration_path do |f| %>
+      <div>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= render "inputCompanyStrengthIntro", f: f %>
+            <hr>
+            <%= render "inputCompanyMotto", f: f %>
+            <%= render "inputCompanyDetail", f: f %>
+            <%= render "inputCompanyStrength", f: f %>
+            <%= render "inputContact", f: f %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+</div>
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 <%= render partial: 'scrollTo', formats: :js %>
 <%= render partial: 'carrier_strengths', formats: :js %>
+<%= render partial: 'showNextInputs', formats: :js %>
 <!-- JS for automated address input upon postal code input -->
 <%= javascript_include_tag('jquery.jpostal') %>
 <%= javascript_include_tag('jpostal.carrierActivator') %>
@@ -79,5 +89,3 @@
 <%#= javascript_include_tag('multiple-selectActivator') %> <!-- conflicts with asset.rb?-->
 <!-- JS to ensure no more than 3 products can be checked -->
 <%= javascript_include_tag('carrier_favorite_products') %>
-<!-- JS to ensure company strengths don't have duplicates -->
-<%#= javascript_include_tag('carrier_strengths') %>

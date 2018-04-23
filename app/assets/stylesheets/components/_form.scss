@@ -2,6 +2,26 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
 }
 
+.cRegistWrapper {
+  display: flex;
+  overflow: hidden;
+  section.carrier {
+    background-color: $color--white;
+    flex: 1 100%;
+    min-width: 100%;
+    transition-duration: $transition--lg;
+    &:nth-child(2) {
+      z-index: 10;
+      height: 0;
+      transform: translateX(0);
+      &.inView {
+        height: 100%;
+        transform: translateX(-100%);
+      }
+    }
+  }
+}
+
 .form-control {
   box-shadow: none;
   color: $color--darkgray;
