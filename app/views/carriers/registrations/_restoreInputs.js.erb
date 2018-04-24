@@ -12,10 +12,10 @@
           document.querySelectorAll("input[data-name='selectItemcarrier[areas_covered][]']"))
           .filter(input => areasCovered.includes(input.value))
           .forEach(input => input.checked = true);
-        Array.from(
-          document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
-          .filter(input => areasCovered.includes(input.computedName))
-          .forEach(input => input.checked = true);
+        // Array.from(
+        //   document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
+        //   .filter(input => areasCovered.includes(input.computedName))
+        //   .forEach(input => input.checked = true);
 
         // Cross check the 'stored inputs' against the 'ORIGINAL-inputs'
         const origin = document.querySelector('#carrier_areas_covered');
