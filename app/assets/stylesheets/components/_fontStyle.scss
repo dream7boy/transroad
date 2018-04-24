@@ -1,0 +1,23 @@
+ul.points {
+  li {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-top: 0.5rem;
+    &:first-child {
+      margin-top: 0;
+    }
+    .fas {
+      margin-right: 0.75rem;
+    }
+  }
+}
+
+.fasLg {
+  font-size: calc(#{$font__p} * 1.35);
+}
+
+.fasColor {
+  color: $color--main;
+}

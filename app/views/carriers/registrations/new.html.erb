@@ -25,6 +25,9 @@
         <%#= simple_form_for @carrier, url: carriers_sign_up_step2_path do |f| %>
           <%= f.error_notification %>
           <div class="form-inputs">
+            <hr>
+            <%= render "inputIntroduction" %>
+            <hr>
             <%= render "inputCompany", f: f %>
             <%= render "inputAreaAndVehicles", f: f %>
           </div>
@@ -63,7 +66,7 @@
       <div>
           <%= f.error_notification %>
           <div class="form-inputs">
-            <%= render "inputCompanyStrengthIntro", f: f %>
+            <%= render "inputCompanyStrengthIntro" %>
             <hr>
             <%= render "inputCompanyMotto", f: f %>
             <%= render "inputCompanyDetail", f: f %>
