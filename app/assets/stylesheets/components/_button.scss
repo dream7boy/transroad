@@ -1,4 +1,24 @@
-%extBtnNull {
+%extBtnTriangle {
+  border-color: $color--main transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px 8px 0 8px;
+  content: "";
+  height: 0;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 50%);
+  width: 0;
+}
+
+.btnCase {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 260px;
+  width:85%;
+}
+
+.btnNull {
   background-color: $color--main;
   border-radius: .3rem;
   border: 0;
@@ -22,52 +42,35 @@
   }
 }
 
-%extBtnTriangle {
-  border-color: $color--main transparent transparent transparent;
-  border-style: solid;
-  border-width: 10px 8px 0 8px;
-  content: "";
-  height: 0;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, 50%);
-  width: 0;
+.btnSmall {
+  font-size: 1.6rem;
+  padding: 4px 12px;
 }
 
-.btnCase {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  max-width: 260px;
-  width:85%;
-}
-
-.btnNull {
-  @extend %extBtnNull;
-  &.btnSmall {
-    font-size: 1.6rem;
-    padding: 4px 12px;
-  }
-}
-
-.btnNull {
-  @extend %extBtnNull;
-  &.btnSubColor {
+.btnSubColor {
+  background-color: $color--sub;
+  &:active {
+    transform: translateY(2px);
     background-color: $color--sub;
-    &:active {
-      transform: translateY(2px);
-      background-color: $color--sub;
-      &:focus {
-        background-color: darken($color--sub, 10%);
-      }
-    }
     &:focus {
-      background-color: $color--sub;
-    }
-    &:hover {
       background-color: darken($color--sub, 10%);
     }
   }
+  &:focus {
+    background-color: $color--sub;
+  }
+  &:hover {
+    background-color: darken($color--sub, 10%);
+  }
+}
+
+.btnAddNestForm {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  float: right;
+  padding: 0.3rem 2rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.05rem;
 }
 
 .btnRemoveNestForm {
@@ -75,11 +78,11 @@
   background-color: $red;
   border-radius: 50px;
   display: flex;
-  height: 30px;
+  height: 24px;
   justify-content: center;
   margin-left: auto;
-  padding: 12px;
-  width: 30px
+  padding-bottom: 6px;
+  width: 24px;
 }
 
 .btnTriangle {
