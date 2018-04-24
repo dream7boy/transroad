@@ -18,6 +18,10 @@
       <div>
         <h2>運送アカウントの新規登録</h2>
         <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
+        <% if params["action"] == "create" %>
+          <p class="inputBank hidden"><%= params.to_json %></p>
+          <%= render partial: 'restoreInputs', formats: :js %>
+        <% end %>
         <%#= simple_form_for @carrier, url: carriers_sign_up_step2_path do |f| %>
           <%= f.error_notification %>
           <div class="form-inputs">
