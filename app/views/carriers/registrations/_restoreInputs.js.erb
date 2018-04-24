@@ -6,35 +6,50 @@
       // Get stored input and retrieve previous selected inputs
       const inputBank = JSON.parse(document.querySelector('.inputBank').textContent);
       const areasCovered = inputBank['carrier']['areas_covered'];
+      if(areasCovered != undefined) {
+        // Cross check the 'stored inputs' against the 'PSEUDO-inputs'
+        Array.from(
+          document.querySelectorAll("input[data-name='selectItemcarrier[areas_covered][]']"))
+          .filter(input => areasCovered.includes(input.value))
+          .forEach(input => input.checked = true);
+        Array.from(
+          document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
+          .filter(input => areasCovered.includes(input.computedName))
+          .forEach(input => input.checked = true);
+        const checkedCountry = document.querySelector("input[data-name='selectAllcarrier[areas_covered][]']").computedName.includes(areasCovered);
+        if(checkedCountry) checkedCountry.checked = true;
 
-      // Cross check the 'stored inputs' against the 'PSEUDO-inputs'
-      Array.from(
-        document.querySelectorAll("input[data-name='selectItemcarrier[areas_covered][]']"))
-        .filter(input => areasCovered.includes(input.value))
-        .forEach(input => input.checked = true);
-      Array.from(
-        document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
-        .filter(input => areasCovered.includes(input.computedName))
-        .forEach(input => input.checked = true);
-      const checkedCountry = document.querySelector("input[data-name='selectAllcarrier[areas_covered][]']").computedName.includes(areasCovered);
-      if(checkedCountry) checkedCountry.checked = true;
+        // Cross check the 'stored inputs' against the 'ORIGINAL-inputs'
+        const origin = document.querySelector('#carrier_areas_covered');
+        Array.from(
+          document.querySelectorAll("option"))
+          .filter(option => areasCovered.includes(option.value))
+          .forEach(option => option.selected = true);
 
-      // Cross check the 'stored inputs' against the 'ORIGINAL-inputs'
-      const origin = document.querySelector('#carrier_areas_covered');
-      Array.from(
-        document.querySelectorAll("option"))
-        .filter(option => areasCovered.includes(option.value))
-        .forEach(option => option.selected = true);
-
-      // Replace placeholder text with the selected prefectures
-      const placeholder = document.querySelector('span.placeholder');
-      placeholder.textContent = areasCovered.join('、');
+        // Replace placeholder text with the selected prefectures
+        const placeholder = document.querySelector('span.placeholder');
+        placeholder.textContent = areasCovered.join('、');
+      }
     // === END /  RESTORE PREFECTURE =======================================
 
 
-
     // === START /  RESTORE VEHICLE =====================================
-
+      const vehicles = inputBank['carrier']['vehicles_attributes'];
+      const vehiclesKey = Object.keys(vehicles);
+      // - When a new nest-form is made the index is based on a timestamp.
+      // - e.g. carrier[vehicles_attributes][0][load_capacity] => Default Original
+      // - e.g. carrier[vehicles_attributes][1524558175715][load_capacity] => Second One
+      // - If there is a submission error and the page reloads, the timestamp is replaced with an index.
+      // - carrier[vehicles_attributes][1524558175715][load_capacity] => carrier[vehicles_attributes][1][load_capacity]
+      // - Hence the reason for 'vehiclesKey[i]' for the storedProperty AND 'i' for the currentProperty.
+      for(let i = 0; i < vehiclesKey.length; i++) {
+        const vehicle = vehicles[vehiclesKey[i]];
+        for(const property in vehicle) {
+          const storedProperty = vehicles[`${vehiclesKey[i]}`][`${property}`];
+          const currentProperty = document.querySelector(`[name='carrier[vehicles_attributes][${i}][${property}]']`);
+          currentProperty.value = storedProperty;
+        }
+      }
     // === END /  RESTORE VEHICLE =======================================
 
     });
