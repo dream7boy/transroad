@@ -16,8 +16,6 @@
           document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
           .filter(input => areasCovered.includes(input.computedName))
           .forEach(input => input.checked = true);
-        const checkedCountry = document.querySelector("input[data-name='selectAllcarrier[areas_covered][]']").computedName.includes(areasCovered);
-        if(checkedCountry) checkedCountry.checked = true;
 
         // Cross check the 'stored inputs' against the 'ORIGINAL-inputs'
         const origin = document.querySelector('#carrier_areas_covered');
