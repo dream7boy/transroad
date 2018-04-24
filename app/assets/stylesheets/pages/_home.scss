@@ -323,20 +323,6 @@
     p {
       width: calc(#{$font__p} * 25);
     }
-    ul.points {
-      padding-left: 2.8rem;
-      li {
-        font-weight: normal;
-        line-height: 1.65;
-        text-align: left;
-        text-indent: -2.8rem;
-        .checkmark {
-          font-family: unset;
-          font-size: calc(#{$font__p * 1.2});
-          line-height: 0;
-        }
-      }
-    }
   }
 
   .fullscreen {
