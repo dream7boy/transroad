@@ -31,6 +31,7 @@
     // === END /  RESTORE PREFECTURE =======================================
 
 
+
     // === START /  RESTORE VEHICLE =====================================
       const vehicles = inputBank['carrier']['vehicles_attributes'];
       const vehiclesKey = Object.keys(vehicles);
@@ -49,6 +50,16 @@
         }
       }
     // === END /  RESTORE VEHICLE =======================================
+
+
+
+    // === START /  RESTORE SPECIALTIES =====================================
+    const storedProperty = inputBank['carrier']['specialties'];
+    const spInputs = document.querySelectorAll('[name="carrier[specialties][]"]');
+    for(let i = 0; i < storedProperty.length; i++) {
+      spInputs[i].value = storedProperty[i];
+    }
+    // === END /  RESTORE SPECIALTIES =======================================
 
     });
   <% end %>
