@@ -2,24 +2,40 @@
   <%= javascript_tag do %>
     document.addEventListener("DOMContentLoaded", () => {
 
+    // === START /  RESTORE PREFECTURE =====================================
       // Get stored input and retrieve previous selected inputs
       const inputBank = JSON.parse(document.querySelector('.inputBank').textContent);
       const areasCovered = inputBank['carrier']['areas_covered'];
 
-      // Cross check the 'stored inputs' against the 'available inputs', and check if true
-      const checkedPrefectures = Array.from(
+      // Cross check the 'stored inputs' against the 'PSEUDO-inputs'
+      Array.from(
         document.querySelectorAll("input[data-name='selectItemcarrier[areas_covered][]']"))
         .filter(input => areasCovered.includes(input.value))
         .forEach(input => input.checked = true);
-      const checkedRegions = Array.from(document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
+      Array.from(
+        document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
         .filter(input => areasCovered.includes(input.computedName))
         .forEach(input => input.checked = true);
       const checkedCountry = document.querySelector("input[data-name='selectAllcarrier[areas_covered][]']").computedName.includes(areasCovered);
       if(checkedCountry) checkedCountry.checked = true;
 
+      // Cross check the 'stored inputs' against the 'ORIGINAL-inputs'
+      const origin = document.querySelector('#carrier_areas_covered');
+      Array.from(
+        document.querySelectorAll("option"))
+        .filter(option => areasCovered.includes(option.value))
+        .forEach(option => option.selected = true);
+
       // Replace placeholder text with the selected prefectures
       const placeholder = document.querySelector('span.placeholder');
       placeholder.textContent = areasCovered.join('、');
+    // === END /  RESTORE PREFECTURE =======================================
+
+
+
+    // === START /  RESTORE VEHICLE =====================================
+
+    // === END /  RESTORE VEHICLE =======================================
 
     });
   <% end %>
