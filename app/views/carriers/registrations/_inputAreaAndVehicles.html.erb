@@ -9,7 +9,7 @@
     required: true,
     selected: false,
     wrapper_html: { id: "carrier_areas_covered--container" },
-    input_html: { multiple: true, min: '1' },
+    input_html: { multiple: true, min: '1', autocomplete: "none" },
     include_hidden: false %>
   <%= f.input :favorite_products,
     label: "運送が得意な品目（3種類まで）",
@@ -18,7 +18,7 @@
     required: true,
     collection_wrapper_tag: "div class='checkbox--container form-control'",
     wrapper_html: {id: "carrier_favorite_products--container"},
-    input_html: { class: "product__checkbox", multiple: true },
+    input_html: { class: "product__checkbox", multiple: true, autocomplete: "none" },
     label_html: { class: "label--null" },
     include_hidden: false %>
   <div id="carrier__vehicles__container">
