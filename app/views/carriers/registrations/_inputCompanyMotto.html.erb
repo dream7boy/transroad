@@ -1,13 +1,13 @@
 <div class="inputContainer">
   <h3>会社の強み</h3>
-  <%= f.input :strengths,
+  <%= f.input :strength_1,
     label: "会社の強み・1（例：丁寧な梱包と時間通りの運送！）",
-    input_html:{ id:"strength1", multiple: true, autocomplete: "none" },
+    input_html:{ id:"strength1", autocomplete: "none" },
     required: true
   %>
-  <%= f.input :strengths,
+  <%= f.input :strength_2,
     label: "会社の強み・2（例：急な納品や引き取りにも対応いたします！）",
-    input_html:{ id:"strength2", multiple: true, autocomplete: "none" },
+    input_html:{ id:"strength2", autocomplete: "none" },
     required: true
   %>
 </div>
