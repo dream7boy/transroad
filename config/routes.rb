@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   #   post 'carriers/sign_up_step2', to: 'carriers/registrations#sign_up_step2'
   # end
 
+  # this is for gem 'attachinary'
+  mount Attachinary::Engine => "/attachinary"
+
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
