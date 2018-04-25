@@ -9,10 +9,22 @@
 
 <% else %>
 
-  <section id="carrierDashboard" class="container-fluid carrier">
-    <h1 class="text-center">御見積もり依頼・運送案件はまだありません</h1>
-    <p>Btn below is kept for access to Shipments index, remove or comment out if unnecessary.</p>
-    <%= link_to "案件を探す", shipments_path %>
+  <section id="carrierDashboard" class="container-fluid carrier slimSmall">
+    <div class="textContainer noMargin">
+      <div>
+        <h3>ご登録ありがとうございました</h3>
+        <ul class="points">
+          <li><i class="fas fa-hand-point-right fasColor fasLg"></i>ご登録された情報の変更は、ログイン後の画面右上にある<i class="fa fa-user-circle"></i>をクリックして、<br>「会社情報」から更新することができます。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>登録後の流れ</h3>
+        <ul class="points">
+          <li><i class="fas fa-hand-point-right fasColor fasLg"></i>ご登録された情報は荷主企業の検索内容とマッチする場合、検索結果の一覧に<br>表示されます。検索結果を拝見された荷主企業からのご連絡をお待ちください。</li>
+        </ul>
+      </div>
+    </div>
+    <%#= link_to "案件を探す", shipments_path %>
   </section>
 
 <% end %>
