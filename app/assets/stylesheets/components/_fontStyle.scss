@@ -1,18 +1,54 @@
 ul.points {
   li {
-    font-weight: normal;
-    display: flex;
     align-items: center;
+    display: flex;
+    font-weight: normal;
+    line-height: 1.65;
+    margin-top: 0.75em;
     text-align: left;
-    margin-top: 0.5rem;
     &:first-child {
       margin-top: 0;
     }
-    .fas {
-      margin-right: 0.75rem;
+  }
+}
+
+.textContainer {
+  margin: 60px 0 60px 0;
+  &.noMargin {
+    margin: 0;
+  }
+  div {
+    margin-bottom: 4rem;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  h3 {
+    margin: 0 0 0.75em 0;
+    font-weight: bold;
+  }
+  ul.points {
+    li {
+      display: block;
+      align-items: flex-start;
+      padding-left: 2.1em;
+      .fa-hand-point-right {
+        width: 0;
+        transform: translateX(-1.5em);
+      }
+      .fa-user-circle {
+        content: '\f2bd';
+        font-family: fontAwesome;
+        transform: translateY(2px);
+        color: #FFB234;
+        font-size: calc(1em * 1.5);
+        margin: 0 0.2em;
+      }
     }
   }
 }
+
+
 
 .fasLg {
   font-size: calc(#{$font__p} * 1.35);
