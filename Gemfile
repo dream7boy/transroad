@@ -22,6 +22,10 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'gimei'
 gem 'inline_svg' #https://github.com/jamesmartin/inline_svg
 gem 'cocoon'
+gem 'cloudinary', '1.1.7'
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+gem 'coffee-rails'
 
 group :development, :test do
   gem 'pry-byebug'
