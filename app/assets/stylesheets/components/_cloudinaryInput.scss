@@ -1,0 +1,28 @@
+// CONTINUE MAKING THE STYLING FOR THE CONTAINER NEXT
+input[type="file"]:focus {
+  outline: none;
+}
+.attachinary-input {
+  transform: translate(8px, 4px);
+  position: relative;
+  &:hover::before {
+    background-color: darken($color--main, 10%);
+  }
+  &::before {
+    background-color: $color--main;
+    border-radius: 50px;
+    color: $color--white;
+    content: "\f03e" "\2002" "写真をアップロードする";
+    cursor: pointer;
+    display: block;
+    font-family: fontAwesome;
+    font-weight: bolder;
+    left: 0;
+    padding: 0.3em 0.75em 0.25em 0.75em;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    transform: translate(-8px, -4px);
+    width: 100%;
+  }
+}
