@@ -47,7 +47,7 @@
   </section>
 
   <!-- BLOCK 2 -->
-  <section class="container-fluid carrier slimSmall">
+  <section class="container-fluid carrier slimSmall inView">
     <div class="carrierInputBlock2">
 
       <div class="progressBarContainer">
@@ -66,12 +66,12 @@
       <div>
           <%= f.error_notification %>
           <div class="form-inputs">
-            <%= render "inputCompanyStrengthIntro" %>
+            <%#= render "inputCompanyStrengthIntro" %>
             <hr>
-            <%= render "inputCompanyMotto", f: f %>
+            <%#= render "inputCompanyMotto", f: f %>
             <%= render "inputCompanyDetail", f: f %>
-            <%= render "inputCompanyStrength", f: f %>
-            <%= render "inputContact", f: f %>
+            <%#= render "inputCompanyStrength", f: f %>
+            <%#= render "inputContact", f: f %>
           </div>
           <div class="form-actions">
             <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
