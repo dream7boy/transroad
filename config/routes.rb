@@ -9,9 +9,10 @@ Rails.application.routes.draw do
     registrations: 'shippers/registrations'
   }
 
-  devise_scope :carrier do
-    post 'carriers/sign_up_step2', to: 'carriers/registrations#sign_up_step2'
-  end
+  ## in case we need 2 pages for sign-up
+  # devise_scope :carrier do
+  #   post 'carriers/sign_up_step2', to: 'carriers/registrations#sign_up_step2'
+  # end
 
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
