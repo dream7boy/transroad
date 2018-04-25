@@ -7,7 +7,7 @@ class Carrier < ApplicationRecord
   has_many :deals, dependent: :destroy
   has_many :vehicles, dependent: :destroy
 
-  has_attachments :photos, maximum: 5
+  has_attachment :photo
 
   accepts_nested_attributes_for :vehicles, allow_destroy: true
 
