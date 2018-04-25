@@ -2,9 +2,21 @@
   <%= javascript_tag do %>
     document.addEventListener("DOMContentLoaded", () => {
 
+    const inputBank = JSON.parse(document.querySelector('.inputBank').textContent);
+
+
+
+    // === START /  RESTORE EMPLOYEE =====================================
+    const storedEmployee = inputBank['carrier']['employee_numbers'];
+    const eInput = Array.from(document.querySelectorAll('[name="carrier[employee_numbers]"] option'))
+      .filter(option => option.value.includes(storedEmployee));
+    eInput[0].selected = true;
+    // === END /  RESTORE EMPLOYEE =======================================
+
+
+
     // === START /  RESTORE PREFECTURE =====================================
       // Get stored input and retrieve previous selected inputs
-      const inputBank = JSON.parse(document.querySelector('.inputBank').textContent);
       const areasCovered = inputBank['carrier']['areas_covered'];
       if(areasCovered != undefined) {
         // Cross check the 'stored inputs' against the 'PSEUDO-inputs'
@@ -54,11 +66,11 @@
 
 
     // === START /  RESTORE SPECIALTIES =====================================
-    const storedProperty = inputBank['carrier']['specialties'];
-    const spInputs = document.querySelectorAll('[name="carrier[specialties][]"]');
-    for(let i = 0; i < storedProperty.length; i++) {
-      spInputs[i].value = storedProperty[i];
-    }
+      const storedSpecialties = inputBank['carrier']['specialties'];
+      const spInputs = document.querySelectorAll('[name="carrier[specialties][]"]');
+      for(let i = 0; i < storedSpecialties.length; i++) {
+        spInputs[i].value = storedSpecialties[i];
+      }
     // === END /  RESTORE SPECIALTIES =======================================
 
     });

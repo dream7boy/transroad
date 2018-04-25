@@ -1,20 +1,63 @@
 <div class="inputContainer">
   <h3>会社情報</h3>
-  <%= f.input :company_name, label: "会社名", required: true, autofocus: true, input_html:{ autocomplete: "organization" } %>
+
+  <%= f.input :company_name,
+    label: "会社名",
+    required: true,
+    autofocus: true,
+    input_html: { autocomplete:"organization" } %>
+
   <div class="inputGroup row">
-    <%= f.input :post_code, label: "郵便番号", wrapper_html: {class: "col-xs-4"}, input_html:{ autocomplete: "postal-code" }, required: true %>
+    <%= f.input :post_code,
+      label: "郵便番号",
+      wrapper_html: { class:"col-xs-4" },
+      input_html: { autocomplete:"postal-code" },
+      required: true %>
   </div>
+
   <div class="inputGroup row">
-    <%= f.input :prefecture, label: "都道府県", wrapper_html: {class: "col-xs-4"}, input_html:{ autocomplete: "address-level1" }, required: true %>
-    <%= f.input :ward, label: "市区町村", wrapper_html: {class: "col-xs-8"}, input_html:{ autocomplete: "address-level2" }, required: true %>
+    <%= f.input :prefecture,
+      label: "都道府県",
+      wrapper_html: { class:"col-xs-4" },
+      input_html: { autocomplete:"address-level1" },
+      required: true %>
+    <%= f.input :ward,
+      label: "市区町村",
+      wrapper_html: { class:"col-xs-8" },
+      input_html: { autocomplete:"address-level2" },
+      required: true %>
   </div>
-  <%= f.input :street, label: "住所（例：渋谷区 1-23-45）", input_html:{ autocomplete: "address-line1" }, required: true %>
-  <%= f.input :site_url, label: "ホームページ", required: true %>
-  <%= f.input :ceo_name, label: "代表者名", required: true %>
-  <%= f.input :founded_date, label: "設立日（年月日）", use_month_numbers: true, required: true %>
-  <%= f.input :capital, label: "資本金", required: true %>
+
+  <%= f.input :street,
+    label: "住所（例：渋谷区 1-23-45）",
+    input_html: { autocomplete:"address-line1" },
+    required: true %>
+
+  <%= f.input :site_url,
+    label: "ホームページ",
+    required: true %>
+
+  <%= f.input :ceo_name,
+    label: "代表者名",
+    required: true %>
+
+  <%= f.input :founded_date,
+    label: "設立日（年月日）",
+    use_month_numbers: true,
+    required: true %>
+
+  <%= f.input :capital,
+    label: "資本金",
+    required: true %>
+
   <div class="inputGroup row">
     <% employeesArray = ["1~20","21~40","41~60","61~80","81~100","101+"] %>
-    <%= f.input :employee_numbers, collection: employeesArray, selected: employeesArray[0], label: "社員数", wrapper_html: {class: "col-xs-4"}, required: true %>
+    <%= f.input :employee_numbers,
+      collection: employeesArray,
+      selected: employeesArray[0],
+      label: "社員数",
+      wrapper_html: { class:"col-xs-4" },
+      required: true %>
   </div>
+
 </div>
