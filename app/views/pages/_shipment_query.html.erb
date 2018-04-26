@@ -1,0 +1,74 @@
+<section id="shipmentFormNew" class="container-fluid shipper slimMedium">
+  <%= simple_form_for :query, method: :get, url: results_carrier_shipments_path do |f| %><%#= simple_form_for @shipment do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+
+      <div class="inputContainer">
+        <h3>荷物情報</h3>
+        <div class="inputGroup row">
+          <%= f.input :category,
+            label: "荷物の種類",
+            collection: Shipment::COMMODITIES,
+            required: true,
+            prompt: "選択してください",
+            include_hidden: false  %>
+          <%= f.input :temperature,
+            label: "温度管理",
+            collection: %w(常温 保冷 冷蔵 冷凍 分からない),
+            prompt: "選択してください",
+            required: true %>
+        </div>
+      </div>
+
+      <div class="inputContainer">
+        <h3>荷物の集荷先</h3>
+        <div class="inputGroup row">
+          <%= f.input :pickup_post_code,
+            label: "郵便番号",
+            wrapper_html: { class:"col-xs-12 col-sm-4" },
+            required: true %>
+        </div>
+        <div class="inputGroup row">
+          <%= f.input :pickup_prefecture,
+            label: "都道府県",
+            wrapper_html: { class:"col-xs-12 col-sm-4" },
+            required: true %>
+          <%= f.input :pickup_ward,
+            label: "市区町村",
+            wrapper_html: { class:"col-xs-12 col-sm-8" },
+            required: true %>
+        </div>
+      </div>
+
+      <div class="inputContainer">
+        <h3>荷物の配達先</h3>
+        <div class="inputGroup row">
+          <%= f.input :delivery_post_code,
+            label: "郵便番号",
+            wrapper_html: { class:"col-xs-4" },
+            input_html: { id:"dummyShipment_post_code2" },
+            required: true %>
+        </div>
+        <div class="inputGroup row">
+          <%= f.input :delivery_prefecture,
+            label: "都道府県",
+            wrapper_html: { class:"col-xs-4" },
+            input_html: { id:"dummyShipment_prefecture2" },
+            required: true %>
+          <%= f.input :delivery_ward,
+            label: "市区町村",
+            wrapper_html: { class:"col-xs-8" },
+            input_html: { id:"dummyShipment_ward2" },
+            required: true %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit,
+          "マッチする運送業者を表示",
+          class:"btnNull btnWidth100" %>
+      </div>
+
+    </div>
+  <% end %>
+</section>
