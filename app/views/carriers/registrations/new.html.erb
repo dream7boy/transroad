@@ -22,34 +22,22 @@
           <p class="inputBank hidden"><%= params.to_json %></p>
           <%= render partial: 'restoreInputs', formats: :js %>
         <% end %>
-        <%#= simple_form_for @carrier, url: carriers_sign_up_step2_path do |f| %>
-          <%= f.error_notification %>
-          <div class="form-inputs">
-            <hr>
-            <%= render "inputIntroduction" %>
-            <hr>
-            <%= render "inputCompany", f: f %>
-            <%= render "inputAreaAndVehicles", f: f %>
-          </div>
-
-          <!-- 888 EXPERIMENT! -->
-          <div id="showNextInputs" class="btnNull btnWidth100 text-center">次へ進む</div>
-          <% if false %>
-          <div class="form-actions">
-            <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
-          </div>
-          <% end %>
-          <!-- 888 EXPERIMENT! -->
-
-        <%# end %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <hr>
+          <%= render "inputIntroduction" %>
+          <hr>
+          <%= render "inputCompany", f: f %>
+          <%= render "inputAreaAndVehicles", f: f %>
+        </div>
+        <div id="showNextInputs" class="btnNull btnWidth100 text-center">次へ進む</div>
       </div>
     </div>
   </section>
 
   <!-- BLOCK 2 -->
-  <section class="container-fluid carrier slimSmall inView">
+  <section class="container-fluid carrier slimSmall">
     <div class="carrierInputBlock2">
-
       <div class="progressBarContainer">
         <div class="progressBarStep">
           <p data-action="previous">基本情報</p>
@@ -62,26 +50,26 @@
         </div>
       </div>
 
-        <%#= simple_form_for @carrier, url: carrier_registration_path do |f| %>
       <div>
-          <%= f.error_notification %>
-          <div class="form-inputs">
-            <%#= render "inputCompanyStrengthIntro" %>
-            <hr>
-            <%#= render "inputCompanyMotto", f: f %>
-            <%= render "inputCompanyDetail", f: f %>
-            <%#= render "inputCompanyStrength", f: f %>
-            <%#= render "inputContact", f: f %>
-          </div>
-          <div class="form-actions">
-            <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
-          </div>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= render "inputCompanyStrengthIntro" %>
+          <hr>
+          <%= render "inputCompanyMotto", f: f %>
+          <%= render "inputCompanyDetail", f: f %>
+          <%= render "inputCompanyStrength", f: f %>
+          <%= render "inputContact", f: f %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
+        </div>
         <% end %>
       </div>
     </div>
   </section>
 
 </div>
+
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
