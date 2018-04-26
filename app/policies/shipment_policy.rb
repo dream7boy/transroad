@@ -9,6 +9,10 @@ class ShipmentPolicy < ApplicationPolicy
     end
   end
 
+  def results_carrier?
+    true
+  end
+
   def quotes_req?
     user_is_owner?
   end

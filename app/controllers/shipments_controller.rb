@@ -1,7 +1,13 @@
 class ShipmentsController < ApplicationController
-  before_action :authenticate_shipper!, except: [:index, :show]
+  before_action :authenticate_shipper!, except: [:index, :show, :results_carrier]
   before_action :set_shipment, only: [:show, :edit, :update, :destroy]
   before_action :check_available, only: [:edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: :results_carrier
+
+  def results_carrier
+    @shipment = Shipment.new
+    authorize @shipment
+  end
 
   def index
     if params[:search].present? && params[:search][:p_start_date].present?
