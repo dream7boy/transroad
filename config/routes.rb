@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
   resources :shipments do
     resources :deals, only: [:create]
+    collection do
+      get 'results_carrier', to: 'shipments#results_carrier'
+    end
   end
 
   namespace :shipper do

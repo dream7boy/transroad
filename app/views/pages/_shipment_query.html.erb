@@ -1,5 +1,5 @@
 <section id="shipmentFormNew" class="container-fluid shipper slimMedium">
-  <%= simple_form_for :dummyShipment do |f| %><%#= simple_form_for @shipment do |f| %>
+  <%= simple_form_for :query, method: :get, url: results_carrier_shipments_path do |f| %><%#= simple_form_for @shipment do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
 
@@ -23,17 +23,17 @@
       <div class="inputContainer">
         <h3>荷物の集荷先</h3>
         <div class="inputGroup row">
-          <%= f.input :post_code,
+          <%= f.input :pickup_post_code,
             label: "郵便番号",
             wrapper_html: { class:"col-xs-12 col-sm-4" },
             required: true %>
         </div>
         <div class="inputGroup row">
-          <%= f.input :prefecture,
+          <%= f.input :pickup_prefecture,
             label: "都道府県",
             wrapper_html: { class:"col-xs-12 col-sm-4" },
             required: true %>
-          <%= f.input :ward,
+          <%= f.input :pickup_ward,
             label: "市区町村",
             wrapper_html: { class:"col-xs-12 col-sm-8" },
             required: true %>
@@ -43,19 +43,19 @@
       <div class="inputContainer">
         <h3>荷物の配達先</h3>
         <div class="inputGroup row">
-          <%= f.input :post_code,
+          <%= f.input :delivery_post_code,
             label: "郵便番号",
             wrapper_html: { class:"col-xs-4" },
             input_html: { id:"dummyShipment_post_code2" },
             required: true %>
         </div>
         <div class="inputGroup row">
-          <%= f.input :prefecture,
+          <%= f.input :delivery_prefecture,
             label: "都道府県",
             wrapper_html: { class:"col-xs-4" },
             input_html: { id:"dummyShipment_prefecture2" },
             required: true %>
-          <%= f.input :ward,
+          <%= f.input :delivery_ward,
             label: "市区町村",
             wrapper_html: { class:"col-xs-8" },
             input_html: { id:"dummyShipment_ward2" },
