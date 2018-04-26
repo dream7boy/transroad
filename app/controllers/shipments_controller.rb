@@ -9,6 +9,10 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     @query = query_params
+
+    @all_carriers_two_conditions =
+      Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[]",
+                    [@query[:pickup_prefecture], @query[:delivery_prefecture]], @query[:category])
   end
 
   def index
