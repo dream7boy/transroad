@@ -7,6 +7,8 @@ class ShipmentsController < ApplicationController
   def results_carrier
     @shipment = Shipment.new
     authorize @shipment
+
+    @query = query_params
   end
 
   def index
@@ -168,6 +170,11 @@ class ShipmentsController < ApplicationController
   end
 
   private
+
+  def query_params
+    params.require(:query).permit(:category, :temperature, :pickup_post_code, :pickup_prefecture,
+      :pickup_ward, :delivery_post_code, :delivery_prefecture, :delivery_ward )
+  end
 
   def shipment_params
     params
