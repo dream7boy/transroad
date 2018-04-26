@@ -3,7 +3,9 @@
     <%= render "landingNavBar.html.erb" %>
     <%= render "landingView.html.erb" %>
   </div>
-  <%= render "landingDescription.html.erb" %>
-  <%= render "landingCarrier.html.erb" %>
-  <%= render "landingShipper.html.erb" %>
+  <%= render "shipment_query.html.erb" %> <!-- TEMPORARY PARTIAL POSITION -->
+  <%#= render "landingDescription.html.erb" %> <!-- UNCOMMENT ONCE DONE-->
+  <%#= render "landingCarrier.html.erb" %> <!-- UNCOMMENT ONCE DONE-->
+  <%#= render "landingShipper.html.erb" %> <!-- UNCOMMENT ONCE DONE-->
 </div>
+<%= render partial: 'jpostal.dummyShipmentActivator', formats: :js %> <!-- TEMPORARY PARTIAL POSITION -->
