@@ -1,5 +1,43 @@
+#carrier_favorite_products--container {
+  div.checkbox--container {
+    height: unset;
+    margin: 0;
+    padding: 11px 18px 12px 18px;
+    span.checkbox {
+      display: inline-block;
+      margin: 0 0 0 15px;
+      padding: 4px 0 0 0;
+      width: 100px;
+      input {
+        margin: 0 0 0 -15px;
+      }
+      label {
+        line-height: 1;
+        min-height: unset;
+        padding: 0;
+        &.disabled {
+          color: $color--lightgray;
+        }
+      }
+    }
+  }
+}
+
+#sign_in {
+  .checkbox label {
+    font-size: 1.2rem;
+    input {
+      margin: 0 0 0 -20px;
+    }
+  }
+}
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+label[for="carrier_company_description"] {
+  width: 28em;
 }
 
 .cRegistWrapper {
@@ -150,29 +188,13 @@ input:-webkit-autofill {
   width: 100%;
 }
 
-#carrier_favorite_products--container {
-  div.checkbox--container {
-    height: unset;
-    margin: 0;
-    padding: 11px 18px 12px 18px;
-    span.checkbox {
-      display: inline-block;
-      margin: 0 0 0 15px;
-      padding: 4px 0 0 0;
-      width: 100px;
-      input {
-        margin: 0 0 0 -15px;
-      }
-      label {
-        line-height: 1;
-        min-height: unset;
-        padding: 0;
-        &.disabled {
-          color: $color--lightgray;
-        }
-      }
-    }
-  }
+.textArea {
+  height: 12rem;
+  max-height: 14em;
+  min-height: 10em;
+  padding: 0.75em;
+  resize: none;
+  width: 35em;
 }
 
 // #shipper__quotation {
@@ -211,12 +233,3 @@ input:-webkit-autofill {
   //   }
   // }
 // }
-
-#sign_in {
-  .checkbox label {
-    font-size: 1.2rem;
-    input {
-      margin: 0 0 0 -20px;
-    }
-  }
-}
