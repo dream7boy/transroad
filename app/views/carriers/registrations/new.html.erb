@@ -1,7 +1,8 @@
-<div class="cRegistWrapper">
+<!-- <div class="cRegistWrapper"> -->
+  <%= simple_form_for @carrier, url: carrier_registration_path, html: {class:"cRegistWrapper"} do |f| %>
 
   <!-- BLOCK 1 -->
-  <section class="container-fluid carrier slimSmall">
+  <section class="container-fluid carrier slimSmall" data-name="inputBlock1">
     <div class="carrierInputBlock1">
       <div class="progressBarContainer">
         <div class="progressBarStep active">
@@ -17,7 +18,6 @@
 
       <div>
         <h2>運送アカウントの新規登録</h2>
-        <%= simple_form_for @carrier, url: carrier_registration_path do |f| %>
         <% if params["action"] == "create" %>
           <p class="inputBank hidden"><%= params.to_json %></p>
           <%= render partial: 'restoreInputs', formats: :js %>
@@ -36,7 +36,7 @@
   </section>
 
   <!-- BLOCK 2 -->
-  <section class="container-fluid carrier slimSmall">
+  <section class="container-fluid carrier slimSmall" data-name="inputBlock2">
     <div class="carrierInputBlock2">
       <div class="progressBarContainer">
         <div class="progressBarStep">
@@ -63,12 +63,12 @@
         <div class="form-actions">
           <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
         </div>
-        <% end %>
       </div>
     </div>
   </section>
 
-</div>
+  <% end %>
+<!-- </div> -->
 
 
 
