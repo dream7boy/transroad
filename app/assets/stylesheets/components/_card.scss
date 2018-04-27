@@ -7,41 +7,60 @@ $color__card-selected: #FFFCE2;
   100% {transform: scale(1, 1);}
 }
 
-#shipperCarrierMatches .cardContainer {
-  width: 23.5%;
-  &:nth-child(3n) {
-    margin: 0 2% 2% 0;
-  }
-  &:nth-child(4n) {
-    margin: 0 0 2% 0;
-  }
+#queryResults .cardContainer,
+#queryResults .cardContainer div {
+  display: flex;
+  // width: 23.5%;
+  // &:nth-child(3n) {
+  //   margin: 0 2% 2% 0;
+  // }
+  // &:nth-child(4n) {
+  //   margin: 0 0 2% 0;
+  // }
 }
 
 .cardsContainer { // Plural
   display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
 }
 
 .cardContainer {  // Singular
-  background-color: $color--white;
-  border-radius: $border-radius;
-  box-shadow: $card-shadow--default;
-  padding: 0 15px 30px 15px;
-  padding: 15px;
-  width: 32%;
-  margin: 0 2% 2% 0;
-  &:nth-child(3n) {
-    margin: 0 0 2% 0;
-  }
+  // background-color: $color--white;
+  // border-radius: $border-radius;
+  // box-shadow: $card-shadow--default;
+  padding: 1.5rem 0;
+  width: 100%;
+  border-top: 1px solid $color--lightgray;
+  border-bottom: 1px solid $color--lightgray;
   &:hover {
-    box-shadow: $card-shadow--hover;
-    transform: scale(1.02);
   }
   h4{
     margin-bottom: 0.5rem;
   }
 }
+
+// VER 1
+// .cardContainer {  // Singular
+//   background-color: $color--white;
+//   border-radius: $border-radius;
+//   box-shadow: $card-shadow--default;
+//   padding: 0 15px 30px 15px;
+//   padding: 15px;
+//   width: 32%;
+//   margin: 0 2% 2% 0;
+//   &:nth-child(3n) {
+//     margin: 0 0 2% 0;
+//   }
+//   &:hover {
+//     box-shadow: $card-shadow--hover;
+//     transform: scale(1.02);
+//   }
+//   h4{
+//     margin-bottom: 0.5rem;
+//   }
+// }
 
 .cardLinkContainer {
   border-top: 1px solid $color--lightgray;
@@ -67,11 +86,12 @@ $color__card-selected: #FFFCE2;
 }
 
 .cardCarrierInfo {
-  border-top: 1px solid $color--lightgray;
-  padding-top: 12px;
+  flex-direction: column;
+  // border-top: 1px solid $color--lightgray;
+  // padding-top: 12px;
   p {
-    font-size: 14px;
-    line-height: 1.35;
+    // font-size: 14px;
+    // line-height: 1.35;
   }
 }
 
@@ -113,9 +133,9 @@ $color__card-selected: #FFFCE2;
 .carrierImg {
   background-color: $color--lightgray;
   border-radius: calc(#{$border-radius} / 2);
-  max-height: 160px;
-  padding-top: 61.8%;
-  margin-bottom: 18px;
+  margin-right: 1.5rem;
+  width: 190px;
+  height: 120px;
 }
 
 // #shipperDashboard {

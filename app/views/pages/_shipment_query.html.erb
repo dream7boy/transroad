@@ -11,11 +11,13 @@
             collection: Shipment::COMMODITIES,
             required: true,
             prompt: "選択してください",
+            wrapper_html: { class:"col-xs-12" },
             include_hidden: false  %>
           <%= f.input :temperature,
             label: "温度管理",
             collection: %w(常温 保冷 冷蔵 冷凍 分からない),
             prompt: "選択してください",
+            wrapper_html: { class:"col-xs-12" },
             required: true %>
         </div>
       </div>
@@ -46,19 +48,16 @@
           <%= f.input :delivery_post_code,
             label: "郵便番号",
             wrapper_html: { class:"col-xs-4" },
-            input_html: { id:"dummyShipment_post_code2" },
             required: true %>
         </div>
         <div class="inputGroup row">
           <%= f.input :delivery_prefecture,
             label: "都道府県",
             wrapper_html: { class:"col-xs-4" },
-            input_html: { id:"dummyShipment_prefecture2" },
             required: true %>
           <%= f.input :delivery_ward,
             label: "市区町村",
             wrapper_html: { class:"col-xs-8" },
-            input_html: { id:"dummyShipment_ward2" },
             required: true %>
         </div>
       </div>

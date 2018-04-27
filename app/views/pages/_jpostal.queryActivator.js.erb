@@ -1,0 +1,22 @@
+<% content_for(:after_js) do %>
+  <% javascript_tag do %>
+    $(function (){
+      $('#query_pickup_post_code').jpostal({
+        postcode : [ '#query_pickup_post_code' ],
+        address  : {
+          '#query_pickup_prefecture' : '%3',
+          '#query_pickup_ward'       : '%4'
+        }
+      });
+    });
+    $(function (){
+      $('#query_delivery_post_code').jpostal({
+        postcode : [ '#query_delivery_post_code' ],
+        address  : {
+          '#query_delivery_prefecture' : '%3',
+          '#query_delivery_ward'       : '%4'
+        }
+      });
+    });
+  <% end %>
+<% end %>
