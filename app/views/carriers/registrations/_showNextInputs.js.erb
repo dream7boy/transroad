@@ -8,7 +8,7 @@
       progressBar.addEventListener('click', handleClick);
 
       function handleClick() {
-        const secondInputs =  document.querySelector('section.carrier:nth-child(2)');
+        const secondInputs =  document.querySelectorAll('section.carrier')[1];
         const isInView =  secondInputs.classList.value.includes('inView');
         if(isInView) {
           secondInputs.classList.remove('inView');
