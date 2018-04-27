@@ -1,22 +1,38 @@
 <div class="cardContainer cardCarrier">
-
-  <div class="carrierImg"></div>
   <%= text_area_tag name="#{carrier.id}", nil, class:"carrier__id hidden" %>
 
-  <h4><%= carrier.company_name %></h4>
-      <ul class="cardListContainer">
-    <% carrier.favorite_products.each do |product| %>
-      <li class="cardListItem"><%= product %></li>
-    <% end %>
-  </ul>
+  <!-- CARRIER PHOTO -->
+  <% if carrier.photo != nil %>
+    <%= cl_image_tag carrier.photo.path, class: "carrierImg", crop: :fill %>
+  <% else %>
+    <%= inline_svg "carrier_default.svg", class: "carrierImg", crop: :fill %>
+  <% end %>
 
-  <div class="cardCarrierInfo">
-    <p><%= carrier.prefecture %> <%= carrier.ward %></p>
-    <p class="hidden"><%= carrier.street %> #-##-##</p>
-    <p class="hidden"><%= carrier.phone %></p>
-    <p>www.<%= carrier.company_name %>.co.jp</p>
+  <!-- CARRIER TEXT -->
+  <div class="cardCInfo">
+    <h4><%= carrier.company_name %></h4>
+    <p><%= carrier.strength_1 %></p>
+    <p><%= carrier.strength_2 %></p>
+    <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
   </div>
 
-  <button class="btn btnNull cardBtn">御見積もりを依頼</button>
+  <!-- CARRIER SPECIALTIES -->
+  <div class="cardCSpecial">
+    <% spOrder = ["会社規模", "緊急対応", "運送地域", "価格", "車両種類"] %>
+    <% for i in 0...(spOrder.length) %>
+      <div>
+        <% inputIndex = carrier.specialties.index(spOrder[i]) %>
+        <% case inputIndex %>
+        <% when 0 %>
+          <%= inline_svg "gDblCircle.svg" %>
+        <% when 4 %>
+          <%= inline_svg "gTriangle.svg" %>
+        <% else %>
+          <%= inline_svg "gCircle.svg" %>
+        <% end %>
+        <p><%= spOrder[i] %></p>
+      </div>
+    <% end %>
+  </div>
 
 </div>

@@ -1,21 +1,4 @@
-<section id="shipperCarrierMatches" class="container-fluid shipper flexTop">
-
-  <div class="progressBarContainer">
-    <div class="progressBarStep">
-      <% if @shipment.available == true %>
-        <p><%= link_to "運送案件を作成", edit_shipment_path(@shipment) %></p>
-      <% end %>
-    </div>
-    <div class="progressBarStep active">
-      <p>運送会社を選択</p>
-    </div>
-    <div class="progressBarStep">
-      <p>内容を確認</p>
-    </div>
-    <div class="progressBarStep">
-      <p>完了</p>
-    </div>
-  </div>
+<section id="queryResults" class="container-fluid shipper">
 
   <div class="dashboardHeader">
     <div>
@@ -33,25 +16,3 @@
   </div>
 
 </section>
-
-
-<% if false %>
-  <section>
-    <div>
-      <h1>results carrier</h1>
-      <p>荷物の種類: <%= @query[:category] %></p>
-      <p>温度管理: <%= @query[:temperature] %></p>
-
-      <h2>Pickup</h2>
-      <p>温度管理: <%= @query[:pickup_post_code] %></p>
-      <p>温度管理: <%= @query[:pickup_prefecture] %></p>
-      <p>温度管理: <%= @query[:pickup_ward] %></p>
-
-      <h2>Delivery</h2>
-      <p>温度管理: <%= @query[:delivery_post_code] %></p>
-      <p>温度管理: <%= @query[:delivery_prefecture] %></p>
-      <p>温度管理: <%= @query[:delivery_ward] %></p>
-
-    </div>
-  </section>
-<% end %>
