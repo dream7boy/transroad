@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # トラッキングIDを記載
-  GA.tracker = "UA-118339946-1"
+  GA.tracker = ENV['GOOGLE_TRACKING_ID']
 
   # Code is not reloaded between requests.
   config.cache_classes = true
