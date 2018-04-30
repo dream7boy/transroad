@@ -23,12 +23,25 @@ $color__card-selected: #FFFCE2;
   padding: 1.5rem 0;
   width: 100%;
   border-top: 2px solid $color--lightgray;
+  position: relative;
   &:last-child {
     border-bottom: 2px solid $color--lightgray;
   }
   &:hover {
-    background-color: #f6f6f6;
     cursor: pointer;
+    &:before {
+      border-bottom: 15px solid $color--white;
+      border-left: 15px solid $color--sub;
+      border-top: 15px solid $color--white;
+      content: '';
+      display: block;
+      height: 30px;
+      left: -30px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+    }
   }
   h4{
     margin-bottom: 0.5em;
@@ -77,6 +90,7 @@ $color__card-selected: #FFFCE2;
     flex-direction: column;
     justify-content: center;
     padding: 1rem 1.25rem;
+    flex: 1;
     &:last-child {
       border-right: 1px dashed $color--lightgray;
     }
@@ -92,7 +106,7 @@ $color__card-selected: #FFFCE2;
 
 .cardCSpecial.active {
   flex: none;
-  margin: -1.5rem 0 3rem 0;
+  margin: -1.5rem 0 1.5rem 0;
   div {
     padding: 2rem 1.25rem;
     border-bottom: 1px solid $color--lightgray;
