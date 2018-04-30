@@ -1,0 +1,21 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+
+    const carrierCards = document.querySelectorAll('.cardCarrier');
+    carrierCards.forEach(card => card.addEventListener('click', handleClick));
+
+    function handleClick(e) {
+      const summary = e.currentTarget.querySelector("[data-name='summary'] p");
+      const detail = e.currentTarget.querySelector("[data-name='detail']");
+      const table = e.currentTarget.querySelector("table");
+      const specialties = e.currentTarget.querySelector(".cardCSpecial");
+      summary.classList.toggle('hidden');
+      detail.classList.toggle('hidden');
+      table.classList.toggle('hidden');
+      specialties.classList.toggle('active');
+    }
+
+    });
+  <% end %>
+<% end %>

@@ -22,11 +22,13 @@ $color__card-selected: #FFFCE2;
 .cardContainer {  // Singular
   padding: 1.5rem 0;
   width: 100%;
-  border-top: 1px solid $color--lightgray;
+  border-top: 2px solid $color--lightgray;
   &:last-child {
-    border-bottom: 1px solid $color--lightgray;
+    border-bottom: 2px solid $color--lightgray;
   }
   &:hover {
+    background-color: #f6f6f6;
+    cursor: pointer;
   }
   h4{
     margin-bottom: 0.5em;
@@ -56,28 +58,49 @@ $color__card-selected: #FFFCE2;
   }
 }
 
-.cardCSpecial {
-  flex: 3;
+// START / CARRIER RESULTS
+.cardC_SpAndTable {
   display: flex;
+  flex: 3;
+  flex-direction: column;
+}
+
+.cardCSpecial {
+  display: flex;
+  flex: 1;
   justify-content: space-between;
+  margin: -1.5rem 0;
   div {
-    flex-direction: column;
-    padding: 1rem 0;
-    display: flex;
     align-items: center;
+    border-left: 1px dashed $color--lightgray;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    padding: 1rem 1.25rem;
+    &:last-child {
+      border-right: 1px dashed $color--lightgray;
+    }
   }
   p {
     font-size: 1.2rem;
-    margin-top: 0.75em;
+    margin-top: 0.25em;
   }
   svg {
-    width: 50px;
+    width: 46px;
+  }
+}
+
+.cardCSpecial.active {
+  flex: none;
+  margin: -1.5rem 0 3rem 0;
+  div {
+    padding: 2rem 1.25rem;
+    border-bottom: 1px solid $color--lightgray;
   }
 }
 
 .cardCInfo {
-  margin-right: 4.5rem;
+  margin-right: 3rem;
   position: relative;
   flex: 2;
   h4 {
@@ -88,13 +111,28 @@ $color__card-selected: #FFFCE2;
     font-size: 1.4rem;
     font-weight: bolder;
     &:last-child {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      border-top: 1px solid $color--lightgray;
+      padding-top: 0.75em;
+      width: 100%;
+      font-weight: normal;
+      margin-top: 0.75em;
+    }
+  }
+  [data-name="summary"] p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  [data-name="detail"] {
+    border-top: 1px solid $color--lightgray;
+    padding-top: 0.75em;
+    margin-top: 0.75em;
+    p {
       font-weight: normal;
     }
   }
 }
+// END / CARRIER RESULTS
 
 .cardBtn {
   box-shadow: none;

@@ -13,13 +13,28 @@
     <h4><%= carrier.company_name %></h4>
     <p><%= carrier.strength_1 %></p>
     <p><%= carrier.strength_2 %></p>
-    <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
+    <div class="" data-name="summary">
+      <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
+    </div>
+    <div class="hidden" data-name="detail">
+      <p>代表者：<%= carrier.ceo_name %></p>
+      <p>創&emsp;業：<%= carrier.founded_date %></p>
+      <p>資本金：<%= carrier.capital %></p>
+      <p>従業員：<%= carrier.employee_numbers %></p>
+      <br>
+      <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
+      <p><%= carrier.street %></p>
+      <p><%= carrier.phone %></p>
+      <p><%= carrier.site_url %></p>
+      <p>運送地域：<%= carrier.areas_covered.join('、') %></p>
+    </div>
   </div>
 
-  <!-- CARRIER SPECIALTIES -->
-  <div class="cardCSpecial">
-    <% spOrder = ["会社規模", "緊急対応", "運送地域", "価格", "車両種類"] %>
-    <% for i in 0...(spOrder.length) %>
+  <div class="cardC_SpAndTable">
+    <!-- CARRIER SPECIALTIES -->
+    <div class="cardCSpecial">
+      <% spOrder = ["会社規模", "緊急対応", "運送地域", "価格", "車両種類"] %>
+      <% for i in 0...(spOrder.length) %>
       <div>
         <% inputIndex = carrier.specialties.index(spOrder[i]) %>
         <% case inputIndex %>
@@ -32,7 +47,27 @@
         <% end %>
         <p><%= spOrder[i] %></p>
       </div>
-    <% end %>
+      <% end %>
+    </div>
+    <!-- CARRIER VEHICLES -->
+    <table class="debug hidden">
+      <thead>
+        <tr>
+          <th>積載量</th>
+          <th>仕様</th>
+          <th>台数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for i in 0...(carrier.vehicles.length) %>
+        <tr>
+          <td><%= carrier.vehicles[i].load_capacity %></td>
+          <td><%= carrier.vehicles[i].vehicle_type %><%= carrier.vehicles[i].type_specifications %><%= carrier.vehicles[i].feature %></td>
+          <td><%= carrier.vehicles[i].quantity %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
 </div>
