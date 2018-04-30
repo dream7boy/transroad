@@ -32,6 +32,29 @@
   }
 }
 
+[class*=carrier_strength_],
+.carrier_company_description {
+  position: relative;
+  &:before {
+    display: inline-block;
+    border: 1px dashed red;
+    position: absolute;
+    bottom: 0;
+    font-size: 1.4rem;
+    color: $color--gray;
+    padding: 0.25em 0.5em;
+  }
+}
+[class*=carrier_strength_]:before {
+  content: '残り40文字';
+  right: 0;
+}
+.carrier_company_description:before {
+  content: '残り160文字';
+  left: 35em;
+  transform: translateX(-100%);
+}
+
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
 }
