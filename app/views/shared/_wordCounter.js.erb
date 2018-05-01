@@ -1,0 +1,23 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const inputs = document.querySelectorAll("[data-wordcounter='true']");
+      inputs.forEach(input => input.addEventListener('input', handleInput))
+
+      function handleInput () {
+        const maxLength = this.attributes.maxLength.value;
+        const currentLength = this.value.length;
+        const id = this.id;
+        const counter = document.querySelector(`span.${this.id}`);
+        if(maxLength - currentLength < maxLength / 4) {
+          counter.style.color = '#EE5F5B';
+        } else {
+          counter.style.color = '#777777';
+        }
+        counter.textContent = `残り${maxLength - currentLength}文字`;
+      }
+
+    });
+  <% end %>
+<% end %>
