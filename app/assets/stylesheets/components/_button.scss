@@ -11,11 +11,18 @@
 }
 
 .btnCase {
-  align-items: center;
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  max-width: 260px;
-  width:85%;
+  .btnNull {
+    margin-right: 3rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .btnCaseFlex {
+    flex: 1;
+  }
 }
 
 .btnNull {
@@ -64,6 +71,23 @@
   }
 }
 
+.btnLightGrayColor {
+  background-color: $color--lightgray;
+  &:active {
+    transform: translateY(2px);
+    background-color: $color--lightgray;
+    &:focus {
+      background-color: darken($color--lightgray, 10%);
+    }
+  }
+  &:focus {
+    background-color: $color--lightgray;
+  }
+  &:hover {
+    background-color: darken($color--lightgray, 10%);
+  }
+}
+
 .btnAddNestForm {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -101,11 +125,19 @@
   width: 100%;
 }
 
+.landingBtnCase {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 260px;
+  width:85%;
+}
+
 
 
 /*------------  md >= 992px (.container @ 970px)  ------------*/
 @media (min-width: 992px) {
-  .btnCase {
+  .landingBtnCase {
     max-width: 650px;
     width: 50%;
   }

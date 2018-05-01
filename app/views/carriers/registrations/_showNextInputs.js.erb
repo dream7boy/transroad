@@ -3,18 +3,14 @@
     document.addEventListener("DOMContentLoaded", () => {
 
       const btn =  document.querySelector('#showNextInputs');
-      const progressBar = document.querySelector("p[data-action='previous']");
+      const backBtns = document.querySelectorAll("[data-action='previous']");
       btn.addEventListener('click', handleClick);
-      progressBar.addEventListener('click', handleClick);
+      backBtns.forEach(btn => btn.addEventListener('click', handleClick));
 
       function handleClick() {
-        const secondInputs =  document.querySelectorAll('section.carrier')[1];
-        const isInView =  secondInputs.classList.value.includes('inView');
-        if(isInView) {
-          secondInputs.classList.remove('inView');
-        } else {
-          secondInputs.classList.add('inView');
-        }
+        const secondInput =  document.querySelector('section[data-name="inputBlock2"]');
+        const isInView =  secondInput.classList.value.includes('inView');
+        isInView ? secondInput.classList.remove('inView') : secondInput.classList.add('inView');
         $('html, body').animate({
           scrollTop: $('html, body').offset().top
         }, 400);

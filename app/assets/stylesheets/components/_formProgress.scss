@@ -27,6 +27,16 @@ $form__progress--unit: 24px;
       position: unset;
     }
   }
+  &[data-action='previous'] {
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      background-color: $color--sub;
+      &:after {
+        background-color: $color--sub;
+      }
+    }
+  }
 }
 
 .progressBarStep {
