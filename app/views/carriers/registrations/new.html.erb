@@ -38,8 +38,8 @@
 <section class="container-fluid carrier slimSmall" data-name="inputBlock2">
   <div class="carrierInputBlock2">
     <div class="progressBarContainer">
-      <div class="progressBarStep">
-        <p data-action="previous">基本情報</p>
+      <div class="progressBarStep" data-action="previous">
+        <p>基本情報</p>
       </div>
       <div class="progressBarStep active">
         <p>会社の特徴</p>
@@ -48,7 +48,6 @@
         <p>確認</p>
       </div>
     </div>
-
     <div>
       <%= f.error_notification %>
       <div class="form-inputs">
@@ -59,8 +58,9 @@
         <%= render "inputCompanyStrength", f: f %>
         <%= render "inputContact", f: f %>
       </div>
-      <div class="form-actions">
-        <%= f.button :submit, "次へ進む", class:"btnNull btnWidth100" %>
+      <div class="form-actions btnCase">
+        <div class="btnNull btnLightGrayColor" data-action="previous">前へ戻る</div>
+        <%= f.button :submit, "次へ進む", class:"btnNull btnCaseFlex" %>
       </div>
     </div>
   </div>
