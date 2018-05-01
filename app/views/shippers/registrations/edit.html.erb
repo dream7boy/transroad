@@ -19,6 +19,5 @@
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-<!-- JS for automated address input upon postal code input -->
-<%= javascript_include_tag('jquery.jpostal') %>
-<%= javascript_include_tag('jpostal.shipperActivator') %>
+<%= render partial: 'shared/jquery.jpostal', formats: :js %>  <!-- JS for automated address input upon postal code input -->
+<%= render partial: 'shared/jpostal.shipperActivator', formats: :js %>
