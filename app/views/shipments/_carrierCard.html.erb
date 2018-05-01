@@ -59,15 +59,22 @@
         </tr>
       </thead>
       <tbody>
-        <% for i in 0...(carrier.vehicles.length) %>
+        <% vehicles = carrier.vehicles.sort_by { |obj| obj.load_capacity.to_i } %>
+        <% for i in 0...(vehicles.length) %>
         <tr>
-          <td><%= carrier.vehicles[i].load_capacity %>トン</td>
+          <td><%= vehicles[i].load_capacity %>トン</td>
           <td>
-            <%= carrier.vehicles[i].vehicle_type %><br>
-            <%= carrier.vehicles[i].type_specifications %><br>
-            <%= carrier.vehicles[i].feature %>
+            <% if vehicles[i].vehicle_type != "標準" %>
+              <%= vehicles[i].vehicle_type %><br>
+            <% end %>
+            <% if vehicles[i].type_specifications != "標準" %>
+              <%= vehicles[i].type_specifications %><br>
+            <% end %>
+            <% if vehicles[i].feature != "標準" %>
+              <%= vehicles[i].feature %>
+            <% end %>
           </td>
-          <td><%= carrier.vehicles[i].quantity %>台</td>
+          <td><%= vehicles[i].quantity %>台</td>
         </tr>
         <% end %>
       </tbody>
