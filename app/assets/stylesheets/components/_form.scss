@@ -32,27 +32,20 @@
   }
 }
 
-[class*=carrier_strength_],
-.carrier_company_description {
+.wordCountContainer {
   position: relative;
-  &:before {
+  span {
     display: inline-block;
-    border: 1px dashed red;
     position: absolute;
     bottom: 0;
     font-size: 1.4rem;
     color: $color--gray;
     padding: 0.25em 0.5em;
+    right: 0;
+    &.carrier_company_description {
+      right: calc(100% - 35em);
+    }
   }
-}
-[class*=carrier_strength_]:before {
-  content: '残り40文字';
-  right: 0;
-}
-.carrier_company_description:before {
-  content: '残り160文字';
-  left: 35em;
-  transform: translateX(-100%);
 }
 
 input:-webkit-autofill {
@@ -219,40 +212,3 @@ label[for="carrier_company_description"] {
   resize: none;
   width: 35em;
 }
-
-// #shipper__quotation {
-  // #shipper_quotation_form {
-    // padding-left: 0;
-    // padding-right: 0;
-  // }
-  // .quotation__body--container {
-    // h4 {
-    //   margin: 0 0 $spacer--xs 0;
-    // }
-    // .btnNull {
-    //   margin: $spacer--sm $spacer--sm $spacer--sm 0;
-    // }
-    // .quotation__block {
-    //   border-bottom: 1px solid $color--lightgray;
-    //   padding: 0 0 15px 0;
-    //   margin: 0 0 15px 0;
-    //   &:last-child {
-    //     border-bottom: 0;
-    //   }
-    // }
-    // .quotation__product {
-    //   div {
-    //     margin: 0 0 15px 0;
-    //   }
-    // }
-  // }
-  // .quotation__header--container {
-  //   align-items: flex-end;
-  //   display: flex;
-  //   justify-content: space-between;
-  //   padding: 0 0 $spacer--sm 0;
-  //   h2 {
-  //     line-height: unset;
-  //   }
-  // }
-// }

@@ -1,87 +1,82 @@
-<!-- <div class="cRegistWrapper"> -->
-  <%= simple_form_for @carrier, url: carrier_registration_path, html: {class:"cRegistWrapper"} do |f| %>
+<%= simple_form_for @carrier, url: carrier_registration_path, html: {class:"cRegistWrapper"} do |f| %>
 
-  <!-- BLOCK 1 -->
-  <section class="container-fluid carrier slimSmall" data-name="inputBlock1">
-    <div class="carrierInputBlock1">
-      <div class="progressBarContainer">
-        <div class="progressBarStep active">
-          <p>基本情報</p>
-        </div>
-        <div class="progressBarStep">
-          <p>会社の特徴</p>
-        </div>
-        <div class="progressBarStep">
-          <p>確認</p>
-        </div>
+<!-- BLOCK 1 -->
+<section class="container-fluid carrier slimSmall" data-name="inputBlock1">
+  <div class="carrierInputBlock1">
+    <div class="progressBarContainer">
+      <div class="progressBarStep active">
+        <p>基本情報</p>
       </div>
-
-      <div>
-        <h2>運送アカウントの新規登録</h2>
-        <% if params["action"] == "create" %>
-          <p class="inputBank hidden"><%= params.to_json %></p>
-          <%= render partial: 'restoreInputs', formats: :js %>
-        <% end %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <hr>
-          <%= render "inputIntroduction" %>
-          <hr>
-          <%= render "inputCompany", f: f %>
-          <%= render "inputAreaAndVehicles", f: f %>
-        </div>
-        <div id="showNextInputs" class="btnNull btnWidth100 text-center">次へ進む</div>
+      <div class="progressBarStep">
+        <p>会社の特徴</p>
+      </div>
+      <div class="progressBarStep">
+        <p>確認</p>
       </div>
     </div>
-  </section>
 
-  <!-- BLOCK 2 -->
-  <section class="container-fluid carrier slimSmall" data-name="inputBlock2">
-    <div class="carrierInputBlock2">
-      <div class="progressBarContainer">
-        <div class="progressBarStep" data-action="previous">
-          <p>基本情報</p>
-        </div>
-        <div class="progressBarStep active">
-          <p>会社の特徴</p>
-        </div>
-        <div class="progressBarStep">
-          <p>確認</p>
-        </div>
+    <div>
+      <h2>運送アカウントの新規登録</h2>
+      <% if params["action"] == "create" %>
+        <p class="inputBank hidden"><%= params.to_json %></p>
+        <%= render partial: 'restoreInputs', formats: :js %>
+      <% end %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <hr>
+        <%= render "inputIntroduction" %>
+        <hr>
+        <%= render "inputCompany", f: f %>
+        <%= render "inputAreaAndVehicles", f: f %>
       </div>
+      <div id="showNextInputs" class="btnNull btnWidth100 text-center">次へ進む</div>
+    </div>
+  </div>
+</section>
 
-      <div>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= render "inputCompanyStrengthIntro" %>
-          <hr>
-          <%= render "inputCompanyMotto", f: f %>
-          <%= render "inputCompanyDetail", f: f %>
-          <%= render "inputCompanyStrength", f: f %>
-          <%= render "inputContact", f: f %>
-        </div>
-        <div class="form-actions btnCase">
-          <div class="btnNull btnLightGrayColor" data-action="previous">前へ戻る</div>
-          <%= f.button :submit, "次へ進む", class:"btnNull btnCaseFlex" %>
-        </div>
+<!-- BLOCK 2 -->
+<section class="container-fluid carrier slimSmall" data-name="inputBlock2">
+  <div class="carrierInputBlock2">
+    <div class="progressBarContainer">
+      <div class="progressBarStep" data-action="previous">
+        <p>基本情報</p>
+      </div>
+      <div class="progressBarStep active">
+        <p>会社の特徴</p>
+      </div>
+      <div class="progressBarStep">
+        <p>確認</p>
       </div>
     </div>
-  </section>
+    <div>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= render "inputCompanyStrengthIntro" %>
+        <hr>
+        <%= render "inputCompanyMotto", f: f %>
+        <%= render "inputCompanyDetail", f: f %>
+        <%= render "inputCompanyStrength", f: f %>
+        <%= render "inputContact", f: f %>
+      </div>
+      <div class="form-actions btnCase">
+        <div class="btnNull btnLightGrayColor" data-action="previous">前へ戻る</div>
+        <%= f.button :submit, "次へ進む", class:"btnNull btnCaseFlex" %>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <% end %>
-<!-- </div> -->
+<% end %>
 
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-<%= render partial: 'scrollTo', formats: :js %>
-<%= render partial: 'carrier_strengths', formats: :js %>
-<%= render partial: 'showNextInputs', formats: :js %>
-<!-- JS for automated address input upon postal code input -->
-<%= javascript_include_tag('jquery.jpostal') %>
-<%= javascript_include_tag('jpostal.carrierActivator') %>
-<!-- JS for making <select> with <optgroup> into a dropdown with grouped checkboxes -->
-<%= javascript_include_tag('multiple-select') %>
-<%#= javascript_include_tag('multiple-selectActivator') %> <!-- conflicts with asset.rb?-->
-<!-- JS to ensure no more than 3 products can be checked -->
-<%= javascript_include_tag('carrier_favorite_products') %>
+<%= render partial: 'showNextInputs', formats: :js %>  <!-- onClick show block 2 of the inputs -->
+<%= render partial: 'shared/scrollTo', formats: :js %>  <!-- onClick of prefecture input scroll so it is within view -->
+<%= render partial: 'shared/carrier_strengths', formats: :js %>  <!-- Make sure Carrier specialties grading is doesn't have duplicates -->
+<%= render partial: 'shared/jquery.jpostal', formats: :js %>  <!-- JS for automated address input upon postal code input -->
+<%= render partial: 'shared/jpostal.carrierActivator', formats: :js %>
+<%= render partial: 'shared/multiple-select', formats: :js %>  <!-- JS for making <select> with <optgroup> into a dropdown with grouped checkboxes -->
+<%= render partial: 'shared/multiple-selectActivator', formats: :js %>
+<%= render partial: 'shared/carrier_favorite_products', formats: :js %>  <!-- JS to ensure no more than 3 products can be checked -->
+<%= render partial: 'shared/wordCounter', formats: :js %>  <!-- Word counter for strength and description input -->
