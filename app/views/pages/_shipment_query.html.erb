@@ -1,5 +1,5 @@
-<section id="shipmentFormNew" class="container-fluid shipper slimMedium">
-  <%= simple_form_for :query, method: :get, url: results_carrier_shipments_path do |f| %><%#= simple_form_for @shipment do |f| %>
+<section id="shipmentFormNew" class="container-fluid shipper slimSmall">
+  <%= simple_form_for :query, method: :get,url: results_carrier_shipments_path, html: {'data-name': 'landingPageForm'} do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
 
@@ -28,16 +28,19 @@
           <%= f.input :pickup_post_code,
             label: "郵便番号",
             wrapper_html: { class:"col-xs-12 col-sm-4" },
+            input_html: { autocomplete:"none" },
             required: true %>
         </div>
         <div class="inputGroup row">
           <%= f.input :pickup_prefecture,
             label: "都道府県",
             wrapper_html: { class:"col-xs-12 col-sm-4" },
+            input_html: { autocomplete:"none" },
             required: true %>
           <%= f.input :pickup_ward,
             label: "市区町村",
             wrapper_html: { class:"col-xs-12 col-sm-8" },
+            input_html: { autocomplete:"none" },
             required: true %>
         </div>
       </div>
@@ -48,16 +51,19 @@
           <%= f.input :delivery_post_code,
             label: "郵便番号",
             wrapper_html: { class:"col-xs-4" },
+            input_html: { autocomplete:"none" },
             required: true %>
         </div>
         <div class="inputGroup row">
           <%= f.input :delivery_prefecture,
             label: "都道府県",
             wrapper_html: { class:"col-xs-4" },
+            input_html: { autocomplete:"none" },
             required: true %>
           <%= f.input :delivery_ward,
             label: "市区町村",
             wrapper_html: { class:"col-xs-8" },
+            input_html: { autocomplete:"none" },
             required: true %>
         </div>
       </div>
