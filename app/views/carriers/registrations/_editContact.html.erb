@@ -1,12 +1,43 @@
 <div class="inputContainer">
   <h3>連絡先 ＆ ログイン情報</h3>
   <div class="inputGroup row">
-    <%= f.input :name_kanji, label: "お名前", wrapper_html: {class: "col-xs-6"}, required: true %>
-    <%= f.input :name_furigana, label: "お名前（フリガナ）", wrapper_html: {class: "col-xs-6"}, required: true %>
+    <%= f.input :name_kanji,
+      label: "お名前",
+      wrapper_html: {class: "col-xs-6"},
+      required: true,
+      input_html: {autocomplete: "name"}
+      %>
+    <%= f.input :name_furigana,
+      label: "お名前（フリガナ）",
+      wrapper_html: {class: "col-xs-6"},
+      required: true,
+      input_html: {autocomplete: "none"}
+      %>
   </div>
-  <%= f.input :phone, label: "電話番号", required: true %>
-  <%= f.input :email, label: "メールアドレス（ログインするときはこちらを使用します）", required: true, error: "メールアドレスを入力してください" %>
-  <%= f.input :password, label: "新しいパスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）。変更されない場合は空欄のままで大丈夫です。", autocomplete: "off", required: false %>
-  <%= f.input :password_confirmation, label: "新しいパスワードの確認", required: false %>
-  <%= f.input :current_password, label: "現在のパスワード", required: true %>
+  <%= f.input :phone,
+    label: "電話番号",
+    required: true,
+    input_html: {autocomplete: "tel"}
+    %>
+  <%= f.input :email,
+    label: "メールアドレス（ログインするときはこちらを使用します）",
+    required: true,
+    error: "メールアドレスを入力してください",
+    input_html: {autocomplete: "email"}
+    %>
+  <%= f.input :password,
+    label: "新しいパスワード（英数字で#{@minimum_password_length}文字以上のパスワードを入力してください）。変更されない場合は空欄のままで大丈夫です。",
+    input_html: {autocomplete: "none"},
+    required: false
+    %>
+  <%= f.input :password_confirmation,
+    label: "新しいパスワードの確認",
+    input_html: {autocomplete: "new-password"},
+    required: false
+    %>
+  <%= f.input :current_password,
+    label: "現在のパスワード",
+    input_html: {autocomplete: "password"},
+    required: true
+    %>
 </div>

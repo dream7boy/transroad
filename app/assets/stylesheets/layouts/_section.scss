@@ -9,6 +9,7 @@ section {
     justify-content: center;
     min-height: calc(100vh - #{$navbar__height});
     padding: calc(#{$borderFull} * 1.25);
+    align-items: center;
     &.flexTop {
       justify-content: unset;
     }

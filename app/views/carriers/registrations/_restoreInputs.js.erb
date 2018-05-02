@@ -7,7 +7,7 @@
 
 
     // === START /  RESTORE EMPLOYEE =====================================
-    const storedEmployee = inputBank['carrier']['employee_numbers'];
+    const storedEmployee = inputBank['employee_numbers'] || inputBank['carrier']['employee_numbers'];
     const eInput = Array.from(document.querySelectorAll('[name="carrier[employee_numbers]"] option'))
       .filter(option => option.value.includes(storedEmployee));
     eInput[0].selected = true;
@@ -17,7 +17,7 @@
 
     // === START /  RESTORE PREFECTURE =====================================
       // Get stored input and retrieve previous selected inputs
-      const areasCovered = inputBank['carrier']['areas_covered'];
+      const areasCovered = inputBank['areas_covered'] || inputBank['carrier']['areas_covered'];
       if(areasCovered != undefined) {
         // Cross check the 'stored inputs' against the 'PSEUDO-inputs'
         Array.from(
@@ -45,28 +45,50 @@
 
 
     // === START /  RESTORE VEHICLE =====================================
-      const vehicles = inputBank['carrier']['vehicles_attributes'];
-      const vehiclesKey = Object.keys(vehicles);
-      // - When a new nest-form is made the index is based on a timestamp.
-      // - e.g. carrier[vehicles_attributes][0][load_capacity] => Default Original
-      // - e.g. carrier[vehicles_attributes][1524558175715][load_capacity] => Second One
-      // - If there is a submission error and the page reloads, the timestamp is replaced with an index.
-      // - carrier[vehicles_attributes][1524558175715][load_capacity] => carrier[vehicles_attributes][1][load_capacity]
-      // - Hence the reason for 'vehiclesKey[i]' for the storedProperty AND 'i' for the currentProperty.
-      for(let i = 0; i < vehiclesKey.length; i++) {
-        const vehicle = vehicles[vehiclesKey[i]];
-        for(const property in vehicle) {
-          const storedProperty = vehicles[`${vehiclesKey[i]}`][`${property}`];
-          const currentProperty = document.querySelector(`[name='carrier[vehicles_attributes][${i}][${property}]']`);
-          currentProperty.value = storedProperty;
+      const flag = inputBank['carrier'];
+      if(flag != undefined) {
+        const vehicles = inputBank['carrier']['vehicles_attributes'];
+        const vehiclesKey = Object.keys(vehicles);
+        // - When a new nest-form is made the index is based on a timestamp.
+        // - e.g. carrier[vehicles_attributes][0][load_capacity] => Default Original
+        // - e.g. carrier[vehicles_attributes][1524558175715][load_capacity] => Second One
+        // - If there is a submission error and the page reloads, the timestamp is replaced with an index.
+        // - carrier[vehicles_attributes][1524558175715][load_capacity] => carrier[vehicles_attributes][1][load_capacity]
+        // - Hence the reason for 'vehiclesKey[i]' for the storedProperty AND 'i' for the currentProperty.
+        for(let i = 0; i < vehiclesKey.length; i++) {
+          const vehicle = vehicles[vehiclesKey[i]];
+          for(const property in vehicle) {
+            const storedProperty = vehicles[`${vehiclesKey[i]}`][`${property}`];
+            const currentProperty = document.querySelector(`[name='carrier[vehicles_attributes][${i}][${property}]']`);
+            currentProperty.value = storedProperty;
+          }
         }
+      } else {
+        // START / FOR EDIT PROFILE
+        let vehicles = JSON.parse(document.querySelector('.inputBankVehicle').textContent);
+        vehicles = vehicles.map(vehicle => ({
+          load_capacity: vehicle.load_capacity,
+          vehicle_type: vehicle.vehicle_type,
+          quantity: vehicle.quantity,
+          type_specifications: vehicle.type_specifications,
+          feature: vehicle.feature
+        }));
+        for(let i = 0; i < vehicles.length; i++) {
+          const vehicle = vehicles[i];
+          for(const property in vehicle) {
+            const storedProperty = vehicles[i][`${property}`];
+            const currentProperty = document.querySelector(`[name='carrier[vehicles_attributes][${i}][${property}]']`);
+            currentProperty.value = storedProperty;
+          }
+        }
+        // END / FOR EDIT PROFILE
       }
     // === END /  RESTORE VEHICLE =======================================
 
 
 
     // === START /  RESTORE SPECIALTIES =====================================
-      const storedSpecialties = inputBank['carrier']['specialties'];
+      const storedSpecialties = inputBank['specialties'] || inputBank['carrier']['specialties'];
       const spInputs = document.querySelectorAll('[name="carrier[specialties][]"]');
       for(let i = 0; i < storedSpecialties.length; i++) {
         spInputs[i].value = storedSpecialties[i];
