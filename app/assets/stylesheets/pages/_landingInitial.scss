@@ -1,0 +1,128 @@
+#landingInitial {
+  position: relative;
+  #landing--navbar--collapse {
+    box-shadow: $box-shadow--default;
+  }
+  .imgBox {
+    margin: 0 auto;
+    width: 75%;
+    & svg {
+      padding: 5px;
+      width: 100%;
+    }
+  }
+  .landing--center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: $spacer--lg 0;
+    & div {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+    .imgBox {
+      margin-bottom: $spacer--xs;
+    }
+  }
+  .landing--navbar {
+    background-color: transparent;
+    border: 0;
+    margin-bottom: 0;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    ul.sub-list--child {
+      padding: 0 30px;
+      width: 100%;
+      li {
+        padding: 10px 0;
+        &:first-child {
+          // padding: 0 0 10px 0;
+        }
+      }
+      a {
+        color: $color--gray;
+        &:hover {
+          color: $color--darkgray;
+          text-decoration: none;
+        }
+      }
+    }
+    .nav > li {
+      background-color: $color--white--transparent;
+      &:last-child > a {
+        padding: 15px 0 15px 15px;
+      }
+    }
+    .navbar-brand {
+      font-size: 3.2rem;
+      padding: 15px 10px;
+    }
+    .navbar-toggle {
+      border: 0;
+      margin-right: 5px;
+      &:active, &:focus {
+        background-color: transparent;
+      }
+      &:hover {
+        background-color: transparent;
+      }
+      &:hover .icon-bar {
+        background-color: darken($color--main, 10%);
+      }
+      & .icon-bar {
+        background-color: $color--main;
+      }
+    }
+  }
+}
+
+
+
+@media (min-width: 992px) {
+  #landingInitial {
+    #landing--navbar--collapse {
+      box-shadow: none;
+    }
+    .imgBox {
+      margin: unset;
+      width: 100%;
+      & svg {
+        padding: 10px;
+      }
+    }
+    .landing--center {
+      flex-direction: unset;
+      padding: $spacer--lg;
+      width: 85%;
+      & div {
+        flex: 1 50%;
+        padding: $spacer--sm;
+      }
+    }
+    .landing--navbar {
+      position: unset;
+      li.sub-list--parent {
+        position: relative;
+        &:hover ul.sub-list--child {
+          display: block;
+        }
+      }
+      ul.sub-list--child {
+        display: none;
+        padding: 0 0 0 15px;
+        position: absolute;
+        &:hover {
+          display: block;
+        }
+      }
+      .navbar-brand {
+        font-size: 4.8rem;
+        padding: 15px 15px;
+      }
+    }
+  }
+}
