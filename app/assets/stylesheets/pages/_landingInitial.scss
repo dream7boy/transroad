@@ -1,4 +1,11 @@
 #landingInitial {
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  padding: $spacer--xs $spacer--xs $spacer--xs $spacer--xs;
+  width: 100vw;
+  flex-direction: column;
   position: relative;
   #landing--navbar--collapse {
     box-shadow: $box-shadow--default;
@@ -11,19 +18,49 @@
       width: 100%;
     }
   }
-  .landing--center {
+  .landingCenter {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    padding: $spacer--lg 0;
-    & div {
-      align-items: center;
-      display: flex;
+    padding-top: $navbar__height;
+    p {
+      width: initial;
+    }
+    h2 {
+      margin-bottom: 1em;
+    }
+    ul.points li {
+      margin-bottom: 0.5em;
+      &:last-child {
+        margin-bottom: 3em;
+      }
+      h1 {
+        font-size: 2.1rem;
+        margin-bottom: 0;
+      }
+      i.fas {
+        margin-right: 0.5em;
+        line-height: inherit;
+      }
+      .landingContainer + .landingContainer {
+        margin-left: $spacer--xl;
+      }
+    }
+    .landingContainer {
       justify-content: center;
+      flex: initial;
+      display: flex;
+      flex-direction: column;
+    }
+    // justify-content: center;
+    // width: 100%;
+    // padding: $spacer--lg 0;
+    & div {
+      // align-items: center;
+      // display: flex;
+      // justify-content: center;
     }
     .imgBox {
-      margin-bottom: $spacer--xs;
+      // margin-bottom: $spacer--xs;
     }
   }
   .landing--navbar {
@@ -84,27 +121,30 @@
 
 @media (min-width: 992px) {
   #landingInitial {
+    margin-top: -$navbar__height;
+    padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
     #landing--navbar--collapse {
       box-shadow: none;
     }
     .imgBox {
-      margin: unset;
+      margin: 0;
       width: 100%;
       & svg {
         padding: 10px;
       }
     }
-    .landing--center {
-      flex-direction: unset;
-      padding: $spacer--lg;
-      width: 85%;
-      & div {
-        flex: 1 50%;
-        padding: $spacer--sm;
+    .landingCenter {
+      flex-direction: initial;
+      padding-top: $navbar__height;
+      flex: 1;
+      ul.points li {
+        h1 {
+          font-size: 2.8rem;
+        }
       }
     }
     .landing--navbar {
-      position: unset;
+      position: initial;
       li.sub-list--parent {
         position: relative;
         &:hover ul.sub-list--child {
