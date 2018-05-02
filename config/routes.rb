@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   #   get 'shipments', to: 'deals#index'
   # end
 
+  get 'carrier/sign_up_complete', to: 'deals#index'
   get 'carrier/shipments', to: 'deals#index'
   get 'carrier/quotes/:id/new', to: 'deals#new', as: :new_quote
   post 'carrier/quotes/:id/confirm', to: 'deals#confirm', as: :confirm_quote
