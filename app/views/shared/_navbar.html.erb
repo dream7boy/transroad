@@ -7,29 +7,34 @@
     <!-- IF user (shipper or carrier) is signed in show the following. -->
     <% if user_signed_in? %>
       <ul>
+<% if false %>
         <li>
           <%= link_to t(".shipments_search", default: "案件を見つける"), shipments_path %>
         </li>
+<% end %>
 
         <!-- Signed in + IS Shipper -->
         <% if current_shipper.present? %>
+<% if false %>
         <li>
           <%= link_to t(".my_shipments", default: "案件を確認する"), shipper_shipments_path %>
         </li>
         <li>
           <%= link_to t(".my_facilities", default: "施設を確認する"), facilities_path %>
         </li>
+<% end %>
 
         <!-- Signed in + IS Carrier -->
         <% else %>
+<% if false %>
         <li>
           <%= link_to t(".my_shipments", default: "案件を確認する"), carrier_shipments_path %>
         </li>
+<% end %>
         <% end %>
 
         <!-- DESKTOP DROPDOWN / Avatar + Account Dropdown Menu -->
         <div class="dropdown">
-          <%#= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <i class="fa fa-user-circle avatar dropdown-toggle" data-toggle="dropdown"></i>
           <ul id="avatar__navbar" class="dropdown-menu dropdown-menu-right">
             <li>
@@ -66,9 +71,11 @@
             <%= link_to new_carrier_session_path, class: "" do %>
               <li><%= t(".carrier", default: "運送会社") %></li>
             <% end %>
+<% if false %>
             <%= link_to new_shipper_session_path, class: "" do %>
               <li><%= t(".shipper", default: "荷主会社") %></li>
             <% end %>
+<% end %>
           </ul>
         </li>
         <li>
@@ -77,9 +84,11 @@
             <%= link_to new_carrier_registration_path, class: "" do %>
               <li><%= t(".carrier", default: "運送会社") %></li>
             <% end %>
+<% if false %>
             <%= link_to new_shipper_registration_path, class: "" do %>
               <li><%= t(".shipper", default: "荷主会社") %></li>
             <% end %>
+<% end %>
           </ul>
         </li>
       </ul>
@@ -94,6 +103,7 @@
 
         <!-- IF user (shipper or carrier) is signed in show the following. -->
         <% if user_signed_in? %>
+<% if false %>
           <li>
             <!-- 888 Change to current_user.name once model is updated. -->
             <p class="user__name">こんにちは、田中 優さん<span class="user__date"><%= Time.now.strftime("%m/%d (#{%w(日 月 火 水 木 金 土)[Time.now.wday]})") %></span></p>
@@ -102,9 +112,11 @@
           <li>
             <%= link_to t(".shipments_search", default: "案件を見つける"), shipments_path %>
           </li>
+<% end %>
 
           <!-- Signed in + IS Shipper -->
           <% if current_shipper.present? %>
+<% if false %>
             <li>
               <%= link_to shipper_shipments_path do %>
                 <i class="fa fa-table"></i> My Shipments
@@ -115,6 +127,7 @@
                 <i class="fa fa-table"></i> My Facilities
               <% end %>
             </li>
+<% end %>
             <li>
               <%= link_to destroy_shipper_session_path, method: :delete do %>
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
@@ -123,9 +136,11 @@
           <% else %>
 
           <!-- Signed in + IS Carrier  -->
+<% if false %>
             <li>
               <%= link_to t(".my_shipments", default: "案件を確認する"), carrier_shipments_path %>
             </li>
+<% end %>
             <li>
               <%= link_to t(".sign_out", default: "ログアウトする"), destroy_carrier_session_path, method: :delete %>
             </li>
@@ -139,14 +154,14 @@
             <p>ログインする</p>
             <ul class="sub-list">
               <li><%= link_to "運送会社", new_carrier_session_path, class: "" %></li>
-              <li><%= link_to "荷主会社", new_shipper_session_path, class: "" %></li>
+              <li><%#= link_to "荷主会社", new_shipper_session_path, class: "" %></li>
             </ul>
           </li>
           <li>
             <p>新規登録する</p>
             <ul class="sub-list">
               <li><%= link_to "運送会社", new_carrier_registration_path, class: "" %></li>
-              <li><%= link_to "荷主会社", new_shipper_registration_path, class: "" %></li>
+              <li><%#= link_to "荷主会社", new_shipper_registration_path, class: "" %></li>
             </ul>
           </li>
         <% end %>

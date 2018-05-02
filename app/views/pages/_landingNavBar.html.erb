@@ -19,14 +19,14 @@
           <a href="#">ログインする</a>
           <ul class="sub-list--child">
             <li><%= link_to "運送会社", new_carrier_session_path, class: "" %></li>
-            <li><%= link_to "荷主会社", new_shipper_session_path, class: "" %></li>
+            <% if false %><li><%= link_to "荷主会社", new_shipper_session_path, class: "" %></li><% end %>
           </ul>
         </li>
         <li class="sub-list--parent">
           <a href="#">新規登録する</a>
           <ul class="sub-list--child">
             <li><%= link_to "運送会社", new_carrier_registration_path, class: "" %></li>
-            <li><%= link_to "荷主会社", new_shipper_registration_path, class: "" %></li>
+            <% if false %><li><%= link_to "荷主会社", new_shipper_registration_path, class: "" %></li><% end %>
           </ul>
         </li>
       </ul>
