@@ -1,7 +1,7 @@
 <section id="carrier__edit" class="container-fluid carrier slimSmall">
   <div>
     <h2>運送アカウント情報</h2>
-    <% if params["action"] == "edit" %>
+    <% if params["action"] == "edit" || params["action"] == "update" %>
       <p class="inputBank hidden"><%= @carrier.to_json %></p>
       <p class="inputBankVehicle hidden"><%= @carrier.vehicles.to_json %></p>
       <%= render partial: 'restoreInputs', formats: :js %>
@@ -35,9 +35,12 @@
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<%= render partial: 'shared/scrollTo', formats: :js %>  <!-- onClick of prefecture input scroll so it is within view -->
+<%= render partial: 'shared/carrier_strengths', formats: :js %>  <!-- Make sure Carrier specialties grading is doesn't have duplicates -->
 <%= render partial: 'shared/jquery.jpostal', formats: :js %>  <!-- JS for automated address input upon postal code input -->
 <%= render partial: 'shared/jpostal.carrierActivator', formats: :js %>
 <%= render partial: 'shared/multiple-select', formats: :js %>  <!-- JS for making <select> with <optgroup> into a dropdown with grouped checkboxes -->
 <%= render partial: 'shared/multiple-selectActivator', formats: :js %>
 <%= render partial: 'shared/carrier_favorite_products', formats: :js %>  <!-- JS to ensure no more than 3 products can be checked -->
 <%= render partial: 'shared/wordCounter', formats: :js %>  <!-- Word counter for strength and description input -->
+<%= render partial: 'shared/hideVehicleDel', formats: :js %>  <!-- Ensure one vehicle by hiding the delete button -->
