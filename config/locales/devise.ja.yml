@@ -54,6 +54,7 @@ ja:
       unlocked: "アカウントのロックが解除され、ログインすることができるようになりました。"
   errors:
     messages:
+      blank: "必要事項の入力をお願いいたします"
       already_confirmed: "was already confirmed, please try signing in"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
       expired: "has expired, please request a new one"
