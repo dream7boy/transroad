@@ -1,0 +1,64 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+ja:
+  devise:
+    confirmations:
+      confirmed: "メールアドレスの認証が完了しました"
+      send_instructions: "「メールアドレスの認証手順」を、入力されたメールアドレス宛に送信いたしました"
+      send_paranoid_instructions: "入力したメールアドレスが登録されている場合は「メールアドレスの認証手順」を、入力されたメールアドレス宛に送信いたします"
+    failure:
+      already_authenticated: "すでにログインされています"
+      inactive: "アカウントがまだ認証されていません"
+      invalid: "無効な %{authentication_keys} または パスワードです"
+      locked: "アカウントがロックされています"
+      last_attempt: "もう一度入力ミスがある場合、安全のためアカウントがロックされます"
+      not_found_in_database: "無効な %{authentication_keys} または パスワードです"
+      timeout: "一定時間活動が確認されませんでしたので、安全のためログアウトいたしました"
+      unauthenticated: "ログインまたはアカウントを登録してください"
+      unconfirmed: "メールアドレスの認証がまだ完了しておりません"
+    mailer:
+      confirmation_instructions:
+        subject: "メールアドレスの認証手順"
+      reset_password_instructions:
+        subject: "パスワードのリセット手順"
+      unlock_instructions:
+        subject: "アカウントのロック解除手順"
+      email_changed:
+        subject: "メールアドレスが更新されました"
+      password_change:
+        subject: "パスワードが更新されました"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "こちらへのページは「パスワードのリセット手順」を記載したメールのみからアクセスできます。"
+      send_instructions: "「パスワードのリセット手順」を記載したメールを送信いたしますので、少々お待ちください。"
+      send_paranoid_instructions: "入力したメールアドレスが登録されている場合は「メールアドレスの認証手順」を、入力されたメールアドレス宛に送信いたします。"
+      updated: "パスワードが更新されました。"
+      updated_not_active: "パスワードが更新されました。"
+    registrations:
+      destroyed: "アカウントの解約が完了いたしました。これまでご利用いただき、ありがとうございます。"
+      signed_up: "アカウントの登録が完了いたしました！"
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "アカウントの更新が完了いたしました。新しいメールアドレスの認証が必要になりますので、「メールアドレスの認証手順」を新しく登録されたメールアドレス宛に送信いたします。"
+      updated: "アカウントの更新が完了いたしました。"
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+      already_signed_out: "ログアウトしました"
+    unlocks:
+      send_instructions: "「アカウントのロック解除手順」を記載したメールを送信いたしますので、少々お待ちください。"
+      send_paranoid_instructions: "入力したメールアドレスが登録されている場合は「メールアドレスの認証手順」を、入力されたメールアドレス宛に送信いたします。"
+      unlocked: "アカウントのロックが解除され、ログインすることができるようになりました。"
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
