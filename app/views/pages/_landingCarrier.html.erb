@@ -2,13 +2,13 @@
   <div class="landingWrapper">
 
     <div class="landingContainer">
-      <h1>運送事業者の登録</h1>
-      <!-- CONTINUE HERE WRITE A PARAGRAHT -->
-      <p>物流の主な機能として、輸送・配送の他、保管・荷役（にやく）・包装・流通加工・物流情報処理がある。その中でも、輸送・保管・荷役・包装・流通加工は「物流５大機能」と言われる。</p>
+      <h1>運送会社の登録</h1>
+      <p>トランスロードは、荷主企業が送りたい品物にマッチする運送会社をご紹介するサービスです。運送会社の登録料、使用料はありません。登録が完了したらすぐに、マッチする荷主企業にご紹介できる流れになっております。</p>
       <%= link_to "無料で登録する", new_carrier_registration_path, class: "btn btnNull" %>
     </div>
 
     <div class="landingContainer imgBox hidden-xs">
+      <%= inline_svg "00_shipper_set.svg", class: "imgFlipX"  %>
       <%= inline_svg "00_carrier_set.svg", class: "imgFlipX"  %>
     </div>
 
