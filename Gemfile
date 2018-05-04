@@ -27,6 +27,7 @@ gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 gem 'google-analytics-rails'
+gem 'rack-rewrite'
 
 group :development, :test do
   gem 'pry-byebug'

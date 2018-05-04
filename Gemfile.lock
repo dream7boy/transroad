@@ -175,6 +175,7 @@ GEM
     rack (2.0.5)
     rack-livereload (0.3.17)
       rack
+    rack-rewrite (1.5.1)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -292,6 +293,7 @@ DEPENDENCIES
   puma
   pundit
   rack-livereload
+  rack-rewrite
   rails (= 5.1.4)
   redis
   sass-rails
