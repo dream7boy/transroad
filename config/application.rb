@@ -33,5 +33,8 @@ module Transroad
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Set Default Language locale to Japanese
+    config.i18n.default_locale = :ja
   end
 end
