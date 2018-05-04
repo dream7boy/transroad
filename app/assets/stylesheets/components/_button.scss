@@ -1,5 +1,5 @@
 %extBtnTriangle {
-  border-color: $color--main transparent transparent transparent;
+  border-color: $color--sub transparent transparent transparent;
   border-style: solid;
   border-width: 10px 8px 0 8px;
   content: "";
@@ -52,6 +52,10 @@
 .btnSmall {
   font-size: 1.6rem;
   padding: 4px 12px;
+}
+
+.btnRounded {
+  border-radius: 50px;
 }
 
 .btnSubColor {
@@ -140,6 +144,10 @@
   .landingBtnCase {
     max-width: 650px;
     width: 50%;
+  }
+  .btnLarge {
+    font-size: 2.1rem;
+    padding: 0.35em 6em 0.25em 6em;
   }
 }
 /*------------ } @media (min-width: 992px) ------------*/

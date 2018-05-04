@@ -5,7 +5,6 @@ section {
   &.carrier, &.shipper, &.user {
     display: flex;
     flex-direction: column;
-    // height: 100%;
     justify-content: center;
     min-height: calc(100vh - #{$navbar__height});
     padding: calc(#{$borderFull} * 1.25);

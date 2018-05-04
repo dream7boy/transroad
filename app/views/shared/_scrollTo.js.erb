@@ -1,12 +1,30 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
     document.addEventListener("DOMContentLoaded", () => {
+
+      // Custom setting for pseudo-multi-select for prefecture element.
       const target = '#carrier_areas_covered--container div.ms-parent.form-control.grouped_select.required';
-      document.querySelector(target).addEventListener('click', function(e) {
+      if(document.querySelector(target) !== null) {
+        document.querySelector(target).addEventListener('click', function(e) {
+          $('html, body').animate({
+            scrollTop: $(target).offset().top
+          }, 400);
+        });
+      }
+
+      // Generic setting for any of the buttons that would be better with an animate scroll.
+      const targets = document.querySelectorAll("[data-animateScroll='true']");
+      if(targets.length > 0) {
+        targets.forEach(target => target.addEventListener('click', addScrollSetting))
+      }
+      function addScrollSetting(e) {
+        const target = this.attributes.href.value;
+        e.preventDefault();
         $('html, body').animate({
           scrollTop: $(target).offset().top
-        }, 400);
-      });
+        }, 800);
+      };
+
     });
   <% end %>
 <% end %>

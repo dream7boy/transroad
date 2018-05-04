@@ -1,15 +1,17 @@
 <div id="home">
-  <div id="landing--initial" class="fullscreen ignore__navbar">
+  <div id="landingInitial" class="ignore__navbar">
     <%= render "landingNavBar.html.erb" %>
     <%= render "landingView.html.erb" %>
   </div>
-  <%= render "shipment_query.html.erb" %> <!-- TEMPORARY PARTIAL POSITION -->
-  <%#= render "landingDescription.html.erb" %> <!-- UNCOMMENT ONCE DONE-->
-  <%#= render "landingCarrier.html.erb" %> <!-- UNCOMMENT ONCE DONE-->
-  <%#= render "landingShipper.html.erb" %> <!-- UNCOMMENT ONCE DONE-->
+  <%= render "landingDescriptionOne.html.erb" %>
+  <%#= render "landingDescriptionTwo.html.erb" %>
+  <%#= render "landingShipper.html.erb" %>
+  <%= render "shipment_query.html.erb" %>
+  <%= render "landingCarrier.html.erb" %>
 </div>
 
 
 
 <%= render partial: 'shared/jquery.jpostal', formats: :js %>  <!-- JS for automated address input upon postal code input -->
 <%= render partial: 'shared/jpostal.queryActivator', formats: :js %>
+<%= render partial: 'shared/scrollTo', formats: :js %>  <!-- onClick of prefecture input scroll so it is within view -->

@@ -1,38 +1,16 @@
 <section id="landing--carrier" class="carrier">
-
   <div class="landingWrapper">
-    <div class="landingContainer">
-      <h2>荷物を運びたい</h2>
-      <p>物流の主な機能として、輸送・配送の他、保管・荷役（にやく）・包装・流通加工・物流情報処理がある。その中でも、輸送・保管・荷役・包装・流通加工は「物流５大機能」と言われる。</p>
-      <h2>登録するメリット</h2>
-      <ul class="points">
-        <li><i class="fas fa-check fasColor"></i>貴社の強みにマッチする新規案件を見つけられます。</li>
-        <li><i class="fas fa-check fasColor"></i>見積もり依頼をいつでも受けられます。</li>
-        <li><i class="fas fa-check fasColor"></i>登録料、その他諸経費は一切かかりません。</li>
-      </ul>
-    </div>
-    <div class="landingContainer img__box--horizontal hidden-xs">
-      <%= inline_svg "00_carrier_set.svg" %>
-    </div>
-  </div>
 
-  <hr>
-
-  <div class="landingWrapper">
     <div class="landingContainer">
-      <h2>登録・ご利用の流れ</h2>
-      <ul class="points">
-        <li><span>①</span>&emsp;無料で登録する。</li>
-        <li><span>②</span>&emsp;貴社の強みにマッチする案件を見つける。</li>
-        <li><span>③</span>&emsp;お見積もりを提案する。</li>
-        <li><span>④</span>&emsp;配送手配の確定。</li>
-      </ul>
+      <h1>運送会社の登録</h1>
+      <p>トランスロードは、荷主企業が送りたい品物にマッチする運送会社をご紹介するサービスです。運送会社の登録料、使用料はありません。登録が完了したらすぐに、マッチする荷主企業にご紹介できる流れになっております。</p>
       <%= link_to "無料で登録する", new_carrier_registration_path, class: "btn btnNull" %>
     </div>
-    <div class="landingContainer img__box--horizontal hidden-xs">
-      <%= inline_svg "00_carrier_set.svg" %>
-      <%= inline_svg "00_shipper_set.svg" %>
-    </div>
-  </div>
 
+    <div class="landingContainer imgBox hidden-xs">
+      <%= inline_svg "00_shipper_set.svg", class: "imgFlipX"  %>
+      <%= inline_svg "00_carrier_set.svg", class: "imgFlipX"  %>
+    </div>
+
+  </div>
 </section>
