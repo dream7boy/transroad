@@ -1,105 +1,109 @@
-section[id^="landing"] {
-  h1, h5 {
-    margin-bottom: 0.5em;
-  }
-  h5 {
-    font-weight: bolder;
-  }
-  p, li {
-    line-height: calc(1.35em + (1.6 - 1.35) * ((100vw - (#{$font__p} * 25))/(90 - 28)));
-    font-size: calc(1.5rem + (1.65 - 1.5) * ((100vw - (#{$font__p} * 25))/(90 - 28)));
-  }
-  ul.points {
-    li {
-      align-items: flex-start;
+#home {
+  section[id^="landing"] {
+    h1, h5 {
+      margin-bottom: 0.5em;
     }
-    i.fas {
-      margin-right: 0.5em;
-      line-height: inherit;
+    h5 {
+      font-weight: bolder;
+    }
+    p, li {
+      line-height: calc(1.35em + (1.6 - 1.35) * ((100vw - (#{$font__p} * 25))/(90 - 28)));
+      font-size: calc(1.5rem + (1.65 - 1.5) * ((100vw - (#{$font__p} * 25))/(90 - 28)));
+    }
+    ul.points {
+      li {
+        align-items: flex-start;
+      }
+      i.fas {
+        margin-right: 0.5em;
+        line-height: inherit;
+      }
+    }
+    p + .btn {
+      margin-top: 2em;
+    }
+    .landingContainer + .landingContainer {
+      margin-top: 4rem;
     }
   }
-  p + .btn {
-    margin-top: 2em;
-  }
-  .landingContainer + .landingContainer {
-    margin-top: 4rem;
-  }
-}
-.fullscreen {
-  align-items: center;
-  display: flex;
-  min-height: 100vh;
-  justify-content: center;
-  padding: $spacer--xs $spacer--xs $spacer--xs $spacer--xs;
-  width: 100vw;
-  flex-direction: column;
-  &:first-child {
-    margin-top: -$navbar__height;
-  }
-  &:last-child {
-    margin-bottom: -$footer__height;
+  .fullscreen {
+    align-items: center;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    padding: $spacer--xs $spacer--xs $spacer--xs $spacer--xs;
+    width: 100vw;
+    flex-direction: column;
+    &:first-child {
+      margin-top: -$navbar__height;
+    }
+    &:last-child {
+      margin-bottom: -$footer__height;
+    }
   }
 }
 
 
 
 @media (min-width: 992px) {
-  #landingDescriptionTwo {
-    display: flex;
-    flex-direction: initial;
-    p {
-      width: initial;
+  #home {
+    #landingDescriptionTwo {
+      display: flex;
+      flex-direction: initial;
+      p {
+        width: initial;
+      }
+      ul.points li {
+        margin-bottom: 0.5em;
+        h1 {
+          margin-bottom: 0;
+        }
+        &:first-child {
+          margin-top: 1em;
+        }
+      }
+      .landingContainer {
+        flex: initial;
+      }
     }
-    ul.points li {
-      margin-bottom: 0.5em;
-      h1 {
-        margin-bottom: 0;
-      }
-      &:first-child {
-        margin-top: 1em;
-      }
+    .landingWrapper {
+      display: flex;
+      padding: $spacer--xl;
     }
     .landingContainer {
-      flex: initial;
-    }
-  }
-  .landingWrapper {
-    display: flex;
-    padding: $spacer--xl;
-  }
-  .landingContainer {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    flex: 1 50%;
-    + .landingContainer {
-      margin-top: 0;
-      margin-left: $spacer--lg;
-    }
-    &.imgBox {
-      flex-direction: unset;
-      align-items: center;
-      & svg {
-        padding: 10px;
-        width: 50%;
-        min-width: 200px;
-        max-width: 250px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      flex: 1 50%;
+      + .landingContainer {
+        margin-top: 0;
+        margin-left: $spacer--lg;
+      }
+      &.imgBox {
+        flex-direction: unset;
+        align-items: center;
+        & svg {
+          padding: 10px;
+          width: 50%;
+          min-width: 200px;
+          max-width: 250px;
+        }
       }
     }
-  }
-  h2 {
-    margin-bottom: 0.25em;
-  }
-  p, ul {
-    margin-bottom: $spacer--sm;
-    &:last-child {
-      margin-bottom: unset;
+    h2 {
+      margin-bottom: 0.25em;
     }
-  }
-  p {
-    width: calc(#{$font__p} * 25);
-  }
-  .fullscreen {
-    padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
+    p, ul {
+      margin-bottom: $spacer--sm;
+      &:last-child {
+        margin-bottom: unset;
+      }
+    }
+    p {
+      width: calc(#{$font__p} * 25);
+    }
+    .fullscreen {
+      padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
+    }
   }
 }

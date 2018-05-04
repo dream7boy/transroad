@@ -63,8 +63,11 @@
 
       <!-- DESKTOP DROPDOWN / Logged Out -->
       <ul>
-        <li><%= link_to t(".want_to_carry", default: "荷物を運びたい"), root_path(anchor: "landing--carrier"), class: "" %></li>
-        <li><%= link_to t(".want_to_carry", default: "荷物を送りたい"), root_path(anchor: "landing--shipper"), class: "" %></li>
+        <li><%= link_to  t("運送会社の登録"), root_path(anchor: "landing--carrier"), class: "" %></li>
+<% if false %>
+        <li><%= link_to t("荷物を運びたい"), root_path(anchor: "landing--carrier"), class: "" %></li>
+        <li><%= link_to t("荷物を送りたい"), root_path(anchor: "landing--shipper"), class: "" %></li>
+<% end %>
         <li>
           <a href="#">ログインする</a>
           <ul class="sub-list">
