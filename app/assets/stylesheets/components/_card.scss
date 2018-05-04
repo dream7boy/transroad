@@ -74,13 +74,13 @@ $color__card-selected: #FFFCE2;
 // START / CARRIER RESULTS
 .cardC_SpAndTable {
   display: flex;
-  flex: 3;
+  flex-grow: 3;
   flex-direction: column;
 }
 
 .cardCSpecial {
   display: flex;
-  flex: 1;
+  flex-grow: 1;
   justify-content: space-between;
   margin: -1.5rem 0;
   div {
@@ -90,7 +90,7 @@ $color__card-selected: #FFFCE2;
     flex-direction: column;
     justify-content: center;
     padding: 1rem 1.25rem;
-    flex: 1;
+    flex-grow: 1;
     &:last-child {
       border-right: 1px dashed $color--lightgray;
     }
@@ -105,7 +105,7 @@ $color__card-selected: #FFFCE2;
 }
 
 .cardCSpecial.active {
-  flex: none;
+  flex-grow: 0;
   margin: -1.5rem 0 1.5rem 0;
   div {
     padding: 2rem 1.25rem;
@@ -116,7 +116,7 @@ $color__card-selected: #FFFCE2;
 .cardCInfo {
   margin-right: 3rem;
   position: relative;
-  flex: 2;
+  flex-grow: 2;
   h4 {
     font-weight: bolder;
   }

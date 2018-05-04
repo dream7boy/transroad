@@ -44,62 +44,64 @@ section[id^="landing"] {
 
 
 @media (min-width: 992px) {
-  #landingDescriptionTwo {
-    display: flex;
-    flex-direction: initial;
-    p {
-      width: initial;
+  section[id^="landing"] {
+    #landingDescriptionTwo {
+      display: flex;
+      flex-direction: initial;
+      p {
+        width: initial;
+      }
+      ul.points li {
+        margin-bottom: 0.5em;
+        h1 {
+          margin-bottom: 0;
+        }
+        &:first-child {
+          margin-top: 1em;
+        }
+      }
+      .landingContainer {
+        flex: initial;
+      }
     }
-    ul.points li {
-      margin-bottom: 0.5em;
-      h1 {
-        margin-bottom: 0;
-      }
-      &:first-child {
-        margin-top: 1em;
-      }
+    .landingWrapper {
+      display: flex;
+      padding: $spacer--xl;
     }
     .landingContainer {
-      flex: initial;
-    }
-  }
-  .landingWrapper {
-    display: flex;
-    padding: $spacer--xl;
-  }
-  .landingContainer {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    flex: 1 50%;
-    + .landingContainer {
-      margin-top: 0;
-      margin-left: $spacer--lg;
-    }
-    &.imgBox {
-      flex-direction: unset;
-      align-items: center;
-      & svg {
-        padding: 10px;
-        width: 50%;
-        min-width: 200px;
-        max-width: 250px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      flex: 1 50%;
+      + .landingContainer {
+        margin-top: 0;
+        margin-left: $spacer--lg;
+      }
+      &.imgBox {
+        flex-direction: unset;
+        align-items: center;
+        & svg {
+          padding: 10px;
+          width: 50%;
+          min-width: 200px;
+          max-width: 250px;
+        }
       }
     }
-  }
-  h2 {
-    margin-bottom: 0.25em;
-  }
-  p, ul {
-    margin-bottom: $spacer--sm;
-    &:last-child {
-      margin-bottom: unset;
+    h2 {
+      margin-bottom: 0.25em;
     }
-  }
-  p {
-    width: calc(#{$font__p} * 25);
-  }
-  .fullscreen {
-    padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
+    p, ul {
+      margin-bottom: $spacer--sm;
+      &:last-child {
+        margin-bottom: unset;
+      }
+    }
+    p {
+      width: calc(#{$font__p} * 25);
+    }
+    .fullscreen {
+      padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;
+    }
   }
 }
