@@ -1,4 +1,65 @@
-<section id="carrierQuery" class="container-fluid shipper slimSmall">
+<section id="landingQueryForm" class="container-fluid user slimSmall">
+  <%= simple_form_for :query, method: :get,url: results_carrier_shipments_path, html: {'data-name': 'landingPageForm'} do |f| %>
+    <%= f.error_notification %>
+
+    <div class="landingQueryInputs">
+      <%= render "landingQueryInputShipment", f: f %>
+
+      <div class="landingQueryInput">
+        <%= inline_svg "icon_pickup.svg" %>
+        <p>&#10103; 荷物の集荷先</p>
+        <%= f.input :pickup_post_code,
+          label: false,
+          input_html: { autocomplete:"none", placeholder:"郵便番号" },
+          required: true %>
+        <p class="midText">または</p>
+        <div class="debug">
+          <%= f.input :pickup_prefecture,
+            label: false,
+            input_html: { autocomplete:"none", placeholder:"都道府県" },
+            required: true %>
+          <%= f.input :pickup_ward,
+            label: false,
+            input_html: { autocomplete:"none", placeholder:"市区町村" },
+            required: true %>
+        </div>
+      </div>
+
+      <div class="landingQueryInput">
+        <%= inline_svg "icon_delivery.svg" %>
+        <p>&#10104; 荷物の配達先</p>
+        <%= f.input :delivery_post_code,
+          label: false,
+          input_html: { autocomplete:"none", placeholder:"郵便番号" },
+          required: true %>
+        <p class="midText">または</p>
+        <div class="debug">
+          <%= f.input :delivery_prefecture,
+            label: false,
+            input_html: { autocomplete:"none", placeholder:"都道府県"  },
+            required: true %>
+          <%= f.input :delivery_ward,
+            label: false,
+            input_html: { autocomplete:"none", placeholder:"市区町村"  },
+            required: true %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.button :submit,
+      "マッチする運送業者を見つける",
+      class:"btnNull btnSubColor btnLarge btnRounded" %>
+
+  <% end %>
+</section>
+<%= render partial: 'landingPseudoSelect', formats: :js %>
+
+
+
+
+
+<% if false %>
+<section id="landingQueryForm" class="container-fluid user slimSmall">
   <%= simple_form_for :query, method: :get,url: results_carrier_shipments_path, html: {'data-name': 'landingPageForm'} do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
@@ -7,14 +68,14 @@
         <h3>荷物情報</h3>
         <div class="inputGroup row">
           <%= f.input :category,
-            label: "荷物の種類",
+            label: false,
             collection: Shipment::COMMODITIES,
             required: true,
             prompt: "選択してください",
             wrapper_html: { class:"col-xs-12" },
             include_hidden: false  %>
           <%= f.input :temperature,
-            label: "温度管理",
+            label: false,
             collection: %w(常温 保冷 冷蔵 冷凍 分からない),
             prompt: "選択してください",
             wrapper_html: { class:"col-xs-12" },
@@ -26,19 +87,19 @@
         <h3>荷物の集荷先</h3>
         <div class="inputGroup row">
           <%= f.input :pickup_post_code,
-            label: "郵便番号",
+            label: false,
             wrapper_html: { class:"col-xs-12 col-sm-4" },
             input_html: { autocomplete:"none" },
             required: true %>
         </div>
         <div class="inputGroup row">
           <%= f.input :pickup_prefecture,
-            label: "都道府県",
+            label: false,
             wrapper_html: { class:"col-xs-12 col-sm-4" },
             input_html: { autocomplete:"none" },
             required: true %>
           <%= f.input :pickup_ward,
-            label: "市区町村",
+            label: false,
             wrapper_html: { class:"col-xs-12 col-sm-8" },
             input_html: { autocomplete:"none" },
             required: true %>
@@ -49,19 +110,19 @@
         <h3>荷物の配達先</h3>
         <div class="inputGroup row">
           <%= f.input :delivery_post_code,
-            label: "郵便番号",
+            label: false,
             wrapper_html: { class:"col-xs-4" },
             input_html: { autocomplete:"none" },
             required: true %>
         </div>
         <div class="inputGroup row">
           <%= f.input :delivery_prefecture,
-            label: "都道府県",
+            label: false,
             wrapper_html: { class:"col-xs-4" },
             input_html: { autocomplete:"none" },
             required: true %>
           <%= f.input :delivery_ward,
-            label: "市区町村",
+            label: false,
             wrapper_html: { class:"col-xs-8" },
             input_html: { autocomplete:"none" },
             required: true %>
@@ -77,3 +138,4 @@
     </div>
   <% end %>
 </section>
+<% end %>

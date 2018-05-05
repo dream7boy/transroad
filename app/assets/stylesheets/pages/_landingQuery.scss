@@ -1,0 +1,84 @@
+#landingQueryForm {
+  border: $border solid $color--sub;
+  min-height: 100vh;
+  padding: calc(28px * 1.25) 12rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 65%;
+    margin-top: 2em;
+  }
+
+  .landingQueryInputs {
+    display: flex;
+    width: 100%;
+    > .landingQueryInput {
+      flex: 1;
+      text-align: center;
+      + .landingQueryInput {
+        margin-left: 6rem;
+      }
+    }
+  }
+
+  .landingQueryInputs {
+    div.form-group[class*="post_code"]::before {
+      background-image: asset-url("icon_post.svg");
+      width: 1.3em;
+    }
+    div.form-group[class*="prefecture"]::before,
+    div.form-group[class*="ward"]::before {
+      background-image: asset-url("icon_map.svg");
+      width: 1em;
+    }
+    div.form-group {
+      margin-bottom: 0;
+      position: relative;
+      &::before {
+        border-top-left-radius: calc(#{$border-radius} - 2px);
+        border-bottom-left-radius: calc(#{$border-radius} - 2px);
+        height: 100%;
+        margin: 0;
+        content: '';
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        left: 0.65em;
+        top: 0;
+        z-index: 1;
+      }
+    }
+    input {
+      border: 2px solid $color--main;
+      border-radius: $border-radius;
+      position: relative;
+      display: block;
+      font-size: 1.8rem;
+      margin: 0;
+      font-weight: normal;
+      text-align: left;
+      padding: 1.2em 0.5em 1.2em 3em;
+      position: relative;
+    }
+    p {
+      color: $color--main;
+      font-size: 2.4rem !important;
+      margin: 0.25em 0 1em 0;
+      width: auto;
+      &.midText {
+        margin: 0.4em 0 0.25em 0;
+        font-weight: bolder;
+      }
+    }
+    svg {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
