@@ -13,6 +13,22 @@ class ShipmentsController < ApplicationController
     @all_carriers_two_conditions =
       Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[]",
                     [@query[:pickup_prefecture], @query[:delivery_prefecture]], @query[:category])
+
+    if @query[:temperature] == Shipment::QUERY_ALL
+      @results_with_temp = @all_carriers_two_conditions
+    elsif @query[:temperature] == Shipment::QUERY_NORMAL_TEMP
+      @results_with_temp =
+        @all_carriers_two_conditions
+          .joins(:vehicles)
+          .where(vehicles: {feature: Shipment::QUERY_NORMAL_TEMP_VEHICLES})
+          .distinct
+    else
+      @results_with_temp =
+        @all_carriers_two_conditions
+          .joins(:vehicles)
+          .where(vehicles: {feature: @query[:temperature]})
+          .distinct
+    end
   end
 
   def index

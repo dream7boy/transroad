@@ -13,9 +13,9 @@ class Shipment < ApplicationRecord
   VEHICLE_TYPES = %w(平ボディ 平ボディ（幌付き） バン バン（保冷） バン（冷凍・冷蔵）
                      ウィング ウィング（保冷） ウィング（冷凍・冷蔵） 幌ウィング)
 
-  COMPANIES = %w(東京運輸（株） 神奈川運輸（株） 大阪運輸（株） 北海道運輸（株）)
-  PREFECTURES = %w(東京都 神奈川県 大阪府 北海道)
-  ADDRESSES = %w(新宿区 川崎市 大阪市 札幌市)
+  QUERY_ALL = '分からない'
+  QUERY_NORMAL_TEMP = '常温'
+  QUERY_NORMAL_TEMP_VEHICLES = %w(標準 パワーゲート エアサス パワーゲート＆エアサス)
 
   validates :pickups, presence: true
   validates :deliveries, presence: true

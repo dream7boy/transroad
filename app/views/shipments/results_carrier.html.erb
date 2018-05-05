@@ -3,13 +3,13 @@
   <div class="dashboardHeader">
     <div>
       <h2>運送会社を選択</h2>
-      <p>マッチする運送会社が<%= @all_carriers_two_conditions.count %>社見つかりました！</p>
+      <p>マッチする運送会社が<%= @results_with_temp.count %>社見つかりました！</p>
     </div>
   </div>
 
   <div class="dashboardBody">
     <div class="cardsContainer">
-      <% @all_carriers_two_conditions.each do |carrier| %>
+      <% @results_with_temp.each do |carrier| %>
         <%= render 'carrierCard', carrier: carrier %>
       <% end %>
     </div>

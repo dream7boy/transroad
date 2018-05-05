@@ -75,7 +75,7 @@ class Shipper::ShipmentsController < ApplicationController
       Carrier.where("areas_covered @> ARRAY[?]::varchar[]", [@pickup.prefecture, @delivery.prefecture])
 
     @carriers_location_condition = @all_carriers_location_condition - @carriers_two_conditions
-byebug
+
     authorize @shipment, :my_show?
   end
 
