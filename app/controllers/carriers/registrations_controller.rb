@@ -53,6 +53,15 @@ class Carriers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def destroy
+    # userモデルのleaveメソッド
+    resource.leave
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    redirect_to root_path
+    set_flash_message(:notice, :destroyed)
+  end
+
+
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
