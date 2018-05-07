@@ -238,7 +238,10 @@
 <row name="ceo_name" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="founded_date" null="1" autoincrement="0">
+<row name="founded_date_year" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="founded_date_month" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="capital" null="1" autoincrement="0">
@@ -259,6 +262,9 @@
 <row name="strength_2" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="leave_at" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -268,20 +274,20 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="shipper_id" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default><relation table="shippers" row="id" />
 </row>
 <row name="name" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="zip_code" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="prefecture" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="address" null="1" autoincrement="0">
-<datatype>DATE</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="contact_name" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -513,6 +519,18 @@
 <row name="quantity" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1158.3999938964844" y="364.6000061035156" name="attachinary_files">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="carrier_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="carriers" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
