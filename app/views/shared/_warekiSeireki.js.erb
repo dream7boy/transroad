@@ -1,0 +1,21 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    document.addEventListener("DOMContentLoaded", () => {
+
+    function getGregorianYear(yearType,yearInput) {
+      if ((yearType === "平成") && (y > 0)) {
+          year = (yearInput + 1988)+"年";
+      } else if ((yearInputearType === "昭和") && (yearInput > 0) && (yearInput <= 64)) {
+          year = (yearInput + 1925)+"年";
+      } else if ((yearInputearType === "大正") && (yearInput > 0) && (yearInput <= 15)) {
+          year = (yearInput + 1911)+"年";
+      } else if ((yearInputearType === "明治") && (yearInput > 0) && (yearInput <= 45)) {
+          year = (yearInput + 1867)+"年";
+      } else {
+          year = "指定の和暦年は存在しません";
+      }
+    }
+
+    });
+  <% end %>
+<% end %>
