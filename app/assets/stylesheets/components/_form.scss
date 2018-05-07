@@ -39,18 +39,52 @@
   }
 }
 
-.wordCountContainer {
-  position: relative;
-  span {
-    display: inline-block;
-    position: absolute;
-    bottom: 0;
-    font-size: 1.4rem;
-    color: $color--gray;
-    padding: 0.25em 0.5em;
-    right: 0;
-    &.carrier_company_description {
-      right: calc(100% - 35em);
+div[data-name="founded_date"] {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  div:first-child {
+    padding: 0 15px 0 15px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    label {
+      margin-bottom: 0.6em;
+      flex: 1 100%;
+      width: auto;
+    }
+    div {
+      display: flex;
+    }
+  }
+  p {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    + p {
+      margin-left: 1em;
+    }
+  }
+  span[data-type="pseudoRadio"] {
+    border: 1px solid $color--lightgray;
+    height: 1em;
+    border-radius: 50px;
+    width: 1em;
+    margin: 0 0.1em 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.checked {
+      background-color: $color--main;
+      border: 1px solid $color--main;
+      &:before {
+        background-color: $color--white;
+        display: inline-block;
+        content: '';
+        height: 0.5em;
+        border-radius: 50px;
+        width: 0.5em;
+      }
     }
   }
 }
@@ -218,4 +252,20 @@ label[for="carrier_company_description"] {
   padding: 0.75em;
   resize: none;
   width: 35em;
+}
+
+.wordCountContainer {
+  position: relative;
+  span {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    font-size: 1.4rem;
+    color: $color--gray;
+    padding: 0.25em 0.5em;
+    right: 0;
+    &.carrier_company_description {
+      right: calc(100% - 35em);
+    }
+  }
 }

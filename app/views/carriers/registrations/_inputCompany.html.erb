@@ -10,7 +10,7 @@
   <div class="inputGroup row">
     <%= f.input :post_code,
       label: "郵便番号",
-      wrapper_html: { class:"col-xs-4" },
+      wrapper_html: { class:"col-xs-3" },
       input_html: { autocomplete:"postal-code" },
       required: true %>
   </div>
@@ -18,12 +18,12 @@
   <div class="inputGroup row">
     <%= f.input :prefecture,
       label: "都道府県",
-      wrapper_html: { class:"col-xs-4" },
+      wrapper_html: { class:"col-xs-3" },
       input_html: { autocomplete:"address-level1" },
       required: true %>
     <%= f.input :ward,
       label: "市区町村",
-      wrapper_html: { class:"col-xs-8" },
+      wrapper_html: { class:"col-xs-6" },
       input_html: { autocomplete:"address-level2" },
       required: true %>
   </div>
@@ -40,27 +40,49 @@
     label: "代表者名",
     required: true %>
 
-  <%= f.input :founded_date_year,
-    label: "設立日（年）",
-    use_month_numbers: true,
-    required: true %>
-
-  <%= f.input :founded_date_month,
-    label: "設立日（月）",
-    use_month_numbers: true,
-    required: true %>
+  <div class="inputGroup row" data-name="founded_date">
+    <div>
+      <label class="control-label label--null integer required" for="carrier_founded_date_year">設立日<abbr title="required" class="form--required">必須</abbr></label>
+      <div data-name="yearTypes">
+        <p><span data-type="pseudoRadio" data-yeartype="西暦"></span>西暦</p>
+        <p><span data-type="pseudoRadio" data-yeartype="平成"></span>平成</p>
+        <p><span data-type="pseudoRadio" data-yeartype="昭和"></span>昭和</p>
+        <p><span data-type="pseudoRadio" data-yeartype="大正"></span>大正</p>
+        <p><span data-type="pseudoRadio" data-yeartype="明治"></span>明治</p>
+      </div>
+    </div>
+    <div class="form-group carrier_founded_date_year col-xs-2 debug">
+      <label class="control-label label--null" for="carrier_founded_date_year">年(偽)
+        <abbr title="required" class="form--required">必須</abbr>
+      </label>
+      <input id="foundedDateDummy" class="form-control" type="number" min="1" required="required" aria-required="true" name="carrier[founded_date_year]">
+    </div>
+    <%= f.input :founded_date_year,
+      # as: :hidden,
+      label: "年",
+      input_html: { min:1, max:Time.now.year },
+      wrapper_html: { class:"col-xs-2" },
+      required: true %>
+    <%= f.input :founded_date_month,
+      as: :select,
+      collection: %w(1 2 3 4 5 6 7 8 9 10 11 12),
+      label: "月",
+      wrapper_html: { class:"col-xs-2" },
+      use_month_numbers: true,
+      required: true %>
+  </div>
 
   <%= f.input :capital,
     label: "資本金",
     required: true %>
-
   <div class="inputGroup row">
     <% employeesArray = ["1~20","21~40","41~60","61~80","81~100","101+"] %>
     <%= f.input :employee_numbers,
       collection: employeesArray,
       selected: employeesArray[0],
       label: "社員数",
-      wrapper_html: { class:"col-xs-4" },
+      wrapper_html: { class:"col-xs-3" },
       required: true %>
   </div>
 </div>
+<%= render partial: 'shared/warekiSeireki', formats: :js %>
