@@ -1,0 +1,50 @@
+<div class="landingQueryInput">
+
+  <%= inline_svg "icon_shipper.svg" %>
+  <p>&#10102; 荷物情報</p>
+
+  <!-- START / ORIGINAL SELECT / SHIPMENTS / REFERENCE -->
+  <%#= f.input :category,
+    label: false,
+    collection: Shipment::COMMODITIES,
+    required: true,
+    prompt: "選択してください",
+    input_html:{ id:"selectSourceOne", class: "" },
+    include_hidden: false  %>
+  <!-- END / ORIGINAL SELECT / SHIPMENTS / REFERENCE -->
+  <!-- START / PSEUDO SELECT / SHIPMENTS -->
+  <div class="pseudoSelectOne">
+    <select id="selectSourceOne" class="form-control select required" required="required" aria-required="true" name="query[category]">
+      <%= Shipment::COMMODITIES.each_with_index do |c,i| %>
+        <% if i == 0  %>
+          <option selected="selected"><%= c %></option>
+        <% else %>
+          <option><%= c %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+  <!-- END / PSEUDO SELECT / SHIPMENTS -->
+
+  <p class="midText">及び</p>
+
+  <!-- START / ORIGINAL SELECT / TEMPERATURE / REFERENCE -->
+  <%#= f.input :temperature,
+    label: false,
+    collection: %w(常温 保冷 冷蔵・冷凍 分からない),
+    prompt: "選択してください",
+    input_html:{ id:"selectSourceTwo", class: "" },
+    required: true %>
+  <!-- END / ORIGINAL SELECT / TEMPERATURE / REFERENCE -->
+  <!-- START / PSEUDO SELECT / TEMPERATURE -->
+  <div class="pseudoSelectTwo">
+    <select id="selectSourceTwo" class="form-control select required" required="required" aria-required="true" name="query[temperature]">
+      <option value="常温" selected="selected">常温</option>
+      <option value="保冷">保冷</option>
+      <option value="冷蔵・冷凍">冷蔵・冷凍</option>
+      <option value="分からない">分からない</option>
+    </select>
+  </div>
+  <!-- END / PSEUDO SELECT / TEMPERATURE -->
+
+</div>

@@ -1,0 +1,98 @@
+#landingQueryForm {
+  border: $border solid $color--sub;
+  padding: calc(28px * 1.25) 12rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 65%;
+    margin-top: 4em;
+  }
+
+  .landingQueryInputs {
+    display: flex;
+    width: 100%;
+    > .landingQueryInput {
+      flex: 1;
+      text-align: center;
+      + .landingQueryInput {
+        margin-left: 8rem;
+      }
+      // div + div {
+      //   margin-top: 0.75em;
+      // }
+    }
+  }
+
+  .landingQueryInputs {
+    div.form-group[class*="post_code"]::before {
+      background-image: asset-url("icon_post.svg");
+      width: 1.3em;
+    }
+    div.form-group[class*="prefecture"]::before,
+    div.form-group[class*="ward"]::before {
+      background-image: asset-url("icon_map.svg");
+      width: 1em;
+    }
+    div.form-group {
+      margin-bottom: 0;
+      position: relative;
+      &::before {
+        border-top-left-radius: calc(#{$border-radius} - 2px);
+        border-bottom-left-radius: calc(#{$border-radius} - 2px);
+        height: 100%;
+        margin: 0;
+        content: '';
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        left: 0.65em;
+        top: 0;
+        z-index: 1;
+      }
+    }
+    input {
+      border: 2px solid $color--main;
+      border-radius: $border-radius;
+      position: relative;
+      display: block;
+      font-size: 1.8rem;
+      margin: 0;
+      font-weight: normal;
+      text-align: left;
+      padding: 1.2em 0.5em 1.2em 3em;
+      position: relative;
+      &[name*="prefecture"] {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-style: dotted;
+      }
+      &[name*="ward"] {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-top: 0;
+      }
+    }
+    p {
+      color: $color--main;
+      font-size: 2.4rem !important;
+      font-weight: bolder;
+      margin: 0.25em 0 0.5em 0;
+      width: auto;
+      &.midText {
+        margin: 0.5em 0 0.45em 0;
+        font-weight: normal;
+      }
+    }
+    svg {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+}

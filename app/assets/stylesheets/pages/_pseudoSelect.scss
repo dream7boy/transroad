@@ -1,0 +1,102 @@
+#selectSourceOne,
+#selectSourceTwo  {
+  display: none;
+}
+
+dl#targetOne {
+  z-index: 10;
+  dt:before{
+    background-image: asset-url("icon_box.svg");
+  }
+}
+
+dl#targetTwo {
+  z-index: 0;
+  dt:before{
+    background-image: asset-url("icon_cold.svg");
+  }
+}
+
+dl.dropdown {
+  border: 2px solid $color--main;
+  border-radius: $border-radius;
+  position: relative;
+  span.value {
+    display:none;
+  }
+  a:hover, a:visited {
+    color: $color--black;
+    text-decoration: none;
+    outline: none;
+  }
+  dt {
+    display: block;
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: normal;
+    text-align: left;
+    padding: 0.5em 0.5em 0.5em 3em;
+    position: relative;
+    &::before {
+      border-top-left-radius: calc(#{$border-radius} - 2px);
+      border-bottom-left-radius: calc(#{$border-radius} - 2px);
+      height: 100%;
+      width: 1.5em;
+      margin: 0;
+      content: '';
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      left: 0.5em;
+      top: 0;
+    }
+    &::after {
+      align-items: center;
+      background-color: $color--main;
+      color: $color--white;
+      display: flex;
+      font-family: FontAwesome;
+      border-top-right-radius: calc(#{$border-radius} - 2px);
+      border-bottom-right-radius: calc(#{$border-radius} - 2px);
+      font-size: 3rem;
+      height: 1.5em;
+      justify-content: center;
+      margin: 0;
+      width: 1.5em;
+      content: '\f0dd';
+      padding: 0 0 12px 2px;
+      position: absolute;
+      right: 0;
+      top: -1px;
+    }
+  }
+  dd {
+    top: calc(100% - 2px);
+    left: 0;
+    position: absolute;
+    padding: 0 1px;
+    width: calc(100% - 3em + 3px);
+    ul {
+      background-color: $color--white;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+      border-left: 2px solid $color--main;
+      border-bottom: 2px solid $color--main;
+      border-right: 2px solid $color--main;
+      display: none;
+      list-style: none;
+      margin: 0 -3px;
+    }
+    li {
+      padding: 0.5em 0.5em 0.5em 3em;
+      text-align: left;
+      &:hover {
+        background-color: $color--main;
+      }
+    }
+    a:hover {
+      color: $color--white;
+    }
+  }
+}
