@@ -7,42 +7,38 @@
 
       <div class="landingQueryInput">
         <%= inline_svg "icon_pickup.svg" %>
-        <p>&#10103; 荷物の集荷先</p>
+        <p>&#10103; 集荷先</p>
         <%= f.input :pickup_post_code,
           label: false,
           input_html: { autocomplete:"none", placeholder:"郵便番号" },
           required: true %>
         <p class="midText">または</p>
-        <div class="debug">
-          <%= f.input :pickup_prefecture,
-            label: false,
-            input_html: { autocomplete:"none", placeholder:"都道府県" },
-            required: true %>
-          <%= f.input :pickup_ward,
-            label: false,
-            input_html: { autocomplete:"none", placeholder:"市区町村" },
-            required: true %>
-        </div>
+        <%= f.input :pickup_prefecture,
+          label: false,
+          input_html: { autocomplete:"none", placeholder:"都道府県" },
+          required: true %>
+        <%= f.input :pickup_ward,
+          label: false,
+          input_html: { autocomplete:"none", placeholder:"市区町村" },
+          required: true %>
       </div>
 
       <div class="landingQueryInput">
         <%= inline_svg "icon_delivery.svg" %>
-        <p>&#10104; 荷物の配達先</p>
+        <p>&#10104; 配送先</p>
         <%= f.input :delivery_post_code,
           label: false,
           input_html: { autocomplete:"none", placeholder:"郵便番号" },
           required: true %>
         <p class="midText">または</p>
-        <div class="debug">
-          <%= f.input :delivery_prefecture,
-            label: false,
-            input_html: { autocomplete:"none", placeholder:"都道府県"  },
-            required: true %>
-          <%= f.input :delivery_ward,
-            label: false,
-            input_html: { autocomplete:"none", placeholder:"市区町村"  },
-            required: true %>
-        </div>
+        <%= f.input :delivery_prefecture,
+          label: false,
+          input_html: { autocomplete:"none", placeholder:"都道府県"  },
+          required: true %>
+        <%= f.input :delivery_ward,
+          label: false,
+          input_html: { autocomplete:"none", placeholder:"市区町村"  },
+          required: true %>
       </div>
     </div>
 

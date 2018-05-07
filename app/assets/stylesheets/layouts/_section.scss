@@ -1,6 +1,12 @@
 $border: 14px;
 $borderFull: $border * 2;
 
+#home section.carrier,
+#home section.shipper,
+#home section.user {
+  min-height: 100vh;
+}
+
 section {
   &.carrier, &.shipper, &.user {
     display: flex;
