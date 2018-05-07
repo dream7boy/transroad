@@ -83,7 +83,7 @@ prefecture =
 
 products =
     %w(精密機器 重量物 展示会用品 建築資材 印刷物 家具 楽器 衣料品 農産物
-       食料品 美術品 仏壇・仏具 洋紙 遊技機)
+       食料品 美術品 仏壇・仏具 洋紙 遊技機 その他)
 
 industries = %w(製造 土木・建設 農業 林業 漁業 飲食 小売 卸売 印刷 商社)
 
@@ -97,9 +97,6 @@ duration_start_from = Date.parse("2018/2/1")
 duration_start_to = Date.parse("2018/4/30")
 duration_end_from = Date.parse("2018/7/31")
 duration_end_to = Date.parse("2018/12/31")
-
-founded_date_start_from = Date.parse("1990/1/1")
-founded_date_start_to = Date.parse("2017/12/31")
 
 # Seeds for Carriers
 puts 'Creating Carriers and Vehicles...'
@@ -121,7 +118,8 @@ carrier_addresses.count.times do
       phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
       email: "carrier#{carrier_addresses[count][:id]}@gmail.com",
       password: "123123",
-      founded_date: Random.rand(founded_date_start_from..founded_date_start_to),
+      founded_date_year: rand(1900..2018),
+      founded_date_month: rand(1..12),
       capital: %w(100万円 200万円 300万円 400万円 500万円).sample,
       employee_numbers: %w(1~20 21~40 41~60 61~80 81~100 101+).sample,
       strength_1: strength_1.sample,
