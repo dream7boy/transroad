@@ -26,7 +26,16 @@
       <p><%= carrier.street %></p>
       <p><%= carrier.phone %></p>
       <p><%= carrier.site_url %></p>
-      <p>運送地域：<%= carrier.areas_covered.join('、') %></p>
+      <p>運送品目：<%= carrier.favorite_products.join('、') %></p>
+      <p class="cardPrefectureList">
+        <% carrier.areas_covered.each do |prefecture| %>
+          <% unless prefecture.equal? carrier.areas_covered.last %>
+            <span><%= prefecture %>、</span>
+          <% else %>
+            <span><%= prefecture %></span>
+          <% end %>
+        <% end %>
+      </p>
     </div>
   </div>
 
