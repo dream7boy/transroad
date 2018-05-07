@@ -29,8 +29,9 @@ class ApplicationController < ActionController::Base
     added_attrs =
       [ :company_name, :post_code, :prefecture, :ward, :street, :name_kanji,
         :name_furigana, :phone, { areas_covered: [] }, { favorite_products: [] },
-        :industry, :site_url, :ceo_name, :founded_date, :capital, :employee_numbers,
-        :strength_1, :strength_2, { specialties: [] }, :company_description, :photo,
+        :industry, :site_url, :ceo_name, :founded_date_year, :founded_date_month,
+        :capital, :employee_numbers, :strength_1, :strength_2, { specialties: [] },
+        :company_description, :photo,
         vehicles_attributes: Vehicle.attribute_names.map(&:to_sym).push(:_destroy)]
 
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
