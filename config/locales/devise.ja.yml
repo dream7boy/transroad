@@ -1,6 +1,12 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 ja:
+  activerecord:
+    errors:
+      models:
+        carrier:
+          attributes:
+            password_confirmation:
+              confirmation: "パスワードを再入力してください"
   devise:
     confirmations:
       confirmed: "メールアドレスの認証が完了しました"

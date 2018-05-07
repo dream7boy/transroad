@@ -83,7 +83,7 @@ prefecture =
 
 products =
     %w(精密機器 重量物 展示会用品 建築資材 印刷物 家具 楽器 衣料品 農産物
-       食料品 美術品 仏壇・仏具 洋紙 遊技機)
+       食料品 美術品 仏壇・仏具 洋紙 遊技機 その他)
 
 industries = %w(製造 土木・建設 農業 林業 漁業 飲食 小売 卸売 印刷 商社)
 
@@ -98,9 +98,6 @@ duration_start_to = Date.parse("2018/4/30")
 duration_end_from = Date.parse("2018/7/31")
 duration_end_to = Date.parse("2018/12/31")
 
-founded_date_start_from = Date.parse("1990/1/1")
-founded_date_start_to = Date.parse("2017/12/31")
-
 # Seeds for Carriers
 puts 'Creating Carriers and Vehicles...'
 
@@ -108,7 +105,7 @@ count = 0
 carrier_addresses.count.times do
   gimei_carrier = Gimei.name
 
-  carrier = Carrier.create!(
+  carrier = Carrier.new(
       company_name: "#{%w(株式会社 有限会社).sample}#{gimei_carrier.last.kanji}運輸",
       post_code: carrier_addresses[count][:post_code],
       prefecture: carrier_addresses[count][:prefecture],
@@ -116,12 +113,14 @@ carrier_addresses.count.times do
       street: carrier_addresses[count][:street],
       areas_covered: prefecture.sample(20),
       favorite_products: products.sample(3),
+      ceo_name: gimei_carrier.kanji,
       name_kanji: gimei_carrier.kanji,
       name_furigana: gimei_carrier.hiragana,
       phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
       email: "carrier#{carrier_addresses[count][:id]}@gmail.com",
       password: "123123",
-      founded_date: Random.rand(founded_date_start_from..founded_date_start_to),
+      founded_date_year: rand(1900..2018),
+      founded_date_month: rand(1..12),
       capital: %w(100万円 200万円 300万円 400万円 500万円).sample,
       employee_numbers: %w(1~20 21~40 41~60 61~80 81~100 101+).sample,
       strength_1: strength_1.sample,
@@ -132,7 +131,6 @@ carrier_addresses.count.times do
 
   carrier.update(
       site_url: ["www.#{carrier.company_name}.co.jp", ""].sample,
-      ceo_name: carrier.name_kanji
     )
 
   5.times do
@@ -146,75 +144,76 @@ carrier_addresses.count.times do
     vehicle.save
   end
 
+  carrier.save
   count += 1
 end
 
 puts 'Carriers and Vehicles Created!'
 
-# Seeds for Carriers
-puts 'Creating Shippers, Shipments, Pickups and Deliveries...'
+## Seeds for Carriers
+# puts 'Creating Shippers, Shipments, Pickups and Deliveries...'
 
-count = 0
-1.times do
-  gimei_shipper = Gimei.name
+# count = 0
+# 1.times do
+#   gimei_shipper = Gimei.name
 
-  shipper = Shipper.create!(
-      company_name: "#{%w(株式会社 有限会社).sample}#{gimei_shipper.last.kanji}商社",
-      post_code: "211-0063",
-      prefecture: "神奈川県",
-      ward: "川崎市中原区",
-      street: "小杉町3-472",
-      industry: industries.sample,
-      name_kanji: gimei_shipper.kanji,
-      name_furigana: gimei_shipper.hiragana,
-      phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
-      email: "shipper#{count + 1}@gmail.com",
-      password: "123123"
-    )
+#   shipper = Shipper.create!(
+#       company_name: "#{%w(株式会社 有限会社).sample}#{gimei_shipper.last.kanji}商社",
+#       post_code: "211-0063",
+#       prefecture: "神奈川県",
+#       ward: "川崎市中原区",
+#       street: "小杉町3-472",
+#       industry: industries.sample,
+#       name_kanji: gimei_shipper.kanji,
+#       name_furigana: gimei_shipper.hiragana,
+#       phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
+#       email: "shipper#{count + 1}@gmail.com",
+#       password: "123123"
+#     )
 
-  10.times do
-    pickup_csv_id = rand(0..142)
-    delivery_csv_id = rand(0..142)
+#   10.times do
+#     pickup_csv_id = rand(0..142)
+#     delivery_csv_id = rand(0..142)
 
-    shipment = Shipment.new(
-        shipper_id: shipper.id,
-        available: true,
-        duration_start: Random.rand(duration_start_from..duration_start_to),
-        duration_end: Random.rand(duration_end_from..duration_end_to),
-        frequency: %w(週に1回 2週間に1回 月に1回 その他).sample
-      )
+#     shipment = Shipment.new(
+#         shipper_id: shipper.id,
+#         available: true,
+#         duration_start: Random.rand(duration_start_from..duration_start_to),
+#         duration_end: Random.rand(duration_end_from..duration_end_to),
+#         frequency: %w(週に1回 2週間に1回 月に1回 その他).sample
+#       )
 
-    pickup = shipment.pickups.build(
-        post_code: pickup_addresses[pickup_csv_id][:post_code],
-        prefecture: pickup_addresses[pickup_csv_id][:prefecture],
-        ward: pickup_addresses[pickup_csv_id][:ward],
-        street: pickup_addresses[pickup_csv_id][:street],
-        time: time.sample,
-        category: products.sample,
-        size_height: rand(100..200).round(-1),
-        size_width: rand(100..200).round(-1),
-        size_depth: rand(100..500).round(-1),
-        weight: rand(10..50).round,
-        quantity: rand(10..500).round(-1),
-        temperature: temperature.sample,
-        additional_info: additional_info.sample
-      )
+#     pickup = shipment.pickups.build(
+#         post_code: pickup_addresses[pickup_csv_id][:post_code],
+#         prefecture: pickup_addresses[pickup_csv_id][:prefecture],
+#         ward: pickup_addresses[pickup_csv_id][:ward],
+#         street: pickup_addresses[pickup_csv_id][:street],
+#         time: time.sample,
+#         category: products.sample,
+#         size_height: rand(100..200).round(-1),
+#         size_width: rand(100..200).round(-1),
+#         size_depth: rand(100..500).round(-1),
+#         weight: rand(10..50).round,
+#         quantity: rand(10..500).round(-1),
+#         temperature: temperature.sample,
+#         additional_info: additional_info.sample
+#       )
 
-    delivery = shipment.deliveries.build(
-        post_code: delivery_addresses[delivery_csv_id][:post_code],
-        prefecture: delivery_addresses[delivery_csv_id][:prefecture],
-        ward: delivery_addresses[delivery_csv_id][:ward],
-        street: delivery_addresses[delivery_csv_id][:street],
-        time: time.sample
-      )
+#     delivery = shipment.deliveries.build(
+#         post_code: delivery_addresses[delivery_csv_id][:post_code],
+#         prefecture: delivery_addresses[delivery_csv_id][:prefecture],
+#         ward: delivery_addresses[delivery_csv_id][:ward],
+#         street: delivery_addresses[delivery_csv_id][:street],
+#         time: time.sample
+#       )
 
-    shipment.save
-  end
+#     shipment.save
+#   end
 
-  count += 1
-end
+#   count += 1
+# end
 
-puts 'Shippers, Shipments, Pickups and Deliveries Created!'
+# puts 'Shippers, Shipments, Pickups and Deliveries Created!'
 
 
 ################################################################################

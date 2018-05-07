@@ -12,9 +12,9 @@ class Carrier < ApplicationRecord
   validates :prefecture, presence: true
   validates :ward, presence: true
   validates :street, presence: true
-  validates :site_url, presence: true
   validates :ceo_name, presence: true
-  validates :founded_date, presence: true
+  validates :founded_date_year, presence: true
+  validates :founded_date_month, presence: true
   validates :capital, presence: true
   validates :employee_numbers, presence: true
   validates :areas_covered, presence: true

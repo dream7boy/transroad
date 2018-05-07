@@ -34,15 +34,19 @@
     required: true %>
 
   <%= f.input :site_url,
-    label: "ホームページ",
-    required: true %>
+    label: "ホームページ" %>
 
   <%= f.input :ceo_name,
     label: "代表者名",
     required: true %>
 
-  <%= f.input :founded_date,
-    label: "設立日（年月日）",
+  <%= f.input :founded_date_year,
+    label: "設立日（年）",
+    use_month_numbers: true,
+    required: true %>
+
+  <%= f.input :founded_date_month,
+    label: "設立日（月）",
     use_month_numbers: true,
     required: true %>
 
