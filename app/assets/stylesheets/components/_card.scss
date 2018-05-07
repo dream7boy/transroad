@@ -124,12 +124,15 @@ $color__card-selected: #FFFCE2;
     color: $color--black;
     font-size: 1.4rem;
     font-weight: bolder;
-    &:last-child {
+    &:last-child, &:nth-last-child(2) {
       border-top: 1px solid $color--lightgray;
       padding-top: 0.75em;
       width: 100%;
       font-weight: normal;
       margin-top: 0.75em;
+    }
+    &:nth-last-child(2) {
+      margin-bottom: 0.75em;
     }
   }
   [data-name="summary"] p {
@@ -143,6 +146,17 @@ $color__card-selected: #FFFCE2;
     margin-top: 0.75em;
     p {
       font-weight: normal;
+      &.cardPrefectureList {
+        font-size: 0;
+      }
+    }
+    span {
+      font-size: 1.4rem;
+      line-height: 135%;
+      display: inline-block;
+      &:first-child {
+        margin-top: 0.75em;
+      }
     }
   }
 }
