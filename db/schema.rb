@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505014451) do
+ActiveRecord::Schema.define(version: 20180507124754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20180505014451) do
     t.string "favorite_products", default: [], array: true
     t.string "site_url"
     t.string "ceo_name"
-    t.date "founded_date"
     t.string "capital"
     t.string "employee_numbers"
     t.text "company_description"
@@ -63,6 +62,8 @@ ActiveRecord::Schema.define(version: 20180505014451) do
     t.string "strength_1"
     t.string "strength_2"
     t.datetime "leave_at"
+    t.integer "founded_date_year"
+    t.integer "founded_date_month"
     t.index ["email"], name: "index_carriers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_carriers_on_reset_password_token", unique: true
   end
