@@ -64,7 +64,7 @@
          display: block;
          height: 0;
          visibility: hidden;
-     }
+     } 
      .clearfix:after {
          clear: both;
      }
@@ -363,7 +363,7 @@
 	<div class="post right"></div>
 	<div class="pane">
 		<div class="headline sign-text-color">
-			500
+			503
 		</div>
 		<div class="context sign-text-color">
 			Looks like we're having<br>
@@ -373,10 +373,10 @@
 </div>
 <div class="text-container">
 	<div class="headline secondary-text-color">
-		500
+		503
 	</div>
   <div class="context primary-text-color">
-
+    
     <p>
       Go back to the previous page and try again.
       If you think something is broken, report a problem.
@@ -448,7 +448,7 @@
 
 
      ErrorPage.prototype.handleStatusFetchSuccess = function (pageType, data) {
-       if (pageType == '500') {
+       if (pageType == '503') {
          $('#replace-with-fetched-data').html(data.status.description);
        } else {
          if (!!data.scheduled_maintenances.length) {
@@ -475,7 +475,7 @@
        var url = ''
          , self = this;
 
-       if (pageType == '500') {
+       if (pageType == '503') {
          url = pageUrl + '/api/v2/status.json';
        }
        else {
@@ -494,7 +494,7 @@
        });
 
      };
-     var ep = new ErrorPage('body', "500", "sign");
+     var ep = new ErrorPage('body', "503", "sign");
      ep.initialize();
 
      // hack to make sure content stays centered >_<
@@ -504,6 +504,6 @@
 
     </script>
 
-
+    
   </body>
 </html>
