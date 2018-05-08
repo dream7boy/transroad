@@ -28,6 +28,7 @@ gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 gem 'google-analytics-rails'
 gem 'rack-rewrite'
+gem 'sendgrid-ruby'
 
 group :development, :test do
   gem 'pry-byebug'
