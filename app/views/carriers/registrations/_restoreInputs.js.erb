@@ -6,16 +6,16 @@
 
 
 
-    // === START /  RESTORE EMPLOYEE =====================================
+    // === START / RESTORE EMPLOYEE =====================================
     const storedEmployee = inputBank['employee_numbers'] || inputBank['carrier']['employee_numbers'];
     const eInput = Array.from(document.querySelectorAll('[name="carrier[employee_numbers]"] option'))
       .filter(option => option.value.includes(storedEmployee));
     eInput[0].selected = true;
-    // === END /  RESTORE EMPLOYEE =======================================
+    // === END / RESTORE EMPLOYEE =======================================
 
 
 
-    // === START /  RESTORE PREFECTURE =====================================
+    // === START / RESTORE PREFECTURE / INDIVIDUAL PREFECTURES =====================================
       // Get stored input and retrieve previous selected inputs
       const areasCovered = inputBank['areas_covered'] || inputBank['carrier']['areas_covered'];
       if(areasCovered != undefined) {
@@ -39,12 +39,27 @@
         // Replace placeholder text with the selected prefectures
         const placeholder = document.querySelector('span.placeholder');
         placeholder.textContent = areasCovered.join('、');
+        restoreRegions();
       }
-    // === END /  RESTORE PREFECTURE =======================================
+    // === END / RESTORE PREFECTURE / INDIVIDUAL PREFECTURES =======================================
 
 
 
-    // === START /  RESTORE VEHICLE =====================================
+    // === START / RESTORE PREFECTURE / REGIONS =======================================
+      function restoreRegions() {
+        const optGroup = document.querySelectorAll("label[data-group*='group']");
+        for(let i = 0; i < optGroup.length; i++ ) {
+          const currentOptGroup = document.querySelector(`label[data-group='group_${i}']`);
+          const opts = Array.from(document.querySelectorAll(`input[data-group='group_${i}']`));
+          const optsChecked = opts.filter(opt => opt.checked);
+          if(optsChecked.length === opts.length) currentOptGroup.querySelector('input').checked = true;
+        }
+      }
+    // === END / RESTORE PREFECTURE / REGIONS =======================================
+
+
+
+    // === START / RESTORE VEHICLE =====================================
       const flag = inputBank['carrier'];
       if(flag != undefined) {
         const vehicles = inputBank['carrier']['vehicles_attributes'];
@@ -83,27 +98,27 @@
         }
         // END / FOR EDIT PROFILE
       }
-    // === END /  RESTORE VEHICLE =======================================
+    // === END / RESTORE VEHICLE =======================================
 
 
 
-    // === START /  RESTORE SPECIALTIES =====================================
+    // === START / RESTORE SPECIALTIES =====================================
       const storedSpecialties = inputBank['specialties'] || inputBank['carrier']['specialties'];
       const spInputs = document.querySelectorAll('[name="carrier[specialties][]"]');
       for(let i = 0; i < storedSpecialties.length; i++) {
         spInputs[i].value = storedSpecialties[i];
       }
-    // === END /  RESTORE SPECIALTIES =======================================
+    // === END / RESTORE SPECIALTIES =======================================
 
 
 
-    // === START /  RESTORE COMPANY FOUNDED DATE =====================================
+    // === START / RESTORE COMPANY FOUNDED DATE =====================================
       const foundedYear = inputBank['founded_date_year'] || inputBank['carrier']['founded_date_year'];
       const foundedDateDummy = document.querySelector('#foundedDateDummy');
       const radioBtnSeireki = document.querySelector("[data-yeartype='西暦']");
       radioBtnSeireki.classList.add('checked');
       foundedDateDummy.value = foundedYear;
-    // === END /  RESTORE COMPANY FOUNDED DATE =======================================
+    // === END / RESTORE COMPANY FOUNDED DATE =======================================
 
     });
   <% end %>
