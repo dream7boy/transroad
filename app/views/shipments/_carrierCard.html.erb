@@ -2,15 +2,17 @@
   <%= text_area_tag name="#{carrier.id}", nil, class:"carrier__id hidden" %>
 
   <!-- CARRIER PHOTO -->
-  <% if carrier.photo != nil %>
-    <%= cl_image_tag carrier.photo.path, class: "carrierImg", crop: :fill %>
-  <% else %>
-    <%= inline_svg "carrier_default.svg", class: "carrierImg", crop: :fill %>
-  <% end %>
+  <div class="carrierImg">
+    <% if carrier.photo != nil %>
+      <%= cl_image_tag carrier.photo.path, width:190, height:120, crop: :fill %>
+    <% else %>
+      <%= inline_svg "carrier_default.svg", width:190, height:120, crop: :fill %>
+    <% end %>
+  </div>
 
   <!-- CARRIER TEXT -->
   <div class="cardCInfo">
-    <h4><%= carrier.company_name %></h4>
+    <h4><%= carrier.company_name %> </h4>
     <p><%= carrier.strength_1 %></p>
     <p><%= carrier.strength_2 %></p>
     <div class="" data-name="summary">
@@ -21,6 +23,8 @@
       <p>創&emsp;業：<%= carrier.founded_date_year %>年<%= carrier.founded_date_month %>月</p>
       <p>資本金：<%= carrier.capital %></p>
       <p>従業員：<%= carrier.employee_numbers %></p>
+      <br>
+      <p><%= carrier.company_description %></p>
       <br>
       <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
       <p><%= carrier.street %></p>
