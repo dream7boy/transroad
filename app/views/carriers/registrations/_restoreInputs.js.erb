@@ -95,6 +95,16 @@
       }
     // === END /  RESTORE SPECIALTIES =======================================
 
+
+
+    // === START /  RESTORE COMPANY FOUNDED DATE =====================================
+      const foundedYear = inputBank['founded_date_year'] || inputBank['carrier']['founded_date_year'];
+      const foundedDateDummy = document.querySelector('#foundedDateDummy');
+      const radioBtnSeireki = document.querySelector("[data-yeartype='西暦']");
+      radioBtnSeireki.classList.add('checked');
+      foundedDateDummy.value = foundedYear;
+    // === END /  RESTORE COMPANY FOUNDED DATE =======================================
+
     });
   <% end %>
 <% end %>
