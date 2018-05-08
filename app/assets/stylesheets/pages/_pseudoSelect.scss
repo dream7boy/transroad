@@ -57,6 +57,7 @@ dl.dropdown {
       color: $color--white;
       display: flex;
       font-family: Font Awesome 5 Free;
+      font-weight: 900;
       border-top-right-radius: calc(#{$border-radius} - 2px);
       border-bottom-right-radius: calc(#{$border-radius} - 2px);
       font-size: 3rem;
