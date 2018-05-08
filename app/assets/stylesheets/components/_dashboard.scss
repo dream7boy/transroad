@@ -2,6 +2,15 @@
   align-items: center;
 }
 
+#queryResults {
+  .dashboardHeader, .dashboardBody {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
 .dashboardHeader {
   align-items: flex-start;
   display: flex;
