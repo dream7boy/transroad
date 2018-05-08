@@ -5,6 +5,7 @@ Rails.application.configure do
   GA.tracker = ENV['GOOGLE_TRACKING_ID']
 
   # Setup the mailer config for SendGrid
+  config.action_mailer.default_url_options = { host: "www.transroad.jp" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
