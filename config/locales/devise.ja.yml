@@ -5,6 +5,8 @@ ja:
       models:
         carrier:
           attributes:
+            password:
+              too_short: "英数字で6文字以上のパスワードを入力してください"
             password_confirmation:
               confirmation: "パスワードを再入力してください"
   devise:

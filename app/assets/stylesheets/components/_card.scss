@@ -201,6 +201,7 @@ $color__card-selected: #FFFCE2;
   background-color: $color--lightgray;
   border-radius: calc(#{$border-radius} / 2);
   margin-right: 1.5rem;
+  overflow: hidden;
   width: 190px;
   height: 120px;
 }
