@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
-    <title>〒</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="99_SYMBOLS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="QUERY-/-set" transform="translate(-17.000000, -223.000000)" fill="#3573C3">
-            <g id="Group-2" transform="translate(0.000000, 206.000000)">
-                <path d="M17.4105,17.668 L46.7145,17.668 L46.7145,22.564 L17.4105,22.564 L17.4105,17.668 Z M34.7265,32.212 L34.7265,46.972 L29.2185,46.972 L29.2185,32.212 L17.4105,32.212 L17.4105,27.352 L46.7145,27.352 L46.7145,32.212 L34.7265,32.212 Z" id="〒"></path>
-            </g>
-        </g>
-    </g>
+  <g id="99_SYMBOLS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="QUERY-/-set" transform="translate(-17.000000, -223.000000)" fill="#3573C3">
+          <g id="Group-2" transform="translate(0.000000, 206.000000)">
+              <path d="M17.4105,17.668 L46.7145,17.668 L46.7145,22.564 L17.4105,22.564 L17.4105,17.668 Z M34.7265,32.212 L34.7265,46.972 L29.2185,46.972 L29.2185,32.212 L17.4105,32.212 L17.4105,27.352 L46.7145,27.352 L46.7145,32.212 L34.7265,32.212 Z" id="〒"></path>
+          </g>
+      </g>
+  </g>
 </svg>
