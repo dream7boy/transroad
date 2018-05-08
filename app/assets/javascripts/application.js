@@ -16,5 +16,5 @@
 $('document').ready(function() {
   setTimeout(function() {
     $('.alert').slideUp();
-  }, 1250);
+  }, 3000);
 });
