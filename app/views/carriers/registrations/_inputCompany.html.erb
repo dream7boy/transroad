@@ -1,6 +1,5 @@
 <div class="inputContainer">
   <h3>会社情報</h3>
-
   <%= f.input :company_name,
     label: "会社名",
     required: true,
@@ -42,7 +41,10 @@
 
   <div class="inputGroup row" data-name="founded_date">
     <div>
-      <label class="control-label label--null integer required" for="carrier_founded_date_year">設立日<abbr title="required" class="form--required">必須</abbr></label>
+      <label class="control-label label--null integer required" for="carrier_founded_date_year">
+        設立日
+        <abbr title="required" class="form--required">必須</abbr>
+      </label>
       <div data-name="yearTypes">
         <p><span data-type="pseudoRadio" data-yeartype="西暦"></span>西暦</p>
         <p><span data-type="pseudoRadio" data-yeartype="平成"></span>平成</p>
@@ -50,15 +52,16 @@
         <p><span data-type="pseudoRadio" data-yeartype="大正"></span>大正</p>
         <p><span data-type="pseudoRadio" data-yeartype="明治"></span>明治</p>
       </div>
+      <span data-name="foundedDateError"></span>
     </div>
-    <div class="form-group carrier_founded_date_year col-xs-2 debug">
-      <label class="control-label label--null" for="carrier_founded_date_year">年(偽)
+    <div class="form-group carrier_founded_date_year col-xs-2">
+      <label class="control-label label--null" for="carrier_founded_date_year">年
         <abbr title="required" class="form--required">必須</abbr>
       </label>
-      <input id="foundedDateDummy" class="form-control" type="number" min="1" required="required" aria-required="true" name="carrier[founded_date_year]">
+      <input id="foundedDateDummy" class="form-control" type="number" min="1" required="required" aria-required="true">
     </div>
     <%= f.input :founded_date_year,
-      # as: :hidden,
+      as: :hidden,
       label: "年",
       input_html: { min:1, max:Time.now.year },
       wrapper_html: { class:"col-xs-2" },

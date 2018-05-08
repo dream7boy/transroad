@@ -39,6 +39,12 @@
   }
 }
 
+span[data-name="foundedDateError"] {
+  font-size: 1.2rem;
+  color: $red;
+  margin-top: 0.5em;
+}
+
 div[data-name="founded_date"] {
   display: flex;
   justify-content: flex-start;
