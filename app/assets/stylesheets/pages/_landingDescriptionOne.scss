@@ -1,4 +1,6 @@
 #landingDescriptionOne {
+  max-width: 100vw;
+  overflow: hidden;
   .description__image-box {
     flex-grow: 1;
     margin: $spacer--sm 0;
