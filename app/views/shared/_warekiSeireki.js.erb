@@ -2,19 +2,72 @@
   <%= javascript_tag do %>
     document.addEventListener("DOMContentLoaded", () => {
 
-    function getGregorianYear(yearType,yearInput) {
-      if ((yearType === "平成") && (y > 0)) {
-          year = (yearInput + 1988)+"年";
-      } else if ((yearInputearType === "昭和") && (yearInput > 0) && (yearInput <= 64)) {
-          year = (yearInput + 1925)+"年";
-      } else if ((yearInputearType === "大正") && (yearInput > 0) && (yearInput <= 15)) {
-          year = (yearInput + 1911)+"年";
-      } else if ((yearInputearType === "明治") && (yearInput > 0) && (yearInput <= 45)) {
-          year = (yearInput + 1867)+"年";
-      } else {
-          year = "指定の和暦年は存在しません";
+      const radioBtnWrappers = document.querySelectorAll("[data-name='yearTypes'] p");
+      const foundedDateDummy = document.querySelector('#foundedDateDummy');
+      const errorMsg = document.querySelector("[data-name='foundedDateError']");
+      const now = new Date();
+      let yearType, checkedBtn, yearInput;
+
+      foundedDateDummy.setAttribute('max', now.getFullYear());
+      radioBtnWrappers.forEach(btn => btn.addEventListener('click', handleClick));
+      foundedDateDummy.addEventListener('input', handleInput);
+
+      function handleClick(e) {
+        const pseudoRadios = document.querySelectorAll("[data-type='pseudoRadio']");
+        pseudoRadios.forEach(btn => btn.classList.remove('checked'));
+        e.currentTarget.querySelector("[data-type='pseudoRadio']").classList.add('checked');
+        checkedBtn = document.querySelector("[data-type='pseudoRadio'].checked");
+        yearType = checkedBtn.dataset.yeartype;
+        if(yearType === "西暦") {
+          foundedDateDummy.removeEventListener('input', handleInput);
+          foundedDateDummy.addEventListener('blur', handleInput);
+          foundedDateDummy.value = '';
+        } else {
+          foundedDateDummy.removeEventListener('blur', handleInput);
+          foundedDateDummy.addEventListener('input', handleInput);
+        }
+        if(foundedDateDummy.value != '') return getGregorianYear(yearType, yearInput);
+        errorMsg.textContent = '';
       }
-    }
+
+      function handleInput(e) {
+        yearInput = Number(e.currentTarget.value);
+        if(checkedBtn === null) return errorMsg.textContent = "西暦・和暦を選択してください";
+        getGregorianYear(yearType, yearInput);
+      }
+
+      function getGregorianYear(yearType, yearInput) {
+        const foundedDateReal = document.querySelector('#carrier_founded_date_year');
+        const validYear = 1867 <= yearInput && yearInput <= now.getFullYear();
+        let year;
+        if ((yearType === "西暦") && (validYear)) {
+            year = yearInput;
+            errorMsg.textContent = "";
+        } else if ((yearType === "西暦") && (yearInput < 1867)) {
+            return errorMsg.textContent = "西暦1867（明治元年）以前は選択できません";
+        } else if ((yearType === "平成") && (yearInput > 0) && (yearInput <= 30)) {
+            year = (yearInput + 1988);
+            errorMsg.textContent = "";
+        } else if ((yearType === "平成") && (yearInput < 0) || (yearType === "平成") && (yearInput > 30)) {
+            return errorMsg.textContent = "入力された和暦年は存在しません";
+        } else if ((yearType === "昭和") && (yearInput > 0) && (yearInput <= 64)) {
+            year = (yearInput + 1925);
+            errorMsg.textContent = "";
+        } else if ((yearType === "昭和") && (yearInput < 0) || (yearType === "昭和") && (yearInput > 64)) {
+            return errorMsg.textContent = "入力された和暦年は存在しません";
+        } else if ((yearType === "大正") && (yearInput > 0) && (yearInput <= 15)) {
+            year = (yearInput + 1911);
+            errorMsg.textContent = "";
+        } else if ((yearType === "大正") && (yearInput < 0) || (yearType === "大正") && (yearInput > 15)) {
+            return errorMsg.textContent = "入力された和暦年は存在しません";
+        } else if ((yearType === "明治") && (yearInput > 0) && (yearInput <= 45)) {
+            year = (yearInput + 1867);
+            errorMsg.textContent = "";
+        } else if ((yearType === "明治") && (yearInput < 0) || (yearType === "明治") && (yearInput > 45)) {
+            return errorMsg.textContent = "入力された和暦年は存在しません";
+        }
+        return foundedDateReal.value = year;
+      }
 
     });
   <% end %>
