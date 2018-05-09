@@ -29,6 +29,8 @@ gem 'coffee-rails'
 gem 'google-analytics-rails'
 gem 'rack-rewrite'
 gem 'sendgrid-ruby'
+gem 'sitemap_generator'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'pry-byebug'

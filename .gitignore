@@ -6,5 +6,8 @@ tmp/*
 .DS_Store
 public/assets
 
+# Ignore sitemap file
+public/sitemap.xml.gz
+
 # Ignore application configuration
 /config/application.yml
