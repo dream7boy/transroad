@@ -40,4 +40,5 @@ group :development, :test do
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
   gem "rack-livereload", group: :development
+  gem 'rails_real_favicon'
 end
