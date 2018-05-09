@@ -1,40 +1,20 @@
-// 1. html, body below are for the footer to stay bottom
-html {
-  min-height: 100%;
-  position: relative;
-}
-body {
-  // padding-bottom: $footer__height;
-}
-
 .footer {
-  // 2. 4 lines below are for the footer to stay bottom
+  letter-spacing: 0.025em;
+  align-items: center;
+  background: $color--white;
+  color: $color--main;
+  display: flex;
   height: $footer__height;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-
-  background: #3F6699;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
-}
-.footer-links {
-  display: flex;
-  align-items: center;
-}
-.footer-links a {
-  color: black;
-  opacity: 0.15;
-  text-decoration: none;
-  font-size: 24px;
-  padding: 0px 10px;
-}
-.footer-links a:hover {
-  opacity: 1;
-}
-.footer .fa-heart {
-  color: #D23333;
+  max-width: 100vw;
+  padding: 4px 16px 0 16px;
+  width: 100%;
+  p {
+    font-size: 1.2rem;
+  }
+  p:nth-child(2) {
+    font-weight: bolder;
+    font-size: 1.4rem;
+    font-family: "Raleway", "Open Sans", "Helvetica Neue", sans-serif;
+  }
 }

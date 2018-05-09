@@ -20,4 +20,7 @@
     <%= cloudinary_js_config %>
     <%= yield(:after_js) %>
   </body>
+  <% if current_page?(root_path) %>
+    <%= render 'shared/footer' %>
+  <% end %>
 </html>
