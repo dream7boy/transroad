@@ -32,8 +32,7 @@ class Carrier < ApplicationRecord
   accepts_nested_attributes_for :vehicles, allow_destroy: true
 
   FAVORITE_PRODUCTS =
-    %w(精密機器 重量物 展示会用品 建築資材 印刷物 家具 楽器 衣料品 農産物 食料品
-       美術品 仏壇・仏具 洋紙 遊技機)
+    %w(農産物 水産品 石油 石炭 食料品 飲料等 繊維・衣料品 木材・木製品 紙・紙加工品 出版・印刷物 化学製品・ゴム製品 窯業・土石製品 鉄鋼・金属製品 機械・機械部品 家電品・家電部品 輸送機械・輸送機械部品 日用品・雑貨 砂利・砂・石材 廃棄物 コンテナ 引越貨物 その他)
 
   def leave
     #leave_atに退会時刻を追記

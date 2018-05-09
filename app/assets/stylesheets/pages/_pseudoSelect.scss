@@ -15,6 +15,9 @@ dl#targetTwo {
   dt:before{
     background-image: asset-url("icon_cold.svg");
   }
+  ul {
+    height: auto;
+  }
 }
 
 dl.dropdown {
@@ -86,11 +89,13 @@ dl.dropdown {
       border-bottom: 2px solid $color--main;
       border-right: 2px solid $color--main;
       display: none;
+      height: 340px;
+      overflow-y: scroll;
       list-style: none;
       margin: 0 -3px;
     }
     li {
-      padding: 0.5em 0.5em 0.5em 3em;
+      padding: 0.5em;
       text-align: left;
       &:hover {
         background-color: $color--main;
