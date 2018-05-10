@@ -1,19 +1,19 @@
-<h2>Change your password</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :reset_password_token, as: :hidden %>
-  <%= f.full_error :reset_password_token %>
-
-  <div class="form-inputs">
-    <%= f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: "Confirm your new password", required: true %>
+<section class="container-fluid carrier slimMedium">
+  <div>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :reset_password_token, as: :hidden %>
+      <%= f.full_error :reset_password_token %>
+      <div class="form-inputs">
+        <div class="inputContainer">
+          <h3>新しいパスワードを設定する</h3>
+            <%= f.input :password, label: "パスワード（英数字で6文字以上のパスワードを入力してください）", required: true, autofocus: true %>
+            <%= f.input :password_confirmation, label: "パスワードの確認", required: true %>
+            <div class="form-actions">
+              <%= f.button :submit, "新しいパスワードを設定", class:"btnNull btnWidth100"  %>
+            </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "carriers/shared/links" %>
+</section>

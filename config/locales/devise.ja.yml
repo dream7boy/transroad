@@ -91,7 +91,7 @@ ja:
         forgot_your_password: "パスワードを忘れましたか?"
         send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
       no_token: "こちらへのページは「パスワードのリセット手順」を記載したメールのみからアクセスできます。"
-      send_instructions: "「パスワードのリセット手順」を記載したメールを送信いたしますので、少々お待ちください。"
+      send_instructions: "「パスワードのリセット手順」を記載したメールを送信いたしますので、受信箱をご確認ください。"
       send_paranoid_instructions: "入力したメールアドレスが登録されている場合は「メールアドレスの認証手順」を、入力されたメールアドレス宛に送信いたします。"
       updated: "パスワードが更新されました。"
       updated_not_active: "パスワードが更新されました。"
@@ -133,7 +133,7 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
-      send_instructions: "「アカウントのロック解除手順」を記載したメールを送信いたしますので、少々お待ちください。"
+      send_instructions: "「アカウントのロック解除手順」を記載したメールを送信いたしますので、受信箱をご確認ください。"
       send_paranoid_instructions: "入力したメールアドレスが登録されている場合は「メールアドレスの認証手順」を、入力されたメールアドレス宛に送信いたします。"
       unlocked: "アカウントのロックが解除され、ログインすることができるようになりました。"
   errors:
