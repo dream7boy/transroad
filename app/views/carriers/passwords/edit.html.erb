@@ -7,7 +7,7 @@
       <div class="form-inputs">
         <div class="inputContainer">
           <h3>新しいパスワードを設定する</h3>
-            <%= f.input :password, label: "パスワード（英数字で6文字以上のパスワードを入力してください）", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+            <%= f.input :password, label: "パスワード（英数字で6文字以上のパスワードを入力してください）", required: true, autofocus: true %>
             <%= f.input :password_confirmation, label: "パスワードの確認", required: true %>
             <div class="form-actions">
               <%= f.button :submit, "新しいパスワードを設定", class:"btnNull btnWidth100"  %>
