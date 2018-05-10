@@ -52,9 +52,17 @@
       outline: none !important;
     }
     div {
-      background-position: -4px 3px;
+      background: none;
       height: 100%;
-      &.open {
+      &::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f0dd";
+        display: block;
+        position: absolute;
+        top: 0.05em;
+        right: 0.5em;
+        font-size: 2.5rem;
       }
     }
     span {
@@ -74,9 +82,7 @@
 
 
 // DEFAULT (DO NOT TOUCH)
-/**
- * @author zhixin wen <wenzhixin2010@gmail.com>
- */
+// @author zhixin wen <wenzhixin2010@gmail.com>
 
 .ms-parent {
     display: inline-block;
