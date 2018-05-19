@@ -19,6 +19,11 @@
     required: true,
     input_html: {autocomplete: "tel"}
     %>
+  <%= f.input :fax,
+    label: "FAX番号",
+    required: false,
+    input_html: {autocomplete: "fax"}
+    %>
   <%= f.input :email,
     label: "メールアドレス（ログインするときはこちらを使用します）",
     required: true,
