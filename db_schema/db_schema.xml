@@ -224,7 +224,7 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="fax" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -523,7 +523,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1158.3999938964844" y="364.6000061035156" name="attachinary_files">
+<table x="1158" y="364" name="attachinary_files">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
