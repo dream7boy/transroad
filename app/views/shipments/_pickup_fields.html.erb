@@ -13,7 +13,7 @@
   <%#= f.input :company_name %>
   <%= f.input :prefecture, collection: Shipment::PREFECTURES, prompt: "県をお選び下さい" %>
   <%= f.input :ward, collection: Shipment::ADDRESSES, prompt: "住所をお選び下さい" %>
-  <%#= f.input :commodity, collection: Shipment::COMMODITIES, prompt: "荷種をお選び下さい", label: "荷物の種類" %>
+  <%#= f.input :commodity, collection: Carrier::FAVORITE_PRODUCTS, prompt: "荷種をお選び下さい", label: "荷物の種類" %>
   <%#= f.input :weight, collection: ['100', '200', '300', '400', '500', '600', '700'] %>
   <%= link_to_remove_association '集荷先を削除する', f, class: 'btn btnNull btnRemoveNestForm' %>
 </div>
