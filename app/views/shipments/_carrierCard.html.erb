@@ -83,7 +83,13 @@
         <% vehicles = carrier.vehicles.sort_by { |obj| obj.load_capacity.to_i } %>
         <% for i in 0...(vehicles.length) %>
         <tr>
-          <td><%= vehicles[i].load_capacity %>トン</td>
+          <td>
+            <% if vehicles[i].load_capacity == "１トン未満" || vehicles[i].load_capacity == "1トン未満" %>
+              1トン未満
+            <% else %>
+              <%= vehicles[i].load_capacity %>トン
+            <% end %>
+          </td>
           <td>
             <% if vehicles[i].vehicle_type != "標準" %>
               <%= vehicles[i].vehicle_type %><br>
