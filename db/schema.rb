@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507124754) do
+ActiveRecord::Schema.define(version: 20180519062055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20180507124754) do
     t.datetime "leave_at"
     t.integer "founded_date_year"
     t.integer "founded_date_month"
+    t.string "fax"
     t.index ["email"], name: "index_carriers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_carriers_on_reset_password_token", unique: true
   end
