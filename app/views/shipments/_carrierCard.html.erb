@@ -28,7 +28,9 @@
       <br>
       <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
       <p><%= carrier.street %></p>
-      <p><%= carrier.phone %></p>
+      <p>電話：<%= carrier.phone %></p>
+      <p>FAX：<%= carrier.fax %></p>
+      <p>メール：<%= carrier.email %></p>
       <p><%= carrier.site_url %></p>
       <p class="cardProductList"><span>運送品目：</span><br>
         <% carrier.favorite_products.each do |product| %>
