@@ -13,7 +13,7 @@
 
     <%= p.input :street, label: "住所", required: true %>
     <%= p.input :time, label: "集荷希望時間", collection: %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 その他), prompt: "選択してください", required: true %>
-    <%= p.input :category, label: "荷物の種類", collection: Shipment::COMMODITIES, required: true, prompt: "選択してください", include_hidden: false  %>
+    <%= p.input :category, label: "荷物の種類", collection: Carrier::FAVORITE_PRODUCTS, required: true, prompt: "選択してください", include_hidden: false  %>
 
     <div class="inputGroup row">
       <%= p.input :size_width, label: "横幅 (cm)", required: true, wrapper_html: { class: "col-xs-4" } %>
