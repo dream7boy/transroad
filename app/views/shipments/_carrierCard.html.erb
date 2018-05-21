@@ -4,7 +4,7 @@
   <!-- CARRIER PHOTO -->
   <div class="carrierImg">
     <% if carrier.photo != nil %>
-      <%= cl_image_tag carrier.photo.path, width:190, height:120, crop: :fill %>
+      <%= cl_image_tag carrier.photo.path, width:190, height:120, crop: :fill, gravity:'face:center' %>
     <% else %>
       <%= inline_svg "carrier_default.svg", width:190, height:120, crop: :fill %>
     <% end %>
