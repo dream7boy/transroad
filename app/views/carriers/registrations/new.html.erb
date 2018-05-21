@@ -1,4 +1,9 @@
-<%= simple_form_for @carrier, url: carrier_registration_path, html: {class:"cRegistWrapper"} do |f| %>
+<div id="mobileModal">
+  <i class="fas fa-desktop"></i>
+  <h2>現在はパソコンのみからの<br class="visible-xs">ご登録となっております</h2>
+</div>
+
+<%= simple_form_for @carrier, url: carrier_registration_path, html: {id:"cRegist", class:"cRegistWrapper"} do |f| %>
 
 <!-- BLOCK 1 -->
 <section class="container-fluid carrier slimSmall" data-name="inputBlock1">
