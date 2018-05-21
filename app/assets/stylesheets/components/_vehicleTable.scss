@@ -18,8 +18,8 @@ th {
   text-align: center;
   background-color: $color--main;
   color: $color--white;
-  &:nth-child(1), &:nth-child(3) {
-    width: 5em;
+  &:nth-child(1) {
+    width: 7em;
   }
   &:nth-child(1) {
     border-top-left-radius: calc(#{$border-radius} - 2px);
@@ -28,6 +28,7 @@ th {
     width: auto;
   }
   &:nth-child(3) {
+    width: 5em;
     border-top-right-radius: calc(#{$border-radius} - 2px);
   }
 }
