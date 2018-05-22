@@ -11,8 +11,18 @@ class ShipmentsController < ApplicationController
     @query = query_params
 
     @all_carriers_two_conditions =
-      Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[] AND visible = true",
-                    [@query[:pickup_prefecture], @query[:delivery_prefecture]], @query[:category])
+      Carrier.where(
+              "array_to_string(areas_covered, '||') ILIKE ? AND
+               array_to_string(areas_covered, '||') ILIKE ? AND
+               favorite_products @> ARRAY[?]::varchar[] AND
+               visible = true",
+               "%" + @query[:pickup_prefecture].gsub(/\A[\p{Zs}\p{Cf}]+|[\p{Zs}\p{Cf}]+\Z/, '') + "%",
+               "%" + @query[:delivery_prefecture].gsub(/\A[\p{Zs}\p{Cf}]+|[\p{Zs}\p{Cf}]+\Z/, '') + "%",
+               @query[:category]
+              )
+
+      # Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[] AND visible = true",
+                    # [@query[:pickup_prefecture], @query[:delivery_prefecture]], @query[:category])
 
     if @query[:temperature] == Shipment::QUERY_ALL
       @results_with_temp = @all_carriers_two_conditions

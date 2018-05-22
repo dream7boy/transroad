@@ -31,7 +31,7 @@
   <!-- START / ORIGINAL SELECT / TEMPERATURE / REFERENCE -->
   <%#= f.input :temperature,
     label: false,
-    collection: %w(常温 保冷 冷蔵・冷凍 分からない),
+    collection: %w(常温 保冷 冷凍・冷蔵 分からない),
     prompt: "選択してください",
     input_html:{ id:"selectSourceTwo", class: "" },
     required: true %>
@@ -41,7 +41,7 @@
     <select id="selectSourceTwo" class="form-control select required" required="required" aria-required="true" name="query[temperature]">
       <option value="常温" selected="selected">常温</option>
       <option value="保冷">保冷</option>
-      <option value="冷蔵・冷凍">冷蔵・冷凍</option>
+      <option value="冷凍・冷蔵">冷凍・冷蔵</option>
       <option value="分からない">分からない</option>
     </select>
   </div>
