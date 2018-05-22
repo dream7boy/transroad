@@ -63,8 +63,8 @@
 
       <!-- DESKTOP DROPDOWN / Logged Out -->
       <ul>
-        <li><%= link_to  t("運送会社の登録"), root_path(anchor: "landing--carrier"), class: "" %></li>
 <% if false %>
+        <li><%= link_to  t("運送会社の登録"), root_path(anchor: "landing--carrier"), class: "" %></li>
         <li><%= link_to t("荷物を運びたい"), root_path(anchor: "landing--carrier"), class: "" %></li>
         <li><%= link_to t("荷物を送りたい"), root_path(anchor: "landing--shipper"), class: "" %></li>
 <% end %>
@@ -151,20 +151,22 @@
         <% else %>
 
           <!-- MOBILE DROPDOWN / Logged Out -->
+<% if false %>
           <li><%= link_to "荷物を運びたい", root_path(anchor: "landing--carrier"), class: "" %></li>
           <li><%= link_to "荷物を送りたい", root_path(anchor: "landing--shipper"), class: "" %></li>
+<% end %>
           <li>
-            <p>ログインする</p>
+            <p class="hidden">ログインする</p>
             <ul class="sub-list">
-              <li><%= link_to "運送会社", new_carrier_session_path, class: "" %></li>
-              <li><%#= link_to "荷主会社", new_shipper_session_path, class: "" %></li>
+              <li><%= link_to "ログイン・運送会社", new_carrier_session_path, class: "" %></li>
+              <li class="hidden"><%= link_to "荷主会社", new_shipper_session_path, class: "" %></li>
             </ul>
           </li>
           <li>
-            <p>新規登録する</p>
+            <p class="hidden">新規登録する</p>
             <ul class="sub-list">
-              <li><%= link_to "運送会社", new_carrier_registration_path, class: "" %></li>
-              <li><%#= link_to "荷主会社", new_shipper_registration_path, class: "" %></li>
+              <li><%= link_to "新規登録・運送会社", new_carrier_registration_path, class: "" %></li>
+              <li class="hidden"><%= link_to "荷主会社", new_shipper_registration_path, class: "" %></li>
             </ul>
           </li>
         <% end %>
