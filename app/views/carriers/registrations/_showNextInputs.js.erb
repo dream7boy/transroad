@@ -1,6 +1,6 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", function() {
 
       const btn =  document.querySelector('#showNextInputs');
       const backBtns = document.querySelectorAll("[data-action='previous']");
