@@ -105,6 +105,7 @@ carrier_addresses.count.times do
   gimei_carrier = Gimei.name
 
   carrier = Carrier.new(
+      visible: true,
       company_name: "#{%w(株式会社 有限会社).sample}#{gimei_carrier.last.kanji}運輸",
       post_code: carrier_addresses[count][:post_code],
       prefecture: carrier_addresses[count][:prefecture],

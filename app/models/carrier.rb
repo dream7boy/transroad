@@ -7,6 +7,7 @@ class Carrier < ApplicationRecord
   has_many :deals, dependent: :destroy
   has_many :vehicles, dependent: :destroy
 
+  validates :visible, presence: true
   validates :company_name, presence: true
   validates :post_code, presence: true
   validates :prefecture, presence: true
@@ -51,7 +52,7 @@ class Carrier < ApplicationRecord
     # というメソッドが追加されるので下記のコードを追加
     # self.skip_reconfirmation!
 
-    update_attribute(:email, new_email)
+    update_attributes(email: new_email, visible: false)
 
     # また、social_profilesが存在する場合はuidの頭にもleave_atを追加する
     # fb,twitter両方連携されている場合があるため、each doしている。

@@ -1,5 +1,7 @@
 <div class="inputContainer">
   <h3>会社情報</h3>
+  <%= f.hidden_field :visible, as: :boolean, value: true %>
+
   <%= f.input :company_name,
     label: "会社名",
     required: true,

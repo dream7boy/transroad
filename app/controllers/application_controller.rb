@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
         :name_furigana, :phone, { areas_covered: [] }, { favorite_products: [] },
         :industry, :site_url, :ceo_name, :founded_date_year, :founded_date_month,
         :capital, :employee_numbers, :strength_1, :strength_2, { specialties: [] },
-        :company_description, :photo, :fax, :visible
+        :company_description, :photo, :fax, :visible,
         vehicles_attributes: Vehicle.attribute_names.map(&:to_sym).push(:_destroy)]
 
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
