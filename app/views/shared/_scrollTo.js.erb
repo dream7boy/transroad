@@ -1,6 +1,6 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", function() {
 
       // Custom setting for pseudo-multi-select for prefecture element.
       const target = '#carrier_areas_covered--container div.ms-parent.form-control.grouped_select.required';

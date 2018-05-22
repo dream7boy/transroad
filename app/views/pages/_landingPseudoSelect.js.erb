@@ -2,6 +2,21 @@
   <%= javascript_tag do %>
     $(document).ready(function() {
     // ------------------------------------------------
+      // Polyfill for .includes()
+      if (!String.prototype.includes) {
+        String.prototype.includes = function(search, start) {
+          'use strict';
+          if (typeof start !== 'number') {
+            start = 0;
+          }
+          if (start + search.length > this.length) {
+            return false;
+          } else {
+            return this.indexOf(search, start) !== -1;
+          }
+        };
+      }
+    // ------------------------------------------------
       // FUNCTION TO CREATE PSEUDO-DROPDOWN FOR EACH SOURCE
       // Originally an IIFE but the experience was patchy, called function instead.
       // Original code only had 1 input in mind... improvised the code.
@@ -19,20 +34,20 @@
       function createDropDown(selectSource, i) {
         const selected = selectSource.find("option[selected]");
         const options = $("option", selectSource);
-        $(`.pseudoSelect${i}`).append(
-          `<dl id="target${i}" class="dropdown"></dl>`
+        $(".pseudoSelect" + i).append(
+          "<dl id=target" + i + " class='dropdown'></dl>"
         );
-        $(`#target${i}`).append(
+        $("#target" + i).append(
           '<dt><a href="#">' + selected.text() +
           '<span class="value">' + selected.val() +
           '</span></a></dt>'
         );
         // CREATE PSEUDO SELECT DROPDOWN--LIST
-        $(`#target${i}`).append(
+        $("#target" + i).append(
           '<dd><ul></ul></dd>'
         );
         options.each(function() {
-          $(`#target${i} dd ul`).append(
+          $("#target" + i + " dd ul").append(
             '<a href="#"><li>' + $(this).text() +
             '<span class="value">' + $(this).val() +
             '</span></li></a>'
@@ -43,7 +58,7 @@
     // ------------------------------------------------
       // ON CLICK OF PSEUDO SELECT DROPDOWN--CONTAINER
       $(".dropdown dt").click(function() {
-        const target = `#${this.parentNode.id} dd ul`;
+        const target = "#" + this.parentNode.id + " dd ul";
         $(target).toggle();
       });
 
@@ -60,12 +75,12 @@
     // ------------------------------------------------
       // ON CLICK OF PSEUDO SELECT DROPDOWN--LIST--ITEM
       $(".dropdown dd ul a li").click(function() {
-        const targetOne = `#${this.closest('[id*=target]').id} dt a`;
-        const targetTwo = `#${this.closest('[id*=target]').id} dd ul`;
+        const id = $(this).closest('[id*=target]')[0].id;
+        const targetOne = "#" + id + " dt a";
+        const targetTwo = "#" + id + " dd ul";
         const text = $(this).html();
-        const id = this.closest('[id*=target]').id;
         const idString = id.slice(id.length-3,id.length);
-        const selectSource = $(`#selectSource${idString}`);
+        const selectSource = $("#selectSource" + idString);
         $(targetOne).html(text);
         $(targetTwo).hide();
         selectSource.val($(this).find("span.value").html());
