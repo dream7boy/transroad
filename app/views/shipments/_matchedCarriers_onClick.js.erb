@@ -3,7 +3,9 @@
     $(document).ready(function() {
 
     const carrierCards = document.querySelectorAll('.cardCarrier');
-    carrierCards.forEach(card => card.addEventListener('click', handleClick));
+    carrierCards.forEach(function(card) {
+      card.addEventListener('click', handleClick)
+    });
 
     function handleClick(e) {
       const summary = e.currentTarget.querySelector("[data-name='summary'] p");

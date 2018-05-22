@@ -3,8 +3,12 @@
     document.addEventListener("DOMContentLoaded", function() {
 
       const inputs = document.querySelectorAll("[data-wordcounter='true']");
-      inputs.forEach(input => updateCount(input));
-      inputs.forEach(input => input.addEventListener('input', handleInput));
+      inputs.forEach(function(input) {
+        updateCount(input);
+      });
+      inputs.forEach(function(input) {
+        input.addEventListener('input', handleInput);
+      });
 
       function updateCount(input) {
         if(input.value.length > 0) {

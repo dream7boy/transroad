@@ -9,7 +9,7 @@
     // === START / RESTORE EMPLOYEE =====================================
     const storedEmployee = inputBank['employee_numbers'] || inputBank['carrier']['employee_numbers'];
     const eInput = Array.from(document.querySelectorAll('[name="carrier[employee_numbers]"] option'))
-      .filter(option => option.value.includes(storedEmployee));
+      .filter(function(option) {return option.value.includes(storedEmployee)});
     eInput[0].selected = true;
     // === END / RESTORE EMPLOYEE =======================================
 
@@ -22,19 +22,15 @@
         // Cross check the 'stored inputs' against the 'PSEUDO-inputs'
         Array.from(
           document.querySelectorAll("input[data-name='selectItemcarrier[areas_covered][]']"))
-          .filter(input => areasCovered.includes(input.value))
-          .forEach(input => input.checked = true);
-        // Array.from(
-        //   document.querySelectorAll("input[data-name='selectGroupcarrier[areas_covered][]']"))
-        //   .filter(input => areasCovered.includes(input.computedName))
-        //   .forEach(input => input.checked = true);
+          .filter(function(input) {return areasCovered.includes(input.value)})
+          .forEach(function(input) {input.checked = true});
 
         // Cross check the 'stored inputs' against the 'ORIGINAL-inputs'
         const origin = document.querySelector('#carrier_areas_covered');
         Array.from(
           document.querySelectorAll("option"))
-          .filter(option => areasCovered.includes(option.value))
-          .forEach(option => option.selected = true);
+          .filter(function(option) {return areasCovered.includes(option.value)})
+          .forEach(function(option) {option.selected = true});
 
         // Replace placeholder text with the selected prefectures
         const placeholder = document.querySelector('span.placeholder');
@@ -51,7 +47,7 @@
         for(let i = 0; i < optGroup.length; i++ ) {
           const currentOptGroup = document.querySelector(`label[data-group='group_${i}']`);
           const opts = Array.from(document.querySelectorAll(`input[data-group='group_${i}']`));
-          const optsChecked = opts.filter(opt => opt.checked);
+          const optsChecked = opts.filter(function(opt) {return opt.checked});
           if(optsChecked.length === opts.length) currentOptGroup.querySelector('input').checked = true;
         }
       }
@@ -81,13 +77,15 @@
       } else {
         // START / FOR EDIT PROFILE
         let vehicles = JSON.parse(document.querySelector('.inputBankVehicle').textContent);
-        vehicles = vehicles.map(vehicle => ({
-          load_capacity: vehicle.load_capacity,
-          vehicle_type: vehicle.vehicle_type,
-          quantity: vehicle.quantity,
-          type_specifications: vehicle.type_specifications,
-          feature: vehicle.feature
-        }));
+        vehicles = vehicles.map(function(vehicle) {
+          return {
+            load_capacity: vehicle.load_capacity,
+            vehicle_type: vehicle.vehicle_type,
+            quantity: vehicle.quantity,
+            type_specifications: vehicle.type_specifications,
+            feature: vehicle.feature
+          }
+        });
         for(let i = 0; i < vehicles.length; i++) {
           const vehicle = vehicles[i];
           for(const property in vehicle) {
