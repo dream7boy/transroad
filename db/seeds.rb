@@ -78,7 +78,7 @@ prefecture =
 
 # time = %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 その他)
 
-# temperature = %w(常温 保冷 冷蔵・冷凍 分からない)
+# temperature = %w(常温 保冷 冷凍・冷蔵 分からない)
 
 # additional_info = %w(パレット必要 フォークリフト必要 割れ物多数)
 

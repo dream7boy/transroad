@@ -9,6 +9,8 @@ class Shipment < ApplicationRecord
 
   QUERY_ALL = '分からない'
   QUERY_NORMAL_TEMP = '常温'
+
+  #Without 保冷 and 冷凍・冷蔵
   QUERY_NORMAL_TEMP_VEHICLES = %w(標準 パワーゲート エアサス パワーゲート＆エアサス)
 
   validates :pickups, presence: true
