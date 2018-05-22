@@ -15,7 +15,9 @@
       // Generic setting for any of the buttons that would be better with an animate scroll.
       const targets = document.querySelectorAll("[data-animateScroll='true']");
       if(targets.length > 0) {
-        targets.forEach(target => target.addEventListener('click', addScrollSetting))
+        targets.forEach(function(target) {
+          target.addEventListener('click', addScrollSetting)
+        });
       }
       function addScrollSetting(e) {
         const target = this.attributes.href.value;

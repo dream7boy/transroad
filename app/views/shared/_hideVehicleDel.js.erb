@@ -1,6 +1,7 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
 
+    // Script to ensure there will be at least 1 vehicle on the Carrier Edit Page
     const targetArea = document.querySelector("#carrier__vehicles__container");
     const addBtn = document.querySelector(".btnAddNestForm");
     let removeBtns, currentFields;
@@ -10,14 +11,22 @@
     function onAdd() {
       currentFields = targetArea.querySelectorAll("div.nested-fields:not([style*=none])");
       removeBtns = targetArea.querySelectorAll(".btnRemoveNestForm");
-      if(currentFields.length + 1 > 1) removeBtns.forEach(btn => btn.classList.remove('hidden'));
+      if(currentFields.length + 1 > 1) {
+        removeBtns.forEach(function(btn) {
+          btn.classList.remove('hidden')
+        });
+      }
     }
 
     // Due the target being a dynamic added element, I used 'onclick: onRemove();' in '_vehicle_fields.html.erb'
     function onRemove() {
       currentFields = targetArea.querySelectorAll("div.nested-fields:not([style*=none])");
       removeBtns = targetArea.querySelectorAll(".btnRemoveNestForm");
-      if(currentFields.length - 1 < 2) removeBtns.forEach(btn => btn.classList.add('hidden'));
+      if(currentFields.length - 1 < 2) {
+        removeBtns.forEach(function(btn) {
+          btn.classList.add('hidden')
+        });
+      }
     }
 
   <% end %>

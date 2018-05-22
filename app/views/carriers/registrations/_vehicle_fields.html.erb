@@ -29,9 +29,16 @@
       input_html: { min: 1, value: 1 },
       wrapper_html: { class: "col-fifth-vehic" } %>
 
-    <%= link_to_remove_association "⤫",
-      f,
-      class: "btn btnSmall btnNull btnRemoveNestForm",
-      onclick: "onRemove();" %>
+    <%  if current_page?(new_carrier_registration_path) || current_page?(carrier_registration_path) %>
+      <%= link_to_remove_association "⤫",
+        f,
+        class: "btn btnSmall btnNull btnRemoveNestForm" %>
+    <% else %>
+      <%= link_to_remove_association "⤫",
+        f,
+        class: "btn btnSmall btnNull btnRemoveNestForm",
+        onclick: "onRemove();" %>
+    <% end %>
+
   </div>
 </div>

@@ -9,12 +9,16 @@
       let yearType, checkedBtn, yearInput;
 
       foundedDateDummy.setAttribute('max', now.getFullYear());
-      radioBtnWrappers.forEach(btn => btn.addEventListener('click', handleClick));
+      radioBtnWrappers.forEach(function(btn) {
+        btn.addEventListener('click', handleClick);
+      });
       foundedDateDummy.addEventListener('input', handleInput);
 
       function handleClick(e) {
         const pseudoRadios = document.querySelectorAll("[data-type='pseudoRadio']");
-        pseudoRadios.forEach(btn => btn.classList.remove('checked'));
+        pseudoRadios.forEach(function(btn) {
+          btn.classList.remove('checked');
+        });
         e.currentTarget.querySelector("[data-type='pseudoRadio']").classList.add('checked');
         checkedBtn = document.querySelector("[data-type='pseudoRadio'].checked");
         yearType = checkedBtn.dataset.yeartype;

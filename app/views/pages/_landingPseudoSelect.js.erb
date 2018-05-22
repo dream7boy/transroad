@@ -2,21 +2,6 @@
   <%= javascript_tag do %>
     $(document).ready(function() {
     // ------------------------------------------------
-      // Polyfill for .includes()
-      if (!String.prototype.includes) {
-        String.prototype.includes = function(search, start) {
-          'use strict';
-          if (typeof start !== 'number') {
-            start = 0;
-          }
-          if (start + search.length > this.length) {
-            return false;
-          } else {
-            return this.indexOf(search, start) !== -1;
-          }
-        };
-      }
-    // ------------------------------------------------
       // FUNCTION TO CREATE PSEUDO-DROPDOWN FOR EACH SOURCE
       // Originally an IIFE but the experience was patchy, called function instead.
       // Original code only had 1 input in mind... improvised the code.
