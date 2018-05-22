@@ -49,7 +49,7 @@
   #home {
     #landingDescriptionTwo {
       display: flex;
-      flex-direction: initial;
+      flex-direction: row;
       p {
         width: initial;
       }
@@ -63,7 +63,7 @@
         }
       }
       .landingContainer {
-        flex: initial;
+        flex: auto;
       }
     }
     .landingWrapper {
@@ -80,7 +80,7 @@
         margin-left: $spacer--lg;
       }
       &.imgBox {
-        flex-direction: unset;
+        flex-direction: row;
         align-items: center;
         & svg {
           padding: 10px;

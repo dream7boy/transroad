@@ -47,20 +47,9 @@
     }
     .landingContainer {
       justify-content: center;
-      flex: initial;
+      flex: 1 0 auto;
       display: flex;
       flex-direction: column;
-    }
-    // justify-content: center;
-    // width: 100%;
-    // padding: $spacer--lg 0;
-    & div {
-      // align-items: center;
-      // display: flex;
-      // justify-content: center;
-    }
-    .imgBox {
-      // margin-bottom: $spacer--xs;
     }
   }
   .landing--navbar {
@@ -76,9 +65,6 @@
       width: 100%;
       li {
         padding: 10px 0;
-        &:first-child {
-          // padding: 0 0 10px 0;
-        }
       }
       a {
         color: $color--gray;
@@ -134,9 +120,10 @@
       }
     }
     .landingCenter {
-      flex-direction: initial;
+      flex-direction: row;
       padding-top: $navbar__height;
-      flex: 1;
+      flex: 1 0 auto;
+      align-items: center;
       ul.points li {
         h1 {
           font-size: 2.8rem;
@@ -144,7 +131,7 @@
       }
     }
     .landing--navbar {
-      position: initial;
+      position: static;
       li.sub-list--parent {
         position: relative;
         &:hover ul.sub-list--child {
