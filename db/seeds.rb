@@ -52,13 +52,6 @@ delivery_addresses = delivery_addresses_raw_data.map do |address|
   }
 end
 
-vehicle_types =
-  %w(バン 平ボディ 平ボディ・幌 ウィング・アルミ ウィング・幌 ユニック ダンプ 重機運搬)
-
-type_specifications = %w(標準 ワイド ロング ワイド＆ロング)
-
-feature = %w(標準 パワーゲート エアサス パワーゲート＆エアサス 冷蔵・冷凍 保冷)
-
 strength_1 =
   %w(丁寧な梱包と時間通りの運送！ 全国どこでも365日24時間対応！ 倉庫で一時お預かり可能！ 経験豊富な専門ドライバーが担当)
 
@@ -81,21 +74,18 @@ prefecture =
      "鳥取県","島根県","山口県","徳島県","香川県","愛媛県","高知県","福岡県",
      "佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"]
 
-products =
-    %w(農産物 水産品 石油 石炭 食料品 飲料等 繊維・衣料品 木材・木製品 紙・紙加工品 出版・印刷物 化学製品・ゴム製品 窯業・土石製品 鉄鋼・金属製品 機械・機械部品 家電品・家電部品 輸送機械・輸送機械部品 日用品・雑貨 砂利・砂・石材 廃棄物 コンテナ 引越貨物 その他)
+# industries = %w(製造 土木・建設 農業 林業 漁業 飲食 小売 卸売 印刷 商社)
 
-industries = %w(製造 土木・建設 農業 林業 漁業 飲食 小売 卸売 印刷 商社)
+# time = %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 その他)
 
-time = %w(平日の午前 平日の午後 月曜日の午後 月曜日の早朝 その他)
+# temperature = %w(常温 保冷 冷蔵・冷凍 分からない)
 
-temperature = %w(常温 保冷 冷蔵・冷凍 分からない)
+# additional_info = %w(パレット必要 フォークリフト必要 割れ物多数)
 
-additional_info = %w(パレット必要 フォークリフト必要 割れ物多数)
-
-duration_start_from = Date.parse("2018/2/1")
-duration_start_to = Date.parse("2018/4/30")
-duration_end_from = Date.parse("2018/7/31")
-duration_end_to = Date.parse("2018/12/31")
+# duration_start_from = Date.parse("2018/2/1")
+# duration_start_to = Date.parse("2018/4/30")
+# duration_end_from = Date.parse("2018/7/31")
+# duration_end_to = Date.parse("2018/12/31")
 
 # Seeds for Carriers
 puts 'Creating Carriers and Vehicles...'
@@ -112,11 +102,12 @@ carrier_addresses.count.times do
       ward: carrier_addresses[count][:ward],
       street: carrier_addresses[count][:street],
       areas_covered: prefecture.sample(20),
-      favorite_products: products.sample(3),
+      favorite_products: Carrier::FAVORITE_PRODUCTS.sample(3),
       ceo_name: gimei_carrier.kanji,
       name_kanji: gimei_carrier.kanji,
       name_furigana: gimei_carrier.hiragana,
       phone: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
+      fax: "03-#{rand(1000..9999)}-#{rand(1000..9999)}",
       email: "carrier#{carrier_addresses[count][:id]}@gmail.com",
       password: "123123",
       founded_date_year: rand(1900..2018),
@@ -136,9 +127,9 @@ carrier_addresses.count.times do
   5.times do
     vehicle = carrier.vehicles.build(
       load_capacity: rand(1..10),
-      vehicle_type: vehicle_types.sample,
-      type_specifications: type_specifications.sample,
-      feature: feature.sample,
+      vehicle_type: Vehicle::TYPES.sample,
+      type_specifications: Vehicle::SPECIFICATIONS.sample,
+      feature: Vehicle::FEATURES.sample,
       quantity: rand(2..10)
       )
     vehicle.save
