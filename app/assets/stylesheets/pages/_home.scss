@@ -63,7 +63,7 @@
         }
       }
       .landingContainer {
-        flex: auto;
+        flex: 1 0 auto;
       }
     }
     .landingWrapper {
@@ -74,7 +74,7 @@
       justify-content: center;
       display: flex;
       flex-direction: column;
-      flex: 1 50%;
+      flex: 1 0 50%;
       + .landingContainer {
         margin-top: 0;
         margin-left: $spacer--lg;
