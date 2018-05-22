@@ -11,7 +11,7 @@ class ShipmentsController < ApplicationController
     @query = query_params
 
     @all_carriers_two_conditions =
-      Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[]",
+      Carrier.where("areas_covered @> ARRAY[?]::varchar[] AND favorite_products @> ARRAY[?]::varchar[] AND visible = true",
                     [@query[:pickup_prefecture], @query[:delivery_prefecture]], @query[:category])
 
     if @query[:temperature] == Shipment::QUERY_ALL
