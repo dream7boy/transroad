@@ -8,8 +8,11 @@
       backBtns.forEach(function(btn) { btn.addEventListener('click', handleClick) });
 
       function handleClick() {
+        const firstInput =  document.querySelector("section[data-name='inputBlock1']");
         const secondInput =  document.querySelector("section[data-name='inputBlock2']");
+        const isNotInView =  firstInput.classList.contains('notInView');
         const isInView =  secondInput.classList.contains('inView');
+        isInView ? firstInput.classList.remove('notInView') : firstInput.classList.add('notInView');
         isInView ? secondInput.classList.remove('inView') : secondInput.classList.add('inView');
         $('html, body').animate({
           scrollTop: $('html, body').offset().top

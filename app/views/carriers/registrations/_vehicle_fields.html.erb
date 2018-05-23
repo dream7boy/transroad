@@ -29,14 +29,8 @@
       input_html: { min: 1, value: 1 },
       wrapper_html: { class: "col-fifth-vehic" } %>
 
-    <%  if current_page?(new_carrier_registration_path) || current_page?(carrier_registration_path) %>
-      <%= link_to_remove_association(f) do %>
-        <i class="fas fa-times-circle btnRemoveNestForm"></i>
-      <% end %>
-    <% else %>
-      <%= link_to_remove_association(f) do %>
-        <i class="fas fa-times-circle btnRemoveNestForm"></i>
-      <% end %>
+    <%= link_to_remove_association(f) do %>
+      <i class="fas fa-times-circle btnRemoveNestForm" onclick="onRemove()"></i>
     <% end %>
 
   </div>

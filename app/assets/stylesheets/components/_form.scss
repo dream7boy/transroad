@@ -116,6 +116,9 @@ label[for="carrier_company_description"] {
     flex: 1 100%;
     min-width: 100%;
     transition-duration: $transition--lg;
+    &[data-name="inputBlock1"].notInView {
+      height: 0;
+    }
     &[data-name="inputBlock2"] {
       z-index: 10;
       height: 0;
