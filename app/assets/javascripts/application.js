@@ -20,7 +20,7 @@ $('document').ready(function() {
   }, 3000);
 });
 
-// POLYFILL FOR .INCLUDES()
+// POLYFILL FOR STRING.INCLUDES()
 if (!String.prototype.includes) {
   String.prototype.includes = function(search, start) {
     'use strict';
@@ -33,6 +33,34 @@ if (!String.prototype.includes) {
       return this.indexOf(search, start) !== -1;
     }
   };
+}
+
+// POLYFILL FOR ARRAY.INCLUDES()
+if (!Array.prototype.includes) {
+  Object.defineProperty(Array.prototype, 'includes', {
+    value: function(searchElement, fromIndex) {
+      if (this == null) {
+        throw new TypeError('"this" is null or not defined');
+      }
+      var o = Object(this);
+      var len = o.length >>> 0;
+      if (len === 0) {
+        return false;
+      }
+      var n = fromIndex | 0;
+      var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+      function sameValueZero(x, y) {
+        return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+      }
+      while (k < len) {
+        if (sameValueZero(o[k], searchElement)) {
+          return true;
+        }
+        k++;
+      }
+      return false;
+    }
+  });
 }
 
 // POLYFILL FOR .FOREACH()
@@ -63,7 +91,6 @@ if (!Array.from) {
       var len = toInteger(value);
       return Math.min(Math.max(len, 0), maxSafeInteger);
     };
-
     return function from(arrayLike/*, mapFn, thisArg */) {
       var C = this;
       var items = Object(arrayLike);
@@ -80,7 +107,6 @@ if (!Array.from) {
           T = arguments[2];
         }
       }
-
       var len = toLength(items.length);
       var A = isCallable(C) ? Object(new C(len)) : new Array(len);
       var k = 0;

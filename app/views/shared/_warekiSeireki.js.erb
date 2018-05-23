@@ -36,7 +36,7 @@
 
       function handleInput(e) {
         yearInput = Number(e.currentTarget.value);
-        if(checkedBtn === null) return errorMsg.textContent = "西暦・和暦を選択してください";
+        if(checkedBtn === null || checkedBtn === undefined) return errorMsg.textContent = "西暦・和暦を選択してください";
         getGregorianYear(yearType, yearInput);
       }
 
@@ -47,6 +47,8 @@
         if ((yearType === "西暦") && (validYear)) {
             year = yearInput;
             errorMsg.textContent = "";
+        } else if ((yearType === "西暦") && (yearInput > now.getFullYear())) {
+            return errorMsg.textContent = "入力された西暦はもう少し先のようなので、まだ選択できません";
         } else if ((yearType === "西暦") && (yearInput < 1867)) {
             return errorMsg.textContent = "西暦1867（明治元年）以前は選択できません";
         } else if ((yearType === "平成") && (yearInput > 0) && (yearInput <= 30)) {
