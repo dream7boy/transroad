@@ -1,5 +1,6 @@
 #carrierDashboard {
   align-items: center;
+  height: 1px; // CATER FOR IE SINCE THE PARENT NEEDS A HEIGHT OF SOME FORM
 }
 
 #queryResults {

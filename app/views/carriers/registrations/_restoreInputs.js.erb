@@ -45,8 +45,8 @@
       function restoreRegions() {
         const optGroup = document.querySelectorAll("label[data-group*='group']");
         for(let i = 0; i < optGroup.length; i++ ) {
-          const currentOptGroup = document.querySelector(`label[data-group='group_${i}']`);
-          const opts = Array.from(document.querySelectorAll(`input[data-group='group_${i}']`));
+          const currentOptGroup = document.querySelector("label[data-group='group_" + i + "']");
+          const opts = Array.from(document.querySelectorAll("input[data-group='group_" + i + "']"));
           const optsChecked = opts.filter(function(opt) {return opt.checked});
           if(optsChecked.length === opts.length) currentOptGroup.querySelector('input').checked = true;
         }
@@ -68,9 +68,9 @@
         // - Hence the reason for 'vehiclesKey[i]' for the storedProperty AND 'i' for the currentProperty.
         for(let i = 0; i < vehiclesKey.length; i++) {
           const vehicle = vehicles[vehiclesKey[i]];
-          for(const property in vehicle) {
-            const storedProperty = vehicles[`${vehiclesKey[i]}`][`${property}`];
-            const currentProperty = document.querySelector(`[name='carrier[vehicles_attributes][${i}][${property}]']`);
+          for(let property in vehicle) {
+            const storedProperty = vehicles[vehiclesKey[i]][property];
+            const currentProperty = document.querySelector("[name='carrier[vehicles_attributes][" + i + "][" + property + "]']");
             currentProperty.value = storedProperty;
           }
         }
@@ -88,9 +88,9 @@
         });
         for(let i = 0; i < vehicles.length; i++) {
           const vehicle = vehicles[i];
-          for(const property in vehicle) {
-            const storedProperty = vehicles[i][`${property}`];
-            const currentProperty = document.querySelector(`[name='carrier[vehicles_attributes][${i}][${property}]']`);
+          for(let property in vehicle) {
+            const storedProperty = vehicles[i][property];
+            const currentProperty = document.querySelector("[name='carrier[vehicles_attributes][" + i + "][" + property + "]']");
             currentProperty.value = storedProperty;
           }
         }
