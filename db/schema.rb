@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180522060902) do
+ActiveRecord::Schema.define(version: 20180523065545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(version: 20180522060902) do
   end
 
   create_table "vehicles", force: :cascade do |t|
-    t.string "load_capacity"
+    t.integer "load_capacity", default: 0, null: false
     t.string "vehicle_type"
     t.integer "quantity"
     t.bigint "carrier_id"
