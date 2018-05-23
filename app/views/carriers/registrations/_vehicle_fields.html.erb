@@ -30,14 +30,13 @@
       wrapper_html: { class: "col-fifth-vehic" } %>
 
     <%  if current_page?(new_carrier_registration_path) || current_page?(carrier_registration_path) %>
-      <%= link_to_remove_association "⤫",
-        f,
-        class: "btn btnSmall btnNull btnRemoveNestForm" %>
+      <%= link_to_remove_association(f) do %>
+        <i class="fas fa-times-circle btnRemoveNestForm"></i>
+      <% end %>
     <% else %>
-      <%= link_to_remove_association "⤫",
-        f,
-        class: "btn btnSmall btnNull btnRemoveNestForm",
-        onclick: "onRemove();" %>
+      <%= link_to_remove_association(f) do %>
+        <i class="fas fa-times-circle btnRemoveNestForm"></i>
+      <% end %>
     <% end %>
 
   </div>

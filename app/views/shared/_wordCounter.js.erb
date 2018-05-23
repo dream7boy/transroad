@@ -14,7 +14,7 @@
         if(input.value.length > 0) {
           const maxLength = input.attributes.maxLength.value;
           const currentLength = input.value.length;
-          const counter = document.querySelector(`span.${input.id}`);
+          const counter = document.querySelector("span." + input.id);
           textColor(counter, maxLength, currentLength);
         }
       }
@@ -22,7 +22,7 @@
       function handleInput() {
         const maxLength = this.attributes.maxLength.value;
         const currentLength = this.value.length;
-        const counter = document.querySelector(`span.${this.id}`);
+        const counter = document.querySelector("span." + this.id);
         textColor(counter, maxLength, currentLength);
       }
 
@@ -32,7 +32,7 @@
         } else {
           counter.style.color = '#777777';
         }
-        counter.textContent = `残り${maxLength - currentLength}文字`;
+        counter.textContent = "残り" + (maxLength - currentLength) + "文字";
       }
 
     });

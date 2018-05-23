@@ -101,16 +101,15 @@
   letter-spacing: 0.05rem;
 }
 
-.btnRemoveNestForm {
-  align-items: center;
-  background-color: $red;
-  border-radius: 50px;
-  display: flex;
-  height: 24px;
-  justify-content: center;
+.remove_fields {
   margin-left: auto;
-  padding-bottom: 6px;
-  width: 24px;
+  .btnRemoveNestForm {
+    color: $red;
+    font-size: 2.4rem;
+    &:hover {
+      color: darken($red, 10%);
+    }
+  }
 }
 
 .btnTriangle {

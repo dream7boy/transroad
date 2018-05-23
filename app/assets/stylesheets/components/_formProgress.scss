@@ -12,7 +12,7 @@ $form__progress--unit: 24px;
 .progressBarStep {
   align-items: center;
   display: flex;
-  flex-grow: 1;
+  flex: 1 0 auto;
   justify-content: center;
   position: relative;
   p {
@@ -21,7 +21,6 @@ $form__progress--unit: 24px;
     letter-spacing: 0.05rem;
     font-weight: bold;
     text-align: center;
-    position: absolute;
     line-height: 1;
     a {
       color: inherit;
@@ -31,22 +30,13 @@ $form__progress--unit: 24px;
   &[data-action='previous'] {
     cursor: pointer;
     user-select: none;
-    &:hover {
+    &:hover, &:hover::after {
       background-color: $color--sub;
-      &:after {
-        background-color: $color--sub;
-      }
     }
   }
 }
 
 .progressBarStep {
-  &.active {
-    background-color: $color--sub;
-    &:after {
-      background-color: $color--sub;
-    }
-  }
   &:after {
     background-color: $color--lightgray;
     border-right: 2px solid $color--white;
@@ -55,11 +45,15 @@ $form__progress--unit: 24px;
     height: calc(#{$form__progress--unit} - 4px);
     position: absolute;
     right: -12px;
+    top: 2px;
     transform: rotate(45deg) translateZ(1px);
     width: calc(#{$form__progress--unit} - 4px);
     z-index: 10;
   }
   &:last-child:after {
     display: none;
+  }
+  &.active, &.active::after  {
+    background-color: $color--sub;
   }
 }

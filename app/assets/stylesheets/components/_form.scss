@@ -7,7 +7,7 @@
 
 #carrier_favorite_products--container {
   div.checkbox--container {
-    height: unset;
+    height: auto;
     margin: 0;
     padding: 11px 18px 12px 18px;
     span.checkbox {
@@ -20,7 +20,7 @@
       }
       label {
         line-height: 1;
-        min-height: unset;
+        min-height: auto;
         padding: 0;
         &.disabled {
           color: $color--lightgray;
@@ -51,12 +51,12 @@ div[data-name="founded_date"] {
   align-items: flex-start;
   div:first-child {
     padding: 0 15px 0 15px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-direction: column;
+    // flex-wrap: wrap;
     label {
-      margin-bottom: 0.6em;
-      flex: 1 100%;
+      margin-bottom: 0.8em;
+      flex: 1 0 100%;
       width: auto;
     }
     div {
@@ -97,6 +97,11 @@ div[data-name="founded_date"] {
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+// Hide 'clear input' button on IE
+input::-ms-clear {
+  display: none;
 }
 
 label[for="carrier_company_description"] {
@@ -189,7 +194,8 @@ label[for="carrier_company_description"] {
   justify-content: space-between;
   width: 100%;
   &.label__append--container {
-    width: unset;
+    display: inline-block;
+    width: auto;
   }
 }
 
