@@ -126,7 +126,7 @@ carrier_addresses.count.times do
 
   5.times do
     vehicle = carrier.vehicles.build(
-      load_capacity: rand(1..10),
+      load_capacity: %w(0.35 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10).sample,
       vehicle_type: Vehicle::TYPES.sample,
       type_specifications: Vehicle::SPECIFICATIONS.sample,
       feature: Vehicle::FEATURES.sample,
