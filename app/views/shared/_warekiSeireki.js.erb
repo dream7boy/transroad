@@ -13,7 +13,9 @@
         btn.addEventListener('click', handleClick);
       });
       foundedDateDummy.addEventListener('input', handleInput);
+      foundedDateDummy.addEventListener('blur', convertZenToHan);
 
+      // ON CLICK OF RADIO BUTTON
       function handleClick(e) {
         const pseudoRadios = document.querySelectorAll("[data-type='pseudoRadio']");
         pseudoRadios.forEach(function(btn) {
@@ -28,9 +30,10 @@
         errorMsg.textContent = '';
       }
 
+      // ON INPUT OF YEAR
       function handleInput(e) {
         yearInput = Number(e.currentTarget.value);
-        if(checkedBtn === null || checkedBtn === undefined) return errorMsg.textContent = "西暦・和暦を選択してください";
+        if(checkedBtn === null || checkedBtn === undefined) { return errorMsg.textContent = "西暦・和暦を選択してください"; }
         if(yearType === "西暦" && yearInput.toString().length > 3) {
           getGregorianYear(yearType, yearInput);
         } else if(yearType != "西暦") {
@@ -38,6 +41,31 @@
         }
       }
 
+      // ON BLUR OF YEAR INPUT CHECK IF IT NEEDS TO BE HANKAKU-NIZED
+      function convertZenToHan(e) {
+        const zenkakuArray = ['１','２','３','４','５','６','７','８','９','０'];
+        for(let i in zenkakuArray) {
+          this['zen' + i] = e.currentTarget.value.indexOf(zenkakuArray[i]);
+        }
+        const noZenkaku = (
+          (this.zen1 === -1) && (this.zen2 === -1) &&
+          (this.zen3 === -1) && (this.zen4 === -1) &&
+          (this.zen5 === -1) && (this.zen6 === -1) &&
+          (this.zen7 === -1) && (this.zen8 === -1) &&
+          (this.zen9 === -1) && (this.zen0 === -1)
+        );
+        if(!noZenkaku) {
+          let hankakuString = '';
+          foundedDateDummy.value.replace(/[０-９]/g, function(s) {
+            hankakuString += String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+          });
+          foundedDateDummy.value = hankakuString;
+          getGregorianYear(yearType, Number(hankakuString));
+        }
+        return;
+      }
+
+      // IF EVERTHING LOOKS IN ORDER THEN GIVE ME THE GREGORIAN YEAR
       function getGregorianYear(yearType, yearInput) {
         const foundedDateReal = document.querySelector('#carrier_founded_date_year');
         const validYear = 1867 <= yearInput && yearInput <= now.getFullYear();

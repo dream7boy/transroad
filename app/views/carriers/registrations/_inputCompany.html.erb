@@ -60,7 +60,7 @@
       <label class="control-label label--null" for="carrier_founded_date_year">年
         <abbr title="required" class="form--required">必須</abbr>
       </label>
-      <input id="foundedDateDummy" class="form-control" type="number" min="1" required="required" aria-required="true">
+      <input id="foundedDateDummy" class="form-control" min="1" required="required" aria-required="true">
     </div>
     <%= f.input :founded_date_year,
       as: :hidden,
@@ -72,6 +72,7 @@
       as: :select,
       collection: %w(1 2 3 4 5 6 7 8 9 10 11 12),
       label: "月",
+      input_html: { type:"number" },
       wrapper_html: { class:"col-xs-2" },
       use_month_numbers: true,
       required: true %>
