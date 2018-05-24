@@ -146,6 +146,9 @@ label[for="carrier_company_description"] {
 
 .form-group {
   margin-bottom: 2rem;
+  &:only-child {
+    margin-bottom: 2rem !important;
+  }
   &:last-child {
     margin-bottom: 0;
   }

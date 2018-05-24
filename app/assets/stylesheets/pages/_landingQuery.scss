@@ -1,18 +1,15 @@
 #landingQueryForm {
   border: $border solid $color--sub;
   padding: calc(28px * 1.25) 12rem;
-
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
   .btn {
     width: 65%;
     margin-top: 4em;
   }
-
   .landingQueryInputs {
     display: flex;
     width: 100%;
@@ -22,12 +19,8 @@
       + .landingQueryInput {
         margin-left: 8rem;
       }
-      // div + div {
-      //   margin-top: 0.75em;
-      // }
     }
   }
-
   .landingQueryInputs {
     div.form-group[class*="post_code"]::before {
       background-image: asset-url("icon_post.svg");
@@ -94,5 +87,4 @@
       height: 80px;
     }
   }
-
 }
