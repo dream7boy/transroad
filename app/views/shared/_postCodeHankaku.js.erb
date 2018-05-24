@@ -1,0 +1,40 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    document.addEventListener("DOMContentLoaded", function() {
+
+      const queryPickupPostCode = document.querySelector('#query_pickup_post_code');
+      const queryDeliveryPostCode = document.querySelector('#query_delivery_post_code');
+      const registrationPostCode = document.querySelector('#carrier_post_code');
+
+      if(queryPickupPostCode) { queryPickupPostCode.addEventListener('blur', convertZenToHan); }
+      if(queryDeliveryPostCode) { queryDeliveryPostCode.addEventListener('blur', convertZenToHan); }
+      if(registrationPostCode) { registrationPostCode.addEventListener('blur', convertZenToHan); }
+
+      function convertZenToHan(e) {
+        const zenkakuArray = ['１','２','３','４','５','６','７','８','９','０'];
+        for(let i in zenkakuArray) {
+          this['zen' + i] = e.currentTarget.value.indexOf(zenkakuArray[i]);
+        }
+        const noZenkaku = (
+          (this.zen1 === -1) && (this.zen2 === -1) &&
+          (this.zen3 === -1) && (this.zen4 === -1) &&
+          (this.zen5 === -1) && (this.zen6 === -1) &&
+          (this.zen7 === -1) && (this.zen8 === -1) &&
+          (this.zen9 === -1) && (this.zen0 === -1)
+        );
+        if(!noZenkaku) {
+          let hankakuString = '';
+          e.currentTarget.value.replace(/[０-９]/g, function(s) {
+            hankakuString += String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+          });
+          e.currentTarget.value = hankakuString;
+        }
+        return;
+      }
+
+      // CONTINUE HERE
+      // - Need to think of a way to pass this to the jpostal?
+
+    });
+  <% end %>
+<% end %>
