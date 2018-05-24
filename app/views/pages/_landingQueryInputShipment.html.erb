@@ -16,7 +16,7 @@
   <div class="pseudoSelectOne">
     <select id="selectSourceOne" class="form-control select required" required="required" aria-required="true" name="query[category]">
       <%= Carrier::FAVORITE_PRODUCTS.each_with_index do |c,i| %>
-        <% if i == 0  %>
+        <% if i == 0 %>
           <option selected="selected"><%= c %></option>
         <% else %>
           <option><%= c %></option>
