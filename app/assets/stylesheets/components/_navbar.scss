@@ -13,7 +13,7 @@
     cursor: pointer;
     padding: 11px 11px 0 0;
     .dropdown {
-      position: unset;
+      position: static;
       &--menu {
         margin: 0;
         padding: 7.5px 0;
@@ -24,7 +24,7 @@
         border: 0;
         border-top: 1px solid transparent;
         &:before {
-          content: unset;
+          content: none;
         }
       }
       .fa-bars {
@@ -90,7 +90,7 @@
           padding-bottom: 14px;
         }
         &:hover {
-          background-color: initial;
+          background-color: $color--sub;
           text-decoration: underline;
         }
         a {
@@ -98,7 +98,7 @@
           font-weight: bolder;
           padding: 0 0 0 0;
           &:hover {
-            background-color: initial;
+            background-color: $color--sub;
           }
         }
       }
@@ -120,7 +120,7 @@
     // START / NAVBAR RIGHT-SIDE MENU
     .navbar--right {
       ul {
-        align-items: unset;
+        // align-items: normal;
         display: flex;
         &:last-child > p {
           padding: 10px 0  10px 13px;

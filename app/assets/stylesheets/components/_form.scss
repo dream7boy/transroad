@@ -104,6 +104,11 @@ input::-ms-clear {
   display: none;
 }
 
+// Remove glossy select appearance from Safari
+select {
+  -webkit-appearance:none;
+}
+
 label[for="carrier_company_description"] {
   width: 28em;
 }
@@ -141,6 +146,9 @@ label[for="carrier_company_description"] {
 
 .form-group {
   margin-bottom: 2rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .form--required {
