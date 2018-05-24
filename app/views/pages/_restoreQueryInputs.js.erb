@@ -1,0 +1,14 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    document.addEventListener("DOMContentLoaded", function() {
+
+      const realInputOne = document.querySelector('#selectSourceOne');
+      const realInputTwo = document.querySelector('#selectSourceTwo');
+      const pseudoOneSel = document.querySelector('#targetOne').querySelector('dt a');
+      const pseudoTwoSel = document.querySelector('#targetTwo').querySelector('dt a');
+      pseudoOneSel.innerText = realInputOne.value;
+      pseudoTwoSel.innerText = realInputTwo.value;
+
+    });
+  <% end %>
+<% end %>
