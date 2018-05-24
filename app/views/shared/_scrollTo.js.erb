@@ -7,7 +7,7 @@
       if(document.querySelector(target) !== null) {
         document.querySelector(target).addEventListener('click', function(e) {
           $('html, body').animate({
-            scrollTop: $(target).offset().top
+            scrollTop: $(target).offset().top - 68
           }, 400);
         });
       }

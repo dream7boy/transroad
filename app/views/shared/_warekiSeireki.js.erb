@@ -22,14 +22,8 @@
         e.currentTarget.querySelector("[data-type='pseudoRadio']").classList.add('checked');
         checkedBtn = document.querySelector("[data-type='pseudoRadio'].checked");
         yearType = checkedBtn.dataset.yeartype;
-        if(yearType === "西暦") {
-          foundedDateDummy.removeEventListener('input', handleInput);
-          foundedDateDummy.addEventListener('blur', handleInput);
-          foundedDateDummy.value = '';
-        } else {
-          foundedDateDummy.removeEventListener('blur', handleInput);
-          foundedDateDummy.addEventListener('input', handleInput);
-        }
+        if(yearType === "西暦") { foundedDateDummy.value = '' }
+        foundedDateDummy.addEventListener('input', handleInput);
         if(foundedDateDummy.value != '') return getGregorianYear(yearType, yearInput);
         errorMsg.textContent = '';
       }
@@ -37,7 +31,11 @@
       function handleInput(e) {
         yearInput = Number(e.currentTarget.value);
         if(checkedBtn === null || checkedBtn === undefined) return errorMsg.textContent = "西暦・和暦を選択してください";
-        getGregorianYear(yearType, yearInput);
+        if(yearType === "西暦" && yearInput.toString().length > 3) {
+          getGregorianYear(yearType, yearInput);
+        } else if(yearType != "西暦") {
+          getGregorianYear(yearType, yearInput);
+        }
       }
 
       function getGregorianYear(yearType, yearInput) {

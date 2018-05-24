@@ -28,26 +28,5 @@
       inputs.forEach(function(strength) { strength.addEventListener('change', handleChange) });
     });
 
-    // document.addEventListener("DOMContentLoaded", function() {
-    //   const inputs = Array.from(document.querySelectorAll("[name='carrier[specialties][]']"));
-    //   const correctInputs = inputs.map(function(company) { return company.value });
-    //   const alert = document.querySelector('.strengthsAlert');
-
-    //   const handleChange = function(e) {
-    //     const currentInputs = Array.from(new Set(inputs.map(function(company) { return company.value })));
-    //     const missingInputs = correctInputs
-    //     .filter(function(input) { return !currentInputs.includes(input) })
-    //     .map(function(input) { return "「" + input + "」" }).join('、');
-    //     if(currentInputs.length < 5) {
-    //       alert.style.opacity = 1;
-    //       alert.textContent = "同じ項目を複数選択することはできませんので、" + missingInputs + "を振り分けてください。";
-    //     } else {
-    //       alert.style.opacity = 0;
-    //     }
-    //   };
-
-    //   inputs.forEach(function(strength) { strength.addEventListener('change', handleChange) });
-    // });
-
   <% end %>
 <% end %>

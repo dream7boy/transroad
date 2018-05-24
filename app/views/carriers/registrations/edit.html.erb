@@ -19,6 +19,12 @@
           <p>メールアドレスの確認中です、認証メールを送信したのでご確認ください。<%= resource.unconfirmed_email %></p>
         <% end %>
       </div>
+      <hr>
+      <%= f.input :current_password,
+        label: "現在のパスワード",
+        input_html: {autocomplete: "password"},
+        required: true
+      %>
       <div class="form-actions">
         <%= f.button :submit, "更新", class:"btnNull btnWidth100" %>
       </div>

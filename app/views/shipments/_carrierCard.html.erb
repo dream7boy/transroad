@@ -35,7 +35,7 @@
       <p class="cardProductList"><span>運送品目：</span><br>
         <% carrier.favorite_products.each do |product| %>
           <% unless product.equal? carrier.favorite_products.last %>
-            <span><%= product %>、</span><br>
+            <span><%= product %>、</span>
           <% else %>
             <span><%= product %></span>
           <% end %>
