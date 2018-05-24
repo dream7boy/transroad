@@ -1,33 +1,55 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
+  // SCRIPT TO ENSURE THERE WILL BE AT LEAST 1 VEHICLE ON THE CARRIER EDIT PAGE
 
-    // Script to ensure there will be at least 1 vehicle on the Carrier Edit Page
-    const targetArea = document.querySelector("#carrier__vehicles__container");
-    const addBtn = document.querySelector(".btnAddNestForm");
-    let removeBtns, currentFields;
+  // VARIABLES
+  const targetArea = document.querySelector("#carrier__vehicles__container");
+  const addBtn = document.querySelector(".btnAddNestForm");
+  const carrierEdit = document.querySelector("#carrier__edit");
+  let currentFields, removeBtns;
 
-    addBtn.addEventListener('click', onAdd);
+  // EVENTLISTENERS
+  addBtn.addEventListener('click', onAdd);
 
-    function onAdd() {
+  // FUNCTION TO ADD DELETE BUTTON
+  function onAdd() {
+    currentFields = targetArea.querySelectorAll("div.nested-fields:not([style*=none])");
+    removeBtns = targetArea.querySelectorAll(".btnRemoveNestForm");
+    if(currentFields.length + 1 > 1) {
+      removeBtns.forEach(function(btn) {
+        btn.classList.remove('hidden');
+      });
+    }
+  }
+
+  // FUNCTION TO ADD REMOVE BUTTON
+  // - Due the target btn being a dynamic added element, I used 'onclick: onRemove();' in '_vehicle_fields.html.erb'
+  function onRemove() {
+    currentFields = targetArea.querySelectorAll("div.nested-fields:not([style*=none])");
+    removeBtns = targetArea.querySelectorAll(".btnRemoveNestForm");
+    if(currentFields.length - 1 < 2) {
+      removeBtns.forEach(function(btn) {
+        btn.classList.add('hidden');
+      });
+    }
+  }
+
+  // ONLOAD OF PROFILE EDIT PAGE CHECK THE VEHICLE LIST => ADD/REMOVE DEL BTN APPROPRIATELY
+  document.addEventListener("DOMContentLoaded", function() {
+    if(carrierEdit != null || carrierEdit != undefined) {
       currentFields = targetArea.querySelectorAll("div.nested-fields:not([style*=none])");
       removeBtns = targetArea.querySelectorAll(".btnRemoveNestForm");
-      if(currentFields.length + 1 > 1) {
+      if(currentFields.length > 1) {
         removeBtns.forEach(function(btn) {
-          btn.classList.remove('hidden')
+          btn.classList.remove('hidden');
+        });
+      } else {
+        removeBtns.forEach(function(btn) {
+          btn.classList.add('hidden');
         });
       }
     }
-
-    // Due the target being a dynamic added element, I used 'onclick: onRemove();' in '_vehicle_fields.html.erb'
-    function onRemove() {
-      currentFields = targetArea.querySelectorAll("div.nested-fields:not([style*=none])");
-      removeBtns = targetArea.querySelectorAll(".btnRemoveNestForm");
-      if(currentFields.length - 1 < 2) {
-        removeBtns.forEach(function(btn) {
-          btn.classList.add('hidden')
-        });
-      }
-    }
+  });
 
   <% end %>
 <% end %>
