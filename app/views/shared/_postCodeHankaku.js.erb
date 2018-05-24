@@ -6,9 +6,9 @@
       const queryDeliveryPostCode = document.querySelector('#query_delivery_post_code');
       const registrationPostCode = document.querySelector('#carrier_post_code');
 
-      if(queryPickupPostCode) { queryPickupPostCode.addEventListener('blur', convertZenToHan); }
-      if(queryDeliveryPostCode) { queryDeliveryPostCode.addEventListener('blur', convertZenToHan); }
-      if(registrationPostCode) { registrationPostCode.addEventListener('blur', convertZenToHan); }
+      if(queryPickupPostCode) { queryPickupPostCode.addEventListener('keyup', convertZenToHan); }
+      if(queryDeliveryPostCode) { queryDeliveryPostCode.addEventListener('keyup', convertZenToHan); }
+      if(registrationPostCode) { registrationPostCode.addEventListener('keyup', convertZenToHan); }
 
       function convertZenToHan(e) {
         const zenkakuArray = ['１','２','３','４','５','６','７','８','９','０'];
@@ -31,9 +31,6 @@
         }
         return;
       }
-
-      // CONTINUE HERE
-      // - Need to think of a way to pass this to the jpostal?
 
     });
   <% end %>

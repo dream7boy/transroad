@@ -1,5 +1,10 @@
 #foundedDateDummy,
 #carrier_founded_date_month,
+#carrier_fax,
+#carrier_phone,
+#query_pickup_post_code,
+#query_delivery_post_code,
+#carrier_post_code,
 input[name*='load_capacity'],
 input[name*='quantity'] {
   ime-mode: disabled;
