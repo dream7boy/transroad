@@ -2,20 +2,31 @@
   <%= javascript_tag do %>
     $(document).ready(function() {
 
-    const carrierCards = document.querySelectorAll('.cardCarrier');
+    const carrierCards = document.querySelectorAll('.cardCShowDetail');
     carrierCards.forEach(function(card) {
       card.addEventListener('click', handleClick)
     });
 
     function handleClick(e) {
-      const summary = e.currentTarget.querySelector("[data-name='summary'] p");
-      const detail = e.currentTarget.querySelector("[data-name='detail']");
-      const table = e.currentTarget.querySelector("table");
-      const specialties = e.currentTarget.querySelector(".cardCSpecial");
-      summary.classList.toggle('hidden');
-      detail.classList.toggle('hidden');
-      table.classList.toggle('hidden');
-      specialties.classList.toggle('active');
+      const ect = e.currentTarget;
+      const cTC = ect.querySelector("[data-name='clickToClose']");
+      const cTO = ect.querySelector("[data-name='clickToOpen']");
+      const detail = ect.parentElement.querySelector(".cardCDetail");
+      detail.addEventListener('transitionend', fadeIn);
+
+      function fadeIn(e) {
+        if(e.propertyName === "max-height") {
+          e.currentTarget.classList.toggle('fadeIn');
+        }
+      }
+
+      if(detail.classList.contains('fadeIn')) {
+        detail.classList.remove('fadeIn');
+      }
+      detail.classList.toggle('activated');
+      cTO.classList.toggle('hidden');
+      cTC.classList.toggle('hidden');
+
     }
 
     });

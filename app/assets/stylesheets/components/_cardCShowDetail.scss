@@ -1,0 +1,34 @@
+.cardCShowDetail {
+  background-color: $color--main;
+  color: $color--white;
+  font-weight: bolder;
+  margin: 1.8rem -2rem 0 -2rem;
+  opacity: 0.65;
+  overflow: hidden;
+  padding: 0.25em 0 0.45em 0;
+  position: relative;
+  text-align: center;
+  transition-duration: $transition--sm;
+  &::before {
+    box-shadow: 0px 0px 10px $color--black;
+    content: "";
+    height: 10px;
+    left: 0;
+    position: absolute;
+    top: -10px;
+    width: 100%;
+  }
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  p, .fas {
+    line-height: 1;
+  }
+  p {
+    font-size: 1.4rem;
+  }
+  .fas {
+    font-size: 1.8rem;
+  }
+}

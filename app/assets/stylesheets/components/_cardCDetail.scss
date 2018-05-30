@@ -1,0 +1,84 @@
+.cardCDetail {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-height: 0;
+  opacity: 0;
+  transition: all $transition--md cubic-bezier(0.1, 0.1, 0.4, 2);
+  &.activated {
+    margin: 1.8rem 0 0 0;
+    max-height: 1000px;
+    &.fadeIn {
+      opacity: 1;
+    }
+  }
+}
+
+.cardCDetailLeft {
+  flex: 1;
+  margin-right: 3rem;
+}
+
+.cardCDetailRight {
+  // flex: 1;
+  width: 380px;
+}
+
+.infoAndContact {
+  display: flex;
+}
+
+.cardCDetailInfo {
+  width: 190px;
+  margin-left: 2rem;
+}
+
+.cardCDetailContact {
+  flex: 1;
+  p {
+    background-color: $color--main;
+    border-radius: 50px;
+    color: $color--white;
+    font-weight: bolder;
+    margin-bottom: 0.5em;
+    padding: 0.35em 1em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cardCDetailDesciption,
+.cardCDetailProducts,
+.cardCDetailPrefectures {
+  border-top: 1px solid $color--lightgray;
+  padding-top: 1em;
+  margin-top: 1em;
+}
+
+.cardCDetailProducts span,
+.cardCDetailPrefectures span {
+    // font-size: 1.4rem;
+    line-height: 135%;
+    display: inline-block;
+}
+
+[data-name="detail"] {
+  // border-top: 1px solid $color--lightgray;
+  // padding-top: 0.75em;
+  // margin-top: 0.75em;
+  p {
+    // font-weight: normal;
+    &.cardPrefectureList {
+      // font-size: 0;
+    }
+  }
+  span {
+    // font-size: 1.4rem;
+    // line-height: 135%;
+    // display: inline-block;
+    &:first-child {
+      // margin-top: 0.75em;
+    }
+  }
+}

@@ -2,40 +2,43 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   font-size: 1.4rem;
-  border: 1px solid $color--main;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+  // border: 1px solid $color--main;
   text-align: center;
-  border-radius: $border-radius;
+  // border-radius: $border-radius;
   width: 100%;
+  overflow: hidden;
 }
 
 th, td {
   font-weight: normal;
-  padding: 0.35em 0.5em;
   vertical-align: middle;
 }
 
 th {
   text-align: center;
+  padding: 0.45em 0.5em 0.35em 0.5em;
   background-color: $color--main;
   color: $color--white;
   &:nth-child(1) {
-    width: 7em;
+    width: 5em;
   }
   &:nth-child(1) {
-    border-top-left-radius: calc(#{$border-radius} - 2px);
+    // border-top-left-radius: calc(#{$border-radius} - 2px);
   }
   &:nth-child(2) {
     width: auto;
   }
   &:nth-child(3) {
     width: 5em;
-    border-top-right-radius: calc(#{$border-radius} - 2px);
+    // border-top-right-radius: calc(#{$border-radius} - 2px);
   }
 }
 
 thead {
-  border-upper-left-radius: $border-radius;
-  border-upper-right-radius: $border-radius;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
   th {
     letter-spacing: 0.1em;
     border-right: 1px dashed $color--lightgray;
@@ -49,14 +52,25 @@ tbody {
   td {
     border-right: 1px dashed $color--lightgray;
     border-bottom: 1px solid $color--lightgray;
+    padding: 0.75em;
+    &:first-child {
+      border-left: 1px solid $color--main;
+    }
     &:nth-child(2) {
       text-align: left;
     }
     &:last-child {
-      border-right: 0;
+      border-right: 1px solid $color--main;
+      // border-right: 0;
     }
   }
   tr:last-child td {
-    border-bottom: 0;
+    border-bottom: 1px solid $color--main;
+    &:first-child {
+      // border-bottom-left-radius: 6px;
+    }
+    &:last-child {
+      // border-bottom-right-radius: 6px;
+    }
   }
 }

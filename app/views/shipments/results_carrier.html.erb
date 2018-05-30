@@ -8,7 +8,7 @@
   </div>
 
   <div class="dashboardBody">
-    <div class="cardsContainer">
+    <div class="cardsWrapper">
       <% @results_with_temp.each do |carrier| %>
         <%= render 'carrierCard', carrier: carrier %>
       <% end %>
