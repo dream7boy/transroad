@@ -63,7 +63,7 @@
           </p>
           <% if carrier.site_url != "" %>
             <p>
-              <i class="fas fa-desktop"></i>&emsp;<%= link_to carrier.site_url, "http://#{carrier.site_url}" %>
+              <i class="fas fa-desktop"></i>&emsp;<%= link_to carrier.site_url, "http://#{carrier.site_url}", target:"_blank" %>
             </p>
           <% end %>
         </div>
