@@ -1,0 +1,82 @@
+.cardCSummary {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cardCSummaryLeft {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  margin-right: 3rem;
+}
+
+.cardCSummaryRight {
+  display: flex;
+  width: 380px;
+}
+
+.carrierImg {
+  background-color: $color--lightgray;
+  border-radius: calc(#{$border-radius} / 2);
+  height: 120px;
+  margin-right: 1.5rem;
+  overflow: hidden;
+  width: 190px;
+}
+
+.carrierIntro {
+  flex: 1;
+  p {
+    color: $color--black;
+    line-height: 125%;
+    font-weight: bolder;
+    + p {
+      margin-top: 0.35em;
+    }
+    span {
+      font-size: 1.4rem;
+      font-weight: normal;
+    }
+  }
+  .carrierName {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+}
+
+.carrierSpecialties {
+  display: flex;
+  justify-content: space-between;
+  margin: -1.8rem 0;
+  div {
+    align-items: center;
+    // border-left: 1px dashed $color--lightgray;
+    display: flex;
+    flex-direction: column;
+    // flex: 1;
+    justify-content: center;
+    // padding: 0.75rem 0.75rem 0.75rem 0;
+    &:last-child {
+      // padding: 0.75rem 0;
+      // border-right: 1px dashed $color--lightgray;
+    }
+  }
+  p {
+    font-size: 1.4rem;
+    margin-top: 0.25em;
+    white-space: nowrap;
+  }
+  svg {
+    width: 46px;
+  }
+}
+
+.carrierSpecialties.activated {
+  // flex: 1;
+  // margin: -1.5rem 0 1.5rem 0;
+  // div {
+  //   padding: 2rem 1.25rem;
+  //   border-bottom: 1px solid $color--lightgray;
+  // }
+}

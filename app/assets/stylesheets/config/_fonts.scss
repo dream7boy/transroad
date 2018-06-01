@@ -2,8 +2,10 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:800i");
 
 // Define fonts for body and headers
-$font__header: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
-$font__body: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
+// $font__header: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
+// $font__body: 'ヒラギノ角ゴ ProN W3', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', verdana, 'ＭＳ Ｐゴシック',  sans-serif;
+$font__header: 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, sans-serif;
+$font__body: 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, sans-serif;
 $font__brand: 'Raleway', "Open Sans", "Helvetica Neue",  sans-serif;
 $font__h1: 2.8rem; // BANNER
 $font__h2: 2.1rem; // PAGE HEADER
@@ -24,7 +26,7 @@ body {
   font-size: $font__p;
 }
 h1, h2, h3, h4, h5, h6, p, a {
-  line-height: 135%;
+  line-height: 150%;
 }
 h1, h2, h3, h4, h5, h6 {
   color: $color--main;
@@ -49,9 +51,10 @@ h5, h6 {
   font-size: $font__p;
   // font-weight: bold;
 }
-p, a {
+p, a, th, td {
   color: inherit;
   font-family: $font__body;
+  letter-spacing: 0.025em;
 }
 p {
   font-size: $font__p;

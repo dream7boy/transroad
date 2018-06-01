@@ -1,61 +1,28 @@
-<div class="cardContainer cardCarrier">
+<div class="cardWrapper cardCarrier">
   <%= text_area_tag name="#{carrier.id}", nil, class:"carrier__id hidden" %>
 
-  <!-- CARRIER PHOTO -->
-  <div class="carrierImg">
-    <% if carrier.photo != nil %>
-      <%= cl_image_tag carrier.photo.path, width:190, height:120, crop: :fill, gravity:'face:center' %>
-    <% else %>
-      <%= inline_svg "carrier_default.svg", width:190, height:120, crop: :fill %>
-    <% end %>
-  </div>
-
-  <!-- CARRIER TEXT -->
-  <div class="cardCInfo">
-    <h4><%= carrier.company_name %></h4>
-    <p><%= carrier.strength_1 %></p>
-    <p><%= carrier.strength_2 %></p>
-    <div class="" data-name="summary">
-      <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
-    </div>
-    <div class="hidden" data-name="detail">
-      <p>代表者：<%= carrier.ceo_name %></p>
-      <p>創&emsp;業：<%= carrier.founded_date_year %>年<%= carrier.founded_date_month %>月</p>
-      <p>資本金：<%= carrier.capital %></p>
-      <p>従業員：<%= carrier.employee_numbers %></p>
-      <br>
-      <p><%= carrier.company_description %></p>
-      <br>
-      <p><%= carrier.prefecture %>&emsp;<%= carrier.ward %></p>
-      <p><%= carrier.street %></p>
-      <p>電話：<%= carrier.phone %></p>
-      <p>FAX：<%= carrier.fax %></p>
-      <p>メール：<%= carrier.email %></p>
-      <p><%= carrier.site_url %></p>
-      <p class="cardProductList"><span>運送品目：</span><br>
-        <% carrier.favorite_products.each do |product| %>
-          <% unless product.equal? carrier.favorite_products.last %>
-            <span><%= product %>、</span>
-          <% else %>
-            <span><%= product %></span>
-          <% end %>
+  <!------------------- START / SUMMARY ------------------->
+  <div class="cardCSummary">
+    <div class="cardCSummaryLeft">
+      <div class="carrierImg">
+        <% if carrier.photo != nil %>
+          <%= cl_image_tag carrier.photo.path, width:190, height:120, crop: :fill, gravity:'face:center' %>
+        <% else %>
+          <%= inline_svg "carrier_default.svg", width:190, height:120, crop: :fill %>
         <% end %>
-      </p>
-      <p class="cardPrefectureList"><span>運送地域：</span><br>
-        <% carrier.areas_covered.each do |prefecture| %>
-          <% unless prefecture.equal? carrier.areas_covered.last %>
-            <span><%= prefecture %>、</span>
-          <% else %>
-            <span><%= prefecture %></span>
-          <% end %>
-        <% end %>
-      </p>
+      </div>
+      <div class="carrierIntro">
+        <p class="carrierName">
+          <%= carrier.company_name %>
+          <span>
+            /&ensp;<%= carrier.prefecture %>&emsp;<%= carrier.ward %>
+          </span>
+        </p>
+        <p><%= carrier.strength_1 %></p>
+        <p><%= carrier.strength_2 %></p>
+      </div>
     </div>
-  </div>
-
-  <div class="cardC_SpAndTable">
-    <!-- CARRIER SPECIALTIES -->
-    <div class="cardCSpecial">
+    <div class="cardCSummaryRight carrierSpecialties">
       <% spOrder = ["会社規模", "緊急対応", "運送地域", "価格", "車両種類"] %>
       <% for i in 0...(spOrder.length) %>
       <div>
@@ -72,42 +39,99 @@
       </div>
       <% end %>
     </div>
-    <!-- CARRIER VEHICLES -->
-    <table class="hidden" cellspacing="0">
-      <thead>
-        <tr>
-          <th>積載量</th>
-          <th>仕様</th>
-          <th>台数</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% vehicles = carrier.vehicles.sort_by { |obj| obj.load_capacity.to_i } %>
-        <% for i in 0...(vehicles.length) %>
-        <tr>
-          <td>
-            <% if vehicles[i].load_capacity == "１トン未満" || vehicles[i].load_capacity == "1トン未満" %>
-              1トン未満
-            <% else %>
-              <%= vehicles[i].load_capacity %>トン
-            <% end %>
-          </td>
-          <td>
-            <% if vehicles[i].vehicle_type != "標準" %>
-              <%= vehicles[i].vehicle_type %><br>
-            <% end %>
-            <% if vehicles[i].type_specifications != "標準" %>
-              <%= vehicles[i].type_specifications %><br>
-            <% end %>
-            <% if vehicles[i].feature != "標準" %>
-              <%= vehicles[i].feature %>
-            <% end %>
-          </td>
-          <td><%= vehicles[i].quantity %>台</td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
   </div>
+  <!------------------- END / SUMMARY ------------------->
+
+  <!------------------- START / DETAIL INFO ------------------->
+  <div class="cardCDetail">
+    <div class="cardCDetailLeft">
+      <div class="infoAndContact">
+        <div class="cardCDetailContact">
+          <p>
+            <i class="fas fa-map-marker-alt"></i>&emsp;<%= carrier.prefecture %>&emsp;<%= carrier.ward %>&emsp;<%= carrier.street %>
+          </p>
+          <p>
+            <i class="fas fa-phone"></i>&emsp;<%= carrier.phone %>
+          </p>
+          <% if carrier.fax != "" %>
+            <p>
+              <i class="fas fa-fax"></i>&emsp;<%= carrier.fax %>
+            </p>
+          <% end %>
+          <p>
+            <i class="far fa-envelope"></i>&emsp;<%= carrier.email %>
+          </p>
+          <% if carrier.site_url != "" %>
+            <p>
+              <i class="fas fa-desktop"></i>&emsp;<%= link_to carrier.site_url, "http://#{carrier.site_url}" %>
+            </p>
+          <% end %>
+        </div>
+        <div class="cardCDetailInfo">
+          <p>代表者：<%= carrier.ceo_name %></p>
+          <p>創&emsp;業：<%= carrier.founded_date_year %>年<%= carrier.founded_date_month %>月</p>
+          <p>資本金：<%= carrier.capital %></p>
+          <p>従業員：<%= carrier.employee_numbers %></p>
+        </div>
+      </div>
+      <!-- ATTENTION! The 3 <p> tags below are intentionally on a single line to prevent white-space. -->
+      <p class="cardCDetailDesciption"><%= carrier.company_description %></p>
+      <p class="cardCDetailProducts"><span>運送品目：</span><% carrier.favorite_products.each do |product| %><% unless product.equal? carrier.favorite_products.last %><span><%= product %>、</span><% else %><span><%= product %></span><% end %><% end %></p>
+      <p class="cardCDetailPrefectures"><span>運送地域：</span><% carrier.areas_covered.each do |prefecture| %><% unless prefecture.equal? carrier.areas_covered.last %><span><%= prefecture %>、</span><% else %><span><%= prefecture %></span><% end %><% end %></p>
+    </div>
+    <div class="cardCDetailRight">
+      <table class="" cellspacing="0">
+        <thead>
+          <tr>
+            <th>積載量</th>
+            <th>仕様</th>
+            <th>台数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% vehicles = carrier.vehicles.sort_by { |obj| obj.load_capacity.to_i } %>
+          <% for i in 0...(vehicles.length) %>
+          <tr>
+            <td>
+              <% if vehicles[i].load_capacity == "１トン未満" || vehicles[i].load_capacity == "1トン未満" %>
+                1t未満
+              <% else %>
+                <%= vehicles[i].load_capacity %>t
+              <% end %>
+            </td>
+            <td>
+              <% if vehicles[i].vehicle_type != "標準" %>
+                <%= vehicles[i].vehicle_type %><br>
+              <% end %>
+              <% if vehicles[i].type_specifications != "標準" %>
+                <%= vehicles[i].type_specifications %><br>
+              <% end %>
+              <% if vehicles[i].feature != "標準" %>
+                <%= vehicles[i].feature %>
+              <% end %>
+            </td>
+            <td><%= vehicles[i].quantity %>台</td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!------------------- END / DETAIL INFO ------------------->
+
+  <!------------------- START / SHOW DETAIL ------------------->
+  <div class="cardCShowDetail">
+    <p data-name="clickToOpen">
+      <i class="fas fa-caret-down"></i>
+      &emsp;詳細を見る&emsp;
+      <i class="fas fa-caret-down"></i>
+    </p>
+    <p class="hidden" data-name="clickToClose">
+      <i class="fas fa-caret-up"></i>
+      &emsp;閉じる&emsp;
+      <i class="fas fa-caret-up"></i>
+    </p>
+  </div>
+  <!------------------- END / SHOW DETAIL ------------------->
 
 </div>

@@ -1,3 +1,7 @@
+@import "cardCSummary";
+@import "cardCShowDetail";
+@import "cardCDetail";
+
 $color__card-selected: #FFFCE2;
 
 @keyframes scale {
@@ -7,45 +11,68 @@ $color__card-selected: #FFFCE2;
   100% {transform: scale(1, 1);}
 }
 
-#queryResults .cardContainer {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.cardsContainer { // Plural
+.cardsWrapper { // Plural
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  align-items: left;
   justify-content: flex-start;
 }
 
-.cardContainer {  // Singular
-  padding: 1.5rem 0;
+.cardWrapper {  // Singular
+  background-color: $color--white;
+  border-radius: $border-radius;
+  box-shadow: $card-shadow--default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  padding: 1.8rem 2rem 0 2rem;
   width: 100%;
-  border-top: 2px solid $color--lightgray;
-  position: relative;
+  // border-top: 2px solid $color--lightgray;
+  // position: relative;
   &:last-child {
-    border-bottom: 2px solid $color--lightgray;
+    margin-bottom: 0;
+    // border-bottom: 2px solid $color--lightgray;
   }
   &:hover {
-    cursor: pointer;
+    // cursor: pointer;
     &:before {
-      border-bottom: 15px solid $color--white;
-      border-left: 15px solid $color--sub;
-      border-top: 15px solid $color--white;
-      content: '';
-      display: block;
-      height: 30px;
-      left: -30px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 30px;
+      // border-bottom: 15px solid $color--white;
+      // border-left: 15px solid $color--sub;
+      // border-top: 15px solid $color--white;
+      // content: '';
+      // display: block;
+      // height: 30px;
+      // left: -30px;
+      // position: absolute;
+      // top: 50%;
+      // transform: translateY(-50%);
+      // width: 30px;
     }
   }
   h4{
     margin-bottom: 0.5em;
   }
+}
+
+.cardWrapper.activated {  // Singular + Activated
+  // border-bottom: 15px solid $color--white;
+  // border-left: 15px solid $color--sub;
+  // border-top: 15px solid $color--white;
+  // content: '';
+  // display: block;
+  // height: 30px;
+  // left: -30px;
+  // position: absolute;
+  // top: 50%;
+  // transform: translateY(-50%);
+  // width: 30px;
+}
+
+#queryResults .cardWrapper {
+  // display: flex;
+  // justify-content: flex-start;
 }
 
 .cardLinkContainer {
@@ -71,97 +98,11 @@ $color__card-selected: #FFFCE2;
   }
 }
 
-// START / CARRIER RESULTS
-.cardC_SpAndTable {
-  display: flex;
-  flex: 3;
-  flex-direction: column;
-}
-
-.cardCSpecial {
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  margin: -1.5rem 0;
-  div {
-    align-items: center;
-    border-left: 1px dashed $color--lightgray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem 1.25rem;
-    flex: 1;
-    &:last-child {
-      border-right: 1px dashed $color--lightgray;
-    }
-  }
-  p {
-    font-size: 1.2rem;
-    margin-top: 0.25em;
-  }
-  svg {
-    width: 46px;
-  }
-}
-
-.cardCSpecial.active {
-  flex: 1;
-  margin: -1.5rem 0 1.5rem 0;
-  div {
-    padding: 2rem 1.25rem;
-    border-bottom: 1px solid $color--lightgray;
-  }
-}
-
-.cardCInfo {
-  margin-right: 3rem;
-  position: relative;
-  flex: 2;
-  h4 {
-    font-weight: bolder;
-  }
-  p {
-    color: $color--black;
-    font-size: 1.4rem;
-    font-weight: bolder;
-    &:last-child, &:nth-last-child(2) {
-      border-top: 1px solid $color--lightgray;
-      padding-top: 0.75em;
-      width: 100%;
-      font-weight: normal;
-      margin-top: 0.75em;
-    }
-    &:nth-last-child(2) {
-      padding-top: 0;
-      margin-bottom: 0.75em;
-    }
-  }
-  [data-name="summary"] p {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
-  [data-name="detail"] {
-    border-top: 1px solid $color--lightgray;
-    padding-top: 0.75em;
-    margin-top: 0.75em;
-    p {
-      font-weight: normal;
-      &.cardPrefectureList {
-        font-size: 0;
-      }
-    }
-    span {
-      font-size: 1.4rem;
-      line-height: 135%;
-      display: inline-block;
-      &:first-child {
-        margin-top: 0.75em;
-      }
-    }
-  }
-}
-// END / CARRIER RESULTS
+// .cardC_SpAndTable {
+//   display: flex;
+//   flex: 3;
+//   flex-direction: column;
+// }
 
 .cardBtn {
   box-shadow: none;
@@ -171,7 +112,7 @@ $color__card-selected: #FFFCE2;
   width: 100%;
 }
 
-.cardContainer.selected {
+.cardWrapper.selected {
   background-color: $color__card-selected;
   position: relative;
   &::after {
@@ -197,13 +138,4 @@ $color__card-selected: #FFFCE2;
 
 .cardBtn {
   background-color: $color--sub;
-}
-
-.carrierImg {
-  background-color: $color--lightgray;
-  border-radius: calc(#{$border-radius} / 2);
-  margin-right: 1.5rem;
-  overflow: hidden;
-  width: 190px;
-  height: 120px;
 }

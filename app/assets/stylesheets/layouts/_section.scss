@@ -74,7 +74,7 @@ section.shipper {
     z-index: -10;
   }
   &.container-fluid {  // Different padding from default due to bg method.
-    padding: calc(#{$borderFull} * 1.75)  calc(#{$borderFull} * 7);
+    padding: calc(#{$borderFull} * 1.75)  calc(#{$borderFull} * 6);
     &.slimSmall {
       padding: calc(#{$borderFull} * 1.75) calc(#{$borderFull} * 9.285);
     }
