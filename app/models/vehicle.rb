@@ -8,7 +8,7 @@ class Vehicle < ApplicationRecord
   validates :quantity, presence: true
   validates :carrier, presence: true
 
-  TYPES = %w(バン 平ボディ 平ボディ・幌 ウィング・アルミ ウィング・幌 ユニック ダンプ 重機運搬 トラクタ トレーラ タンクローリー ミキサー)
+  TYPES = %w(バン 平ボディ 平ボディ・幌 ウィング・アルミ ウィング・幌 ユニック ダンプ 重機運搬 トラクタ トレーラ タンクローリー ミキサー フォークリフト)
   SPECIFICATIONS = %w(標準 ワイド ロング ワイド＆ロング)
   FEATURES = %w(標準 パワーゲート エアサス パワーゲート＆エアサス ジョルダー 冷凍・冷蔵 保冷)
 
