@@ -94,13 +94,13 @@
       margin-bottom: 0.25em;
     }
     p, ul {
-      margin-bottom: $spacer--sm;
-      &:last-child {
+      margin-bottom: 1em;
+      &:last-of-type {
         margin-bottom: unset;
       }
     }
     p {
-      width: calc(#{$font__p} * 25);
+      width: calc(#{$font__p} * 28);
     }
     .fullscreen {
       padding: $spacer--md $spacer--lg $spacer--lg $spacer--lg;

@@ -7,14 +7,11 @@ $borderFull: $border * 2;
   min-height: 100vh;
 }
 
+#landing--carrier,
+#landingQueryForm,
 #sign_in.carrier,
 #forgot_password {
   height: 1px; // CATER FOR IE SINCE THE PARENT NEEDS A HEIGHT OF SOME FORM
-}
-
-#landing--carrier,
-#landingQueryForm {
-  height: 500px; // CATER FOR IE SINCE THE PARENT NEEDS A HEIGHT OF SOME FORM
 }
 
 section#queryResults {
