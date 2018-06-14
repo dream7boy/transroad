@@ -104,10 +104,11 @@ input::-ms-clear {
   display: none;
 }
 
-// Remove glossy select appearance from Safari
-select {
-  -webkit-appearance:none;
-}
+// Removes glossy select appearance from Safari
+// Also removed arrows from select & spinner inputs...
+// select {
+  // -webkit-appearance:none;
+// }
 
 label[for="carrier_company_description"] {
   width: 28em;
