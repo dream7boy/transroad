@@ -4,10 +4,10 @@ Rails.application.routes.draw do
     registrations: 'carriers/registrations'
   }
 
-  # devise_for :shippers, path: 'shippers', controllers: {
-  #   sessions: 'shippers/sessions',
-  #   registrations: 'shippers/registrations'
-  # }
+  devise_for :shippers, path: 'shippers', controllers: {
+    sessions: 'shippers/sessions',
+    registrations: 'shippers/registrations'
+  }
 
   ## in case we need 2 pages for sign-up
   # devise_scope :carrier do
