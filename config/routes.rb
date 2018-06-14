@@ -4,10 +4,10 @@ Rails.application.routes.draw do
     registrations: 'carriers/registrations'
   }
 
-  devise_for :shippers, path: 'shippers', controllers: {
-    sessions: 'shippers/sessions',
-    registrations: 'shippers/registrations'
-  }
+  # devise_for :shippers, path: 'shippers', controllers: {
+  #   sessions: 'shippers/sessions',
+  #   registrations: 'shippers/registrations'
+  # }
 
   ## in case we need 2 pages for sign-up
   # devise_scope :carrier do
@@ -27,25 +27,25 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :shipper do
-    resources :shipments, only: [:index, :show, :update] do
-      collection do
-        get 'pre-transit', to: 'shipments#pre_transit_index'
-        get 'in-transit', to: 'shipments#in_transit_index'
-        get 'post-transit', to: 'shipments#post_transit_index'
-      end
+  # namespace :shipper do
+  #   resources :shipments, only: [:index, :show, :update] do
+  #     collection do
+  #       get 'pre-transit', to: 'shipments#pre_transit_index'
+  #       get 'in-transit', to: 'shipments#in_transit_index'
+  #       get 'post-transit', to: 'shipments#post_transit_index'
+  #     end
 
-      member do
-        get 'quotes', to: 'shipments#quotes'
-        get 'quotes_req', to: 'shipments#quotes_req'
-        # get 'quotes_done', to: 'shipments#quotes_done'
-      end
-    end
+  #     member do
+  #       get 'quotes', to: 'shipments#quotes'
+  #       get 'quotes_req', to: 'shipments#quotes_req'
+  #       # get 'quotes_done', to: 'shipments#quotes_done'
+  #     end
+  #   end
 
-    # resources :shipments, path: '/s', only: [:show] do
-    #   get 'quotes', on: :member
-    # end
-  end
+  #   # resources :shipments, path: '/s', only: [:show] do
+  #   #   get 'quotes', on: :member
+  #   # end
+  # end
 
   # namespace :carrier do
   #   get 'shipments', to: 'deals#index'
