@@ -51,6 +51,9 @@
             <i class="fas fa-map-marker-alt"></i>&emsp;<%= carrier.prefecture %>&emsp;<%= carrier.ward %>&emsp;<%= carrier.street %>
           </p>
           <p>
+            <i class="fas fa-user"></i>&emsp;担当者名：<%= carrier.name_kanji %>
+          </p>
+          <p>
             <i class="fas fa-phone"></i>&emsp;<%= carrier.phone %>
           </p>
           <% if carrier.fax != "" %>
