@@ -1,0 +1,30 @@
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    document.addEventListener("DOMContentLoaded", function() {
+      const debounceFunction = (function() {
+        const interval = 100;
+        let timer;
+        return function() {
+          clearTimeout(timer);
+          timer = setTimeout(function() {
+
+            function isScrolledIntoView(element) {
+              const markerTop = window.innerHeight * 0.1;
+              const markerBottom = window.innerHeight * 0.9;
+              let pingCenter = ($(element).offset().top  +  $(element).outerHeight()/2) - $(document).scrollTop();
+              return ((pingCenter <= markerBottom) && (pingCenter >= markerTop));
+            }
+
+            $('.descriptionImgContainer').each(function() {
+              if (isScrolledIntoView(this) === true) {
+                $(this).addClass('activated');
+              }
+            });
+
+          }, interval);
+        };
+      })();
+      window.addEventListener('scroll', debounceFunction);
+    });
+  <% end %>
+<% end %>

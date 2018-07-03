@@ -4,8 +4,6 @@
     <%= render "landingView.html.erb" %>
   </div>
   <%= render "landingDescriptionOne.html.erb" %>
-  <%#= render "landingDescriptionTwo.html.erb" %>
-  <%#= render "landingShipper.html.erb" %>
   <%= render "shipment_query.html.erb" %>
   <%= render "landingCarrier.html.erb" %>
 </div>
@@ -15,3 +13,4 @@
 <%= render partial: 'shared/jquery.jpostal', formats: :js %>  <!-- JS for automated address input upon postal code input -->
 <%= render partial: 'shared/jpostal.queryActivator', formats: :js %>
 <%= render partial: 'shared/scrollTo', formats: :js %>  <!-- onClick of prefecture input scroll so it is within view -->
+<%= render partial: 'shared/ifInView', formats: :js %>  <!-- if certain elements are in viewport => run code -->

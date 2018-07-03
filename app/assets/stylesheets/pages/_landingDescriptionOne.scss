@@ -1,153 +1,34 @@
+// GENERAL
 #landingDescriptionOne {
   max-width: 100vw;
   overflow: hidden;
-  .description__image-box {
-    flex: 1 0 auto;
-    margin: $spacer--sm 0;
-    height: 420px;
-    min-height: 260px;
-    overflow: hidden;
-    position: relative;
-    width: 100vw;
-    & svg {
-      position:absolute;
-      width: 18%;
-      min-height: 54px;
-      max-height: 80px;
-      min-width: 54px;
-      max-width: 80px;
-      & path {
-        fill: $color--main;
-        &.c {
-          fill: $color--white;
-        }
-      }
-    }
-    @keyframes flicker-one {
-      0.00% { fill: $color--main } // OFF-END
-      0.60% { fill: $color--sub } // FLICKER-ON
-      1.20% { fill: $color--main } // FLICKER-OFF
-      1.80% { fill: $color--sub } // FLICKER-ON
-      2.40% { fill: $color--main } // FLICKER-OFF
-      3.00% { fill: $color--sub } // ON-START
-      25.0% { fill: $color--sub } // ON-END
-      26.0% { fill: $color--main } // OFF-START
-      100% { fill: $color--main } // OFF
-    }
-    $flicker-time: 9s;
-    & .carrier_ {
-      &01 {
-        left: 21%;
-        top: 18%;
-        & path.a, & path.d {
-          animation: $flicker-time linear 0s infinite flicker-one;
-        }
-      }
-      &02 {
-        left: 32%;
-        top: 65%;
-        & path.a, & path.d {
-          animation: $flicker-time linear calc(#{$flicker-time * .25}) infinite flicker-one;
-        }
-      }
-      &03 { display: none; }
-      &04 { display: none; }
-      &05 { display: none; }
-      &06 { display: none; }
-      &07 {
-        left: -04%;
-        top: 00%;
-        & path.a, & path.d {
-          animation: $flicker-time linear calc(#{$flicker-time * .75}) infinite flicker-one;
-        }
-      }
-      &08 { left: 87%; top: 13%; }
-      &09 {
-        left: 60%;
-        top: 70%;
-        & path.a, & path.d {
-          animation: $flicker-time linear calc(#{$flicker-time * .5}) infinite flicker-one;
-        }
-      }
-      &10 { display: none; }
-    }
-    & .shipper_ {
-      &01 {
-        left: 67%;
-        top: 40%;
-        & path.a, & path.d {
-          animation: $flicker-time linear 0s infinite flicker-one;
-        }
-      }
-      &02 {
-        left: 54%;
-        top: 02%;
-        & path.a, & path.d {
-          animation: $flicker-time linear calc(#{$flicker-time * .25}) infinite flicker-one;
-        }
-      }
-      &03 { display: none; }
-      &04 { display: none; }
-      &05 { left: 43%; top: 33%; }
-      &06 { left: 92%; top: 50%; }
-      &07 {
-        left: 06%;
-        top: 50%;
-        & path.a, & path.d {
-          animation: $flicker-time linear calc(#{$flicker-time * .75}) infinite flicker-one;
-        }
-      }
-      &08 { left: -06%; bottom: 01%; }
-      &09 {
-        left: 88%;
-        bottom: 00%;
-        & path.a, & path.d {
-          animation: $flicker-time linear calc(#{$flicker-time * .5}) infinite flicker-one;
-        }
-      }
-      &10 { display: none; }
+  svg {
+    width: 100%;
+  }
+  .row {
+    max-width: 100vw;
+    width: 100%;
+    & + .row {
+      margin: 6em 0 0 0;
     }
   }
 }
 
-
-
-
-
-
-/*------------  md >= 992px (.container @ 970px)  ------------*/
-@media (min-width: 992px) {
-  #landingDescriptionOne {
-    .description__image-box {
-      & .carrier_ {
-        &01 { left: 40%; top: 30%;
-          & path { fill: $color--sub; }
-        }
-        &02 { display: block; left: 42%; top: 80%; }
-        &03 { display: block; left: 15%; top: 72%; }
-        &04 { display: block; left: 88%; bottom: 00%; }
-        &05 { left: 24%; top: 34%; }
-        &06 { display: block; left: 02%; top: 00%; }
-        &07 { left: 27%; top: 09%; }
-        &08 { left: 72%; top: 10%; }
-        &09 { left: 60%; top: 70%; }
-        &10 { display: block; left: 96%; top: 15%; }
-      }
-      & .shipper_ {
-        &01 { left: 74%; top: 70%;
-          & path { fill: $color--sub; }
-        }
-        &02 { left: 62%; top: 41%; }
-        &03 { display: block; left: 49%; top: 52%; }
-        &04 { display: block; left: 83%; top: 32%; }
-        &05 { left: 30%; top: 59%; }
-        &06 { left: 92%; top: 50%; }
-        &07 { left: 06%; top: 50%; }
-        &08 { left: -03%; bottom: 01%; }
-        &09 { left: 54%; top: 02%; }
-        &10 { display: block; left: 13%; top: 18%; }
-      }
+// SVGs
+#landingDescriptionOne {
+  .descriptionImgContainer > div {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: $transition--lg ease-out;
+  }
+  .descriptionImgContainer.activated > div {
+    opacity: 1;
+    transform: translateY(0);
+    &:nth-of-type(2) {
+      transition-delay: 1.25s;
+    }
+    &:nth-of-type(3) {
+      transition-delay: 2.5s;
     }
   }
 }
-/*------------ } @media (min-width: 992px) ------------*/
