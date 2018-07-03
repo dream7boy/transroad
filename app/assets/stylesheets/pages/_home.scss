@@ -6,7 +6,7 @@
     h5 {
       font-weight: bolder;
     }
-    p, li {
+    li {
       line-height: calc(1.35em + (1.6 - 1.35) * ((100vw - (#{$font__p} * 25))/(90 - 28)));
       font-size: calc(1.5rem + (1.65 - 1.5) * ((100vw - (#{$font__p} * 25))/(90 - 28)));
     }

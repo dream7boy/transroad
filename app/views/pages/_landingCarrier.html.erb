@@ -1,18 +1,32 @@
 <section id="landing--carrier" class="carrier">
-  <div class="landingWrapper">
-
-    <div class="landingContainer">
-      <h1>運送会社の登録</h1>
-      <p>トランスロードは荷主企業がが送りたい品物に合った運送会社を簡単に探すことができるサービスです。</p>
-      <p>運送会社は無料で簡単に登録することができ、登録後すぐにマッチする荷主企業にご紹介できる流れとなっております。運送協力会社を探しにも活用することができますので、ぜひご利用ください。</p>
-      <%= link_to "無料で登録する", new_carrier_registration_path, class: "btn btnNull btnLarge" %>
-      <span class="txtTempAlert">現在はパソコンのみからの<br class="visible-xs">ご登録となっております</span>
+  <div class="row">
+    <p class="carrierPointTitle col-xs-12 text-center">トランスロードの強み</p>
+  </div>
+  <div class="row">
+    <div>
+      <p class="carrierPoint underline">配送が得意な品物で荷主企業と</p><br>
+      <p class="carrierPoint underline">マッチング</p><p class="carrierPoint">するので、それぞれの</p><br>
+      <p class="carrierPoint">運送会社の強みが活かせます。</p>
     </div>
-
-    <div class="landingContainer imgBox hidden-xs">
-      <%= inline_svg "00_shipper_set.svg", class: "imgFlipX"  %>
-      <%= inline_svg "00_carrier_set.svg", class: "imgFlipX"  %>
+    <%= inline_svg "carrier_01.svg" %>
+  </div>
+  <div class="row">
+    <%= inline_svg "carrier_02.svg" %>
+    <div>
+      <p class="carrierPoint underline">無料で登録</p><p class="carrierPoint ">することができ、</p><br>
+      <p class="carrierPoint underline">月額費用もありません。</p>
     </div>
-
+  </div>
+  <div class="row">
+    <div>
+      <p class="carrierPoint underline">協力会社をお探しの際にも</p><br>
+      <p class="carrierPoint underline">活用することができますので、</p><br>
+      <p class="carrierPoint">ぜひお試しください。</p>
+    </div>
+    <%= inline_svg "carrier_03.svg" %>
   </div>
 </section>
+<div class="carrierCTA">
+  <%= link_to "無料で登録する", new_carrier_registration_path, class: "btn btnNull btnLargeWide btnSubColor btnRounded" %>
+  <span class="txtTempAlert">現在はパソコンのみからの<br class="visible-xs">ご登録となっております</span>
+</div>
