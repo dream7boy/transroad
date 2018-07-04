@@ -34,18 +34,22 @@
   font-size: $font__p;
   font-weight: bold;
   padding: 0.6rem 3.5rem;
+  box-shadow: 0 4px 0 0 $color--mainDark;
   &:active:focus, &:active, &:focus, &:hover {
     color: $color--white;
     outline: none;
   }
   &:active:focus, &:hover {
-    background-color: darken($color--main, 10%);
+    background-color: $color--mainDark;
   }
   &:active, &:focus {
     background-color: $color--main;
   }
   &:active {
     transform: translateY(2px);
+  }
+  &.btnNoShadow {
+    box-shadow: none;
   }
 }
 
@@ -60,11 +64,12 @@
 
 .btnSubColor {
   background-color: $color--sub;
+  box-shadow: 0 4px 0 0 $color--subDark;
   &:active {
     transform: translateY(2px);
     background-color: $color--sub;
     &:focus {
-      background-color: darken($color--sub, 10%);
+      background-color: $color--subDark;
     }
   }
   &:focus {
@@ -147,6 +152,10 @@
   .btnLarge {
     font-size: 2.1rem;
     padding: 0.35em 6em 0.25em 6em;
+  }
+  .btnLargeWide {
+    font-size: 2.1rem;
+    padding: 0.35em 12em 0.25em 12em;
   }
 }
 /*------------ } @media (min-width: 992px) ------------*/
